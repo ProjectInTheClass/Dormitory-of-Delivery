@@ -22,7 +22,4 @@ while !isBlocked {
         
     }
     
-    
-    
-    
 }
