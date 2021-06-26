@@ -1,5 +1,4 @@
 ### 변수값증가시키기
-
 ~~~
 var gemCounter = 0
 
