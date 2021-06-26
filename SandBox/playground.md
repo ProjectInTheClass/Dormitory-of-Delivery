@@ -1,6 +1,6 @@
 # 변수값증가시키기
 
-'''
+~~~
 while !isBlocked || !isBlockedLeft || !isBlockedRight{
     if isOnGem{
         collectGem()
@@ -14,4 +14,4 @@ while !isBlocked || !isBlockedLeft || !isBlockedRight{
         moveForward()
     }
 }
-
+~~~
