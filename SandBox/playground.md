@@ -1,25 +1,15 @@
 [ 변수 - 값 증가시키기 ]
 
-var gemCounter = 0
-
-while !isBlocked {
-
-    moveForward()
-    
-    if isBlocked && isOnGem {
-    
-        turnRight()
-        
+while !isBlocked || !isBlockedLeft || !isBlockedRight{
+    if isOnGem{
         collectGem()
-        
-        gemCounter = gemCounter + 1
-        
-    }else if isOnGem {
-    
-        collectGem()
-        
-        gemCounter = gemCounter + 1
-        
+        gemCounter += 1
     }
-    
+    if isBlockedRight{
+        moveForward()
+    }
+    else{
+        turnRight()
+        moveForward()
+    }
 }
