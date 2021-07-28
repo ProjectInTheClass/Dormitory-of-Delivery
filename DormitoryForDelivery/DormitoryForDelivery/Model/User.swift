@@ -15,6 +15,7 @@ struct User {
     let university:String = "창원대학교"
     var dormitory: SortOfDormitory
     var nickName:String
+    var phoneNumber:String
 }
 
 
