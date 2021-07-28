@@ -16,6 +16,7 @@
 		D81BA1EC26ADB2D9009B1FE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81BA1EB26ADB2D9009B1FE3 /* User.swift */; };
 		D81BA21326AEDFF5009B1FE3 /* SortOfDormitory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81BA21226AEDFF5009B1FE3 /* SortOfDormitory.swift */; };
 		D81BA21726AEE1CB009B1FE3 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81BA21626AEE1CB009B1FE3 /* UserController.swift */; };
+		D85366B926B1AB9C0045B8C8 /* WirttenListTableViewCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85366B826B1AB9C0045B8C8 /* WirttenListTableViewCellCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		D81BA1EB26ADB2D9009B1FE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D81BA21226AEDFF5009B1FE3 /* SortOfDormitory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOfDormitory.swift; sourceTree = "<group>"; };
 		D81BA21626AEE1CB009B1FE3 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		D85366B826B1AB9C0045B8C8 /* WirttenListTableViewCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WirttenListTableViewCellCollectionViewCell.swift; path = ../../../../../WirttenListTableViewCellCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		D81BA21426AEE13B009B1FE3 /* Other Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D85366B826B1AB9C0045B8C8 /* WirttenListTableViewCellCollectionViewCell.swift */,
 			);
 			path = "Other Controllers";
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			files = (
 				D81BA21726AEE1CB009B1FE3 /* UserController.swift in Sources */,
 				D81BA1EC26ADB2D9009B1FE3 /* User.swift in Sources */,
+				D85366B926B1AB9C0045B8C8 /* WirttenListTableViewCellCollectionViewCell.swift in Sources */,
 				D81BA1DC26AA8B5C009B1FE3 /* MainViewController.swift in Sources */,
 				D81BA1D826AA8B5C009B1FE3 /* AppDelegate.swift in Sources */,
 				D81BA1DA26AA8B5C009B1FE3 /* SceneDelegate.swift in Sources */,
