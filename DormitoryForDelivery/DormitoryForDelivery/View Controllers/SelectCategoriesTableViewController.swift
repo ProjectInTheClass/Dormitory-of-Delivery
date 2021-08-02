@@ -33,15 +33,15 @@ class SelectCategoriesTableViewController: UITableViewController {
         return categories.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
+        
+        let category = categories[indexPath.row]
+        cell.textLabel?.text = category
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

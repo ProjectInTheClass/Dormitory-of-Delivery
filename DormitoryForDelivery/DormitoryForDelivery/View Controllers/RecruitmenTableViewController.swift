@@ -9,35 +9,29 @@ import UIKit
 
 class RecruitmenTableViewController: UITableViewController, UITextViewDelegate {
 
-    @IBOutlet weak var txtvReview: UITextView!
-    override func viewDidLoad() {
+    
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var noteTextView: UITextView!
+    @IBOutlet weak var stepper: UIStepper!
+    @IBOutlet weak var recruitNumber: UILabel!
+    
+       override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        placeholderSetting()
+        noteTextViewPlaceholderSetting()
     }
     
-    func placeholderSetting() {
-        txtvReview.delegate = self // txtvReview가 유저가 선언한 outlet
-        txtvReview.text = "같이 시켜먹을 배달음식에 대한 설명과 수령 방식 등 배달 공유에 대한 정보를 작성해 주세요."
-        txtvReview.textColor = UIColor.lightGray
-        
+    func noteTextViewPlaceholderSetting() {
+        noteTextView.delegate = self // 유저가 선언한 outlet
+        noteTextView.text = "같이 시켜먹을 배달음식에 대한 설명과 수령 방식 등 배달 공유에 대한 정보를 작성해 주세요."
+        noteTextView.textColor = UIColor.lightGray
     }
     
-    
-    // TextView Place Holder
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor.black
         }
-        
     }
-    // TextView Place Holder
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "같이 시켜먹을 배달음식에 대한 설명과 수령 방식 등 배달 공유에 대한 정보를 작성해 주세요."
