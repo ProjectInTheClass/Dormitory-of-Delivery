@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -270,6 +271,74 @@
             </objects>
             <point key="canvasLocation" x="812" y="809"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="xbh-uJ-giS">
+            <objects>
+                <viewController id="gzs-Ha-SKa" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7oN-uj-wBT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="배달의 기숙사" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdm-K8-kmB">
+                                <rect key="frame" x="99" y="194" width="216" height="118"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ig3-Gt-HEK">
+                                <rect key="frame" x="80" y="348" width="254" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hat-Vu-gwb">
+                                <rect key="frame" x="80" y="413" width="254" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Smo-yC-z0c">
+                                <rect key="frame" x="107" y="492" width="200" height="35"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="2kO-am-leF"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="QcH-bp-N4i"/>
+                                </constraints>
+                                <state key="normal" title="로그인">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muW-2Z-DmQ">
+                                <rect key="frame" x="107" y="582" width="52" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="회원가입">
+                                    <color key="titleColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2S-2B-UkZ">
+                                <rect key="frame" x="219" y="582" width="101" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="ID/비밀번호 찾기">
+                                    <color key="titleColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hiy-ho-d2t"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Smo-yC-z0c" firstAttribute="centerX" secondItem="7oN-uj-wBT" secondAttribute="centerX" id="0eU-Zl-IgD"/>
+                            <constraint firstItem="Hat-Vu-gwb" firstAttribute="leading" secondItem="hiy-ho-d2t" secondAttribute="leading" constant="80" id="2ng-76-VvS"/>
+                            <constraint firstItem="ig3-Gt-HEK" firstAttribute="leading" secondItem="hiy-ho-d2t" secondAttribute="leading" constant="80" id="G4o-LY-42N"/>
+                            <constraint firstItem="hiy-ho-d2t" firstAttribute="trailing" secondItem="ig3-Gt-HEK" secondAttribute="trailing" constant="80" id="Kyq-Gc-MLN"/>
+                            <constraint firstItem="hiy-ho-d2t" firstAttribute="trailing" secondItem="Hat-Vu-gwb" secondAttribute="trailing" constant="80" id="Mtn-bs-d9W"/>
+                            <constraint firstItem="Zdm-K8-kmB" firstAttribute="centerX" secondItem="7oN-uj-wBT" secondAttribute="centerX" id="ask-cF-EWl"/>
+                            <constraint firstItem="hiy-ho-d2t" firstAttribute="bottom" secondItem="Zdm-K8-kmB" secondAttribute="bottom" constant="550" id="gX7-4F-Lic"/>
+                            <constraint firstItem="Zdm-K8-kmB" firstAttribute="top" secondItem="hiy-ho-d2t" secondAttribute="top" constant="150" id="gfF-kQ-A7i"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y8L-Wn-gWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="817.39130434782612" y="1494.6428571428571"/>
+        </scene>
         <!--홈-->
         <scene sceneID="0Wa-Qt-cm0">
             <objects>
@@ -462,6 +531,9 @@
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="message" catalog="system" width="128" height="113"/>
         <image name="message.fill" catalog="system" width="128" height="113"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
