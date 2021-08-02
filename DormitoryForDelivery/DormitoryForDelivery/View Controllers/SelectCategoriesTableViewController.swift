@@ -10,7 +10,7 @@ import UIKit
 class SelectCategoriesTableViewController: UITableViewController {
     
     
-    var categories: [String] = ["한식","분식","카페/디저트","돈가스/일식","치킨","피자","양식","중국집","보쌈/족발","햄버거","기타"]
+    var categories: [String] = ["한식","분식","커피","디저트","돈가스/일식","치킨","피자","양식","중국집","보쌈/족발","햄버거","기타"]
     override func viewDidLoad() {
         super.viewDidLoad()
 
