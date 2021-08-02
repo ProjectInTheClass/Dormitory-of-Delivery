@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C17CA1926B7E01200D92B81 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C17CA1826B7E01200D92B81 /* MainTableViewController.swift */; };
+		0C17CA1B26B7F40500D92B81 /* RecruitingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C17CA1A26B7F40500D92B81 /* RecruitingText.swift */; };
+		0C17CA1D26B8159E00D92B81 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C17CA1C26B8159E00D92B81 /* MainTableViewCell.swift */; };
 		D81BA1D826AA8B5C009B1FE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81BA1D726AA8B5C009B1FE3 /* AppDelegate.swift */; };
 		D81BA1DA26AA8B5C009B1FE3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81BA1D926AA8B5C009B1FE3 /* SceneDelegate.swift */; };
-		D81BA1DC26AA8B5C009B1FE3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81BA1DB26AA8B5C009B1FE3 /* MainViewController.swift */; };
 		D81BA1DF26AA8B5C009B1FE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D81BA1DD26AA8B5C009B1FE3 /* Main.storyboard */; };
 		D81BA1E126AA8B5E009B1FE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D81BA1E026AA8B5E009B1FE3 /* Assets.xcassets */; };
 		D81BA1E426AA8B5E009B1FE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D81BA1E226AA8B5E009B1FE3 /* LaunchScreen.storyboard */; };
@@ -22,10 +24,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C17CA1826B7E01200D92B81 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		0C17CA1A26B7F40500D92B81 /* RecruitingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitingText.swift; sourceTree = "<group>"; };
+		0C17CA1C26B8159E00D92B81 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		D81BA1D426AA8B5C009B1FE3 /* DormitoryForDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DormitoryForDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D81BA1D726AA8B5C009B1FE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D81BA1D926AA8B5C009B1FE3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D81BA1DB26AA8B5C009B1FE3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D81BA1DE26AA8B5C009B1FE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D81BA1E026AA8B5E009B1FE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D81BA1E326AA8B5E009B1FE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -86,7 +90,8 @@
 		D81BA20F26AED3F3009B1FE3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D81BA1DB26AA8B5C009B1FE3 /* MainViewController.swift */,
+				0C17CA1826B7E01200D92B81 /* MainTableViewController.swift */,
+				0C17CA1C26B8159E00D92B81 /* MainTableViewCell.swift */,
 				D8C18F4126B6E73C00242ED7 /* RecruitmenTableViewController.swift */,
 				D8C18F4326B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift */,
 			);
@@ -113,6 +118,7 @@
 			children = (
 				D81BA1EB26ADB2D9009B1FE3 /* User.swift */,
 				D81BA21226AEDFF5009B1FE3 /* SortOfDormitory.swift */,
+				0C17CA1A26B7F40500D92B81 /* RecruitingText.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -195,12 +201,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C17CA1D26B8159E00D92B81 /* MainTableViewCell.swift in Sources */,
 				D8C18F4426B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift in Sources */,
 				D81BA21726AEE1CB009B1FE3 /* UserController.swift in Sources */,
 				D81BA1EC26ADB2D9009B1FE3 /* User.swift in Sources */,
-				D81BA1DC26AA8B5C009B1FE3 /* MainViewController.swift in Sources */,
 				D8C18F4226B6E73C00242ED7 /* RecruitmenTableViewController.swift in Sources */,
+				0C17CA1926B7E01200D92B81 /* MainTableViewController.swift in Sources */,
 				D81BA1D826AA8B5C009B1FE3 /* AppDelegate.swift in Sources */,
+				0C17CA1B26B7F40500D92B81 /* RecruitingText.swift in Sources */,
 				D85366C226B1AD0A0045B8C8 /* ListsTableViewCell.swift in Sources */,
 				D81BA1DA26AA8B5C009B1FE3 /* SceneDelegate.swift in Sources */,
 				D81BA21326AEDFF5009B1FE3 /* SortOfDormitory.swift in Sources */,
@@ -351,7 +359,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4BTS8ZA9HT;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DormitoryForDelivery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
