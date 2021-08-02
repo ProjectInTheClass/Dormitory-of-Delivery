@@ -10,6 +10,7 @@
 		0C17CA1926B7E01200D92B81 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C17CA1826B7E01200D92B81 /* MainTableViewController.swift */; };
 		0C17CA1B26B7F40500D92B81 /* RecruitingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C17CA1A26B7F40500D92B81 /* RecruitingText.swift */; };
 		0C17CA1D26B8159E00D92B81 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C17CA1C26B8159E00D92B81 /* MainTableViewCell.swift */; };
+		CC7586A526B8524B008EF905 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7586A426B8524B008EF905 /* LogInViewController.swift */; };
 		D81BA1D826AA8B5C009B1FE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81BA1D726AA8B5C009B1FE3 /* AppDelegate.swift */; };
 		D81BA1DA26AA8B5C009B1FE3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81BA1D926AA8B5C009B1FE3 /* SceneDelegate.swift */; };
 		D81BA1DF26AA8B5C009B1FE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D81BA1DD26AA8B5C009B1FE3 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		0C17CA1826B7E01200D92B81 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		0C17CA1A26B7F40500D92B81 /* RecruitingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitingText.swift; sourceTree = "<group>"; };
 		0C17CA1C26B8159E00D92B81 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		CC7586A426B8524B008EF905 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		D81BA1D426AA8B5C009B1FE3 /* DormitoryForDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DormitoryForDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D81BA1D726AA8B5C009B1FE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D81BA1D926AA8B5C009B1FE3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			children = (
 				0C17CA1826B7E01200D92B81 /* MainTableViewController.swift */,
 				0C17CA1C26B8159E00D92B81 /* MainTableViewCell.swift */,
+				CC7586A426B8524B008EF905 /* LogInViewController.swift */,
 				D8C18F4126B6E73C00242ED7 /* RecruitmenTableViewController.swift */,
 				D8C18F4326B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift */,
 			);
@@ -209,6 +212,7 @@
 				0C17CA1926B7E01200D92B81 /* MainTableViewController.swift in Sources */,
 				D81BA1D826AA8B5C009B1FE3 /* AppDelegate.swift in Sources */,
 				0C17CA1B26B7F40500D92B81 /* RecruitingText.swift in Sources */,
+				CC7586A526B8524B008EF905 /* LogInViewController.swift in Sources */,
 				D85366C226B1AD0A0045B8C8 /* ListsTableViewCell.swift in Sources */,
 				D81BA1DA26AA8B5C009B1FE3 /* SceneDelegate.swift in Sources */,
 				D81BA21326AEDFF5009B1FE3 /* SortOfDormitory.swift in Sources */,
