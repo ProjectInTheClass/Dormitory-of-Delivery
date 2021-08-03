@@ -22,6 +22,8 @@
 		D85366C226B1AD0A0045B8C8 /* ListsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85366C126B1AD0A0045B8C8 /* ListsTableViewCell.swift */; };
 		D8C18F4226B6E73C00242ED7 /* RecruitmenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C18F4126B6E73C00242ED7 /* RecruitmenTableViewController.swift */; };
 		D8C18F4426B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C18F4326B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift */; };
+		D8C18F6C26B95E5000242ED7 /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C18F6B26B95E5000242ED7 /* School.swift */; };
+		D8C18F6E26B95F2900242ED7 /* Sex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C18F6D26B95F2900242ED7 /* Sex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		D85366C126B1AD0A0045B8C8 /* ListsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsTableViewCell.swift; sourceTree = "<group>"; };
 		D8C18F4126B6E73C00242ED7 /* RecruitmenTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmenTableViewController.swift; sourceTree = "<group>"; };
 		D8C18F4326B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoriesTableViewController.swift; sourceTree = "<group>"; };
+		D8C18F6B26B95E5000242ED7 /* School.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
+		D8C18F6D26B95F2900242ED7 /* Sex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sex.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +124,10 @@
 			isa = PBXGroup;
 			children = (
 				D81BA1EB26ADB2D9009B1FE3 /* User.swift */,
-				D81BA21226AEDFF5009B1FE3 /* SortOfDormitory.swift */,
 				0C17CA1A26B7F40500D92B81 /* RecruitingText.swift */,
+				D81BA21226AEDFF5009B1FE3 /* SortOfDormitory.swift */,
+				D8C18F6B26B95E5000242ED7 /* School.swift */,
+				D8C18F6D26B95F2900242ED7 /* Sex.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -206,6 +212,7 @@
 			files = (
 				0C17CA1D26B8159E00D92B81 /* MainTableViewCell.swift in Sources */,
 				D8C18F4426B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift in Sources */,
+				D8C18F6E26B95F2900242ED7 /* Sex.swift in Sources */,
 				D81BA21726AEE1CB009B1FE3 /* UserController.swift in Sources */,
 				D81BA1EC26ADB2D9009B1FE3 /* User.swift in Sources */,
 				D8C18F4226B6E73C00242ED7 /* RecruitmenTableViewController.swift in Sources */,
@@ -215,6 +222,7 @@
 				CC7586A526B8524B008EF905 /* LogInViewController.swift in Sources */,
 				D85366C226B1AD0A0045B8C8 /* ListsTableViewCell.swift in Sources */,
 				D81BA1DA26AA8B5C009B1FE3 /* SceneDelegate.swift in Sources */,
+				D8C18F6C26B95E5000242ED7 /* School.swift in Sources */,
 				D81BA21326AEDFF5009B1FE3 /* SortOfDormitory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,7 +372,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KHQ37J8NU9;
+				DEVELOPMENT_TEAM = 4BTS8ZA9HT;
 				INFOPLIST_FILE = DormitoryForDelivery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -384,7 +392,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KHQ37J8NU9;
+				DEVELOPMENT_TEAM = 4BTS8ZA9HT;
 				INFOPLIST_FILE = DormitoryForDelivery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

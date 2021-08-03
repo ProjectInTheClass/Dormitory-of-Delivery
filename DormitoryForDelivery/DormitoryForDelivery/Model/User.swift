@@ -8,14 +8,15 @@
 import Foundation
 
 struct User {
-    // 가입자정보
-    // 이름, 학번, 학교, 기숙사정보, 닉네임
-    var name:String
-    var studentNumber:Int
-    let university:String = "창원대학교"
-    var dormitory: SortOfDormitory
-    var nickName:String
-    var phoneNumber:String
+    var UserName:String
+    var UserId: String
+    var UserPassWord: String
+    var UserStudentNumber:Int
+    var UserPhoneNumber:String
+    var UserSchool: School
+    var UserNickName:String
+    var UserSex: Sex
+    var UserReputation: Double
 }
 
 

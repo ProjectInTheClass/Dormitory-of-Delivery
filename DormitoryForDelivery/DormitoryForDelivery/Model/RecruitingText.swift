@@ -8,8 +8,10 @@
 import Foundation
 
 struct RecruitingText {
-    let symbol: String
-    let postTitle: String
-    let categories: String
-    let totalNumber: Int
+    var symbol: String
+    var postTitle: String
+    var categories: String
+    var totalNumber: Int
+    let WriteUser: User
+    
 }
