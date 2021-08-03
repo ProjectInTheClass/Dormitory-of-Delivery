@@ -510,26 +510,34 @@
                                                     <rect key="frame" x="71" y="0.0" width="322.5" height="98"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sh8-e2-AYq">
-                                                            <rect key="frame" x="0.0" y="0.0" width="322.5" height="44.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="322.5" height="49"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QSp-wf-itD">
-                                                            <rect key="frame" x="0.0" y="44.5" width="322.5" height="45"/>
+                                                            <rect key="frame" x="0.0" y="49" width="161.5" height="49"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Xcu-Uc-uem">
-                                                            <rect key="frame" x="0.0" y="89.5" width="322.5" height="8.5"/>
-                                                        </progressView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="sh8-e2-AYq" secondAttribute="trailing" id="C84-lN-MjT"/>
+                                                        <constraint firstItem="sh8-e2-AYq" firstAttribute="leading" secondItem="Vfz-5T-dps" secondAttribute="leading" id="J1j-La-Fwi"/>
+                                                        <constraint firstItem="QSp-wf-itD" firstAttribute="width" secondItem="sh8-e2-AYq" secondAttribute="width" multiplier="0.5" id="atm-8H-vfH"/>
+                                                        <constraint firstItem="QSp-wf-itD" firstAttribute="top" secondItem="sh8-e2-AYq" secondAttribute="bottom" id="h3l-H2-QQO"/>
+                                                        <constraint firstItem="sh8-e2-AYq" firstAttribute="top" secondItem="Vfz-5T-dps" secondAttribute="top" id="ug6-mh-tSh"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="XOb-hg-uen" firstAttribute="top" secondItem="HP8-qh-2hs" secondAttribute="top" constant="2" id="1XI-aD-w29"/>
                                                 <constraint firstItem="Vfz-5T-dps" firstAttribute="top" secondItem="HP8-qh-2hs" secondAttribute="top" id="32j-aE-RIh"/>
+                                                <constraint firstAttribute="bottom" secondItem="XOb-hg-uen" secondAttribute="bottom" constant="2" id="4ha-kJ-4vu"/>
+                                                <constraint firstItem="Vfz-5T-dps" firstAttribute="leading" secondItem="XOb-hg-uen" secondAttribute="trailing" constant="1" id="9sC-rw-JgD"/>
                                                 <constraint firstAttribute="bottom" secondItem="XOb-hg-uen" secondAttribute="bottom" constant="2" id="HDi-mI-hyU"/>
+                                                <constraint firstItem="XOb-hg-uen" firstAttribute="leading" secondItem="HP8-qh-2hs" secondAttribute="leading" id="aUv-Rp-7p3"/>
                                                 <constraint firstItem="XOb-hg-uen" firstAttribute="top" secondItem="HP8-qh-2hs" secondAttribute="top" constant="2" id="jDB-4A-yg7"/>
                                             </constraints>
                                         </stackView>
