@@ -319,6 +319,9 @@
                                         <state key="normal" title="로그인">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="logInButton:" destination="gzs-Ha-SKa" eventType="touchUpInside" id="x3F-Y4-2qW"/>
+                                        </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="es2-L8-EUV">
                                         <rect key="frame" x="0.0" y="264" width="314" height="28"/>
@@ -378,6 +381,15 @@
                             <constraint firstItem="hiy-ho-d2t" firstAttribute="trailing" secondItem="7qd-uO-hjT" secondAttribute="trailing" constant="50" id="txv-Y5-K0e"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="IdPasswordFindingButton" destination="V2S-2B-UkZ" id="MyF-vY-AZx"/>
+                        <outlet property="browseButton" destination="7nN-5j-xKU" id="7ox-TT-yC0"/>
+                        <outlet property="errorMessageLabel" destination="6qf-lo-fJO" id="AVR-0G-Xpb"/>
+                        <outlet property="logInButton" destination="Smo-yC-z0c" id="aea-j4-VIl"/>
+                        <outlet property="passwordTextView" destination="Hat-Vu-gwb" id="bDQ-wK-p57"/>
+                        <outlet property="registerationButton" destination="muW-2Z-DmQ" id="Nxk-7f-jmn"/>
+                        <outlet property="usernameTextView" destination="ig3-Gt-HEK" id="Xd3-lH-bIe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8L-Wn-gWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

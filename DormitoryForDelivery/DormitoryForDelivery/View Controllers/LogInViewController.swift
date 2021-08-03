@@ -9,11 +9,34 @@ import UIKit
 
 class LogInViewController: UIViewController {
 
+    
+    // MARK Outlet
+    
+    @IBOutlet weak var usernameTextView: UITextField!
+    @IBOutlet weak var passwordTextView: UITextField!
+    @IBOutlet weak var logInButton: UIButton!
+    
+    @IBOutlet weak var registerationButton: UIButton!
+    @IBOutlet weak var IdPasswordFindingButton: UIButton!
+    @IBOutlet weak var browseButton: UIButton!
+    
+    
+    
+    @IBOutlet weak var errorMessageLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    
+    @IBAction func logInButton(_ sender: Any) {
+        
+    }
+    
+    
+    
     
 
     /*
