@@ -12,6 +12,6 @@ struct RecruitingText {
     var postTitle: String
     var categories: String
     var totalNumber: Int
-    let WriteUser: User
+//    let WriteUser: User
     
 }
