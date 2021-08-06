@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,7 +14,7 @@
 		CC7586A526B8524B008EF905 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7586A426B8524B008EF905 /* LogInViewController.swift */; };
 		D81BA1D826AA8B5C009B1FE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81BA1D726AA8B5C009B1FE3 /* AppDelegate.swift */; };
 		D81BA1DA26AA8B5C009B1FE3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81BA1D926AA8B5C009B1FE3 /* SceneDelegate.swift */; };
-		D81BA1DF26AA8B5C009B1FE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D81BA1DD26AA8B5C009B1FE3 /* Main.storyboard */; };
+		D81BA1DF26AA8B5C009B1FE3 /* m.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D81BA1DD26AA8B5C009B1FE3 /* m.storyboard */; };
 		D81BA1E126AA8B5E009B1FE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D81BA1E026AA8B5E009B1FE3 /* Assets.xcassets */; };
 		D81BA1E426AA8B5E009B1FE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D81BA1E226AA8B5E009B1FE3 /* LaunchScreen.storyboard */; };
 		D81BA1EC26ADB2D9009B1FE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81BA1EB26ADB2D9009B1FE3 /* User.swift */; };
@@ -44,7 +44,7 @@
 		D81BA1D426AA8B5C009B1FE3 /* DormitoryForDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DormitoryForDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D81BA1D726AA8B5C009B1FE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D81BA1D926AA8B5C009B1FE3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D81BA1DE26AA8B5C009B1FE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D81BA1DE26AA8B5C009B1FE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/m.storyboard; sourceTree = "<group>"; };
 		D81BA1E026AA8B5E009B1FE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D81BA1E326AA8B5E009B1FE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D81BA1E526AA8B5E009B1FE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,7 +80,6 @@
 				B7F007BF26FA59F1F6599373 /* Pods-DormitoryForDelivery.debug.xcconfig */,
 				CAD7B5AA9DCDA7CA71B229C8 /* Pods-DormitoryForDelivery.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -198,7 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				D85DAD4A26BAB32800E1A419 /* Splash.storyboard */,
-				D81BA1DD26AA8B5C009B1FE3 /* Main.storyboard */,
+				D81BA1DD26AA8B5C009B1FE3 /* m.storyboard */,
 				D81BA1E226AA8B5E009B1FE3 /* LaunchScreen.storyboard */,
 			);
 			path = storyboard;
@@ -266,7 +265,7 @@
 				D81BA1E426AA8B5E009B1FE3 /* LaunchScreen.storyboard in Resources */,
 				D81BA1E126AA8B5E009B1FE3 /* Assets.xcassets in Resources */,
 				D820139926BD0BF70088571A /* GoogleService-Info.plist in Resources */,
-				D81BA1DF26AA8B5C009B1FE3 /* Main.storyboard in Resources */,
+				D81BA1DF26AA8B5C009B1FE3 /* m.storyboard in Resources */,
 				D85DAD4B26BAB32800E1A419 /* Splash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,12 +342,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D81BA1DD26AA8B5C009B1FE3 /* Main.storyboard */ = {
+		D81BA1DD26AA8B5C009B1FE3 /* m.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D81BA1DE26AA8B5C009B1FE3 /* Base */,
 			);
-			name = Main.storyboard;
+			name = m.storyboard;
 			sourceTree = "<group>";
 		};
 		D81BA1E226AA8B5E009B1FE3 /* LaunchScreen.storyboard */ = {
