@@ -92,7 +92,7 @@ class ProgressBarController: UIView {
         layer.string = "\(Int(progress * 100))"
         layer.backgroundColor = UIColor.clear.cgColor
         layer.fontSize = fontSize
-    layer.frame = CGRect(x: 0, y: (height - fontSize - offset) / 2, width: width, height: fontSize + offset)
+        layer.frame = CGRect(x: 0, y: (height - fontSize - offset) / 2, width: width, height: fontSize + offset)
         layer.alignmentMode = .center
         
         return layer
