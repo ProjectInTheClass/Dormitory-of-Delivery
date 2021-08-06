@@ -8,7 +8,7 @@
 import Foundation
 
 enum School {
-    case 창원대학교
+    case 창원대학교(type: SortOfDormitory)
     
     /*func ff() -> SortOfDormitory{
         switch self{
