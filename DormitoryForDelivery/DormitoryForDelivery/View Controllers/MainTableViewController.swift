@@ -18,14 +18,25 @@ class MainTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        checkDeviceNetworkStatus() 
     }
-
+    
+    func checkDeviceNetworkStatus() {
+            if(DeviceManager.shared.networkStatus) == false {
+                let alert: UIAlertController = UIAlertController(title: "네트워크 상태 확인", message: "네트워크가 불안정 합니다.", preferredStyle: .alert)
+                let action: UIAlertAction = UIAlertAction(title: "다시 시도", style: .default, handler: { (ACTION) in
+                    self.checkDeviceNetworkStatus()
+                })
+                alert.addAction(action)
+                present(alert, animated: true, completion: nil)
+            }
+        }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

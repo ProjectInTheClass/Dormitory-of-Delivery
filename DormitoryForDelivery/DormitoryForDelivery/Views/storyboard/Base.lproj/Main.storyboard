@@ -526,7 +526,7 @@
                                 <rect key="frame" x="0.0" y="294" width="414" height="602"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="124" id="Deh-KX-1qF" customClass="MainTableViewCell" customModule="MakeTableView" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="124" id="Deh-KX-1qF" customClass="MainTableViewCell" customModule="DormitoryForDelivery" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Deh-KX-1qF" id="cmD-Xf-mUq">

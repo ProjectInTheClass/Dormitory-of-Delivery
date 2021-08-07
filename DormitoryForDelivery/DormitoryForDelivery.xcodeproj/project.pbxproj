@@ -23,9 +23,7 @@
 		D81BA21726AEE1CB009B1FE3 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81BA21626AEE1CB009B1FE3 /* UserController.swift */; };
 		D820139926BD0BF70088571A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D820139826BD0BF70088571A /* GoogleService-Info.plist */; };
 		D85366C226B1AD0A0045B8C8 /* ListsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85366C126B1AD0A0045B8C8 /* ListsTableViewCell.swift */; };
-		D85DAD4326BAA45500E1A419 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85DAD4226BAA45500E1A419 /* SplashViewController.swift */; };
 		D85DAD4926BAA6A000E1A419 /* DeviceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85DAD4826BAA6A000E1A419 /* DeviceConfiguration.swift */; };
-		D85DAD4B26BAB32800E1A419 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D85DAD4A26BAB32800E1A419 /* Splash.storyboard */; };
 		D8C18F4226B6E73C00242ED7 /* RecruitmenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C18F4126B6E73C00242ED7 /* RecruitmenTableViewController.swift */; };
 		D8C18F4426B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C18F4326B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift */; };
 		D8C18F6C26B95E5000242ED7 /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C18F6B26B95E5000242ED7 /* School.swift */; };
@@ -55,9 +53,7 @@
 		D81BA21626AEE1CB009B1FE3 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		D820139826BD0BF70088571A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D85366C126B1AD0A0045B8C8 /* ListsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsTableViewCell.swift; sourceTree = "<group>"; };
-		D85DAD4226BAA45500E1A419 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		D85DAD4826BAA6A000E1A419 /* DeviceConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfiguration.swift; sourceTree = "<group>"; };
-		D85DAD4A26BAB32800E1A419 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		D8C18F4126B6E73C00242ED7 /* RecruitmenTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmenTableViewController.swift; sourceTree = "<group>"; };
 		D8C18F4326B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoriesTableViewController.swift; sourceTree = "<group>"; };
 		D8C18F6B26B95E5000242ED7 /* School.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
@@ -135,7 +131,6 @@
 				CC7586A426B8524B008EF905 /* LogInViewController.swift */,
 				D8C18F4126B6E73C00242ED7 /* RecruitmenTableViewController.swift */,
 				D8C18F4326B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift */,
-				D85DAD4226BAA45500E1A419 /* SplashViewController.swift */,
 				0C26FE9626BE2414003C3501 /* MainTableViewController2.swift */,
 			);
 			path = "View Controllers";
@@ -199,7 +194,6 @@
 		D85DAD4F26BB9E4B00E1A419 /* storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				D85DAD4A26BAB32800E1A419 /* Splash.storyboard */,
 				D81BA1DD26AA8B5C009B1FE3 /* Main.storyboard */,
 				D81BA1E226AA8B5E009B1FE3 /* LaunchScreen.storyboard */,
 			);
@@ -269,7 +263,6 @@
 				D81BA1E126AA8B5E009B1FE3 /* Assets.xcassets in Resources */,
 				D820139926BD0BF70088571A /* GoogleService-Info.plist in Resources */,
 				D81BA1DF26AA8B5C009B1FE3 /* Main.storyboard in Resources */,
-				D85DAD4B26BAB32800E1A419 /* Splash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,7 +326,6 @@
 				D81BA1D826AA8B5C009B1FE3 /* AppDelegate.swift in Sources */,
 				0C17CA1B26B7F40500D92B81 /* RecruitingText.swift in Sources */,
 				0C54E63026BD069A007DF6CB /* ProgressBarController.swift in Sources */,
-				D85DAD4326BAA45500E1A419 /* SplashViewController.swift in Sources */,
 				CC7586A526B8524B008EF905 /* LogInViewController.swift in Sources */,
 				D85366C226B1AD0A0045B8C8 /* ListsTableViewCell.swift in Sources */,
 				D85DAD4926BAA6A000E1A419 /* DeviceConfiguration.swift in Sources */,

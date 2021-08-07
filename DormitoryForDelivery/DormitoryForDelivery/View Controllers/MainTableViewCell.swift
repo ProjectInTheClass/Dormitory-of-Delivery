@@ -32,4 +32,6 @@ class MainTableViewCell: UITableViewCell {
         postTitleLabel.text = main.postTitle
         categoriesLabel.text = main.categories
     }
+    
+    
 }
