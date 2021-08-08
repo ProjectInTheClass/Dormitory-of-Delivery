@@ -7,15 +7,15 @@
 
 import UIKit
 
-class MainTableViewController2: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MainTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var mainTableView: UITableView!
     
     var mainPosts: [RecruitingText] = [
-        RecruitingText(symbol: "🍔", postTitle: "7시 30분에 햄버거 먹을 사람 5동만", categories: "#햄버거, #맥날", totalNumber: 2),
-        RecruitingText(symbol: "🍕", postTitle: "피자 시켜먹을 분", categories: "#피자", totalNumber: 2),
-        RecruitingText(symbol: "🧇", postTitle: "와플 같이먹을 분", categories: "#디저트", totalNumber: 3),
-        RecruitingText(symbol: "🍣", postTitle: "7시에 초밥 같이먹을 분", categories: "#일식", totalNumber: 2)]
+        RecruitingText(symbol: "🍔", postTitle: "7시 30분에 햄버거 먹을 사람 5동만", categories: "#햄버거, #맥날", maximumNumber: 4, currentNumber: 1),
+        RecruitingText(symbol: "🍕", postTitle: "피자 시켜먹을 분", categories: "#피자", maximumNumber: 5, currentNumber: 3),
+        RecruitingText(symbol: "🧇", postTitle: "와플 같이먹을 분", categories: "#디저트", maximumNumber: 6, currentNumber: 4),
+        RecruitingText(symbol: "🍣", postTitle: "7시에 초밥 같이먹을 분", categories: "#일식", maximumNumber: 4, currentNumber: 4)]
 
     override func viewDidLoad() {
         super.viewDidLoad()

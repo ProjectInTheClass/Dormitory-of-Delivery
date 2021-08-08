@@ -9,6 +9,8 @@ import UIKit
 
 class MainTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var circularProgressBarView: CircleProgressViewController!
+    @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var symbolLabel: UILabel!
     @IBOutlet weak var postTitleLabel: UILabel!
     @IBOutlet weak var categoriesLabel: UILabel!
@@ -31,6 +33,12 @@ class MainTableViewCell: UITableViewCell {
         symbolLabel.text = main.symbol
         postTitleLabel.text = main.postTitle
         categoriesLabel.text = main.categories
+        progressLabel.text = "\(main.currentNumber)/\(main.maximumNumber)"
+        
+        let progressValue = Float(Float(main.currentNumber) / Float(main.maximumNumber))
+        circularProgressBarView.trackColor = UIColor.gray
+        circularProgressBarView.progressColor = UIColor.blue
+        circularProgressBarView.setProgressWithAnimation(duration: 1.0, value: progressValue)
     }
     
     

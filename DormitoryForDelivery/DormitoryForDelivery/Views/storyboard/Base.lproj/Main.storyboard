@@ -514,10 +514,10 @@
             </objects>
             <point key="canvasLocation" x="811.59420289855075" y="-604.01785714285711"/>
         </scene>
-        <!--Main Table View Controller2-->
+        <!--Main Table View Controller-->
         <scene sceneID="2WV-gW-y8M">
             <objects>
-                <viewController id="wBu-dl-dbY" customClass="MainTableViewController2" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wBu-dl-dbY" customClass="MainTableViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WsA-kk-6qn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -555,7 +555,7 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="ta2-WB-EwQ">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="108" translatesAutoresizingMaskIntoConstraints="NO" id="ta2-WB-EwQ">
                                                                     <rect key="frame" x="0.0" y="54" width="326" height="54"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROR-KG-l2V">
@@ -564,8 +564,17 @@
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oha-uU-487">
-                                                                            <rect key="frame" x="263" y="0.0" width="63" height="54"/>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oha-uU-487" customClass="CircleProgressViewController" customModule="DormitoryForDelivery" customModuleProvider="target">
+                                                                            <rect key="frame" x="271" y="0.0" width="55" height="54"/>
+                                                                            <subviews>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISi-Nh-Dmf">
+                                                                                    <rect key="frame" x="6" y="16" width="42" height="21"/>
+                                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                    <nil key="textColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                            </subviews>
                                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         </view>
                                                                     </subviews>
@@ -587,7 +596,9 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="categoriesLabel" destination="ROR-KG-l2V" id="rhV-Wg-YuQ"/>
+                                            <outlet property="circularProgressBarView" destination="oha-uU-487" id="bz0-x7-noa"/>
                                             <outlet property="postTitleLabel" destination="UwI-A8-coa" id="rC1-Ea-qOb"/>
+                                            <outlet property="progressLabel" destination="ISi-Nh-Dmf" id="eYs-D7-2RB"/>
                                             <outlet property="symbolLabel" destination="v9F-ix-3jl" id="ij8-2f-WQb"/>
                                         </connections>
                                     </tableViewCell>

@@ -10,11 +10,7 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
 
-    var mainPosts: [RecruitingText] = [
-        RecruitingText(symbol: "🍔", postTitle: "7시 30분에 햄버거 먹을 사람 5동만", categories: "#햄버거, #맥날", totalNumber: 2),
-        RecruitingText(symbol: "🍕", postTitle: "피자 시켜먹을 분", categories: "#피자", totalNumber: 2),
-        RecruitingText(symbol: "🧇", postTitle: "와플 같이먹을 분", categories: "#디저트", totalNumber: 3),
-        RecruitingText(symbol: "🍣", postTitle: "7시에 초밥 같이먹을 분", categories: "#일식", totalNumber: 2)]
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
