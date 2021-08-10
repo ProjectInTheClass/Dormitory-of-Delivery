@@ -69,6 +69,11 @@
                                                             <rect key="frame" x="321.5" y="2" width="44.5" height="16.5"/>
                                                         </imageView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="qyN-1r-q2J" secondAttribute="bottom" id="3hE-jl-npk"/>
+                                                        <constraint firstItem="qyN-1r-q2J" firstAttribute="top" secondItem="tw2-mv-CFt" secondAttribute="top" id="Gtu-KW-CmA"/>
+                                                        <constraint firstAttribute="trailing" secondItem="qyN-1r-q2J" secondAttribute="trailing" constant="8" id="bQT-gd-aQJ"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -79,7 +84,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="TLi-Jn-ohC" kind="show" id="KBG-8r-3lE"/>
+                                            <segue destination="TLi-Jn-ohC" kind="show" identifier="selectCategories" id="KBG-8r-3lE"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="63" id="c91-OO-d44">
@@ -104,8 +109,11 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="mee-RH-vHE">
+                                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="mee-RH-vHE">
                                                             <rect key="frame" x="280" y="0.0" width="94" height="32"/>
+                                                            <connections>
+                                                                <action selector="stepperValueChanged:" destination="LqV-ib-uGn" eventType="valueChanged" id="Txw-x4-d03"/>
+                                                            </connections>
                                                         </stepper>
                                                     </subviews>
                                                 </stackView>
@@ -151,12 +159,17 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="배달모집 글쓰기" id="B0P-Sh-R6z">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8M0-36-hDs"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="DG8-Sf-muN"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="DG8-Sf-muN">
+                            <connections>
+                                <action selector="doneBarButtonTapped:" destination="LqV-ib-uGn" id="ogS-bl-sBC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="categoriesLabel" destination="uDJ-wy-Szx" id="ylm-Lg-0cz"/>
                         <outlet property="noteTextView" destination="04C-P8-FDq" id="4dF-Yt-GHO"/>
-                        <outlet property="recruitNumber" destination="yyN-DZ-V9f" id="3JR-nH-Jb9"/>
-                        <outlet property="stepper" destination="mee-RH-vHE" id="cBh-Q5-f0k"/>
+                        <outlet property="numberOfRecruitmentLabel" destination="yyN-DZ-V9f" id="14J-G2-CXA"/>
+                        <outlet property="recruitmentCountStepper" destination="mee-RH-vHE" id="cze-Tp-1bc"/>
                         <outlet property="titleTextField" destination="Dsa-Qe-JJr" id="N0K-9q-6tF"/>
                     </connections>
                 </tableViewController>
@@ -540,6 +553,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="108"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="70" id="fW1-8A-XLC"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="g3W-4S-b1N"/>
                                                                 <constraint firstAttribute="height" constant="94" id="u9Q-0F-qBu"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>

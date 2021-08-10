@@ -7,17 +7,23 @@
 
 import UIKit
 
-class RecruitmenTableViewController: UITableViewController, UITextViewDelegate {
+class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, SelectCategoriesTableViewControllerDelegate {
+    
+    var selectCategories: String?
 
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
-    @IBOutlet weak var stepper: UIStepper!
-    @IBOutlet weak var recruitNumber: UILabel!
+    @IBOutlet weak var categoriesLabel: UILabel!
+    @IBOutlet weak var recruitmentCountStepper: UIStepper!
+    @IBOutlet weak var numberOfRecruitmentLabel: UILabel!
+    
     
        override func viewDidLoad() {
         super.viewDidLoad()
         noteTextViewPlaceholderSetting()
+        updateNumberOfRecruitmentMember()
+        updateCategoriesLabel()
     }
     
     func noteTextViewPlaceholderSetting() {
@@ -37,6 +43,41 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate {
             textView.text = "같이 시켜먹을 배달음식에 대한 설명과 수령 방식 등 배달 공유에 대한 정보를 작성해 주세요."
             textView.textColor = UIColor.lightGray
         }
+    }
+    
+    @IBAction func doneBarButtonTapped(_ sender: UIBarButtonItem) {
+        let titleText = titleTextField.text ?? ""
+        let categoriesText = selectCategories ?? ""
+        let noteText = noteTextView.text ?? ""
+        let recruitNumber = Int(recruitmentCountStepper.value)
+        
+        
+        print("\(titleText)")
+        print("\(categoriesText)")
+        print("\(noteText)")
+        print("\(recruitNumber)")
+    }
+    
+    @IBAction func stepperValueChanged(_ sender: Any) {
+        updateNumberOfRecruitmentMember()
+    }
+    
+    func updateNumberOfRecruitmentMember() {
+        numberOfRecruitmentLabel.text = "\(Int(recruitmentCountStepper.value))"
+    }
+    
+    func updateCategoriesLabel() {
+        if let selectCategory = selectCategories {
+            print("#"+selectCategory)
+        }
+        else {
+            categoriesLabel.text = "틀림"
+        }
+    }
+    
+    func didSelect(selectCategories: String) {
+        self.selectCategories = selectCategories
+        updateCategoriesLabel()
     }
 
 
@@ -79,14 +120,17 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate {
     }
     */
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == selectCategories {
+            let destinationViewController = segue.destination as? SelectCategoriesTableViewController
+            destinationViewController?.delegate = self
+            destinationViewController?.selectCategories = selectCategories
+        }
+        
     }
-    */
 
 }

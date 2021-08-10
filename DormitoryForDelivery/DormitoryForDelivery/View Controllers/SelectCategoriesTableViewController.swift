@@ -7,8 +7,16 @@
 
 import UIKit
 
+protocol SelectCategoriesTableViewControllerDelegate: class {
+    func didSelect(selectCategories: String)
+}
+
 class SelectCategoriesTableViewController: UITableViewController {
     
+    var selectCategories: String?
+    
+    
+    weak var delegate: SelectCategoriesTableViewControllerDelegate?
     
     var categories: [String] = ["한식","분식","커피","디저트","돈가스/일식","치킨","피자","양식","중국집","보쌈/족발","햄버거","기타"]
     override func viewDidLoad() {
@@ -39,7 +47,23 @@ class SelectCategoriesTableViewController: UITableViewController {
         
         let category = categories[indexPath.row]
         cell.textLabel?.text = category
+        
+        if category == self.selectCategories {
+            cell.accessoryType = .checkmark
+            delegate?.didSelect(selectCategories: category)
+            print(category)
+        } else {
+            cell.accessoryType = .none
+        }
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        selectCategories = categories[indexPath.row]
+        
+        tableView.reloadData()
     }
     
 
