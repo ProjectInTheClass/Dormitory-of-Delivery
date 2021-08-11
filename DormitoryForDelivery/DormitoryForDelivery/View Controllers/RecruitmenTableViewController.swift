@@ -10,7 +10,6 @@ import UIKit
 class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, SelectCategoriesTableViewControllerDelegate {
     
     var selectCategories: String?
-
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
@@ -23,7 +22,6 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         super.viewDidLoad()
         noteTextViewPlaceholderSetting()
         updateNumberOfRecruitmentMember()
-        updateCategoriesLabel()
     }
     
     func noteTextViewPlaceholderSetting() {
@@ -47,13 +45,11 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     
     @IBAction func doneBarButtonTapped(_ sender: UIBarButtonItem) {
         let titleText = titleTextField.text ?? ""
-        let categoriesText = selectCategories ?? ""
         let noteText = noteTextView.text ?? ""
         let recruitNumber = Int(recruitmentCountStepper.value)
         
         
         print("\(titleText)")
-        print("\(categoriesText)")
         print("\(noteText)")
         print("\(recruitNumber)")
     }
@@ -66,18 +62,11 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         numberOfRecruitmentLabel.text = "\(Int(recruitmentCountStepper.value))"
     }
     
-    func updateCategoriesLabel() {
-        if let selectCategory = selectCategories {
-            print("#"+selectCategory)
-        }
-        else {
-            categoriesLabel.text = "틀림"
-        }
-    }
+
     
     func didSelect(selectCategories: String) {
         self.selectCategories = selectCategories
-        updateCategoriesLabel()
+        categoriesLabel.text = "#" + selectCategories
     }
 
 
@@ -125,7 +114,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == selectCategories {
+        if segue.identifier == "selectCategories" {
             let destinationViewController = segue.destination as? SelectCategoriesTableViewController
             destinationViewController?.delegate = self
             destinationViewController?.selectCategories = selectCategories
