@@ -8,13 +8,14 @@
 import UIKit
 
 protocol SelectCategoriesTableViewControllerDelegate {
-    func didSelect(selectCategories: String)
+    func didSelect(categoriesArray: [String])
 }
 
 class SelectCategoriesTableViewController: UITableViewController {
     
     var selectCategories: String?
     
+    var categoriesArray: [String] = []
     
     var delegate: SelectCategoriesTableViewControllerDelegate?
     
@@ -48,23 +49,40 @@ class SelectCategoriesTableViewController: UITableViewController {
         let category = categories[indexPath.row]
         cell.textLabel?.text = category
         
-        if category == self.selectCategories {
-            cell.accessoryType = .checkmark
-        } else {
+        for categories in categoriesArray {
+            if category == categories {
+                cell.accessoryType = .checkmark
+            }
+        }
+        if !categoriesArray.contains(category) {
             cell.accessoryType = .none
         }
         
         return cell
     }
     
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
         selectCategories = categories[indexPath.row]
-        delegate?.didSelect(selectCategories: selectCategories!)
-        print(selectCategories!)
+        
+        guard let selectCategories = selectCategories else { return }
+        
+        if !categoriesArray.contains(selectCategories) {
+            categoriesArray.append(selectCategories)
+            } else if categoriesArray.contains(selectCategories) {
+            if let firstIndex = categoriesArray.firstIndex(of: selectCategories) {
+                print(firstIndex)
+                categoriesArray.remove(at: firstIndex)
+            }
+        }
+        
+        delegate?.didSelect(categoriesArray: categoriesArray)
         tableView.reloadData()
     }
     
+
 
     /*
     // Override to support conditional editing of the table view.

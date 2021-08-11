@@ -11,17 +11,21 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBOutlet weak var mainTableView: UITableView!
     
-    var mainPosts: [RecruitingText] = [
-        RecruitingText(symbol: "🍔", postTitle: "7시 30분에 햄버거 먹을 사람 5동만", categories: "#햄버거, #맥날", maximumNumber: 4, currentNumber: 1),
-        RecruitingText(symbol: "🍕", postTitle: "피자 시켜먹을 분", categories: "#피자", maximumNumber: 5, currentNumber: 3),
-        RecruitingText(symbol: "🧇", postTitle: "와플 같이먹을 분", categories: "#디저트", maximumNumber: 6, currentNumber: 4),
-        RecruitingText(symbol: "🍣", postTitle: "7시에 초밥 같이먹을 분", categories: "#일식", maximumNumber: 4, currentNumber: 4)]
+    var mainPosts: [RecruitingText] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         checkDeviceNetworkStatus() 
         mainTableView.dataSource = self
         mainTableView.delegate = self
+    }
+    
+    @IBAction func unwindFromRecruitmentTableView(_ unwindSegue: UIStoryboardSegue) {
+        guard let recruitMentTableViewController = unwindSegue.source as? RecruitmenTableViewController, let mainPostInformation = recruitMentTableViewController.mainPostInformation else { return }
+        
+        mainPosts.append(mainPostInformation)
+        mainTableView.reloadData()
+        // Use data from the view controller which initiated the unwind segue
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,6 +38,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         let mainPost = mainPosts[indexPath.row]
         
         cell.update(with: mainPost)
+        print(mainPosts)
 
         return cell
     }
@@ -48,6 +53,12 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                 present(alert, animated: true, completion: nil)
             }
         }
+    
+//    func recruitmentTextInformation(mainPosts: RecruitingText) {
+//        self.mainPosts.append(mainPosts)
+//        print(self.mainPosts)
+//        mainTableView.reloadData()
+//    }
 
     /*
     // MARK: - Navigation

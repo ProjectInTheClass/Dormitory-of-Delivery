@@ -7,9 +7,26 @@
 
 import UIKit
 
+//protocol RecruitmenTableViewControllerDelegate {
+//    func recruitmentTextInformation(mainPosts: RecruitingText)
+//}
+
 class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, SelectCategoriesTableViewControllerDelegate {
     
-    var selectCategories: String?
+    var categoriesArray: [String] = []
+    
+//    var delegate: RecruitmenTableViewControllerDelegate?
+    
+    var mainPostInformation: RecruitingText? {
+        guard let title = titleTextField.text else{ return nil }
+        let categories = categoriesLabel.text ?? ""
+//        let note = noteTextView.text ?? ""
+        let maximumNumber = recruitmentCountStepper.value
+        let currentNumber = 1
+        
+        return RecruitingText(symbol: "🔥", postTitle: title, categories: categories, maximumNumber: Int(maximumNumber), currentNumber: currentNumber)
+    }
+    
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
@@ -43,17 +60,16 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         }
     }
     
-    @IBAction func doneBarButtonTapped(_ sender: UIBarButtonItem) {
-        let titleText = titleTextField.text ?? ""
-        let noteText = noteTextView.text ?? ""
-        let recruitNumber = Int(recruitmentCountStepper.value)
-        
-        
-        print("\(titleText)")
-        print("\(noteText)")
-        print("\(recruitNumber)")
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
+//    @IBAction func doneBarButtonTapped(_ sender: UIBarButtonItem) {
+//        let newRecruitmentPost = RecruitingText(symbol: "🔥", postTitle: titleTextField.text ?? "", categories: categoriesLabel.text ?? "", maximumNumber: Int(recruitmentCountStepper.value), currentNumber: 1)
+//
+//        delegate?.recruitmentTextInformation(mainPosts: newRecruitmentPost)
+//    }
+//
     @IBAction func stepperValueChanged(_ sender: Any) {
         updateNumberOfRecruitmentMember()
     }
@@ -62,11 +78,19 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         numberOfRecruitmentLabel.text = "\(Int(recruitmentCountStepper.value))"
     }
     
-
+    func didSelect(categoriesArray: [String]) {
+        self.categoriesArray = categoriesArray
+        updateCategoriesLabel()
+    }
     
-    func didSelect(selectCategories: String) {
-        self.selectCategories = selectCategories
-        categoriesLabel.text = "#" + selectCategories
+    func updateCategoriesLabel() {
+        let categoriesWithHashTag = categoriesArray.map { "#" + $0 }
+        var selectCategoriesText: String = ""
+        for categoriesString in categoriesWithHashTag {
+            selectCategoriesText += categoriesString
+        }
+        print(selectCategoriesText)
+        categoriesLabel.text = selectCategoriesText
     }
 
 
@@ -117,7 +141,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         if segue.identifier == "selectCategories" {
             let destinationViewController = segue.destination as? SelectCategoriesTableViewController
             destinationViewController?.delegate = self
-            destinationViewController?.selectCategories = selectCategories
+            destinationViewController?.categoriesArray = categoriesArray
         }
         
     }

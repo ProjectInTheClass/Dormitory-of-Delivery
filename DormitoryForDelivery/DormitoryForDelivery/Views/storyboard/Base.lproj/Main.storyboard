@@ -158,10 +158,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="배달모집 글쓰기" id="B0P-Sh-R6z">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8M0-36-hDs"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8M0-36-hDs">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="LqV-ib-uGn" id="6nI-ev-I5g"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="DG8-Sf-muN">
                             <connections>
-                                <action selector="doneBarButtonTapped:" destination="LqV-ib-uGn" id="ogS-bl-sBC"/>
+                                <segue destination="vx8-vr-iRK" kind="unwind" unwindAction="unwindFromRecruitmentTableView:" id="d46-zb-POs"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -174,6 +178,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dzd-T9-anw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="vx8-vr-iRK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3671.0144927536235" y="-1022.5446428571428"/>
         </scene>
