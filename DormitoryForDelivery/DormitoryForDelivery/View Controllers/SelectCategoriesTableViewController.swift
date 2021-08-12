@@ -71,7 +71,7 @@ class SelectCategoriesTableViewController: UITableViewController {
         
         if !categoriesArray.contains(selectCategories) {
             categoriesArray.append(selectCategories)
-            } else if categoriesArray.contains(selectCategories) {
+        } else if categoriesArray.contains(selectCategories) {
             if let firstIndex = categoriesArray.firstIndex(of: selectCategories) {
                 print(firstIndex)
                 categoriesArray.remove(at: firstIndex)
