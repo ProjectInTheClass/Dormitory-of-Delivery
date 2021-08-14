@@ -15,7 +15,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkDeviceNetworkStatus() 
+        checkDeviceNetworkStatus()
         mainTableView.dataSource = self
         mainTableView.delegate = self
     }
