@@ -125,7 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				0C26FE9626BE2414003C3501 /* MainTableViewController2.swift */,
-				0C17CA1C26B8159E00D92B81 /* MainTableViewCell.swift */,
 				CC7586A426B8524B008EF905 /* LogInViewController.swift */,
 				D8C18F4126B6E73C00242ED7 /* RecruitmenTableViewController.swift */,
 				D8C18F4326B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift */,
@@ -165,6 +164,7 @@
 		D85366BE26B1ACBC0045B8C8 /* Other Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0C17CA1C26B8159E00D92B81 /* MainTableViewCell.swift */,
 				D85366C126B1AD0A0045B8C8 /* ListsTableViewCell.swift */,
 			);
 			path = "Other Controllers";
