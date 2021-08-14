@@ -15,7 +15,6 @@ struct User {
     var UserPhoneNumber:String
     var UserSchool: School
     var UserNickName:String
-    var UserSex: Sex
     var UserReputation: Double
 }
 

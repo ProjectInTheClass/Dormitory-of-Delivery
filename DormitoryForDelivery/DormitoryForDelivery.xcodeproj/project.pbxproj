@@ -26,7 +26,6 @@
 		D8C18F4226B6E73C00242ED7 /* RecruitmenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C18F4126B6E73C00242ED7 /* RecruitmenTableViewController.swift */; };
 		D8C18F4426B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C18F4326B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift */; };
 		D8C18F6C26B95E5000242ED7 /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C18F6B26B95E5000242ED7 /* School.swift */; };
-		D8C18F6E26B95F2900242ED7 /* Sex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C18F6D26B95F2900242ED7 /* Sex.swift */; };
 		FFFC7174C1402A3F4E6896DF /* Pods_DormitoryForDelivery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61902CFB1D74595B278E6C11 /* Pods_DormitoryForDelivery.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +54,6 @@
 		D8C18F4126B6E73C00242ED7 /* RecruitmenTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmenTableViewController.swift; sourceTree = "<group>"; };
 		D8C18F4326B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoriesTableViewController.swift; sourceTree = "<group>"; };
 		D8C18F6B26B95E5000242ED7 /* School.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
-		D8C18F6D26B95F2900242ED7 /* Sex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sex.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +154,6 @@
 				0C17CA1A26B7F40500D92B81 /* RecruitingText.swift */,
 				D81BA21226AEDFF5009B1FE3 /* SortOfDormitory.swift */,
 				D8C18F6B26B95E5000242ED7 /* School.swift */,
-				D8C18F6D26B95F2900242ED7 /* Sex.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -315,7 +312,6 @@
 				0C17CA1D26B8159E00D92B81 /* MainTableViewCell.swift in Sources */,
 				0C26FE9726BE2414003C3501 /* MainTableViewController2.swift in Sources */,
 				D8C18F4426B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift in Sources */,
-				D8C18F6E26B95F2900242ED7 /* Sex.swift in Sources */,
 				D81BA21726AEE1CB009B1FE3 /* UserController.swift in Sources */,
 				D81BA1EC26ADB2D9009B1FE3 /* User.swift in Sources */,
 				D8C18F4226B6E73C00242ED7 /* RecruitmenTableViewController.swift in Sources */,
