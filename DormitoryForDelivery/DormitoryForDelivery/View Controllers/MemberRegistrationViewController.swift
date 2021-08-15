@@ -15,9 +15,10 @@ class MemberRegistrationViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func unwindToMemberRegistrationView(segue: UIStoryboardSegue){
-        
+    @IBAction func dismissButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
+    
 
     /*
     // MARK: - Navigation

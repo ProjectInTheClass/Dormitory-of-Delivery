@@ -9,8 +9,8 @@ import UIKit
 
 class LogInViewController: UIViewController {
 
+    @IBOutlet weak var emailTextField: UITextField!
     
-    // MARK Outlet
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,8 +18,7 @@ class LogInViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func unwindToLogInView(segue: UIStoryboardSegue){
-        
+    @IBAction func logInButtonTapped(_ sender: Any) {
     }
     
     
