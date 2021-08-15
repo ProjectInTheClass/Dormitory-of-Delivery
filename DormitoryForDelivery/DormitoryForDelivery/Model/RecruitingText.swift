@@ -11,8 +11,8 @@ struct RecruitingText {
     var symbol: String
     var postTitle: String
     var categories: String
+    var postNoteText: String
     var maximumNumber: Int
     var currentNumber: Int
 //    let WriteUser: User
-    
 }

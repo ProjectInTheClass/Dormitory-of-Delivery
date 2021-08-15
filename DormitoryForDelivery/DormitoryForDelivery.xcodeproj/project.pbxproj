@@ -10,7 +10,8 @@
 		0C17CA1B26B7F40500D92B81 /* RecruitingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C17CA1A26B7F40500D92B81 /* RecruitingText.swift */; };
 		0C17CA1D26B8159E00D92B81 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C17CA1C26B8159E00D92B81 /* MainTableViewCell.swift */; };
 		0C26FE9726BE2414003C3501 /* MainTableViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26FE9626BE2414003C3501 /* MainTableViewController2.swift */; };
-		0C3D0E1326C802F9003B046C /* PostTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3D0E1226C802F9003B046C /* PostTableTableViewController.swift */; };
+		0C4DC3E626C94D0B006A44DF /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4DC3E526C94D0B006A44DF /* PostViewController.swift */; };
+		0C4DC3EC26C94D49006A44DF /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4DC3EB26C94D49006A44DF /* PostTableViewController.swift */; };
 		0C54E63026BD069A007DF6CB /* CircleProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C54E62F26BD069A007DF6CB /* CircleProgressViewController.swift */; };
 		CC7586A526B8524B008EF905 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7586A426B8524B008EF905 /* LogInViewController.swift */; };
 		D8143DB826C8F7EC003B70E8 /* MemberRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8143DB726C8F7EB003B70E8 /* MemberRegistrationViewController.swift */; };
@@ -35,7 +36,8 @@
 		0C17CA1A26B7F40500D92B81 /* RecruitingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitingText.swift; sourceTree = "<group>"; };
 		0C17CA1C26B8159E00D92B81 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		0C26FE9626BE2414003C3501 /* MainTableViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController2.swift; sourceTree = "<group>"; };
-		0C3D0E1226C802F9003B046C /* PostTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableTableViewController.swift; sourceTree = "<group>"; };
+		0C4DC3E526C94D0B006A44DF /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		0C4DC3EB26C94D49006A44DF /* PostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
 		0C54E62F26BD069A007DF6CB /* CircleProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressViewController.swift; sourceTree = "<group>"; };
 		61902CFB1D74595B278E6C11 /* Pods_DormitoryForDelivery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DormitoryForDelivery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7F007BF26FA59F1F6599373 /* Pods-DormitoryForDelivery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DormitoryForDelivery.debug.xcconfig"; path = "Target Support Files/Pods-DormitoryForDelivery/Pods-DormitoryForDelivery.debug.xcconfig"; sourceTree = "<group>"; };
@@ -130,8 +132,9 @@
 				CC7586A426B8524B008EF905 /* LogInViewController.swift */,
 				D8C18F4126B6E73C00242ED7 /* RecruitmenTableViewController.swift */,
 				D8C18F4326B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift */,
-				0C3D0E1226C802F9003B046C /* PostTableTableViewController.swift */,
 				D8143DB726C8F7EB003B70E8 /* MemberRegistrationViewController.swift */,
+				0C4DC3E526C94D0B006A44DF /* PostViewController.swift */,
+				0C4DC3EB26C94D49006A44DF /* PostTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				0C17CA1D26B8159E00D92B81 /* MainTableViewCell.swift in Sources */,
 				0C26FE9726BE2414003C3501 /* MainTableViewController2.swift in Sources */,
 				D8C18F4426B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift in Sources */,
+				0C4DC3E626C94D0B006A44DF /* PostViewController.swift in Sources */,
 				D81BA21726AEE1CB009B1FE3 /* UserController.swift in Sources */,
 				D81BA1EC26ADB2D9009B1FE3 /* User.swift in Sources */,
 				D8C18F4226B6E73C00242ED7 /* RecruitmenTableViewController.swift in Sources */,
@@ -326,8 +330,8 @@
 				0C54E63026BD069A007DF6CB /* CircleProgressViewController.swift in Sources */,
 				D8143DB826C8F7EC003B70E8 /* MemberRegistrationViewController.swift in Sources */,
 				CC7586A526B8524B008EF905 /* LogInViewController.swift in Sources */,
-				0C3D0E1326C802F9003B046C /* PostTableTableViewController.swift in Sources */,
 				D85366C226B1AD0A0045B8C8 /* ListsTableViewCell.swift in Sources */,
+				0C4DC3EC26C94D49006A44DF /* PostTableViewController.swift in Sources */,
 				D85DAD4926BAA6A000E1A419 /* DeviceConfiguration.swift in Sources */,
 				D81BA1DA26AA8B5C009B1FE3 /* SceneDelegate.swift in Sources */,
 				D8C18F6C26B95E5000242ED7 /* School.swift in Sources */,

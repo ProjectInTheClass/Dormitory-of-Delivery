@@ -20,11 +20,11 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     var mainPostInformation: RecruitingText? {
         guard let title = titleTextField.text else{ return nil }
         let categories = categoriesLabel.text ?? ""
-//        let note = noteTextView.text ?? ""
+        let note = noteTextView.text ?? ""
         let maximumNumber = recruitmentCountStepper.value
         let currentNumber = 1
         
-        return RecruitingText(symbol: "🔥", postTitle: title, categories: categories, maximumNumber: Int(maximumNumber), currentNumber: currentNumber)
+        return RecruitingText(symbol: "🔥", postTitle: title, categories: categories, postNoteText: note, maximumNumber: Int(maximumNumber), currentNumber: currentNumber)
     }
     
     
