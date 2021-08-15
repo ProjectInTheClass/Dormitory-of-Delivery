@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rGN-zt-Ql9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gzs-Ha-SKa">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -566,6 +566,7 @@
                     <navigationItem key="navigationItem" id="fze-ob-yZm"/>
                     <connections>
                         <outlet property="emailTextField" destination="ig3-Gt-HEK" id="0cD-lK-xOZ"/>
+                        <outlet property="passwordTextField" destination="Hat-Vu-gwb" id="R0U-lC-OnD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8L-Wn-gWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -647,6 +648,9 @@
                                 <state key="normal" title="회원가입">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="memberRegistrationButtonTapped:" destination="axT-Ie-suQ" eventType="touchUpInside" id="ja4-Fj-GmG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6On-k4-La9"/>
@@ -683,6 +687,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="checkPasswordTextField" destination="q0r-8L-Bx1" id="VVj-Pq-h3a"/>
+                        <outlet property="emailTextField" destination="pzq-Vy-ru1" id="uV6-o5-o6c"/>
+                        <outlet property="memberRegistrationButton" destination="IiM-rK-DGi" id="St2-3i-Q39"/>
+                        <outlet property="passwordTextField" destination="cup-Gn-1Mf" id="vKj-fO-Xy4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JlM-R3-P9y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
