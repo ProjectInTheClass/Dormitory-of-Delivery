@@ -1,29 +1,23 @@
 //
-//  LogInViewController.swift
+//  MemberRegistrationViewController.swift
 //  DormitoryForDelivery
 //
-//  Created by 서인규 on 2021/08/03.
+//  Created by 김동현 on 2021/08/15.
 //
 
 import UIKit
 
-class LogInViewController: UIViewController {
+class MemberRegistrationViewController: UIViewController {
 
-    
-    // MARK Outlet
-  
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func unwindToLogInView(segue: UIStoryboardSegue){
+    @IBAction func unwindToMemberRegistrationView(segue: UIStoryboardSegue){
         
     }
-    
-    
-    
 
     /*
     // MARK: - Navigation
