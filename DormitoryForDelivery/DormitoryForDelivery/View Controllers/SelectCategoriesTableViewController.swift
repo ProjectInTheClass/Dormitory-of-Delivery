@@ -77,7 +77,6 @@ class SelectCategoriesTableViewController: UITableViewController {
                 categoriesArray.remove(at: firstIndex)
             }
         }
-        
         delegate?.didSelect(categoriesArray: categoriesArray)
         tableView.reloadData()
     }

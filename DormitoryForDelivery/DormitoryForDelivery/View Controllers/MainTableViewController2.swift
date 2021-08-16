@@ -8,9 +8,9 @@
 import UIKit
 import FirebaseAuth
 
-protocol MainTableViewControllerDelegate {
-    func didSelect(sendMainPosts: RecruitingText)
-}
+//protocol MainTableViewControllerDelegate {
+//    func didSelect(sendMainPosts: RecruitingText)
+//} //프로토콜로 시도
 
 class MainTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -18,7 +18,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var mainPosts: [RecruitingText] = []
     
-    var delegate: MainTableViewControllerDelegate?
+//    var delegate: MainTableViewControllerDelegate? 프로토콜로 시도
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,12 +45,15 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         let mainPost = mainPosts[indexPath.row]
         
         cell.update(with: mainPost)
-        print(mainPosts)
 
         return cell
     }
     
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "sendPostSegue", sender: indexPath.row)
+    }
+// 프로토콜로 시도
+    
     func checkDeviceNetworkStatus() {
             if(DeviceManager.shared.networkStatus) == false {
                 let alert: UIAlertController = UIAlertController(title: "네트워크 상태 확인", message: "네트워크가 불안정 합니다.", preferredStyle: .alert)
@@ -68,14 +71,17 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
 //        mainTableView.reloadData()
 //    }
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "sendPostSegue" {
+            let destinationViewController = segue.destination as? PostViewController
+            if let indexPath = sender as? Int {
+            destinationViewController?.mainPostInformation = mainPosts[indexPath]
+            }
+        }
     }
-    */
-
 }
+

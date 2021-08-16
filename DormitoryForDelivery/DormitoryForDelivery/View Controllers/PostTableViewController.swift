@@ -20,16 +20,27 @@ class PostTableViewController: UITableViewController {
     @IBOutlet weak var sortOfDomitoryLabel: UILabel!
     @IBOutlet weak var postContentTextView: UITextView!
     
+    var mainPostInformation: RecruitingText?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        print(mainPostInformation)
+        updateUI()
     }
+    
+    func updateUI() {
+        guard let mainPostInformation = mainPostInformation else { return }
+        postTitleLabel.text = "\(mainPostInformation.postTitle)"
+        postCategoriesLabel.text = "\(mainPostInformation.categories)"
+    }
+    
+//    func didSelect(sendMainPosts: RecruitingText) {
+//        postTitleLabel.text = sendMainPosts.postTitle
+//        postCategoriesLabel.text = sendMainPosts.categories
+//    }
+
+
 
     // MARK: - Table view data source
 
