@@ -24,16 +24,16 @@ class MemberRegistrationViewController: UIViewController {
     @IBAction func memberRegistrationButtonTapped(_ sender: Any) {
         guard emailTextField.text?.isEmpty == false, passwordTextField.text?.isEmpty == false, checkPasswordTextField.text?.isEmpty == false else {
             let alertController = UIAlertController(title: "이메일과 비밀번호를 작성해주세요.", message: nil, preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alertController.addAction(cancelAction)
+            let checkAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alertController.addAction(checkAction)
             present(alertController, animated: true, completion: nil)
             return
         }
         
         guard passwordTextField.text == checkPasswordTextField.text else {
             let alertController = UIAlertController(title: "비밀번호를 다시 확인해주세요.", message: nil, preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alertController.addAction(cancelAction)
+            let checkAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alertController.addAction(checkAction)
             present(alertController, animated: true, completion: nil)
             return
         }
