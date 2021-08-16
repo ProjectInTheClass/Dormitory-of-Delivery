@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol MainTableViewControllerDelegate {
+    func didSelect(sendMainPosts: RecruitingText)
+}
+
 class MainTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var mainTableView: UITableView!
     
     var mainPosts: [RecruitingText] = []
+    
+    var delegate: MainTableViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +47,10 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         print(mainPosts)
 
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        <#code#>
     }
     
     func checkDeviceNetworkStatus() {
