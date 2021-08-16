@@ -383,7 +383,7 @@
                                                     <rect key="frame" x="119" y="14" width="63" height="63"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7I-fB-6XW">
-                                                            <rect key="frame" x="10.5" y="21" width="42" height="21"/>
+                                                            <rect key="frame" x="15" y="24" width="32" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -391,12 +391,12 @@
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="u7I-fB-6XW" firstAttribute="top" secondItem="jmB-Ey-h8v" secondAttribute="top" constant="21" id="9TR-5Q-x8F"/>
-                                                        <constraint firstItem="u7I-fB-6XW" firstAttribute="leading" secondItem="jmB-Ey-h8v" secondAttribute="leading" constant="10.5" id="NPO-uS-qnD"/>
                                                         <constraint firstAttribute="height" constant="63" id="OhR-6Y-LPb"/>
                                                         <constraint firstAttribute="width" constant="63" id="ROb-2G-MaK"/>
-                                                        <constraint firstAttribute="bottom" secondItem="u7I-fB-6XW" secondAttribute="bottom" constant="21" id="TfM-Bq-fow"/>
-                                                        <constraint firstAttribute="trailing" secondItem="u7I-fB-6XW" secondAttribute="trailing" constant="10.5" id="uOe-00-cDc"/>
+                                                        <constraint firstAttribute="trailing" secondItem="u7I-fB-6XW" secondAttribute="trailing" constant="16" id="Xa7-Gb-Q21"/>
+                                                        <constraint firstItem="u7I-fB-6XW" firstAttribute="top" secondItem="jmB-Ey-h8v" secondAttribute="top" constant="24" id="aHW-EZ-o8a"/>
+                                                        <constraint firstAttribute="bottom" secondItem="u7I-fB-6XW" secondAttribute="bottom" constant="23" id="aU6-XM-pOm"/>
+                                                        <constraint firstItem="u7I-fB-6XW" firstAttribute="leading" secondItem="jmB-Ey-h8v" secondAttribute="leading" constant="15" id="vRB-TJ-4x3"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsQ-pw-HAi" userLabel="명">
@@ -483,7 +483,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJl-Yd-YAS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3614" y="-304"/>
+            <point key="canvasLocation" x="3613.04347826087" y="-304.35267857142856"/>
         </scene>
         <!--Select Categories Table View Controller-->
         <scene sceneID="8VR-Us-r5G">

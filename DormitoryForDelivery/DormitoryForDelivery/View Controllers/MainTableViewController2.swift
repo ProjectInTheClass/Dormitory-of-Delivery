@@ -49,10 +49,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        <#code#>
-    }
-    
+
     func checkDeviceNetworkStatus() {
             if(DeviceManager.shared.networkStatus) == false {
                 let alert: UIAlertController = UIAlertController(title: "네트워크 상태 확인", message: "네트워크가 불안정 합니다.", preferredStyle: .alert)
