@@ -19,6 +19,10 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
+        
+        if Auth.auth().currentUser?.uid != nil{
+            performSegue(withIdentifier: "login", sender: self)
+        }
     }
     
     @IBAction func logInButtonTapped(_ sender: Any) {
@@ -60,8 +64,17 @@ class LogInViewController: UIViewController {
         
     }
     
+    @IBAction func unwindToLogInViewController(unwindSegue: UIStoryboardSegue){
+        
+    }
     
-
+    //unwind되는 뷰를 찾아서 unwind액션을 하게된다. 만일 false를 리턴하면 unwind는 실행되지않는다.
+    override func canPerformUnwindSegueAction(_ action: Selector, from fromViewController: UIViewController, withSender sender: Any) -> Bool {
+        return true
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 
