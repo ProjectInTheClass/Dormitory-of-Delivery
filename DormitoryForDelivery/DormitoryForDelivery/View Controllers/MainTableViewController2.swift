@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 protocol MainTableViewControllerDelegate {
     func didSelect(sendMainPosts: RecruitingText)
 }
 
 class MainTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     @IBOutlet weak var mainTableView: UITableView!
     
     var mainPosts: [RecruitingText] = []
