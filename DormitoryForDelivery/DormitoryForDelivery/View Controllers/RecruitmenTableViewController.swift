@@ -47,7 +47,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        if titleTextField.text != nil && noteTextView.text != "같이 시켜먹을 배달음식에 대한 설명과 수령 방식 등 배달 공유에 대한 정보를 작성해 주세요." && noteTextView.text.count > 0 {
+        if titleTextField.text != nil && noteTextView.text != "같이 시켜먹을 배달음식에 대한 설명과 수령 방식 등 배달 공유에 대한 정보를 작성해 주세요." && noteTextView.text.count > 0 && categoriesArray.count > 0 && recruitmentCountStepper.value > 1 {
             writingDoneButton.isEnabled = true
         } else {
             writingDoneButton.isEnabled = false

@@ -175,7 +175,6 @@
                         <outlet property="numberOfRecruitmentLabel" destination="yyN-DZ-V9f" id="14J-G2-CXA"/>
                         <outlet property="recruitmentCountStepper" destination="mee-RH-vHE" id="cze-Tp-1bc"/>
                         <outlet property="titleTextField" destination="Dsa-Qe-JJr" id="N0K-9q-6tF"/>
-                        <outlet property="writingDoneButton" destination="DG8-Sf-muN" id="hvQ-Q9-sLZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dzd-T9-anw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -919,7 +918,7 @@
                                     <segue destination="IMQ-N8-EFv" kind="presentation" id="mcv-24-QYg"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleAspectFit" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bbt-Yi-QnQ">
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="bbt-Yi-QnQ">
                                 <rect key="frame" x="0.0" y="88" width="414" height="175"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="w3d-ka-IA8">
@@ -1169,6 +1168,7 @@
                                     <constraint firstItem="9is-WY-4yY" firstAttribute="top" secondItem="w3d-ka-IA8" secondAttribute="bottom" constant="20" id="Psm-nc-gQH"/>
                                     <constraint firstItem="w3d-ka-IA8" firstAttribute="leading" secondItem="bbt-Yi-QnQ" secondAttribute="leading" constant="15" id="Xvc-rt-rDe"/>
                                     <constraint firstAttribute="trailing" secondItem="9is-WY-4yY" secondAttribute="trailing" constant="15" id="gSg-c5-RRA"/>
+                                    <constraint firstAttribute="height" constant="175" id="gme-3O-nDj"/>
                                     <constraint firstAttribute="trailing" secondItem="w3d-ka-IA8" secondAttribute="trailing" constant="15" id="k8O-gM-iNX"/>
                                     <constraint firstItem="w3d-ka-IA8" firstAttribute="top" secondItem="bbt-Yi-QnQ" secondAttribute="top" constant="20" id="znr-En-wqz"/>
                                 </constraints>
