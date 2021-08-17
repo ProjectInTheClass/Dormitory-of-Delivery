@@ -8,9 +8,6 @@
 import UIKit
 import FirebaseAuth
 
-//protocol MainTableViewControllerDelegate {
-//    func didSelect(sendMainPosts: RecruitingText)
-//} //프로토콜로 시도
 
 class MainTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -18,7 +15,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var mainPosts: [RecruitingText] = []
     
-//    var delegate: MainTableViewControllerDelegate? 프로토콜로 시도
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +49,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "sendPostSegue", sender: indexPath.row)
     }
-// 프로토콜로 시도
+
     
     func checkDeviceNetworkStatus() {
             if(DeviceManager.shared.networkStatus) == false {

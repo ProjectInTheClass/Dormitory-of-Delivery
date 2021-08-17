@@ -7,15 +7,12 @@
 
 import UIKit
 
-//protocol RecruitmenTableViewControllerDelegate {
-//    func recruitmentTextInformation(mainPosts: RecruitingText)
-//}
 
 class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, SelectCategoriesTableViewControllerDelegate {
     
     var categoriesArray: [String] = []
     
-//    var delegate: RecruitmenTableViewControllerDelegate?
+
     
     var mainPostInformation: RecruitingText? {
         guard let title = titleTextField.text else{ return nil }
@@ -33,12 +30,14 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     @IBOutlet weak var categoriesLabel: UILabel!
     @IBOutlet weak var recruitmentCountStepper: UIStepper!
     @IBOutlet weak var numberOfRecruitmentLabel: UILabel!
+    @IBOutlet weak var writingDoneButton: UIBarButtonItem!
     
     
        override func viewDidLoad() {
         super.viewDidLoad()
         noteTextViewPlaceholderSetting()
         updateNumberOfRecruitmentMember()
+        beginingWritingDoneButtonStatusSetting()
     }
     
     func noteTextViewPlaceholderSetting() {
@@ -47,16 +46,34 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         noteTextView.textColor = UIColor.lightGray
     }
     
+    func textViewDidChange(_ textView: UITextView) {
+        if titleTextField.text != nil && noteTextView.text != "같이 시켜먹을 배달음식에 대한 설명과 수령 방식 등 배달 공유에 대한 정보를 작성해 주세요." && noteTextView.text.count > 0 {
+            writingDoneButton.isEnabled = true
+        } else {
+            writingDoneButton.isEnabled = false
+        }
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor.black
         }
-    }
+
+        }
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "같이 시켜먹을 배달음식에 대한 설명과 수령 방식 등 배달 공유에 대한 정보를 작성해 주세요."
             textView.textColor = UIColor.lightGray
+        }
+
+
+    }
+    
+    func beginingWritingDoneButtonStatusSetting() {
+        if noteTextView.text == nil || noteTextView.text == "같이 시켜먹을 배달음식에 대한 설명과 수령 방식 등 배달 공유에 대한 정보를 작성해 주세요." {
+            writingDoneButton.isEnabled = false
         }
     }
     
@@ -64,12 +81,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         dismiss(animated: true, completion: nil)
     }
     
-//    @IBAction func doneBarButtonTapped(_ sender: UIBarButtonItem) {
-//        let newRecruitmentPost = RecruitingText(symbol: "🔥", postTitle: titleTextField.text ?? "", categories: categoriesLabel.text ?? "", maximumNumber: Int(recruitmentCountStepper.value), currentNumber: 1)
-//
-//        delegate?.recruitmentTextInformation(mainPosts: newRecruitmentPost)
-//    }
-//
+
     @IBAction func stepperValueChanged(_ sender: Any) {
         updateNumberOfRecruitmentMember()
     }

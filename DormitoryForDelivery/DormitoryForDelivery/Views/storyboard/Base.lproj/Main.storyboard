@@ -175,6 +175,7 @@
                         <outlet property="numberOfRecruitmentLabel" destination="yyN-DZ-V9f" id="14J-G2-CXA"/>
                         <outlet property="recruitmentCountStepper" destination="mee-RH-vHE" id="cze-Tp-1bc"/>
                         <outlet property="titleTextField" destination="Dsa-Qe-JJr" id="N0K-9q-6tF"/>
+                        <outlet property="writingDoneButton" destination="DG8-Sf-muN" id="hvQ-Q9-sLZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dzd-T9-anw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
