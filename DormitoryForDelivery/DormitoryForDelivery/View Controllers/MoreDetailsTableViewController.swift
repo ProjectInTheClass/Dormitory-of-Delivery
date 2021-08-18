@@ -19,8 +19,18 @@ class MoreDetailsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
       
+    @IBAction func logOutButtonTapped(_ sender: Any) {
+        let alertController = UIAlertController(title: "로그아웃하시겠습니까?", message: nil, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        let checkAction = UIAlertAction(title: "확인", style: .default) { action in
+            self.performSegue(withIdentifier: "logOut", sender: nil)
+        }
+        alertController.addAction(checkAction)
+        present(alertController, animated: true, completion: nil)
+        
+    }
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        // 여기부분에 .alert형식으로 조건을 줄려고하니 오류
         return true
     }
     

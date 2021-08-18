@@ -1603,7 +1603,7 @@
                                                         <color key="titleColor" systemColor="labelColor"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="Ebz-Nh-nme" kind="unwind" identifier="logOut" unwindAction="unwindToLogInViewControllerWithUnwindSegue:" id="ekB-Z8-gP4"/>
+                                                        <action selector="logOutButtonTapped:" destination="hKt-7V-in5" eventType="touchUpInside" id="CHp-K5-pq6"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1628,6 +1628,9 @@
                             <imageReference key="image" image="gearshape" catalog="system" renderingMode="original"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Ebz-Nh-nme" kind="unwind" identifier="logOut" unwindAction="unwindToLogInViewControllerWithUnwindSegue:" id="mnM-mT-HZV"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nrD-V1-QrE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Ebz-Nh-nme" userLabel="Exit" sceneMemberID="exit"/>
