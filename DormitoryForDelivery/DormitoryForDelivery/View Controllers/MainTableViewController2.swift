@@ -23,6 +23,11 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         mainTableView.dataSource = self
         mainTableView.delegate = self
         
+     //   fetchRecruitmentTableList()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchRecruitmentTableList()
     }
     
@@ -61,9 +66,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         //질문: 이런식으로 동작하면 속도에 영향은 안가나?, firestore에 하루에 읽을수 있는 정도가 정해있는데 for문을 돌때마다 그럼 데이터를 읽는걸로 치나?
         db.collection("recruitTables").getDocuments(){ (querySnapshot, error) in
             if  error == nil  {
+                self.mainPosts.removeAll()
                 for document in querySnapshot!.documents{
-                    print("\(document.documentID) ==> \(document.data())")
- 
                     let uid = document.data()["uid"] as! String
                     let title = document.data()["title"] as! String
                     let category = document.data()["category"] as! String
@@ -74,7 +78,10 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                     
                     let mainpost:RecruitingText = RecruitingText(postTitle: title, categories: category,        postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp)
                     self.mainPosts.append(mainpost)
-                    self.mainTableView.reloadData()
+                    
+                    DispatchQueue.main.async(execute: {
+                        self.mainTableView.reloadData()
+                    })
                 }
             } else {
                 print("Error getting documents: ")

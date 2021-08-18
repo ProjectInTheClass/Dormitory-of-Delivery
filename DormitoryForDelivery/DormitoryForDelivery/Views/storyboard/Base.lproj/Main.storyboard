@@ -1024,7 +1024,7 @@
                                                             <constraint firstAttribute="height" constant="35" id="lY0-t9-xP7"/>
                                                             <constraint firstAttribute="width" constant="35" id="xjr-6m-J64"/>
                                                         </constraints>
-                                                        <state key="normal" title="Button" image="돈가스일식"/>
+                                                        <state key="normal" title="Button" image="돈까스·일식"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="돈까스·일식" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EI1-HN-eKD">
                                                         <rect key="frame" x="0.0" y="43" width="66" height="14.5"/>
@@ -1098,7 +1098,7 @@
                                                             <constraint firstAttribute="width" secondItem="eRk-1S-vjS" secondAttribute="height" multiplier="1:1" id="bYy-xf-Kbh"/>
                                                             <constraint firstAttribute="width" constant="35" id="ogz-lC-plU"/>
                                                         </constraints>
-                                                        <state key="normal" title="Button" image="짜장면"/>
+                                                        <state key="normal" title="Button" image="중국집"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="중국집" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g51-ra-jaV">
                                                         <rect key="frame" x="0.0" y="43" width="66" height="14.5"/>
@@ -1144,7 +1144,7 @@
                                                             <constraint firstAttribute="width" secondItem="qbA-ve-XHq" secondAttribute="height" multiplier="1:1" id="hKV-El-nQL"/>
                                                             <constraint firstAttribute="height" constant="35" id="oWT-PU-97n"/>
                                                         </constraints>
-                                                        <state key="normal" title="Button" image="더보기"/>
+                                                        <state key="normal" title="Button" image="기타"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기타" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M47-fE-3Gl">
                                                         <rect key="frame" x="0.0" y="43" width="66" height="14.5"/>
@@ -1681,11 +1681,11 @@
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
-        <image name="더보기" width="512" height="512"/>
-        <image name="돈가스일식" width="512" height="512"/>
+        <image name="기타" width="512" height="512"/>
+        <image name="돈까스·일식" width="512" height="512"/>
         <image name="디저트" width="512" height="512"/>
         <image name="분식" width="512" height="512"/>
-        <image name="짜장면" width="512" height="512"/>
+        <image name="중국집" width="512" height="512"/>
         <image name="치킨" width="512" height="512"/>
         <image name="커피" width="512" height="512"/>
         <image name="피자" width="512" height="512"/>
