@@ -13,5 +13,6 @@ struct RecruitingText {
     var postNoteText: String
     var maximumNumber: Int
     var currentNumber: Int
-//    let WriteUser: User
+    let WriteUid: String
+    let timestamp: NSNumber
 }

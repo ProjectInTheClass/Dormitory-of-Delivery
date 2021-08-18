@@ -15,16 +15,6 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     
     var categoriesArray: [String] = []
     
-    var mainPostInformation: RecruitingText? {
-        guard let title = titleTextField.text else{ return nil }
-        let categories = categoriesLabel.text ?? ""
-        let note = noteTextView.text ?? ""
-        let maximumNumber = recruitmentCountStepper.value
-        let currentNumber = 1
-        
-        return RecruitingText(postTitle: title, categories: categories, postNoteText: note, maximumNumber: Int(maximumNumber), currentNumber: currentNumber)
-    }
-    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var categoriesLabel: UILabel!
@@ -156,8 +146,11 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         }
         
         if segue.identifier == "unwindToMainView"{
-            var currentNumber = 1
-            let newRecruitTable:Dictionary<String, Any> = ["uid":Auth.auth().currentUser?.uid, "title": titleTextField.text, "category":categoriesLabel.text, "noteText":noteTextView.text, "maximumNumber":Int(recruitmentCountStepper.value),"currentNumber":currentNumber]
+            //ToDo: Type cating으로 경고 수정, 나중에 유저가 그룹참가를 하면 currentNumber를 update하는 코드구현
+            let currentNumber = 1
+            guard let title = titleTextField.text, let category = categoriesLabel.text, let noteText = noteTextView.text else { return }
+            
+            let newRecruitTable:Dictionary<String, Any> = ["uid":Auth.auth().currentUser!.uid, "title": title, "category":category, "noteText":noteText, "maximumNumber":recruitmentCountStepper.value,"currentNumber":currentNumber,"timestamp":NSNumber(value: Date().timeIntervalSince1970)]
     
             //fireStore-tables에 작성
             let newRecruitTableRef = db.collection("recruitTables").document()

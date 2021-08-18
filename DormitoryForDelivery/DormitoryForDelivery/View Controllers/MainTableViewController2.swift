@@ -13,6 +13,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var mainTableView: UITableView!
     
+    let db: Firestore = Firestore.firestore()
+    
     var mainPosts: [RecruitingText] = []
     
     override func viewDidLoad() {
@@ -20,16 +22,12 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         checkDeviceNetworkStatus()
         mainTableView.dataSource = self
         mainTableView.delegate = self
+        
+        fetchRecruitmentTableList()
     }
     
     @IBAction func unwindFromRecruitmentTableView(_ unwindSegue: UIStoryboardSegue) {
-        guard let recruitMentTableViewController = unwindSegue.source as? RecruitmenTableViewController, let mainPostInformation = recruitMentTableViewController.mainPostInformation else { return }
         
-       
-        
-        mainPosts.append(mainPostInformation)
-        mainTableView.reloadData()
-        // Use data from the view controller which initiated the unwind segue
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,11 +36,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainTableViewCell
-
         let mainPost = mainPosts[indexPath.row]
-        
         cell.update(with: mainPost)
-
         return cell
     }
     
@@ -62,6 +57,30 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
     
+    func fetchRecruitmentTableList(){
+        //질문: 이런식으로 동작하면 속도에 영향은 안가나?, firestore에 하루에 읽을수 있는 정도가 정해있는데 for문을 돌때마다 그럼 데이터를 읽는걸로 치나?
+        db.collection("recruitTables").getDocuments(){ (querySnapshot, error) in
+            if  error == nil  {
+                for document in querySnapshot!.documents{
+                    print("\(document.documentID) ==> \(document.data())")
+ 
+                    let uid = document.data()["uid"] as! String
+                    let title = document.data()["title"] as! String
+                    let category = document.data()["category"] as! String
+                    let noteText = document.data()["noteText"] as! String
+                    let maximumNumber = document.data()["maximumNumber"] as! Int
+                    let currentNumber = document.data()["currentNumber"] as! Int
+                    let timestamp = document.data()["timestamp"] as! NSNumber
+                    
+                    let mainpost:RecruitingText = RecruitingText(postTitle: title, categories: category,        postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp)
+                    self.mainPosts.append(mainpost)
+                    self.mainTableView.reloadData()
+                }
+            } else {
+                print("Error getting documents: ")
+            }
+        }
+    }
 //    func recruitmentTextInformation(mainPosts: RecruitingText) {
 //        self.mainPosts.append(mainPosts)
 //        print(self.mainPosts)
