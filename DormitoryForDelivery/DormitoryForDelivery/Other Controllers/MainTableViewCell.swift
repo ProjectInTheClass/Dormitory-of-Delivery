@@ -11,12 +11,9 @@ class MainTableViewCell: UITableViewCell {
 
     @IBOutlet weak var circularProgressBarView: CircleProgressViewController!
     @IBOutlet weak var progressLabel: UILabel!
-    @IBOutlet weak var symbolLabel: UILabel!
+    @IBOutlet weak var catagoryImage: UIImageView!
     @IBOutlet weak var postTitleLabel: UILabel!
     @IBOutlet weak var categoriesLabel: UILabel!
-    
-    
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,8 +26,9 @@ class MainTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    //동현 : 태영님 여기 main은 어디서 받아오는거죠?
     func update(with main: RecruitingText) {
-        symbolLabel.text = main.symbol
+        catagoryImage.image = UIImage(named: main.categories)
         postTitleLabel.text = main.postTitle
         categoriesLabel.text = main.categories
         progressLabel.text = "\(main.currentNumber)/\(main.maximumNumber)"

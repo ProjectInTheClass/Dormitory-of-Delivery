@@ -22,7 +22,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         let maximumNumber = recruitmentCountStepper.value
         let currentNumber = 1
         
-        return RecruitingText(symbol: "🔥", postTitle: title, categories: categories, postNoteText: note, maximumNumber: Int(maximumNumber), currentNumber: currentNumber)
+        return RecruitingText(postTitle: title, categories: categories, postNoteText: note, maximumNumber: Int(maximumNumber), currentNumber: currentNumber)
     }
     
     @IBOutlet weak var titleTextField: UITextField!
@@ -156,9 +156,8 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         }
         
         if segue.identifier == "unwindToMainView"{
-            //RecruitingText(symbol: "🔥", postTitle: title, categories: categories, postNoteText: note, maximumNumber: Int(maximumNumber), currentNumber: currentNumber)
             var currentNumber = 1
-            let newRecruitTable: [String:Any] = ["uid":Auth.auth().currentUser?.uid, "title": titleTextField.text, "category":categoriesLabel.text, "noteText":noteTextView.text, "maximumNumber":Int(recruitmentCountStepper.value),"currentNumber":currentNumber]
+            let newRecruitTable:Dictionary<String, Any> = ["uid":Auth.auth().currentUser?.uid, "title": titleTextField.text, "category":categoriesLabel.text, "noteText":noteTextView.text, "maximumNumber":Int(recruitmentCountStepper.value),"currentNumber":currentNumber]
     
             //fireStore-tables에 작성
             let newRecruitTableRef = db.collection("recruitTables").document()
