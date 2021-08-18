@@ -6,13 +6,14 @@
 //
 
 import UIKit
-
+import FirebaseAuth
+import FirebaseFirestore
 
 class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, SelectCategoriesTableViewControllerDelegate {
     
-    var categoriesArray: [String] = []
+    let db:Firestore = Firestore.firestore()
     
-
+    var categoriesArray: [String] = []
     
     var mainPostInformation: RecruitingText? {
         guard let title = titleTextField.text else{ return nil }
@@ -24,7 +25,6 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         return RecruitingText(symbol: "🔥", postTitle: title, categories: categories, postNoteText: note, maximumNumber: Int(maximumNumber), currentNumber: currentNumber)
     }
     
-    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var categoriesLabel: UILabel!
@@ -32,8 +32,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     @IBOutlet weak var numberOfRecruitmentLabel: UILabel!
     @IBOutlet weak var writingDoneButton: UIBarButtonItem!
     
-    
-       override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         noteTextViewPlaceholderSetting()
         updateNumberOfRecruitmentMember()
@@ -58,8 +57,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor.black
-        }
-
+            }
         }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -67,8 +65,6 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
             textView.text = "같이 시켜먹을 배달음식에 대한 설명과 수령 방식 등 배달 공유에 대한 정보를 작성해 주세요."
             textView.textColor = UIColor.lightGray
         }
-
-
     }
     
     func beginingWritingDoneButtonStatusSetting() {
@@ -86,6 +82,8 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         updateNumberOfRecruitmentMember()
     }
     
+    
+    
     func updateNumberOfRecruitmentMember() {
         numberOfRecruitmentLabel.text = "\(Int(recruitmentCountStepper.value))"
     }
@@ -96,7 +94,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     }
     
     func updateCategoriesLabel() {
-        let categoriesWithHashTag = categoriesArray.map { "#" + $0 }
+        let categoriesWithHashTag = categoriesArray.map { $0 }
         var selectCategoriesText: String = ""
         for categoriesString in categoriesWithHashTag {
             selectCategoriesText += categoriesString
@@ -157,6 +155,20 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
             destinationViewController?.categoriesArray = categoriesArray
         }
         
+        if segue.identifier == "unwindToMainView"{
+            //RecruitingText(symbol: "🔥", postTitle: title, categories: categories, postNoteText: note, maximumNumber: Int(maximumNumber), currentNumber: currentNumber)
+            var currentNumber = 1
+            let newRecruitTable: [String:Any] = ["uid":Auth.auth().currentUser?.uid, "title": titleTextField.text, "category":categoriesLabel.text, "noteText":noteTextView.text, "maximumNumber":Int(recruitmentCountStepper.value),"currentNumber":currentNumber]
+    
+            //fireStore-tables에 작성
+            let newRecruitTableRef = db.collection("recruitTables").document()
+            newRecruitTableRef.setData(newRecruitTable)
+            
+            //fireStore-users-table에 작성
+            db.collection("users").document(Auth.auth().currentUser!.uid).collection("table").document(newRecruitTableRef.documentID).setData(newRecruitTable)
+        }
+        
     }
-
+   
+    
 }

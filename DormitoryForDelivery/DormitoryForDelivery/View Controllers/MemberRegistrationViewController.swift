@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class MemberRegistrationViewController: UIViewController {
     
@@ -14,6 +15,8 @@ class MemberRegistrationViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var checkPasswordTextField: UITextField!
     @IBOutlet weak var memberRegistrationButton: UIButton!
+    
+    let db:Firestore = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,25 +47,30 @@ class MemberRegistrationViewController: UIViewController {
         // ToDo: 유저를 등록하기전에 이메일 인증을 하고 해야할것.
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if error == nil {
-                //ToDo: 회원가입성공 처리
-                //질문: createUser하면 바로 signin되기 때문에 회원가입성공시 바로 로그아웃시켜주는코드 사용해도 되는가
-                let firebaseAuth = Auth.auth()
-                do {
-                  try firebaseAuth.signOut()
-                } catch let signOutError as NSError {
-                  print("Error signing out: %@", signOutError)
+                //회원가입성공 처리
+                //ToDo: Firestore에 추가하기전에 좀더 명확한 인과관계를 확인한다.
+                let newUser = ["email":email, "password":password]
+                self.db.collection("users").document(Auth.auth().currentUser!.uid).setData(newUser) {_ in
+                    //질문: createUser하면 바로 signin되기 때문에 회원가입성공시 바로 로그아웃시켜주는코드 사용해도 되는가
+                    let firebaseAuth = Auth.auth()
+                    do {
+                      try firebaseAuth.signOut()
+                    } catch let signOutError as NSError {
+                      print("Error signing out: %@", signOutError)
+                    }
                 }
             } else {
                 //ToDo: 회원가입실패 처리
+                print("회원가입실패")
             }
         }
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     
     
     @IBAction func dismissButtonTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     

@@ -7,7 +7,7 @@
 
 import UIKit
 import FirebaseAuth
-
+import FirebaseFirestore
 
 class MainTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -15,8 +15,6 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var mainPosts: [RecruitingText] = []
     
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         checkDeviceNetworkStatus()
@@ -26,6 +24,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func unwindFromRecruitmentTableView(_ unwindSegue: UIStoryboardSegue) {
         guard let recruitMentTableViewController = unwindSegue.source as? RecruitmenTableViewController, let mainPostInformation = recruitMentTableViewController.mainPostInformation else { return }
+        
+       
         
         mainPosts.append(mainPostInformation)
         mainTableView.reloadData()

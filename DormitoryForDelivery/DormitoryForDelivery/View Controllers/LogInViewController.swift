@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseFirestore
 import FirebaseAuth
 
 class LogInViewController: UIViewController {
@@ -14,7 +13,6 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    let db:Firestore = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,9 +46,6 @@ class LogInViewController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error == nil{
                 //ToDo: 로그인 성공 user객체에서 정보 사용
-                //To do. Firestore에 추가하기전에 좀더 명확한 인과관계를 확인한다.
-                let newUser = ["email":email, "password":password]
-                self.db.collection("users").document(Auth.auth().currentUser!.uid).setData(newUser)
                 self.performSegue(withIdentifier: "login", sender: self)
             } else {
                 //ToDo: 로그인 실패 처리
