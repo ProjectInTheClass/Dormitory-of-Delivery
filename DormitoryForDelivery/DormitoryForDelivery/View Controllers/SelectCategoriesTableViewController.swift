@@ -8,14 +8,12 @@
 import UIKit
 
 protocol SelectCategoriesTableViewControllerDelegate {
-    func didSelect(categoriesArray: [String])
+    func didSelect(selectedCategories: String)
 }
 
 class SelectCategoriesTableViewController: UITableViewController {
     
-    var selectCategories: String?
-    
-    var categoriesArray: [String] = []
+    var selectedCategories: String?
     
     var delegate: SelectCategoriesTableViewControllerDelegate?
     
@@ -49,14 +47,11 @@ class SelectCategoriesTableViewController: UITableViewController {
         let category = categories[indexPath.row]
         cell.textLabel?.text = category
         
-        for categories in categoriesArray {
-            if category == categories {
+            if category == selectedCategories {
                 cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
             }
-        }
-        if !categoriesArray.contains(category) {
-            cell.accessoryType = .none
-        }
         
         return cell
     }
@@ -65,19 +60,11 @@ class SelectCategoriesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        selectCategories = categories[indexPath.row]
+        selectedCategories = categories[indexPath.row]
         
-        guard let selectCategories = selectCategories else { return }
+        guard let selectedCategories = selectedCategories else { return }
         
-        if !categoriesArray.contains(selectCategories) {
-            categoriesArray.append(selectCategories)
-        } else if categoriesArray.contains(selectCategories) {
-            if let firstIndex = categoriesArray.firstIndex(of: selectCategories) {
-                print(firstIndex)
-                categoriesArray.remove(at: firstIndex)
-            }
-        }
-        delegate?.didSelect(categoriesArray: categoriesArray)
+        delegate?.didSelect(selectedCategories: selectedCategories)
         tableView.reloadData()
     }
     
