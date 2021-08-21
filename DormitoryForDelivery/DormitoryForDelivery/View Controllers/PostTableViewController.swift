@@ -10,14 +10,13 @@ import UIKit
 class PostTableViewController: UITableViewController {
     
     @IBOutlet weak var userProfileImageView: UIImageView!
-    @IBOutlet weak var userNickNameLabel: UILabel!
-    @IBOutlet weak var userIdLabel: UILabel!
+    @IBOutlet weak var userNickNameLabel:UILabel!
+    @IBOutlet weak var postTimeLabel: UILabel!
     @IBOutlet weak var postTitleLabel: UILabel!
     @IBOutlet weak var postCategoriesLabel: UILabel!
-    @IBOutlet weak var postTimeLabel: UILabel!
+
     @IBOutlet weak var postCircularProgressBarView: CircleProgressViewController!
     @IBOutlet weak var postCircularProgressBarStatusLabel: UILabel!
-    @IBOutlet weak var sortOfDomitoryLabel: UILabel!
     @IBOutlet weak var postContentTextView: UITextView!
     
     var mainPostInformation: RecruitingText?
@@ -32,12 +31,13 @@ class PostTableViewController: UITableViewController {
     func updateUI() {
         guard let mainPostInformation = mainPostInformation else { return }
         postTitleLabel.text = "\(mainPostInformation.postTitle)"
-        postCategoriesLabel.text = "\(mainPostInformation.categories)"
+        postCategoriesLabel.text = "#\(mainPostInformation.categories)"
         postCircularProgressBarStatusLabel.text = "\(mainPostInformation.currentNumber)/\(mainPostInformation.maximumNumber)"
         let progressValue = Float(Float(mainPostInformation.currentNumber) / Float(mainPostInformation.maximumNumber))
         postCircularProgressBarView.trackColor = UIColor.gray
         postCircularProgressBarView.progressColor = UIColor.blue
         postCircularProgressBarView.setProgressWithAnimation(duration: 1.0, value: progressValue)
+        postContentTextView.text = mainPostInformation.postNoteText
     }
     
 

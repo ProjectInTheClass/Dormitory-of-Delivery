@@ -13,6 +13,7 @@
 		0C4DC3E626C94D0B006A44DF /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4DC3E526C94D0B006A44DF /* PostViewController.swift */; };
 		0C4DC3EC26C94D49006A44DF /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4DC3EB26C94D49006A44DF /* PostTableViewController.swift */; };
 		0C54E63026BD069A007DF6CB /* CircleProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C54E62F26BD069A007DF6CB /* CircleProgressViewController.swift */; };
+		0CB8FCC426D152000057F0CB /* MakeViewBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8FCC326D152000057F0CB /* MakeViewBorder.swift */; };
 		CC7586A526B8524B008EF905 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7586A426B8524B008EF905 /* LogInViewController.swift */; };
 		D80E34B926CA8F1B008CD104 /* MoreDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80E34B826CA8F1B008CD104 /* MoreDetailsTableViewController.swift */; };
 		D8143DB826C8F7EC003B70E8 /* MemberRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8143DB726C8F7EB003B70E8 /* MemberRegistrationViewController.swift */; };
@@ -39,6 +40,7 @@
 		0C4DC3E526C94D0B006A44DF /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		0C4DC3EB26C94D49006A44DF /* PostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
 		0C54E62F26BD069A007DF6CB /* CircleProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressViewController.swift; sourceTree = "<group>"; };
+		0CB8FCC326D152000057F0CB /* MakeViewBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeViewBorder.swift; sourceTree = "<group>"; };
 		61902CFB1D74595B278E6C11 /* Pods_DormitoryForDelivery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DormitoryForDelivery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7F007BF26FA59F1F6599373 /* Pods-DormitoryForDelivery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DormitoryForDelivery.debug.xcconfig"; path = "Target Support Files/Pods-DormitoryForDelivery/Pods-DormitoryForDelivery.debug.xcconfig"; sourceTree = "<group>"; };
 		CAD7B5AA9DCDA7CA71B229C8 /* Pods-DormitoryForDelivery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DormitoryForDelivery.release.xcconfig"; path = "Target Support Files/Pods-DormitoryForDelivery/Pods-DormitoryForDelivery.release.xcconfig"; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				0C54E62F26BD069A007DF6CB /* CircleProgressViewController.swift */,
+				0CB8FCC326D152000057F0CB /* MakeViewBorder.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				0C17CA1D26B8159E00D92B81 /* MainTableViewCell.swift in Sources */,
 				D80E34B926CA8F1B008CD104 /* MoreDetailsTableViewController.swift in Sources */,
 				0C26FE9726BE2414003C3501 /* MainTableViewController2.swift in Sources */,
+				0CB8FCC426D152000057F0CB /* MakeViewBorder.swift in Sources */,
 				D8C18F4426B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift in Sources */,
 				0C4DC3E626C94D0B006A44DF /* PostViewController.swift in Sources */,
 				D81BA1EC26ADB2D9009B1FE3 /* User.swift in Sources */,

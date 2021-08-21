@@ -9,10 +9,14 @@ import UIKit
 
 class PostViewController: UIViewController {
     
+    @IBOutlet weak var participateButtonView: UIView!
+    
     var mainPostInformation: RecruitingText?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        participateButtonView.layer.addBorder([.top], color: UIColor.gray, width: 1.0)
         
         // 네비게이션바 디자인 설정
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -22,8 +26,6 @@ class PostViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
