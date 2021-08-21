@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, SelectCategoriesTableViewControllerDelegate {
+class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, SelectCategoriesTableViewControllerDelegate, UITextFieldDelegate {
     
     let db:Firestore = Firestore.firestore()
     
@@ -24,13 +24,15 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleTextField.delegate = self
+        noteTextView.delegate = self
+        setInputKeyboardType()
         noteTextViewPlaceholderSetting()
         updateNumberOfRecruitmentMember()
         beginingWritingDoneButtonStatusSetting()
     }
     
     func noteTextViewPlaceholderSetting() {
-        noteTextView.delegate = self // 유저가 선언한 outlet
         noteTextView.text = "같이 시켜먹을 배달음식에 대한 설명과 수령 방식 등 배달 공유에 대한 정보를 작성해 주세요."
         noteTextView.textColor = UIColor.lightGray
     }
@@ -61,6 +63,27 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         if noteTextView.text == nil || noteTextView.text == "같이 시켜먹을 배달음식에 대한 설명과 수령 방식 등 배달 공유에 대한 정보를 작성해 주세요." {
             writingDoneButton.isEnabled = false
         }
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    // 텍스트 필드 리턴 키 델리게이트 처리
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        titleTextField.resignFirstResponder()
+        return true
+    }
+    // 텍스트 뷰 리턴 키 델리게이트 처리
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            noteTextView.resignFirstResponder()
+        }
+        return true
+    }
+    
+    func setInputKeyboardType() {
+        titleTextField.keyboardType = .default
+        noteTextView.keyboardType = .default
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
