@@ -205,6 +205,9 @@
                                         <state key="normal" title="Button">
                                             <color key="titleColor" systemColor="systemBlueColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="participateButtonTapped:" destination="s6m-6S-5kq" eventType="touchUpInside" id="iq2-Eo-iK2"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXF-v7-l6g">
                                         <rect key="frame" x="16" y="15" width="46" height="30"/>
@@ -238,7 +241,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="FBp-YM-M1C"/>
                     <connections>
-                        <outlet property="participateButtonView" destination="Tri-o0-Lp6" id="rtr-iA-qPy"/>
+                        <outlet property="includeparticipateButtonView" destination="Tri-o0-Lp6" id="BVA-gR-PQe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MDE-zB-bgR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
