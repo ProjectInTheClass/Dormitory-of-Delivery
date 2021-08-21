@@ -79,6 +79,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                     let mainpost:RecruitingText = RecruitingText(postTitle: title, categories: category,        postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp)
                     self.mainPosts.append(mainpost)
                     
+                    //수정 pageNation으로
                     DispatchQueue.main.async(execute: {
                         self.mainTableView.reloadData()
                     })

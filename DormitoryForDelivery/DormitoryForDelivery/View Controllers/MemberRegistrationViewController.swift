@@ -9,12 +9,19 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class MemberRegistrationViewController: UIViewController {
+class MemberRegistrationViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var checkPasswordTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!{ didSet {
+        emailTextField.delegate = self
+    }}
+    @IBOutlet weak var passwordTextField: UITextField! { didSet {
+        passwordTextField.delegate = self
+    }}
+    @IBOutlet weak var checkPasswordTextField: UITextField! { didSet {
+        checkPasswordTextField.delegate = self
+    }}
     @IBOutlet weak var memberRegistrationButton: UIButton!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     let db:Firestore = Firestore.firestore()
     
@@ -73,8 +80,54 @@ class MemberRegistrationViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func didTapSendSignInLink(_ sender: AnyObject) {
+      if let email = emailTextField.text {
+          showSpinner()
+          let actionCodeSettings = ActionCodeSettings()
+          actionCodeSettings.url = URL(string: "https://www.example.com")
+          // The sign-in operation has to always be completed in the app.
+          actionCodeSettings.handleCodeInApp = true
+          actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
+          actionCodeSettings.setAndroidPackageName("com.example.android", installIfNotAvailable: false, minimumVersion: "12")
+         
+          Auth.auth().sendSignInLink(toEmail: email, actionCodeSettings: actionCodeSettings) { error in
+              if error != nil {
+                print(error?.localizedDescription)
+                self.hideSpinner()
+                return
+              }
+              // The link was successfully sent. Inform the user.
+              // Save the email locally so you don't need to ask the user for it again
+              // if they open the link on the same device.
+              UserDefaults.standard.set(email, forKey: "Email")
+              print("Check your email for link")
+              self.hideSpinner()
+            }
+          } else {
+            print("Email can't be empty")
+          }
+        }
     
+    func showSpinner(){
+        spinner.startAnimating()
+    }
+    
+    func hideSpinner(){
+        spinner.hidesWhenStopped = true
+        spinner.stopAnimating()
+    }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        checkPasswordTextField.resignFirstResponder()
+        return true
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -8,11 +8,15 @@
 import UIKit
 import FirebaseAuth
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField! { didSet{
+        emailTextField.delegate = self
+    }}
     
+    @IBOutlet weak var passwordTextField: UITextField! { didSet{
+        passwordTextField.delegate = self
+    }}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,16 +64,17 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction func unwindToLogInViewController(unwindSegue: UIStoryboardSegue){
-        
     }
     
-    //unwind되는 뷰를 찾아서 unwind액션을 하게된다. 만일 false를 리턴하면 unwind는 실행되지않는다.
-    override func canPerformUnwindSegueAction(_ action: Selector, from fromViewController: UIViewController, withSender sender: Any) -> Bool {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
         return true
     }
-    
-    
-    
     /*
     // MARK: - Navigation
 
@@ -79,5 +84,4 @@ class LogInViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

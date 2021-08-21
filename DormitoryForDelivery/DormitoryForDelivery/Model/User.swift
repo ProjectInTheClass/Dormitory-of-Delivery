@@ -11,12 +11,12 @@ struct User {
     let uid: String
     var email: String
     var passWord: String
+    var schoolCertificationStatus: Bool?
     
     //To do. 변수들의 사용용도에 맞게 옵셔널 처리 생각
     var name:String?
     var studentNumber:Int?
     
-    var UserPhoneNumber:String?
     var UserSchool: School?
     var nickName:String?
     var reputation: Double?

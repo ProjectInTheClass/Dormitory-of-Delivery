@@ -30,9 +30,6 @@ class MoreDetailsTableViewController: UITableViewController {
         present(alertController, animated: true, completion: nil)
         
     }
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        return true
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "logOut" {
