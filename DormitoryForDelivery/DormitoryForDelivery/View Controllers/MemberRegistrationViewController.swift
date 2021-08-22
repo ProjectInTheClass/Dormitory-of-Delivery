@@ -29,31 +29,41 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         emailCertificationStateLabel.isHidden = true
-        
     }
     
     @IBAction func didTapEmailCertification(_ sender: Any) {
         let email = emailTextField.text!
         
-        //ToDo: 이미 회원가입되어있는지 확인하고 실행 -> 한 이메일로 한계정만 생성가능하게.
+        
         //ToDo: 버튼을 누르면 코드상 회원가입부터된다. 따라서 이메일만 인증 누르고 앱의 실행을 중단했을때. 현재 생성된 계정을 삭제시킬 방법 생각하기.
-        Auth.auth().createUser(withEmail: email, password: "password") { (user, error) in
-            if error == nil {
-                Auth.auth().currentUser?.sendEmailVerification()
-                let alertController = UIAlertController(title: "이메일에 메세지가 발송되었습니다.", message: nil, preferredStyle: .alert)
+        
+        db.collection("users").whereField("email", isEqualTo: emailTextField.text!).getDocuments { (snapshot: QuerySnapshot?, error) in
+            if snapshot!.documents.count == 0 {
+                Auth.auth().createUser(withEmail: email, password: "password") { (user, error) in
+                    if error == nil {
+                        Auth.auth().currentUser?.sendEmailVerification()
+                        let alertController = UIAlertController(title: "이메일에 메세지가 발송되었습니다.", message: nil, preferredStyle: .alert)
+                        let checkAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                        alertController.addAction(checkAction)
+                        self.present(alertController, animated: true, completion: nil)
+                    } else {
+                        let alertController = UIAlertController(title: "이메일 형식이 옳지않습니다.", message: nil, preferredStyle: .alert)
+                        let checkAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                        alertController.addAction(checkAction)
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                }
+            } else {
+                let alertController = UIAlertController(title: "이미 존재하는 이메일입니다.", message: nil, preferredStyle: .alert)
                 let checkAction = UIAlertAction(title: "확인", style: .default, handler: nil)
                 alertController.addAction(checkAction)
                 self.present(alertController, animated: true, completion: nil)
-            } else {
-                
             }
         }
     }
     
     
     @IBAction func memberRegistrationButtonTapped(_ sender: Any) {
-        let password = passwordTextField.text!
-        
         guard emailTextField.text?.isEmpty == false, passwordTextField.text?.isEmpty == false, checkPasswordTextField.text?.isEmpty == false else {
             let alertController = UIAlertController(title: "이메일과 비밀번호를 작성해주세요.", message: nil, preferredStyle: .alert)
             let checkAction = UIAlertAction(title: "확인", style: .default, handler: nil)
@@ -70,22 +80,29 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        if Auth.auth().currentUser == nil{
+        guard Auth.auth().currentUser != nil else {
             let alertController = UIAlertController(title: "이메일인증을 해주세요.", message: nil, preferredStyle: .alert)
             let checkAction = UIAlertAction(title: "확인", style: .default, handler: nil)
             alertController.addAction(checkAction)
             self.present(alertController, animated: true, completion: nil)
+            return
         }
+        
+        let password = passwordTextField.text!
+        let email = emailTextField.text!
         
         Auth.auth().currentUser?.reload { _ in
             if Auth.auth().currentUser?.isEmailVerified == true {
                 Auth.auth().currentUser?.updatePassword(to: password, completion: nil)
                 
-                let firebaseAuth = Auth.auth()
-                do {
-                  try firebaseAuth.signOut()
-                } catch let signOutError as NSError {
-                  print("Error signing out: %@", signOutError)
+                let newUser = ["email":email, "password":password]
+                self.db.collection("users").document(Auth.auth().currentUser!.uid).setData(newUser) { _ in
+                    let firebaseAuth = Auth.auth()
+                    do {
+                      try firebaseAuth.signOut()
+                    } catch let signOutError as NSError {
+                      print("Error signing out: %@", signOutError)
+                    }
                 }
                 self.dismiss(animated: true, completion: nil)
             } else {
@@ -96,7 +113,6 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
     
     
     @IBAction func dismissButtonTapped(_ sender: Any) {
