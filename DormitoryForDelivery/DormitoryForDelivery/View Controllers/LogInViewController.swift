@@ -47,6 +47,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         let email = emailTextField.text!
         let password = passwordTextField.text!
         
+        
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error == nil{
                 //ToDo: 로그인 성공 user객체에서 정보 사용

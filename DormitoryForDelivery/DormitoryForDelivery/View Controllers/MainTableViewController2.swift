@@ -22,7 +22,6 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         checkDeviceNetworkStatus()
         mainTableView.dataSource = self
         mainTableView.delegate = self
-        
      //   fetchRecruitmentTableList()
     }
     

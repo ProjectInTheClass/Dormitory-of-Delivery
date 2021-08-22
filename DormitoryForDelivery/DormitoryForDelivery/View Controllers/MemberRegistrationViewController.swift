@@ -21,17 +21,39 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate {
         checkPasswordTextField.delegate = self
     }}
     @IBOutlet weak var memberRegistrationButton: UIButton!
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var emailCertificationStateLabel: UILabel!
     
     let db:Firestore = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        emailCertificationStateLabel.isHidden = true
+        
     }
     
+    @IBAction func didTapEmailCertification(_ sender: Any) {
+        let email = emailTextField.text!
+        
+        //ToDo: 이미 회원가입되어있는지 확인하고 실행 -> 한 이메일로 한계정만 생성가능하게.
+        //ToDo: 버튼을 누르면 코드상 회원가입부터된다. 따라서 이메일만 인증 누르고 앱의 실행을 중단했을때. 현재 생성된 계정을 삭제시킬 방법 생각하기.
+        Auth.auth().createUser(withEmail: email, password: "password") { (user, error) in
+            if error == nil {
+                Auth.auth().currentUser?.sendEmailVerification()
+                let alertController = UIAlertController(title: "이메일에 메세지가 발송되었습니다.", message: nil, preferredStyle: .alert)
+                let checkAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                alertController.addAction(checkAction)
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                
+            }
+        }
+    }
+    
+    
     @IBAction func memberRegistrationButtonTapped(_ sender: Any) {
+        let password = passwordTextField.text!
+        
         guard emailTextField.text?.isEmpty == false, passwordTextField.text?.isEmpty == false, checkPasswordTextField.text?.isEmpty == false else {
             let alertController = UIAlertController(title: "이메일과 비밀번호를 작성해주세요.", message: nil, preferredStyle: .alert)
             let checkAction = UIAlertAction(title: "확인", style: .default, handler: nil)
@@ -41,80 +63,45 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate {
         }
         
         guard passwordTextField.text == checkPasswordTextField.text else {
-            let alertController = UIAlertController(title: "비밀번호를 다시 확인해주세요.", message: nil, preferredStyle: .alert)
+            let alertController = UIAlertController(title: "비밀번호가 일치하지 않습니다.", message: nil, preferredStyle: .alert)
             let checkAction = UIAlertAction(title: "확인", style: .default, handler: nil)
             alertController.addAction(checkAction)
             present(alertController, animated: true, completion: nil)
             return
         }
         
-        let email = emailTextField.text!
-        let password = passwordTextField.text!
+        if Auth.auth().currentUser == nil{
+            let alertController = UIAlertController(title: "이메일인증을 해주세요.", message: nil, preferredStyle: .alert)
+            let checkAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alertController.addAction(checkAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
         
-        // ToDo: 유저를 등록하기전에 이메일 인증을 하고 해야할것.
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-            if error == nil {
-                //회원가입성공 처리
-                //ToDo: Firestore에 추가하기전에 좀더 명확한 인과관계를 확인한다.
-                let newUser = ["email":email, "password":password]
-                self.db.collection("users").document(Auth.auth().currentUser!.uid).setData(newUser) {_ in
-                    //질문: createUser하면 바로 signin되기 때문에 회원가입성공시 바로 로그아웃시켜주는코드 사용해도 되는가
-                    let firebaseAuth = Auth.auth()
-                    do {
-                      try firebaseAuth.signOut()
-                    } catch let signOutError as NSError {
-                      print("Error signing out: %@", signOutError)
-                    }
+        Auth.auth().currentUser?.reload { _ in
+            if Auth.auth().currentUser?.isEmailVerified == true {
+                Auth.auth().currentUser?.updatePassword(to: password, completion: nil)
+                
+                let firebaseAuth = Auth.auth()
+                do {
+                  try firebaseAuth.signOut()
+                } catch let signOutError as NSError {
+                  print("Error signing out: %@", signOutError)
                 }
+                self.dismiss(animated: true, completion: nil)
             } else {
-                //ToDo: 회원가입실패 처리
-                print("회원가입실패")
+                let alertController = UIAlertController(title: "이메일인증을 해주세요.", message: nil, preferredStyle: .alert)
+                let checkAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                alertController.addAction(checkAction)
+                self.present(alertController, animated: true, completion: nil)
             }
         }
-        dismiss(animated: true, completion: nil)
     }
     
     
     
     @IBAction func dismissButtonTapped(_ sender: Any) {
+        Auth.auth().currentUser?.delete()
         dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func didTapSendSignInLink(_ sender: AnyObject) {
-      if let email = emailTextField.text {
-          showSpinner()
-          let actionCodeSettings = ActionCodeSettings()
-          actionCodeSettings.url = URL(string: "https://www.example.com")
-          // The sign-in operation has to always be completed in the app.
-          actionCodeSettings.handleCodeInApp = true
-          actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
-          actionCodeSettings.setAndroidPackageName("com.example.android", installIfNotAvailable: false, minimumVersion: "12")
-         
-          Auth.auth().sendSignInLink(toEmail: email, actionCodeSettings: actionCodeSettings) { error in
-              if error != nil {
-                print(error?.localizedDescription)
-                self.hideSpinner()
-                return
-              }
-              // The link was successfully sent. Inform the user.
-              // Save the email locally so you don't need to ask the user for it again
-              // if they open the link on the same device.
-              UserDefaults.standard.set(email, forKey: "Email")
-              print("Check your email for link")
-              self.hideSpinner()
-            }
-          } else {
-            print("Email can't be empty")
-          }
-        }
-    
-    func showSpinner(){
-        spinner.startAnimating()
-    }
-    
-    func hideSpinner(){
-        spinner.hidesWhenStopped = true
-        spinner.stopAnimating()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -126,6 +113,17 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.resignFirstResponder()
         checkPasswordTextField.resignFirstResponder()
         return true
+    }
+    
+    //ToDo: 이메일인증 후 화면에 다시 들어올 때 작동해야함.
+    func updateUI(){
+        Auth.auth().currentUser?.reload() { _ in
+            if Auth.auth().currentUser?.isEmailVerified == true{
+                self.emailCertificationStateLabel.isHidden = false
+            } else {
+                self.emailCertificationStateLabel.isHidden = true
+            }
+        }
     }
     
     /*
