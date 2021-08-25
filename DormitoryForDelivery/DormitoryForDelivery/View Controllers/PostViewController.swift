@@ -9,22 +9,23 @@ import UIKit
 
 class PostViewController: UIViewController {
     
-    @IBOutlet weak var includeparticipateButtonView: UIView!
-    
+    @IBOutlet weak var includeParticipateButtonView: UIView!
+    @IBOutlet weak var participateButton: UIButton!
+    @IBOutlet weak var currentNumberOfParticipants: UILabel!
+    @IBOutlet weak var currentParticipantsProgressView: UIProgressView!
     
     var mainPostInformation: RecruitingText?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        includeparticipateButtonView.layer.addBorder([.top], color: UIColor.gray, width: 1.0)
+        setIncludeParticipateButtonView()
+        setNavigationDesign()
+        setButtonStatus()
+        setNumberOfParticipants()
+        setCurrentParticipantsProgressView()
         
-        // 네비게이션바 디자인 설정
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        
-
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func participateButtonTapped(_ sender: Any) {
@@ -35,6 +36,35 @@ class PostViewController: UIViewController {
         participateAlertController.addAction(alertOkayAction)
         present(participateAlertController, animated: true, completion: nil)
     }
+    
+    func setButtonStatus() {
+        participateButton.backgroundColor = .systemBlue
+        participateButton.layer.cornerRadius = 4
+    }
+    
+    func setNavigationDesign() {
+        // 네비게이션바 디자인 설정
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+    }
+    
+    func setIncludeParticipateButtonView() {
+        includeParticipateButtonView.layer.addBorder([.top], color: UIColor.gray, width: 1.0)
+    }
+    
+    func setNumberOfParticipants() {
+        guard let mainPostInformation = mainPostInformation else { return }
+        let currentParticipantsPercentage = Int(100 * Float(mainPostInformation.currentNumber) / Float(mainPostInformation.maximumNumber))
+        currentNumberOfParticipants.text = "\(currentParticipantsPercentage)%"
+    }
+    
+    func setCurrentParticipantsProgressView() {
+        currentParticipantsProgressView.progressViewStyle = .default
+        guard let mainPostInformation = mainPostInformation else { return }
+        let currentParticipantsPercentage = 100 * Float(mainPostInformation.currentNumber) / Float(mainPostInformation.maximumNumber)
+        self.currentParticipantsProgressView.(currentParticipantsPercentage, animated: true)
+    }
+    
     
     
     // MARK: - Navigation

@@ -32,11 +32,6 @@ class PostTableViewController: UITableViewController {
         guard let mainPostInformation = mainPostInformation else { return }
         postTitleLabel.text = "\(mainPostInformation.postTitle)"
         postCategoriesLabel.text = "#\(mainPostInformation.categories)"
-        postCircularProgressBarStatusLabel.text = "\(mainPostInformation.currentNumber)/\(mainPostInformation.maximumNumber)"
-        let progressValue = Float(Float(mainPostInformation.currentNumber) / Float(mainPostInformation.maximumNumber))
-        postCircularProgressBarView.trackColor = UIColor.gray
-        postCircularProgressBarView.progressColor = UIColor.blue
-        postCircularProgressBarView.setProgressWithAnimation(duration: 1.0, value: progressValue)
         postContentTextView.text = mainPostInformation.postNoteText
     }
     
