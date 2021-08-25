@@ -480,29 +480,13 @@
                     </tabBar>
                     <connections>
                         <segue destination="KuB-ag-Tet" kind="relationship" relationship="viewControllers" id="p3i-sf-87O"/>
-                        <segue destination="t1J-qd-QES" kind="relationship" relationship="viewControllers" id="j1X-cm-LD9"/>
+                        <segue destination="lRh-AB-1i4" kind="relationship" relationship="viewControllers" id="ohj-bC-NSU"/>
                         <segue destination="goD-UK-r6s" kind="relationship" relationship="viewControllers" id="KzY-5s-ZiW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="30b-XE-OI7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="35" y="84"/>
-        </scene>
-        <!--채팅-->
-        <scene sceneID="63O-4J-Beo">
-            <objects>
-                <viewController id="t1J-qd-QES" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nFf-yf-hiq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="nC2-MW-5Jl"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="채팅" image="message" catalog="system" selectedImage="message.fill" id="JtR-s1-6OO"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IHK-EQ-D7M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="800" y="84"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="xbh-uJ-giS">
@@ -1171,7 +1155,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fva-FF-vwF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="800" y="807"/>
+            <point key="canvasLocation" x="812" y="1331"/>
         </scene>
         <!--더보기-->
         <scene sceneID="24h-z5-ZT6">
@@ -1592,7 +1576,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nrD-V1-QrE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Ebz-Nh-nme" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1593" y="807"/>
+            <point key="canvasLocation" x="1604" y="1331"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Qku-m5-ThN">
@@ -1629,6 +1613,178 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mRR-lD-k2I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4052" y="84"/>
+        </scene>
+        <!--Rooms-->
+        <scene sceneID="0rb-lw-GKW">
+            <objects>
+                <tableViewController id="2eh-Xo-3Wx" customClass="ChatGroupTableViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Jf-Zo-ZSM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" id="m1N-9d-NCi">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m1N-9d-NCi" id="xos-bH-kgO">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="2eh-Xo-3Wx" id="MMP-Mo-7uU"/>
+                            <outlet property="delegate" destination="2eh-Xo-3Wx" id="5T3-9H-Wpu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Rooms" id="ftG-Bj-j5T"/>
+                    <connections>
+                        <segue destination="A2B-cd-b9I" kind="show" identifier="chatting" id="MFC-Vy-H5P"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MsJ-dt-ROw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1964" y="398"/>
+        </scene>
+        <!--채팅-->
+        <scene sceneID="pfv-CZ-yYu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lRh-AB-1i4" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="채팅" image="message" catalog="system" selectedImage="message.fill" id="kFZ-V6-3YD"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8nX-XW-mjR">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2eh-Xo-3Wx" kind="relationship" relationship="rootViewController" id="u5P-Yu-cQG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0xq-wP-Rax" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1220" y="398"/>
+        </scene>
+        <!--Chat Room View Controller-->
+        <scene sceneID="C4H-l3-Jv6">
+            <objects>
+                <viewController id="A2B-cd-b9I" customClass="ChatRoomViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yhU-Ar-9WX"/>
+                        <viewControllerLayoutGuide type="bottom" id="RXn-K5-o3W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KPW-FO-CPc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IQb-QP-KQa">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RVL-Yw-wv4">
+                                    <size key="itemSize" width="341" height="336"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chatCell" id="Ba0-YK-KFH" customClass="ChatMessageCell" customModule="DormitoryForDelivery" customModuleProvider="target">
+                                        <rect key="frame" x="36.5" y="0.0" width="341" height="336"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="336"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rfc-V5-q0I">
+                                                    <rect key="frame" x="30" y="16" width="240" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwz-zn-doa">
+                                                            <rect key="frame" x="99" y="54" width="42" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <size key="customSize" width="341" height="336"/>
+                                        <connections>
+                                            <outlet property="containerView" destination="rfc-V5-q0I" id="LSR-vO-Xf2"/>
+                                            <outlet property="textLabel" destination="Lwz-zn-doa" id="UZt-6a-FIN"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="gbA-tK-IAf" appends="YES" id="0u8-1f-NHy"/>
+                                </connections>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vR-lA-4em">
+                                <rect key="frame" x="0.0" y="759" width="414" height="54"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cAJ-ne-quI">
+                                        <rect key="frame" x="8" y="10" width="344" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mrD-JC-1xG">
+                                        <rect key="frame" x="360" y="10" width="46" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="46" id="bQK-DS-np0"/>
+                                        </constraints>
+                                        <state key="normal" title="보내기">
+                                            <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendButtonTapped:" destination="A2B-cd-b9I" eventType="touchUpInside" id="wRi-uS-hOr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="cAJ-ne-quI" firstAttribute="top" secondItem="1vR-lA-4em" secondAttribute="top" constant="10" id="3eK-eO-YBN"/>
+                                    <constraint firstAttribute="height" constant="54" id="4jD-pN-4JN"/>
+                                    <constraint firstItem="mrD-JC-1xG" firstAttribute="leading" secondItem="cAJ-ne-quI" secondAttribute="trailing" constant="8" id="7Av-CU-Xxp"/>
+                                    <constraint firstAttribute="bottom" secondItem="cAJ-ne-quI" secondAttribute="bottom" constant="10" id="G5L-Ji-3rK"/>
+                                    <constraint firstAttribute="bottom" secondItem="mrD-JC-1xG" secondAttribute="bottom" constant="10" id="Ltq-uh-LfL"/>
+                                    <constraint firstItem="mrD-JC-1xG" firstAttribute="top" secondItem="1vR-lA-4em" secondAttribute="top" constant="10" id="gP2-I4-bpR"/>
+                                    <constraint firstAttribute="trailing" secondItem="mrD-JC-1xG" secondAttribute="trailing" constant="8" id="rKZ-rQ-D2Y"/>
+                                    <constraint firstItem="cAJ-ne-quI" firstAttribute="leading" secondItem="1vR-lA-4em" secondAttribute="leading" constant="8" id="zEH-Ud-Ecc"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="INV-Sx-wKe"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="IQb-QP-KQa" firstAttribute="leading" secondItem="KPW-FO-CPc" secondAttribute="leading" id="5fI-Me-EOV"/>
+                            <constraint firstItem="1vR-lA-4em" firstAttribute="leading" secondItem="KPW-FO-CPc" secondAttribute="leading" id="JZI-d6-BOu"/>
+                            <constraint firstItem="RXn-K5-o3W" firstAttribute="top" secondItem="1vR-lA-4em" secondAttribute="bottom" id="SSX-9b-YCS"/>
+                            <constraint firstAttribute="trailing" secondItem="1vR-lA-4em" secondAttribute="trailing" id="gUG-n6-CoI"/>
+                            <constraint firstAttribute="trailing" secondItem="IQb-QP-KQa" secondAttribute="trailing" id="gtt-U2-1Sh"/>
+                            <constraint firstItem="1vR-lA-4em" firstAttribute="top" secondItem="IQb-QP-KQa" secondAttribute="bottom" id="wEI-UI-WeZ"/>
+                            <constraint firstItem="IQb-QP-KQa" firstAttribute="top" secondItem="KPW-FO-CPc" secondAttribute="top" id="zCe-pf-yuG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Fsn-jW-chg"/>
+                    <connections>
+                        <outlet property="chatCollectionView" destination="IQb-QP-KQa" id="aGG-tE-YCH"/>
+                        <outlet property="chatTextField" destination="cAJ-ne-quI" id="NTZ-tc-Z9Z"/>
+                        <outlet property="item" destination="Fsn-jW-chg" id="NEz-gy-kC0"/>
+                        <outlet property="sendButton" destination="mrD-JC-1xG" id="pms-0y-Qht"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2pY-Ek-DpC" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="gbA-tK-IAf">
+                    <connections>
+                        <action selector="collectionViewTapped:" destination="A2B-cd-b9I" id="Ewx-9j-PSg"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2780" y="398"/>
         </scene>
     </scenes>
     <resources>
