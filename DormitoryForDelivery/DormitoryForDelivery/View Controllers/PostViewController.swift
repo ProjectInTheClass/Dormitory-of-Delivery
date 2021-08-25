@@ -62,7 +62,7 @@ class PostViewController: UIViewController {
         currentParticipantsProgressView.progressViewStyle = .default
         guard let mainPostInformation = mainPostInformation else { return }
         let currentParticipantsPercentage = 100 * Float(mainPostInformation.currentNumber) / Float(mainPostInformation.maximumNumber)
-        self.currentParticipantsProgressView.(currentParticipantsPercentage, animated: true)
+        self.currentParticipantsProgressView.setProgress(currentParticipantsPercentage, animated: true)
     }
     
     
