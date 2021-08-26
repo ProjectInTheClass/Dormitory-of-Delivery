@@ -99,10 +99,9 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
             }
             
             self.chatTextField.text = nil
-            if let groupId = self.groupKey, let toId = self.participantId {
-                FirebaseDataService.instance.groupRef.child(groupId).child("messages").updateChildValues([ref.key: 1])
-                FirebaseDataService.instance.userRef.child(fromUserId).child("groups").updateChildValues([groupId: 1])
-                FirebaseDataService.instance.userRef.child(toId).child("groups").updateChildValues([groupId: 1])
+            if let groupId = self.groupKey {
+                let groupRef = FirebaseDataService.instance.groupRef.child(groupId).child("messages")
+                groupRef.updateChildValues([ref.key : 1])
             }
         }
     }

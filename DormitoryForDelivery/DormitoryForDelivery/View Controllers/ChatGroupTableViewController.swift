@@ -13,18 +13,18 @@ class ChatGroupTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchChatGroupList()
     }
 
     func fetchChatGroupList(){
         if let uid = FirebaseDataService.instance.currentUserUid{
             FirebaseDataService.instance.userRef.child(uid).child("groups").observeSingleEvent(of: .value, with: { (snapshot) in
                 if let dict = snapshot.value as? Dictionary<String, Int>{
+                    self.groups.removeAll()
                     for (key, _) in dict {
                         
                         FirebaseDataService.instance.groupRef.child(key).observeSingleEvent(of: .value, with: { (snapshot) in

@@ -30,6 +30,4 @@ class FirebaseDataService {
             return uid
         }
     }
-    
-    
 }

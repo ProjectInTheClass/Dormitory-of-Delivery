@@ -97,6 +97,11 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate {
                 
                 let newUser = ["email":email, "password":password]
                 self.db.collection("users").document(Auth.auth().currentUser!.uid).setData(newUser) { _ in
+                    
+                    if let uid = FirebaseDataService.instance.currentUserUid{
+                        FirebaseDataService.instance.userRef.child(uid).child("email").setValue(email)
+                    }
+                    
                     let firebaseAuth = Auth.auth()
                     do {
                       try firebaseAuth.signOut()
@@ -105,6 +110,7 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
                 self.dismiss(animated: true, completion: nil)
+                
             } else {
                 let alertController = UIAlertController(title: "이메일인증을 해주세요.", message: nil, preferredStyle: .alert)
                 let checkAction = UIAlertAction(title: "확인", style: .default, handler: nil)
