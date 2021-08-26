@@ -7,6 +7,9 @@
 
 import UIKit
 
+protocol PostViewControllerDelegate {
+    func currentNumberChanged(currentNumber: Int, selectedIndexPath: Int)
+}
 class PostViewController: UIViewController {
     
     @IBOutlet weak var includeParticipateButtonView: UIView!
@@ -15,6 +18,10 @@ class PostViewController: UIViewController {
     @IBOutlet weak var currentParticipantsProgressView: UIProgressView!
     
     var mainPostInformation: RecruitingText?
+    
+    var selectedIndexPath: Int?
+    
+    var delegate: PostViewControllerDelegate?
 
 
     override func viewDidLoad() {
@@ -31,7 +38,12 @@ class PostViewController: UIViewController {
     @IBAction func participateButtonTapped(_ sender: Any) {
         let participateAlertController = UIAlertController(title: "주문에 참여하시겠습니까?", message: "주문 참여 시 채팅방에 초대됩니다.", preferredStyle: .alert)
         let alertCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        let alertOkayAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        let alertOkayAction = UIAlertAction(title: "확인", style: .default) { action in
+            self.mainPostInformation?.currentNumber += 1
+            self.delegate?.currentNumberChanged(currentNumber: self.mainPostInformation!.currentNumber, selectedIndexPath: self.selectedIndexPath!)
+            self.setCurrentParticipantsProgressView()
+            self.setNumberOfParticipants()
+        }
         participateAlertController.addAction(alertCancelAction)
         participateAlertController.addAction(alertOkayAction)
         present(participateAlertController, animated: true, completion: nil)
@@ -61,8 +73,9 @@ class PostViewController: UIViewController {
     func setCurrentParticipantsProgressView() {
         currentParticipantsProgressView.progressViewStyle = .default
         guard let mainPostInformation = mainPostInformation else { return }
-        let currentParticipantsPercentage = 100 * Float(mainPostInformation.currentNumber) / Float(mainPostInformation.maximumNumber)
-        self.currentParticipantsProgressView.setProgress(currentParticipantsPercentage, animated: true)
+        UIView.animate(withDuration: 1) {
+            self.currentParticipantsProgressView.setProgress(Float(Float(mainPostInformation.currentNumber) / Float(mainPostInformation.maximumNumber)), animated: true)
+        }
     }
     
     

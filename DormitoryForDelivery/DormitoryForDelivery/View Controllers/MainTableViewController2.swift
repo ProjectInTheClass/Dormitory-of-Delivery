@@ -9,13 +9,15 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class MainTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MainTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PostViewControllerDelegate {
     
     @IBOutlet weak var mainTableView: UITableView!
     
     let db: Firestore = Firestore.firestore()
     
     var mainPosts: [RecruitingText] = []
+    
+    var selectedPostIndexPath: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        updateCurrentNumberToServer()
         fetchRecruitmentTableList()
     }
     
@@ -67,8 +70,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             if  error == nil  {
                 self.mainPosts.removeAll()
                 for document in querySnapshot!.documents{
-                    let uid = document.data()["uid"] as! String
                     let title = document.data()["title"] as! String
+                    let uid = document.data()["uid"] as! String
                     let category = document.data()["category"] as! String
                     let noteText = document.data()["noteText"] as! String
                     let maximumNumber = document.data()["maximumNumber"] as! Int
@@ -88,11 +91,32 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
     }
-//    func recruitmentTextInformation(mainPosts: RecruitingText) {
-//        self.mainPosts.append(mainPosts)
-//        print(self.mainPosts)
-//        mainTableView.reloadData()
-//    }
+    func currentNumberChanged(currentNumber: Int, selectedIndexPath: Int) {
+        self.mainPosts[selectedIndexPath].currentNumber = currentNumber
+        self.selectedPostIndexPath = selectedIndexPath
+    }
+    func updateCurrentNumberToServer() {
+        guard let selectedPostIndexPath = selectedPostIndexPath else { return }
+        let doc = db.collection("recruitTables")
+    
+        doc.getDocuments() { (snapshot, error) in
+            if error == nil {
+                guard let snapshot = snapshot else { return }
+                for document in snapshot.documents {
+                    let uid = document.get("uid") as! String
+                    if uid == self.mainPosts[selectedPostIndexPath].WriteUid {
+                        guard var data = document["current"] as? [String] else { return }
+                        let documentID = document.documentID
+                        data[0] = String(self.mainPosts[selectedPostIndexPath].currentNumber)
+                        print ("\(data[0])")
+                        doc.document(documentID).updateData(["currentNumber" : data])
+                    }
+                }
+            }
+        }
+    }
+        
+
 
 
     // MARK: - Navigation
@@ -101,9 +125,12 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "sendPostSegue" {
             let destinationViewController = segue.destination as? PostViewController
+            destinationViewController?.delegate = self
             if let indexPath = sender as? Int {
             destinationViewController?.mainPostInformation = mainPosts[indexPath]
             }
+            selectedPostIndexPath = sender as? Int
+            destinationViewController?.selectedIndexPath = selectedPostIndexPath
         }
     }
 }
