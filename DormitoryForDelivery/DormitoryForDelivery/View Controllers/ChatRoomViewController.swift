@@ -15,7 +15,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     @IBOutlet weak var chatTextField: UITextField!
     
     var height: CGFloat = 0.0
-    var messages: [ChatMessage] = []
+    var messages: [ChatMessage] = [ChatMessage(fromUserId: "", text: "", timestamp: 0)]
     
     var groupKey: String? {
         didSet {
@@ -140,7 +140,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
                         text: dict["text"] as! String,
                         timestamp: dict["timestamp"] as! NSNumber
                     )
-                    self.messages.insert(message, at: self.messages.count)
+                    self.messages.insert(message, at: self.messages.count - 1)
                     self.chatCollectionView.reloadData()
                     if self.messages.count >= 1 {
                         let indexPath = IndexPath(item: self.messages.count - 1, section: 0)

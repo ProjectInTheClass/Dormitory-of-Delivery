@@ -49,6 +49,7 @@ class PostViewController: UIViewController {
                 let data = [self.mainPostInformation?.documentId : 1]
                 userRef.child("groups").updateChildValues(data)
             }
+            self.performSegue(withIdentifier: "unwindMainView", sender: nil)
             
             
         }

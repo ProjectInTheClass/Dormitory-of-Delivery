@@ -258,11 +258,13 @@
                         <outlet property="currentParticipantsProgressView" destination="poA-bz-L3J" id="euo-CG-QKs"/>
                         <outlet property="includeParticipateButtonView" destination="Tri-o0-Lp6" id="FTK-OO-5C6"/>
                         <outlet property="participateButton" destination="Uip-uy-Fra" id="ltT-zj-EE9"/>
+                        <segue destination="mA7-0c-2cT" kind="unwind" identifier="unwindMainView" unwindAction="unwindToMainViewControllerWithUnwindSegue:" id="48v-vX-bra"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MDE-zB-bgR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="mA7-0c-2cT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2779.7101449275365" y="-303.34821428571428"/>
+            <point key="canvasLocation" x="2780" y="-303"/>
         </scene>
         <!--Post Table View Controller-->
         <scene sceneID="MG4-gp-EOW">
