@@ -17,6 +17,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var mainPosts: [RecruitingText] = []
     
+    var filteredMainPost: [RecruitingText]? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         checkDeviceNetworkStatus()
@@ -27,6 +29,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.filteredMainPost = nil
 //        updateCurrentNumberToServer()
         fetchRecruitmentTableList()
     }
@@ -35,14 +38,28 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+    @IBAction func filterButtonTapped(_ sender: UIButton) {
+        let selectedButtonTitle = sender.title(for: .normal)
+        self.filteredMainPost = self.mainPosts.filter { (element) -> Bool in
+            return element.categories == selectedButtonTitle!
+        }
+        self.mainTableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        mainPosts.count
+        guard let filteredMainPost = filteredMainPost else { return mainPosts.count }
+            return filteredMainPost.count
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainTableViewCell
-        let mainPost = mainPosts[indexPath.row]
-        cell.update(with: mainPost)
+        guard let filteredMainPost = filteredMainPost else {let mainPost = mainPosts[indexPath.row]
+            cell.update(with: mainPost)
+            return cell
+        }
+        let filterPost = filteredMainPost[indexPath.row]
+        cell.update(with: filterPost)
         return cell
     }
     
