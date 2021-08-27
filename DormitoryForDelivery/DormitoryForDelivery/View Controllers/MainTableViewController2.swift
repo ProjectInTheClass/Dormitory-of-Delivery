@@ -17,8 +17,6 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var mainPosts: [RecruitingText] = []
     
-    var selectedPostIndexPath: Int?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         checkDeviceNetworkStatus()
@@ -29,7 +27,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateCurrentNumberToServer()
+//        updateCurrentNumberToServer()
         fetchRecruitmentTableList()
     }
     
@@ -91,31 +89,25 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
     }
+    
     func currentNumberChanged(currentNumber: Int, selectedIndexPath: Int) {
         self.mainPosts[selectedIndexPath].currentNumber = currentNumber
-        self.selectedPostIndexPath = selectedIndexPath
-    }
-    func updateCurrentNumberToServer() {
-        guard let selectedPostIndexPath = selectedPostIndexPath else { return }
-        let doc = db.collection("recruitTables")
-    
-        doc.getDocuments() { (snapshot, error) in
+        
+        db.collection("recruitTables").getDocuments() { (snapshot, error) in
             if error == nil {
                 guard let snapshot = snapshot else { return }
                 for document in snapshot.documents {
-                    let uid = document.get("uid") as! String
-                    if uid == self.mainPosts[selectedPostIndexPath].WriteUid {
-                        guard var data = document["current"] as? [String] else { return }
+                    let title = document.get("title") as! String
+                    if title == self.mainPosts[selectedIndexPath].postTitle {
                         let documentID = document.documentID
-                        data[0] = String(self.mainPosts[selectedPostIndexPath].currentNumber)
-                        print ("\(data[0])")
-                        doc.document(documentID).updateData(["currentNumber" : data])
+                        let data: [String : AnyObject] = ["currentNumber" : self.mainPosts[selectedIndexPath].currentNumber as AnyObject]
+                        self.db.collection("recruitTables").document(documentID).updateData(data)
+                        self.mainTableView.reloadData()
                     }
                 }
             }
         }
     }
-        
 
 
 
@@ -128,9 +120,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             destinationViewController?.delegate = self
             if let indexPath = sender as? Int {
             destinationViewController?.mainPostInformation = mainPosts[indexPath]
+            destinationViewController?.selectedIndexPath = indexPath
             }
-            selectedPostIndexPath = sender as? Int
-            destinationViewController?.selectedIndexPath = selectedPostIndexPath
         }
     }
 }
