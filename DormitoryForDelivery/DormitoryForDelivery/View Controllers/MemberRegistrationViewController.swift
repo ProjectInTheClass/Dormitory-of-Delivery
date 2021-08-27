@@ -98,7 +98,7 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate {
                 let newUser = ["email":email, "password":password]
                 self.db.collection("users").document(Auth.auth().currentUser!.uid).setData(newUser) { _ in
                     
-                    if let uid = FirebaseDataService.instance.currentUserUid{
+                    if let uid = FirebaseDataService.instance.currentUserUid {
                         FirebaseDataService.instance.userRef.child(uid).child("email").setValue(email)
                     }
                     

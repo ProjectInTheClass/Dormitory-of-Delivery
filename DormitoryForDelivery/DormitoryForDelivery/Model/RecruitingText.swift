@@ -15,4 +15,5 @@ struct RecruitingText {
     var currentNumber: Int
     let WriteUid: String
     let timestamp: NSNumber
+    let documentId: String
 }

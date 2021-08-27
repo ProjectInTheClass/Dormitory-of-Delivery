@@ -15,7 +15,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     @IBOutlet weak var chatTextField: UITextField!
     
     var height: CGFloat = 0.0
-    var messages: [ChatMessage] = [ChatMessage(fromUserId: "", text: "", timestamp: 0)]
+    var messages: [ChatMessage] = []
     
     var groupKey: String? {
         didSet {
@@ -42,6 +42,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         return messages.count
     }
     
+    // cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatCell", for: indexPath) as! ChatMessageCell
         let message = messages[indexPath.item]
@@ -80,8 +81,6 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     }
     
     @IBAction func sendButtonTapped(_ sender: UIButton){
-        let ref = FirebaseDataService.instance.messageRef.childByAutoId()
-        
         guard let fromUserId = FirebaseDataService.instance.currentUserUid else {
             return
         }
@@ -92,16 +91,14 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
             "timestamp" : NSNumber(value: Date().timeIntervalSince1970)
         ]
         
-        ref.updateChildValues(data) { (error, ref) in
-            guard error == nil else {
-                print(error as Any)
-                return
-            }
-            
-            self.chatTextField.text = nil
-            if let groupId = self.groupKey {
-                let groupRef = FirebaseDataService.instance.groupRef.child(groupId).child("messages")
-                groupRef.updateChildValues([ref.key : 1])
+        if let groupId = self.groupKey {
+            let ref = FirebaseDataService.instance.groupRef.child(groupId).child("messages").childByAutoId()
+            ref.updateChildValues(data) { (error, ref) in
+                guard error == nil else {
+                    print(error as Any)
+                    return
+                }
+                self.chatTextField.text = nil
             }
         }
     }
@@ -135,26 +132,22 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     func fetchMessages() {
         if let groupId = self.groupKey {
             let groupMessageRef = FirebaseDataService.instance.groupRef.child(groupId).child("messages")
-            groupMessageRef.observe(.value, with: { (snapshot) in
-                let messageId = snapshot.key
-                let messageRef = FirebaseDataService.instance.messageRef.child(messageId)
-                messageRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                    guard let dict = snapshot.value as? Dictionary<String, AnyObject> else {
-                        return
-                    }
+            
+            groupMessageRef.observe(.childAdded, with: { (snapshot) in
+                if let dict = snapshot.value as? Dictionary<String, AnyObject> {
                     let message = ChatMessage(
                         fromUserId: dict["fromUserId"] as! String,
                         text: dict["text"] as! String,
                         timestamp: dict["timestamp"] as! NSNumber
                     )
-                    self.messages.insert(message, at: self.messages.count - 1)
+                    self.messages.insert(message, at: self.messages.count)
                     self.chatCollectionView.reloadData()
                     if self.messages.count >= 1 {
                         let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
                         self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition(), animated: true)
                     }
                     self.chatCollectionView.frame.origin.y = self.height
-                })
+                }
             })
         }
     }

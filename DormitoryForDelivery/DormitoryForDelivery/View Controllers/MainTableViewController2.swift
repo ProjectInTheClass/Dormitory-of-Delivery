@@ -21,7 +21,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkDeviceNetworkStatus()
+        //checkDeviceNetworkStatus()
         mainTableView.dataSource = self
         mainTableView.delegate = self
      //   fetchRecruitmentTableList()
@@ -64,20 +64,22 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
         performSegue(withIdentifier: "sendPostSegue", sender: indexPath.row)
     }
 
     
-    func checkDeviceNetworkStatus() {
-            if(DeviceManager.shared.networkStatus) == false {
-                let alert: UIAlertController = UIAlertController(title: "네트워크 상태 확인", message: "네트워크가 불안정 합니다.", preferredStyle: .alert)
-                let action: UIAlertAction = UIAlertAction(title: "다시 시도", style: .default, handler: { (ACTION) in
-                    self.checkDeviceNetworkStatus()
-                })
-                alert.addAction(action)
-                present(alert, animated: true, completion: nil)
-            }
-        }
+//    func checkDeviceNetworkStatus() {
+//            if(DeviceManager.shared.networkStatus) == false {
+//                let alert: UIAlertController = UIAlertController(title: "네트워크 상태 확인", message: "네트워크가 불안정 합니다.", preferredStyle: .alert)
+//                let action: UIAlertAction = UIAlertAction(title: "다시 시도", style: .default, handler: { (ACTION) in
+//                    self.checkDeviceNetworkStatus()
+//                })
+//                alert.addAction(action)
+//                present(alert, animated: true, completion: nil)
+//            }
+//        }
     
     func fetchRecruitmentTableList(){
         //질문: 이런식으로 동작하면 속도에 영향은 안가나?, firestore에 하루에 읽을수 있는 정도가 정해있는데 for문을 돌때마다 그럼 데이터를 읽는걸로 치나?
@@ -92,8 +94,9 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                     let maximumNumber = document.data()["maximumNumber"] as! Int
                     let currentNumber = document.data()["currentNumber"] as! Int
                     let timestamp = document.data()["timestamp"] as! NSNumber
+                    let documentId = document.documentID
                     
-                    let mainpost:RecruitingText = RecruitingText(postTitle: title, categories: category,        postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp)
+                    let mainpost:RecruitingText = RecruitingText(postTitle: title, categories: category,        postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId)
                     self.mainPosts.append(mainpost)
                     
                     //수정 pageNation으로

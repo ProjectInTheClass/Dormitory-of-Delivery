@@ -43,6 +43,14 @@ class PostViewController: UIViewController {
             self.delegate?.currentNumberChanged(currentNumber: self.mainPostInformation!.currentNumber, selectedIndexPath: self.selectedIndexPath!)
             self.setCurrentParticipantsProgressView()
             self.setNumberOfParticipants()
+            
+            if let uid = FirebaseDataService.instance.currentUserUid {
+                let userRef = FirebaseDataService.instance.userRef.child(uid)
+                let data = [self.mainPostInformation?.documentId : 1]
+                userRef.child("groups").updateChildValues(data)
+            }
+            
+            
         }
         participateAlertController.addAction(alertCancelAction)
         participateAlertController.addAction(alertOkayAction)

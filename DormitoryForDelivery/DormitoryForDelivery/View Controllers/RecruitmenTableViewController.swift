@@ -175,10 +175,11 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
             //RealtimeDB에 user-group & gropu에 추가
             if let uid = FirebaseDataService.instance.currentUserUid {
                 let userRef = FirebaseDataService.instance.userRef.child(uid)
-                userRef.child("groups").setValue([newRecruitTableRef.documentID: 1])
-                
-                let groupRef = FirebaseDataService.instance.groupRef.child(newRecruitTableRef.documentID)
-                groupRef.setValue(["name":title, "to":uid])
+                userRef.child("groups").updateChildValues(([newRecruitTableRef.documentID: 1])) { (error, ref) in
+                    let groupRef = FirebaseDataService.instance.groupRef.child(newRecruitTableRef.documentID)
+                    groupRef.setValue(["name":title, "to":uid])
+                    return
+                }
             }
             
             
