@@ -44,6 +44,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func filterButtonTapped(_ sender: UIButton) {
+        self.searchMainPost = []
         let selectedButtonTitle = sender.title(for: .normal)
         self.filteredButtonMainPost = self.mainPosts.filter { (element) -> Bool in
             return element.categories == selectedButtonTitle!
@@ -77,8 +78,11 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
+        if filteredButtonMainPost != nil {
+            self.mainPosts = filteredButtonMainPost!
+        } else if searchMainPost != nil {
+            self.mainPosts = searchMainPost!
+        }
         performSegue(withIdentifier: "sendPostSegue", sender: indexPath.row)
     }
 
@@ -155,6 +159,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func updateSearchResults(for searchController: UISearchController) {
+        self.filteredButtonMainPost = nil
         if searchMainPost == nil || searchController.searchBar.text!.isEmpty {
             searchMainPost = mainPosts
         } else {
