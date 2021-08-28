@@ -28,7 +28,6 @@ class PostViewController: UIViewController {
         super.viewDidLoad()
         
         setIncludeParticipateButtonView()
-        setNavigationDesign()
         setButtonStatus()
         setNumberOfParticipants()
         setCurrentParticipantsProgressView()
@@ -61,12 +60,6 @@ class PostViewController: UIViewController {
     func setButtonStatus() {
         participateButton.backgroundColor = .systemBlue
         participateButton.layer.cornerRadius = 4
-    }
-    
-    func setNavigationDesign() {
-        // 네비게이션바 디자인 설정
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
     }
     
     func setIncludeParticipateButtonView() {

@@ -9,27 +9,32 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class MainTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PostViewControllerDelegate {
-    
+class MainTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PostViewControllerDelegate, UISearchResultsUpdating {
+
     @IBOutlet weak var mainTableView: UITableView!
     
     let db: Firestore = Firestore.firestore()
     
     var mainPosts: [RecruitingText] = []
     
-    var filteredMainPost: [RecruitingText]? = nil
+    var filteredButtonMainPost: [RecruitingText]? = nil
     
+    var searchMainPost: [RecruitingText]?
+    
+    let searchController = UISearchController(searchResultsController: nil)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //checkDeviceNetworkStatus()
         mainTableView.dataSource = self
         mainTableView.delegate = self
+        setUpSearchController()
      //   fetchRecruitmentTableList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.filteredMainPost = nil
+        self.filteredButtonMainPost = nil
 //        updateCurrentNumberToServer()
         fetchRecruitmentTableList()
     }
@@ -40,25 +45,33 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func filterButtonTapped(_ sender: UIButton) {
         let selectedButtonTitle = sender.title(for: .normal)
-        self.filteredMainPost = self.mainPosts.filter { (element) -> Bool in
+        self.filteredButtonMainPost = self.mainPosts.filter { (element) -> Bool in
             return element.categories == selectedButtonTitle!
         }
         self.mainTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let filteredMainPost = filteredMainPost else { return mainPosts.count }
-            return filteredMainPost.count
-
+        
+        guard let searchMainPost = searchMainPost else { return mainPosts.count }
+        
+        guard let filteredButtonMainPost = filteredButtonMainPost else { return searchMainPost.count }
+            return filteredButtonMainPost.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainTableViewCell
-        guard let filteredMainPost = filteredMainPost else {let mainPost = mainPosts[indexPath.row]
+//
+        guard let searchMainPost = searchMainPost else { let mainPost = mainPosts[indexPath.row]
             cell.update(with: mainPost)
             return cell
         }
-        let filterPost = filteredMainPost[indexPath.row]
+        
+        guard let filteredButtonMainPost = filteredButtonMainPost else { let mainPost = searchMainPost[indexPath.row]
+            cell.update(with: mainPost)
+            return cell
+        }
+        let filterPost = filteredButtonMainPost[indexPath.row]
         cell.update(with: filterPost)
         return cell
     }
@@ -127,6 +140,29 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
         }
+    }
+    
+    func setUpSearchController() {
+        
+        self.mainTableView.tableHeaderView = searchController.searchBar
+        searchController.searchBar.placeholder = "제목, 카테고리 등"
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
+        searchController.searchBar.sizeToFit()
+        definesPresentationContext = true
+
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        if searchMainPost == nil || searchController.searchBar.text!.isEmpty {
+            searchMainPost = mainPosts
+        } else {
+            self.searchMainPost = mainPosts.filter { (element) in
+                return element.postTitle.contains(searchController.searchBar.text!) || element.categories.contains(searchController.searchBar.text!)
+            }
+        }
+        self.mainTableView.reloadData()
     }
 
 
