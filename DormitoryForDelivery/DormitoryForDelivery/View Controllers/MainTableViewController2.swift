@@ -12,6 +12,7 @@ import FirebaseFirestore
 class MainTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PostViewControllerDelegate, UISearchResultsUpdating {
 
     @IBOutlet weak var mainTableView: UITableView!
+    @IBOutlet weak var searchBarView: UIView!
     
     let db: Firestore = Firestore.firestore()
     
@@ -147,15 +148,14 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func setUpSearchController() {
-        
-        self.mainTableView.tableHeaderView = searchController.searchBar
+//        self.mainTableView.tableHeaderView = searchController.searchBar
+        self.searchBarView.addSubview(searchController.searchBar)
         searchController.searchBar.placeholder = "제목, 카테고리 등"
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
         searchController.searchBar.sizeToFit()
         definesPresentationContext = true
-
     }
     
     func updateSearchResults(for searchController: UISearchController) {

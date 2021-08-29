@@ -756,7 +756,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vng-IY-FkT">
-                                <rect key="frame" x="0.0" y="271" width="414" height="625"/>
+                                <rect key="frame" x="0.0" y="331" width="414" height="565"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="Deh-KX-1qF" customClass="MainTableViewCell" customModule="DormitoryForDelivery" customModuleProvider="target">
@@ -1130,25 +1130,36 @@
                                     <constraint firstItem="w3d-ka-IA8" firstAttribute="top" secondItem="bbt-Yi-QnQ" secondAttribute="top" constant="20" id="znr-En-wqz"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rUG-R6-rhe">
+                                <rect key="frame" x="0.0" y="272" width="414" height="60"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="hnV-Hb-6Ez"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UsP-Vp-r1i"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="rUG-R6-rhe" firstAttribute="top" secondItem="UsP-Vp-r1i" secondAttribute="top" constant="184" id="1jk-if-D7r"/>
                             <constraint firstItem="Vng-IY-FkT" firstAttribute="leading" secondItem="UsP-Vp-r1i" secondAttribute="leading" id="3ED-FL-L5w"/>
                             <constraint firstItem="Vng-IY-FkT" firstAttribute="trailing" secondItem="UsP-Vp-r1i" secondAttribute="trailing" id="57a-k7-Rab"/>
+                            <constraint firstItem="rUG-R6-rhe" firstAttribute="trailing" secondItem="UsP-Vp-r1i" secondAttribute="trailing" id="86D-HU-3yy"/>
                             <constraint firstItem="UsP-Vp-r1i" firstAttribute="trailing" secondItem="ttI-lU-IGG" secondAttribute="trailing" constant="20" id="8yp-oF-d29"/>
                             <constraint firstItem="bbt-Yi-QnQ" firstAttribute="top" secondItem="UsP-Vp-r1i" secondAttribute="top" id="A7p-aI-dcb"/>
                             <constraint firstAttribute="bottom" secondItem="Vng-IY-FkT" secondAttribute="bottom" id="GGU-Zv-9pb"/>
                             <constraint firstItem="bbt-Yi-QnQ" firstAttribute="leading" secondItem="UsP-Vp-r1i" secondAttribute="leading" id="MND-Sf-0ZF"/>
                             <constraint firstItem="UsP-Vp-r1i" firstAttribute="bottom" secondItem="ttI-lU-IGG" secondAttribute="bottom" constant="20" id="Tj4-D8-d53"/>
-                            <constraint firstItem="Vng-IY-FkT" firstAttribute="top" secondItem="UsP-Vp-r1i" secondAttribute="top" constant="183" id="gzo-gd-q20"/>
+                            <constraint firstItem="Vng-IY-FkT" firstAttribute="top" secondItem="bbt-Yi-QnQ" secondAttribute="bottom" constant="68" id="jo2-qG-uP5"/>
                             <constraint firstItem="bbt-Yi-QnQ" firstAttribute="top" secondItem="UsP-Vp-r1i" secondAttribute="top" id="n5N-9o-jaD"/>
                             <constraint firstItem="bbt-Yi-QnQ" firstAttribute="trailing" secondItem="UsP-Vp-r1i" secondAttribute="trailing" id="ny7-Tw-2Ye"/>
+                            <constraint firstItem="rUG-R6-rhe" firstAttribute="leading" secondItem="UsP-Vp-r1i" secondAttribute="leading" id="xG1-ge-HGV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9A1-AG-Ucf"/>
                     <connections>
                         <outlet property="mainTableView" destination="Vng-IY-FkT" id="5h8-1E-Fix"/>
+                        <outlet property="searchBarView" destination="rUG-R6-rhe" id="zFF-VM-WmF"/>
                         <segue destination="s6m-6S-5kq" kind="show" identifier="sendPostSegue" id="bEZ-Dz-c8p"/>
                     </connections>
                 </viewController>
