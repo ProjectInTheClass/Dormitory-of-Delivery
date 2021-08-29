@@ -34,6 +34,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.searchMainPost = nil
         self.filteredButtonMainPost = nil
 //        updateCurrentNumberToServer()
         fetchRecruitmentTableList()
