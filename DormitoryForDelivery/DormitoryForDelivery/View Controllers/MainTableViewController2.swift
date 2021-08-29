@@ -99,7 +99,6 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
 //        }
     
     func fetchRecruitmentTableList(){
-        //질문: 이런식으로 동작하면 속도에 영향은 안가나?, firestore에 하루에 읽을수 있는 정도가 정해있는데 for문을 돌때마다 그럼 데이터를 읽는걸로 치나?
         db.collection("recruitTables").getDocuments(){ (querySnapshot, error) in
             if  error == nil  {
                 self.mainPosts.removeAll()
@@ -176,7 +175,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     @IBAction func unwindToMainViewController(unwindSegue: UIStoryboardSegue){
-        
+        //self.fetchRecruitmentTableList()
     }
     
     

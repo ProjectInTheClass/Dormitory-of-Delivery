@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ChatGroupTableViewController: UITableViewController {
 
-    var groups: [Group] = []
+    let db:Firestore = Firestore.firestore()
     
+    var groups: [Group] = []
+  
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -60,8 +63,18 @@ class ChatGroupTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath)
-        cell.textLabel?.text = groups[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! ChatGroupTableViewCell
+        
+//        let groupKey = groups[indexPath.row].key
+//        let tableRef = db.collection("recruitTables").document(groupKey)
+//        tableRef.getDocument(source: .cache) { (querySnapshot, error) in
+//            if let document = querySnapshot {
+//                cell.groupTitleLabel.text = document.data()?["title"] as! String
+//                cell.currentNumber.text = String(document.data()?["currentNumber"] as! Int)
+//            }
+//        }
+        
+        
         return cell
     }
     

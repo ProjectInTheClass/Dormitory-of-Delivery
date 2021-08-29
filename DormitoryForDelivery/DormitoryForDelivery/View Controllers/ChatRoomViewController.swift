@@ -171,6 +171,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     func getKeyboardHeight(_ notification: Notification) -> CGFloat {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+        print(keyboardSize.cgRectValue.height)
         return keyboardSize.cgRectValue.height
     }
     
