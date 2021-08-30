@@ -9,11 +9,11 @@ import UIKit
 
 class MainTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var circularProgressBarView: CircleProgressViewController!
+    //@IBOutlet weak var circularProgressBarView: CircleProgressViewController!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var catagoryImage: UIImageView!
     @IBOutlet weak var postTitleLabel: UILabel!
-    @IBOutlet weak var categoriesLabel: UILabel!
+   // @IBOutlet weak var categoriesLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,13 +30,13 @@ class MainTableViewCell: UITableViewCell {
     func update(with main: RecruitingText) {
         catagoryImage.image = UIImage(named: main.categories)
         postTitleLabel.text = main.postTitle
-        categoriesLabel.text = main.categories
+        //categoriesLabel.text = main.categories
         progressLabel.text = "\(main.currentNumber)/\(main.maximumNumber)"
         
-        let progressValue = Float(Float(main.currentNumber) / Float(main.maximumNumber))
-        circularProgressBarView.trackColor = UIColor.gray
-        circularProgressBarView.progressColor = UIColor.blue
-        circularProgressBarView.setProgressWithAnimation(duration: 1.0, value: progressValue)
+//        let progressValue = Float(Float(main.currentNumber) / Float(main.maximumNumber))
+//        circularProgressBarView.trackColor = UIColor.gray
+//        circularProgressBarView.progressColor = UIColor.blue
+//        circularProgressBarView.setProgressWithAnimation(duration: 1.0, value: progressValue)
     }
     
     
