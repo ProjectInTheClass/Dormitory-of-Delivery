@@ -16,4 +16,5 @@ struct RecruitingText {
     let WriteUid: String
     let timestamp: NSNumber
     let documentId: String
+   // let meetingTime: NSNumber
 }

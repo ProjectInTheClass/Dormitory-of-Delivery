@@ -23,14 +23,77 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     @IBOutlet weak var numberOfRecruitmentLabel: UILabel!
     @IBOutlet weak var writingDoneButton: UIBarButtonItem!
     
+    @IBOutlet weak var meetingDatePicker: UIDatePicker!
+    @IBOutlet weak var meetingDateLabel: UILabel!
+    
+    let meetingTimeDateLabelCellIndexPath = IndexPath(row: 1, section: 0)
+    let meetingTimeDatePickerCellIndexPath = IndexPath(row: 2, section: 0)
+    let noteTextViewCellIndexPath = IndexPath(row: 5, section: 0)
+    var isMeetingTimeDatePickerShown: Bool = false{
+        didSet{
+            meetingDatePicker.isHidden = !isMeetingTimeDatePickerShown
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.isScrollEnabled = false
         titleTextField.delegate = self
         noteTextView.delegate = self
         setInputKeyboardType()
         noteTextViewPlaceholderSetting()
         updateNumberOfRecruitmentMember()
         beginingWritingDoneButtonStatusSetting()
+        
+        setMinimumdateAndMaxmimumdate()
+        
+       
+    }
+    
+    func setMinimumdateAndMaxmimumdate() {
+        let todayDate = Calendar.current.date(byAdding: .day, value: 0, to: Date())
+        
+        let tomorrowDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())
+        meetingDatePicker.maximumDate = tomorrowDate
+        meetingDatePicker.minimumDate = todayDate
+        
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath {
+        case meetingTimeDatePickerCellIndexPath:
+            if isMeetingTimeDatePickerShown {
+                return 216.0
+            } else {
+                return 0.0
+            }
+        case noteTextViewCellIndexPath:
+            return 300.0
+        default:
+            return 60.0
+        }
+    }
+    
+    // tableView에서 특정Cell을 선택했을때 동작하는 함수
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        // meetingTimeDataPickerCell선택시 동작
+        switch indexPath {
+        case meetingTimeDateLabelCellIndexPath:
+            if isMeetingTimeDatePickerShown {
+                isMeetingTimeDatePickerShown = false
+            } else {
+                isMeetingTimeDatePickerShown = true
+            }
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        default:
+            break
+        }
+        
     }
     
     func noteTextViewPlaceholderSetting() {
@@ -96,7 +159,18 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         updateNumberOfRecruitmentMember()
     }
     
+    @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
+        updateDataViews()
+    }
     
+    func updateDataViews() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko")
+
+        dateFormatter.dateFormat = "M.dd(EE) a H:MM"
+        meetingDateLabel.text = dateFormatter.string(from: meetingDatePicker.date)
+        
+    }
     
     func updateNumberOfRecruitmentMember() {
         numberOfRecruitmentLabel.text = "\(Int(recruitmentCountStepper.value))"

@@ -113,6 +113,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                     let currentNumber = document.data()["currentNumber"] as! Int
                     let timestamp = document.data()["timestamp"] as! NSNumber
                     let documentId = document.documentID
+                    //let meetingTime = document.data()["meetingTime"] as! NSNumber
                     
                     let mainpost:RecruitingText = RecruitingText(postTitle: title, categories: category,        postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId)
                     self.mainPosts.append(mainpost)
