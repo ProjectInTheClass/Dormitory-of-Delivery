@@ -26,7 +26,4 @@ class ChatGroupTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func dd (){
-        
-    }
 }

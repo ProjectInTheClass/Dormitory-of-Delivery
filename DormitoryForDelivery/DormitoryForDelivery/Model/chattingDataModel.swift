@@ -16,24 +16,24 @@ struct ChatMessage {
 struct Group {
     var key: String
     var name: String
-    var messages: Dictionary<String, Int>
+    var currentNumber: Int
+    var lastMessage: String
     
-    init(key: String, name: String) {
-        self.key = key
-        self.name = name
-        self.messages = [:]
-    }
+//    init(key: String, name: String, currentNumber: Int) {
+//        self.key = key
+//        self.name = name
+//        self.currentNumber = currentNumber
+//        
+//    }
     
     init(key: String, data: Dictionary<String, AnyObject>) {
         self.key = key
         self.name = data["name"] as! String
-        if let messages = data["messages"] as? Dictionary<String, Int> {
-            self.messages = messages
-        } else {
-            self.messages = [:]
+        self.currentNumber = data["currentNumber"] as! Int
+        self.lastMessage = data["lastMessage"] as! String
         }
     }
-}
+
 
 struct User {
     var uid: String

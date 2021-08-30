@@ -98,6 +98,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
                     print(error as Any)
                     return
                 }
+                FirebaseDataService.instance.groupRef.child(groupId).child("lastMessage").setValue(self.chatTextField.text)
                 self.chatTextField.text = nil
             }
         }

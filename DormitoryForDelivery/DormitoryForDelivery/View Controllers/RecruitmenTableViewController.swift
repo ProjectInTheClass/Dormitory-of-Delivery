@@ -177,7 +177,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
                 let userRef = FirebaseDataService.instance.userRef.child(uid)
                 userRef.child("groups").updateChildValues(([newRecruitTableRef.documentID: 1])) { (error, ref) in
                     let groupRef = FirebaseDataService.instance.groupRef.child(newRecruitTableRef.documentID)
-                    groupRef.setValue(["name":title, "to":uid, "currentNumber":1])
+                    groupRef.setValue(["name":title, "to":uid, "currentNumber":1, "lastMessage":""])
                     return
                 }
             }

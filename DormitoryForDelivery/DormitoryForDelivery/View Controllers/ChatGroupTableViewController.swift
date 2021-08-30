@@ -13,9 +13,12 @@ class ChatGroupTableViewController: UITableViewController {
     let db:Firestore = Firestore.firestore()
     
     var groups: [Group] = []
-  
+    var messages: [ChatMessage] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,22 +32,28 @@ class ChatGroupTableViewController: UITableViewController {
                 if let dict = snapshot.value as? Dictionary<String, Int>{
                     self.groups.removeAll()
                     for (key, _) in dict {
-                        
-                        FirebaseDataService.instance.groupRef.child(key).observeSingleEvent(of: .value, with: { (snapshot) in
+                        FirebaseDataService.instance.groupRef.child(key).observe(.value, with: { (snapshot) in
+                           // print(snapshot.value)
                             if let data = snapshot.value as? Dictionary<String, AnyObject> {
+                             //   print(data["lastMessage"])
                                 let group = Group(key: key, data: data)
+                             //   print(group)
                                 self.groups.append(group)
                                 
-                                DispatchQueue.main.async(execute: {
-                                    self.tableView.reloadData()
-                                })
                             }
+                            self.tableView.reloadData()
                         })
                     }
+                    
                 }
             })
         }
     }
+    
+    
+    
+    
+    
     
     // MARK: - Table view data source
 
@@ -64,17 +73,11 @@ class ChatGroupTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! ChatGroupTableViewCell
+        //print("cellForRowAt : \(indexPath)")
         
-//        let groupKey = groups[indexPath.row].key
-//        let tableRef = db.collection("recruitTables").document(groupKey)
-//        tableRef.getDocument(source: .cache) { (querySnapshot, error) in
-//            if let document = querySnapshot {
-//                cell.groupTitleLabel.text = document.data()?["title"] as! String
-//                cell.currentNumber.text = String(document.data()?["currentNumber"] as! Int)
-//            }
-//        }
-        
-        
+        cell.groupTitleLabel.text = groups[indexPath.row].name
+        cell.currentNumber.text = String(groups[indexPath.row].currentNumber)
+        cell.lastText.text = groups[indexPath.row].lastMessage
         return cell
     }
     
