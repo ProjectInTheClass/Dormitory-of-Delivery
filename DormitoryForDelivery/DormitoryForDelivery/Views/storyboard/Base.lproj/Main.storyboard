@@ -816,13 +816,13 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="hYR-IK-7m1">
                                                             <rect key="frame" x="0.0" y="2" width="296" height="37"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6동 같이시켜먹을사람" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6B0-yD-rW5">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="6동 같이시켜먹을사람" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6B0-yD-rW5">
                                                                     <rect key="frame" x="0.0" y="0.0" width="296" height="18"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 4:30" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFb-lR-QF9">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="오후 4:30" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFb-lR-QF9">
                                                                     <rect key="frame" x="0.0" y="21" width="54.5" height="16"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <color key="textColor" red="0.64705884459999996" green="0.78823530669999997" blue="0.9098039269" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -891,19 +891,20 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qsc-lN-Hq7">
                                                 <rect key="frame" x="0.0" y="0.0" width="66" height="57.5"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thv-Oj-Bhn" userLabel="한식">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thv-Oj-Bhn">
                                                         <rect key="frame" x="15.5" y="0.0" width="35" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="35" id="Bqb-Wn-MJA"/>
                                                             <constraint firstAttribute="width" secondItem="Thv-Oj-Bhn" secondAttribute="height" multiplier="1:1" id="Xyc-kz-3fu"/>
                                                             <constraint firstAttribute="height" constant="35" id="e7Y-ie-Ui7"/>
                                                         </constraints>
-                                                        <state key="normal" title="한식" image="한식"/>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                                        <state key="normal" title="All" image="기타"/>
                                                         <connections>
-                                                            <action selector="filterButtonTapped:" destination="wBu-dl-dbY" eventType="touchUpInside" id="RdV-an-vgg"/>
+                                                            <action selector="showAllPostButtonTapped:" destination="wBu-dl-dbY" eventType="touchUpInside" id="OY4-d1-RID"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="한식" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxq-xs-a63">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전체보기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxq-xs-a63">
                                                         <rect key="frame" x="0.0" y="43" width="66" height="14.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="66" id="qTf-oK-wa7"/>
@@ -917,19 +918,19 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cd7-jH-hAN">
                                                 <rect key="frame" x="79.5" y="0.0" width="66" height="57.5"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUr-rB-dDm" userLabel="분식">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUr-rB-dDm">
                                                         <rect key="frame" x="15.5" y="0.0" width="35" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="35" id="gK9-bX-ANc"/>
                                                             <constraint firstAttribute="width" secondItem="EUr-rB-dDm" secondAttribute="height" multiplier="1:1" id="sC2-Z0-jrQ"/>
                                                             <constraint firstAttribute="height" constant="35" id="sUp-Qo-rnb"/>
                                                         </constraints>
-                                                        <state key="normal" title="분식" image="분식"/>
+                                                        <state key="normal" title="한식" image="한식라인"/>
                                                         <connections>
                                                             <action selector="filterButtonTapped:" destination="wBu-dl-dbY" eventType="touchUpInside" id="5A0-xI-AIy"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="분식" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rk6-gg-VRS">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="한식" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rk6-gg-VRS">
                                                         <rect key="frame" x="0.0" y="43" width="66" height="14.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="66" id="ptg-KL-d0f"/>
@@ -943,19 +944,19 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="R3n-h3-8y9">
                                                 <rect key="frame" x="159" y="0.0" width="66" height="57.5"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhW-0C-SHs" userLabel="커피">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhW-0C-SHs">
                                                         <rect key="frame" x="15.5" y="0.0" width="35" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="0e3-ns-DUa"/>
                                                             <constraint firstAttribute="width" secondItem="hhW-0C-SHs" secondAttribute="height" multiplier="1:1" id="9gv-Zc-fsS"/>
                                                             <constraint firstAttribute="width" constant="35" id="Evs-S5-FMN"/>
                                                         </constraints>
-                                                        <state key="normal" title="커피" image="커피"/>
+                                                        <state key="normal" title="분식" image="분식"/>
                                                         <connections>
                                                             <action selector="filterButtonTapped:" destination="wBu-dl-dbY" eventType="touchUpInside" id="848-Ru-AQp"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="커피" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tfe-zU-RaQ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="분식" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tfe-zU-RaQ">
                                                         <rect key="frame" x="0.0" y="43" width="66" height="14.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="66" id="qrn-nn-A8q"/>
@@ -976,12 +977,12 @@
                                                             <constraint firstAttribute="width" constant="35" id="Pgl-fb-WXu"/>
                                                             <constraint firstAttribute="width" secondItem="Znp-4J-oJ6" secondAttribute="height" multiplier="1:1" id="kl3-2m-gjD"/>
                                                         </constraints>
-                                                        <state key="normal" title="디저트" image="디저트"/>
+                                                        <state key="normal" title="커피" image="커피라인"/>
                                                         <connections>
                                                             <action selector="filterButtonTapped:" destination="wBu-dl-dbY" eventType="touchUpInside" id="2BP-W4-Zvu"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="디저트" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbV-tP-pSR">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="커피" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbV-tP-pSR">
                                                         <rect key="frame" x="0.0" y="43" width="66" height="14.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="66" id="fca-Ev-8d9"/>
@@ -1002,12 +1003,12 @@
                                                             <constraint firstAttribute="height" constant="35" id="lY0-t9-xP7"/>
                                                             <constraint firstAttribute="width" constant="35" id="xjr-6m-J64"/>
                                                         </constraints>
-                                                        <state key="normal" title="돈까스·일식" image="돈까스·일식"/>
+                                                        <state key="normal" title="디저트" image="디저트라인"/>
                                                         <connections>
                                                             <action selector="filterButtonTapped:" destination="wBu-dl-dbY" eventType="touchUpInside" id="Igm-bC-svg"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="돈까스·일식" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EI1-HN-eKD">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="디저트" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EI1-HN-eKD">
                                                         <rect key="frame" x="0.0" y="43" width="66" height="14.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="66" id="IFr-og-ZW9"/>
@@ -1033,12 +1034,12 @@
                                                             <constraint firstAttribute="width" constant="35" id="Hl9-iF-goD"/>
                                                             <constraint firstAttribute="height" constant="35" id="Vui-Fg-Jnx"/>
                                                         </constraints>
-                                                        <state key="normal" title="치킨" image="치킨"/>
+                                                        <state key="normal" title="돈까스·일식" image="돈까스·일식라인"/>
                                                         <connections>
                                                             <action selector="filterButtonTapped:" destination="wBu-dl-dbY" eventType="touchUpInside" id="kRQ-4H-k4i"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="치킨" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXe-0N-yJx">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="돈까스·일식" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXe-0N-yJx">
                                                         <rect key="frame" x="0.0" y="43" width="66" height="14.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="66" id="2ZJ-Hv-DFV"/>
@@ -1059,12 +1060,12 @@
                                                             <constraint firstAttribute="height" constant="35" id="S4J-v0-Vh0"/>
                                                             <constraint firstAttribute="width" constant="35" id="cCf-pu-KbJ"/>
                                                         </constraints>
-                                                        <state key="normal" title="피자" image="피자"/>
+                                                        <state key="normal" title="치킨" image="치킨라인"/>
                                                         <connections>
                                                             <action selector="filterButtonTapped:" destination="wBu-dl-dbY" eventType="touchUpInside" id="MV1-gB-r0M"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="피자" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cd3-dv-pTc">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="치킨" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cd3-dv-pTc">
                                                         <rect key="frame" x="0.0" y="43" width="66" height="14.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="66" id="8bu-Ul-oWv"/>
@@ -1085,12 +1086,12 @@
                                                             <constraint firstAttribute="width" secondItem="eRk-1S-vjS" secondAttribute="height" multiplier="1:1" id="bYy-xf-Kbh"/>
                                                             <constraint firstAttribute="width" constant="35" id="ogz-lC-plU"/>
                                                         </constraints>
-                                                        <state key="normal" title="중국집" image="중국집"/>
+                                                        <state key="normal" title="피자" image="피자라인"/>
                                                         <connections>
                                                             <action selector="filterButtonTapped:" destination="wBu-dl-dbY" eventType="touchUpInside" id="bDr-qp-oqB"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="중국집" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g51-ra-jaV">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="피자" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g51-ra-jaV">
                                                         <rect key="frame" x="0.0" y="43" width="66" height="14.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="66" id="Vx0-fu-OYB"/>
@@ -1111,12 +1112,12 @@
                                                             <constraint firstAttribute="width" constant="35" id="K1x-ij-mmI"/>
                                                             <constraint firstAttribute="width" secondItem="ro5-eC-hZD" secondAttribute="height" multiplier="1:1" id="dJk-hM-xpK"/>
                                                         </constraints>
-                                                        <state key="normal" title="햄버거" image="햄버거"/>
+                                                        <state key="normal" title="중국집" image="중국집라인"/>
                                                         <connections>
                                                             <action selector="filterButtonTapped:" destination="wBu-dl-dbY" eventType="touchUpInside" id="WhL-2s-z8Z"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="햄버거" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpi-WI-wan">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="중국집" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpi-WI-wan">
                                                         <rect key="frame" x="0.0" y="43" width="66" height="14.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="66" id="b0G-Q1-NoZ"/>
@@ -1137,12 +1138,13 @@
                                                             <constraint firstAttribute="width" secondItem="qbA-ve-XHq" secondAttribute="height" multiplier="1:1" id="hKV-El-nQL"/>
                                                             <constraint firstAttribute="height" constant="35" id="oWT-PU-97n"/>
                                                         </constraints>
-                                                        <state key="normal" title="기타" image="기타"/>
+                                                        <state key="normal" title="햄버거" image="햄버거라인"/>
+                                                        <state key="selected" image="햄버거라인"/>
                                                         <connections>
                                                             <action selector="filterButtonTapped:" destination="wBu-dl-dbY" eventType="touchUpInside" id="Twy-GH-RQG"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기타" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M47-fE-3Gl">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="햄버거" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M47-fE-3Gl">
                                                         <rect key="frame" x="0.0" y="43" width="66" height="14.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="66" id="kCp-im-fbF"/>
@@ -1197,6 +1199,15 @@
                     <connections>
                         <outlet property="mainTableView" destination="Vng-IY-FkT" id="5h8-1E-Fix"/>
                         <outlet property="searchBarView" destination="rUG-R6-rhe" id="zFF-VM-WmF"/>
+                        <outletCollection property="filterButtonCollection" destination="EUr-rB-dDm" collectionClass="NSMutableArray" id="cME-bH-pSl"/>
+                        <outletCollection property="filterButtonCollection" destination="hhW-0C-SHs" collectionClass="NSMutableArray" id="udM-D2-lU3"/>
+                        <outletCollection property="filterButtonCollection" destination="Znp-4J-oJ6" collectionClass="NSMutableArray" id="Dhj-f7-7NE"/>
+                        <outletCollection property="filterButtonCollection" destination="s4R-VY-uLZ" collectionClass="NSMutableArray" id="JbV-zG-j2N"/>
+                        <outletCollection property="filterButtonCollection" destination="Ftt-5S-35g" collectionClass="NSMutableArray" id="at7-le-gwg"/>
+                        <outletCollection property="filterButtonCollection" destination="Nd6-FD-w8d" collectionClass="NSMutableArray" id="frE-Lc-A3s"/>
+                        <outletCollection property="filterButtonCollection" destination="eRk-1S-vjS" collectionClass="NSMutableArray" id="iWk-Hh-gEg"/>
+                        <outletCollection property="filterButtonCollection" destination="ro5-eC-hZD" collectionClass="NSMutableArray" id="VC9-dQ-Zcs"/>
+                        <outletCollection property="filterButtonCollection" destination="qbA-ve-XHq" collectionClass="NSMutableArray" id="lx9-2I-FpM"/>
                         <segue destination="s6m-6S-5kq" kind="show" identifier="sendPostSegue" id="bEZ-Dz-c8p"/>
                     </connections>
                 </viewController>
@@ -1934,17 +1945,17 @@
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
-        <image name="기타" width="512" height="512"/>
-        <image name="돈까스·일식" width="512" height="512"/>
-        <image name="디저트" width="512" height="512"/>
+        <image name="기타" width="512" height="512"/>
+        <image name="돈까스·일식라인" width="512" height="512"/>
+        <image name="디저트라인" width="512" height="512"/>
         <image name="분식" width="512" height="512"/>
         <image name="분식" width="512" height="512"/>
-        <image name="중국집" width="512" height="512"/>
-        <image name="치킨" width="512" height="512"/>
-        <image name="커피" width="512" height="512"/>
-        <image name="피자" width="512" height="512"/>
-        <image name="한식" width="512" height="512"/>
-        <image name="햄버거" width="512" height="512"/>
+        <image name="중국집라인" width="512" height="512"/>
+        <image name="치킨라인" width="512" height="512"/>
+        <image name="커피라인" width="512" height="512"/>
+        <image name="피자라인" width="512" height="512"/>
+        <image name="한식라인" width="512" height="512"/>
+        <image name="햄버거라인" width="512" height="512"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

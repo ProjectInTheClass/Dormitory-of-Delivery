@@ -13,6 +13,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var searchBarView: UIView!
+    @IBOutlet var filterButtonCollection: [UIButton]!
+    
     
     let db: Firestore = Firestore.firestore()
     
@@ -45,7 +47,25 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+
+    @IBAction func showAllPostButtonTapped(_ sender: UIButton) {
+        self.searchMainPost = nil
+        self.filteredButtonMainPost = nil
+        for selectedButton in filterButtonCollection {
+            selectedButton.setImage(UIImage(named: "\(selectedButton.currentTitle!)라인"), for: .normal)
+        }
+        self.mainTableView.reloadData()
+    }
+    
     @IBAction func filterButtonTapped(_ sender: UIButton) {
+        for selectedButton in filterButtonCollection {
+            if selectedButton.currentTitle == sender.currentTitle {
+                selectedButton.setImage(UIImage(named: selectedButton.currentTitle!), for: .normal)
+            } else {
+                selectedButton.setImage(UIImage(named: "\(selectedButton.currentTitle!)라인"), for: .normal)
+            }
+        }
+
         self.searchMainPost = []
         let selectedButtonTitle = sender.title(for: .normal)
         self.filteredButtonMainPost = self.mainPosts.filter { (element) -> Bool in
