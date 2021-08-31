@@ -17,7 +17,7 @@ class SelectCategoriesTableViewController: UITableViewController {
     
     var delegate: SelectCategoriesTableViewControllerDelegate?
     
-    var categories: [String] = ["한식","분식","커피","디저트","돈까스·일식","치킨","피자","중국집","햄버거","기타"]
+    var categories: [String] = ["커피", "디저트", "햄버거", "돈까스", "초밥", "샐러드", "중국집", "한식", "분식"]
     override func viewDidLoad() {
         super.viewDidLoad()
 

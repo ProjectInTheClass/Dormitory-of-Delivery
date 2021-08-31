@@ -51,9 +51,9 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBAction func showAllPostButtonTapped(_ sender: UIButton) {
         self.searchMainPost = nil
         self.filteredButtonMainPost = nil
-        for selectedButton in filterButtonCollection {
-            selectedButton.setImage(UIImage(named: "\(selectedButton.currentTitle!)라인"), for: .normal)
-        }
+//        for selectedButton in filterButtonCollection {
+//            selectedButton.setImage(UIImage(named: "\(selectedButton.currentTitle!)라인"), for: .normal)
+//        }
         self.mainTableView.reloadData()
     }
     
