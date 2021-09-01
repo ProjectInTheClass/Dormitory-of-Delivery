@@ -29,7 +29,7 @@ class PostTableViewController: UITableViewController {
         guard let mainPostInformation = mainPostInformation else { return }
         postTitleLabel.text = mainPostInformation.postTitle
         //postCategoriesLabel.text = "#\(mainPostInformation.categories)"
-        postContentTextView.text = mainPostInformation.postNoteText
+        //postContentTextView.text = mainPostInformation.postNoteText
     }
     
 

@@ -12,6 +12,8 @@ protocol PostViewControllerDelegate {
 }
 class PostViewController: UIViewController {
     
+    
+    @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var includeParticipateButtonView: UIView!
     @IBOutlet weak var participateButton: UIButton!
     //@IBOutlet weak var currentNumberOfParticipants: UILabel!
@@ -30,7 +32,7 @@ class PostViewController: UIViewController {
         setIncludeParticipateButtonView()
         setButtonStatus()
         
-        
+        navigationBar.title = mainPostInformation?.postTitle
     }
     
     @IBAction func participateButtonTapped(_ sender: Any) {

@@ -14,6 +14,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var searchBarView: UIView!
     @IBOutlet var filterButtonCollection: [UIButton]!
+    @IBOutlet weak var navigationBar: UINavigationItem!
     
     
     let db: Firestore = Firestore.firestore()
@@ -33,6 +34,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         mainTableView.delegate = self
         setUpSearchController()
      //   fetchRecruitmentTableList()
+        navigationBar.backButtonTitle = ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
