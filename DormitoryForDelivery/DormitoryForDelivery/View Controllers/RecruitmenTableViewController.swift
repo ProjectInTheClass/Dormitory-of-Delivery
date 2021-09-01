@@ -163,7 +163,6 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     func updateDataViews() {
         let today = Date().timeIntervalSince1970
         
-        
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_kr")
         dateFormatter.dateFormat = "dd"
@@ -178,9 +177,6 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
             dateFormatter.dateFormat = "a H:mm"
             meetingDateLabel.text = "내일 " + dateFormatter.string(from: meetingDatePicker.date)
         }
-        
-        
-        
     }
     
     func updateNumberOfRecruitmentMember() {

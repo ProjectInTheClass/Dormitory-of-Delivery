@@ -193,7 +193,28 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         self.mainTableView.reloadData()
     }
 
-
+    func fetchMeetingTime(meetingTime:NSNumber) -> String {
+        let today = Date().timeIntervalSince1970
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        dateFormatter.dateFormat = "dd"
+        
+        let currentDay = Int(dateFormatter.string(from: Date(timeIntervalSince1970: today)))!
+        let meetingDay = Int(dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime))))!
+        
+        if currentDay == meetingDay {
+            dateFormatter.dateFormat = "a HH:mm"
+            
+            return dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime)))
+        } else if currentDay + 1 == meetingDay {
+            dateFormatter.dateFormat = "a HH:mm"
+            
+            return "내일 " + dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime)))
+        }
+        
+        return ""
+       
+    }
 
     // MARK: - Navigation
     
@@ -215,29 +236,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    func fetchMeetingTime(meetingTime:NSNumber) -> String {
-        let today = Date().timeIntervalSince1970
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ko_kr")
-        dateFormatter.dateFormat = "dd"
-        
-        let currentDay = Int(dateFormatter.string(from: Date(timeIntervalSince1970: today)))!
-        let meetingDay = Int(dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime))))!
-        
-        if currentDay == meetingDay {
-            dateFormatter.dateFormat = "a HH:mm"
-            
-            return dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime)))
-        } else if currentDay + 1 == meetingDay {
-            dateFormatter.dateFormat = "a HH:mm"
-            
-            return "내일 " + dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime)))
-        }
-        
-        
-        return ""
-       
-    }
+    
 }
 
 

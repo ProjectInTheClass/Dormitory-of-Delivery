@@ -14,8 +14,8 @@ class PostViewController: UIViewController {
     
     @IBOutlet weak var includeParticipateButtonView: UIView!
     @IBOutlet weak var participateButton: UIButton!
-    @IBOutlet weak var currentNumberOfParticipants: UILabel!
-    @IBOutlet weak var currentParticipantsProgressView: UIProgressView!
+    //@IBOutlet weak var currentNumberOfParticipants: UILabel!
+    //@IBOutlet weak var currentParticipantsProgressView: UIProgressView!
     
     var mainPostInformation: RecruitingText?
     
@@ -29,13 +29,9 @@ class PostViewController: UIViewController {
         participateButtonUpdateUI()
         setIncludeParticipateButtonView()
         setButtonStatus()
-        setNumberOfParticipants()
-        setCurrentParticipantsProgressView()
         
         
     }
-    
-    
     
     @IBAction func participateButtonTapped(_ sender: Any) {
         
@@ -50,8 +46,8 @@ class PostViewController: UIViewController {
             let alertCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
             let alertOkayAction = UIAlertAction(title: "확인", style: .default) { action in
                 self.delegate?.currentNumberChanged(currentNumber: self.mainPostInformation!.currentNumber + 1, selectedIndexPath: self.selectedIndexPath!)
-                self.setCurrentParticipantsProgressView()
-                self.setNumberOfParticipants()
+                
+                
                 
                 // 그룹 현재인원 +1
                 FirebaseDataService.instance.groupRef.child(self.mainPostInformation!.documentId).updateChildValues(["currentNumber" : self.mainPostInformation!.currentNumber + 1])
@@ -75,25 +71,11 @@ class PostViewController: UIViewController {
     
     func setButtonStatus() {
         participateButton.backgroundColor = .systemBlue
-        participateButton.layer.cornerRadius = 4
+        participateButton.layer.cornerRadius = 6
     }
     
     func setIncludeParticipateButtonView() {
         includeParticipateButtonView.layer.addBorder([.top], color: UIColor.gray, width: 1.0)
-    }
-    
-    func setNumberOfParticipants() {
-        guard let mainPostInformation = mainPostInformation else { return }
-        let currentParticipantsPercentage = Int(100 * Float(mainPostInformation.currentNumber) / Float(mainPostInformation.maximumNumber))
-        currentNumberOfParticipants.text = "\(currentParticipantsPercentage)%"
-    }
-    
-    func setCurrentParticipantsProgressView() {
-        currentParticipantsProgressView.progressViewStyle = .default
-        guard let mainPostInformation = mainPostInformation else { return }
-        UIView.animate(withDuration: 1) {
-            self.currentParticipantsProgressView.setProgress(Float(Float(mainPostInformation.currentNumber) / Float(mainPostInformation.maximumNumber)), animated: true)
-        }
     }
     
     func participateButtonUpdateUI() {
@@ -117,7 +99,9 @@ class PostViewController: UIViewController {
         
         // 작성자 -> 버튼없애기
         if mainPostInformation!.WriteUid == FirebaseDataService.instance.currentUserUid{
-            participateButton.isHidden = true
+            self.participateButton.backgroundColor = .gray
+            self.participateButton.setTitle("작성자", for: .normal)
+            self.participateButton.isEnabled = false
         }
             
         
