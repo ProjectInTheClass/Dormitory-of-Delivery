@@ -9,12 +9,10 @@ import UIKit
 
 class PostTableViewController: UITableViewController {
     
-    
-    //@IBOutlet weak var userNickNameLabel:UILabel!
-    @IBOutlet weak var meetingTimeLabel: UILabel!
-    @IBOutlet weak var postTitleLabel: UILabel!
-    //@IBOutlet weak var postCategoriesLabel: UILabel!
+    @IBOutlet weak var userNickNameLabel:UILabel!
     @IBOutlet weak var postContentTextView: UITextView!
+    @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var meetingTimeLabel: UILabel!
     
     var mainPostInformation: RecruitingText?
     
@@ -27,9 +25,11 @@ class PostTableViewController: UITableViewController {
     
     func updateUI() {
         guard let mainPostInformation = mainPostInformation else { return }
-        postTitleLabel.text = mainPostInformation.postTitle
+        
         //postCategoriesLabel.text = "#\(mainPostInformation.categories)"
-        //postContentTextView.text = mainPostInformation.postNoteText
+        postContentTextView.text = mainPostInformation.postNoteText
+        progressLabel.text = "\(mainPostInformation.currentNumber) / \(mainPostInformation.maximumNumber)"
+        meetingTimeLabel.text = mainPostInformation.meetingTime
     }
     
 
