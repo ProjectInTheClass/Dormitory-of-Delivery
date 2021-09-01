@@ -161,11 +161,25 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     }
     
     func updateDataViews() {
+        let today = Date().timeIntervalSince1970
+        
+        
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ko")
-
-        dateFormatter.dateFormat = "a H:mm"
-        meetingDateLabel.text = dateFormatter.string(from: meetingDatePicker.date)
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        dateFormatter.dateFormat = "dd"
+        
+        let currentDay = Int(dateFormatter.string(from: Date(timeIntervalSince1970: today)))!
+        let meetingDay = Int(dateFormatter.string(from: meetingDatePicker.date))!
+        
+        if currentDay == meetingDay {
+            dateFormatter.dateFormat = "a H:mm"
+            meetingDateLabel.text = dateFormatter.string(from: meetingDatePicker.date)
+        } else if currentDay + 1 == meetingDay {
+            dateFormatter.dateFormat = "a H:mm"
+            meetingDateLabel.text = "내일 " + dateFormatter.string(from: meetingDatePicker.date)
+        }
+        
+        
         
     }
     
