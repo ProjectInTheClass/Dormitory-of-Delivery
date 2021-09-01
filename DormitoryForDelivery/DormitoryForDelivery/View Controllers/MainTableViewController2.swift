@@ -133,9 +133,11 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                     let currentNumber = document.data()["currentNumber"] as! Int
                     let timestamp = document.data()["timestamp"] as! NSNumber
                     let documentId = document.documentID
-                    //let meetingTime = document.data()["meetingTime"] as! NSNumber
                     
-                    let mainpost:RecruitingText = RecruitingText(postTitle: title, categories: category,        postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId)
+                    let meetingTime = document.data()["meetingTime"] as! NSNumber
+                    let meetingTimeLabel = self.fetchMeetingTime(meetingTime: meetingTime)
+                    
+                    let mainpost:RecruitingText = RecruitingText(postTitle: title, categories: category,        postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel)
                     self.mainPosts.append(mainpost)
                     
                     //수정 pageNation으로
@@ -212,5 +214,24 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
     }
+    
+    func fetchMeetingTime(meetingTime:NSNumber) -> String {
+        let today = Date().timeIntervalSince1970
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        dateFormatter.dateFormat = "dd"
+        
+        let currentDay = dateFormatter.string(from: Date(timeIntervalSince1970: today))
+        let meetingDay = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime)))
+        
+        if currentDay == meetingDay {
+            dateFormatter.dateFormat = "a HH:mm"
+            
+            return dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime)))
+        }
+        return ""
+       
+    }
 }
+
 

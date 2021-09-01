@@ -35,20 +35,21 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        meetingDateLabel.isHidden = true
+        
         tableView.isScrollEnabled = false
         titleTextField.delegate = self
         noteTextView.delegate = self
         setInputKeyboardType()
         noteTextViewPlaceholderSetting()
         updateNumberOfRecruitmentMember()
-        beginingWritingDoneButtonStatusSetting()
+        
+        updateDoneButtonUI()
         
         setMinimumdateAndMaxmimumdate()
-        
-       
     }
     
     func setMinimumdateAndMaxmimumdate() {
@@ -57,8 +58,6 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         let tomorrowDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())
         meetingDatePicker.maximumDate = tomorrowDate
         meetingDatePicker.minimumDate = todayDate
-        
-        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -102,11 +101,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        if titleTextField.text != nil && noteTextView.text != "같이 시켜먹을 배달음식에 대한 설명과 수령 방식 등 배달 공유에 대한 정보를 작성해 주세요." && noteTextView.text.count > 0 && selectedCategories != nil && recruitmentCountStepper.value > 1 {
-            writingDoneButton.isEnabled = true
-        } else {
-            writingDoneButton.isEnabled = false
-        }
+        updateDoneButtonUI()
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -123,11 +118,10 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         }
     }
     
-    func beginingWritingDoneButtonStatusSetting() {
-        if noteTextView.text == nil || noteTextView.text == "같이 시켜먹을 배달음식에 대한 설명과 수령 방식 등 배달 공유에 대한 정보를 작성해 주세요." {
-            writingDoneButton.isEnabled = false
-        }
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        updateDoneButtonUI()
     }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -157,17 +151,20 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
 
     @IBAction func stepperValueChanged(_ sender: Any) {
         updateNumberOfRecruitmentMember()
+        updateDoneButtonUI()
     }
     
     @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
+        meetingDateLabel.isHidden = false
         updateDataViews()
+        updateDoneButtonUI()
     }
     
     func updateDataViews() {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko")
 
-        dateFormatter.dateFormat = "M.dd(EE) a H:MM"
+        dateFormatter.dateFormat = "a H:mm"
         meetingDateLabel.text = dateFormatter.string(from: meetingDatePicker.date)
         
     }
@@ -179,11 +176,22 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     func didSelect(selectedCategories: String) {
         self.selectedCategories = selectedCategories
         categoriesLabel.text = selectedCategories
+        updateDoneButtonUI()
     }
     
-
+    func updateDoneButtonUI() {
+        guard titleTextField.text != "",
+              noteTextView.text != "같이 시켜먹을 배달음식에 대한 설명과 수령 방식 등 배달 공유에 대한 정보를 작성해 주세요.",
+              noteTextView.text.count > 0,
+              selectedCategories != nil,
+              recruitmentCountStepper.value > 1,
+              meetingDateLabel.text != ""
+              else { return writingDoneButton.isEnabled = false }
+        
+        writingDoneButton.isEnabled = true
+    }
     
-    
+   
     // MARK: - Table view data source
 
     /*
@@ -237,7 +245,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
             let currentNumber = 1
             guard let title = titleTextField.text, let category = categoriesLabel.text, let noteText = noteTextView.text else { return }
             
-            let newRecruitTable:Dictionary<String, Any> = ["uid":Auth.auth().currentUser!.uid, "title": title, "category":category, "noteText":noteText, "maximumNumber":recruitmentCountStepper.value,"currentNumber":currentNumber,"timestamp":NSNumber(value: Date().timeIntervalSince1970)]
+            let newRecruitTable:Dictionary<String, Any> = ["uid":Auth.auth().currentUser!.uid, "title": title, "category":category, "noteText":noteText, "maximumNumber":recruitmentCountStepper.value,"currentNumber":currentNumber,"timestamp":NSNumber(value: Date().timeIntervalSince1970),"meetingTime":NSNumber(value:meetingDatePicker.date.timeIntervalSince1970)]
     
             //fireStore - tables에 작성
             let newRecruitTableRef = db.collection("recruitTables").document()

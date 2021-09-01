@@ -14,6 +14,7 @@ class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var catagoryImage: UIImageView!
     @IBOutlet weak var postTitleLabel: UILabel!
    // @IBOutlet weak var categoriesLabel: UILabel!
+    @IBOutlet weak var meetingTimeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +31,7 @@ class MainTableViewCell: UITableViewCell {
     func update(with main: RecruitingText) {
         catagoryImage.image = UIImage(named: main.categories)
         postTitleLabel.text = main.postTitle
+        meetingTimeLabel.text = main.meetingTime
         //categoriesLabel.text = main.categories
         progressLabel.text = "\(main.currentNumber)/\(main.maximumNumber)"
         

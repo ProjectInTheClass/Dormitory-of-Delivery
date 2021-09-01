@@ -866,6 +866,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="catagoryImage" destination="Nqd-Tk-4gY" id="4N8-NQ-OMD"/>
+                                            <outlet property="meetingTimeLabel" destination="RFb-lR-QF9" id="pPm-62-9nn"/>
                                             <outlet property="postTitleLabel" destination="6B0-yD-rW5" id="XmR-oL-A8K"/>
                                             <outlet property="progressLabel" destination="2gZ-Al-w3Y" id="DWJ-nG-vZK"/>
                                         </connections>
