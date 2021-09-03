@@ -143,13 +143,13 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                     self.mainPosts.append(mainpost)
                     
                     //수정 pageNation으로
-                    DispatchQueue.main.async(execute: {
-                        self.mainTableView.reloadData()
-                    })
                 }
             } else {
                 print("Error getting documents: ")
             }
+            DispatchQueue.main.async(execute: {
+                self.mainTableView.reloadData()
+            })
         }
     }
     
