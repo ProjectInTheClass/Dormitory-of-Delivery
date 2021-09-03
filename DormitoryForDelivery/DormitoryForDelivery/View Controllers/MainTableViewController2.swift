@@ -28,8 +28,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
-        super.viewDidLoad()
         //checkDeviceNetworkStatus()
+        super.viewDidLoad()
         mainTableView.dataSource = self
         mainTableView.delegate = self
         setUpSearchController()
