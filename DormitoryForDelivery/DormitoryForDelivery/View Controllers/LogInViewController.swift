@@ -22,9 +22,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         
-        if Auth.auth().currentUser?.uid != nil{
-            performSegue(withIdentifier: "login", sender: self)
-        }
+        
     }
     
     @IBAction func logInButtonTapped(_ sender: Any) {
@@ -51,7 +49,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error == nil{
                 //ToDo: 로그인 성공 user객체에서 정보 사용
-                self.performSegue(withIdentifier: "login", sender: self)
+                self.dismiss(animated: true, completion: nil)
             } else {
                 //ToDo: 로그인 실패 처리
                 let alertController = UIAlertController(title: "이메일과 비밀번호가 올바르지 않습니다.", message: nil, preferredStyle: .alert)
@@ -62,9 +60,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-    }
-    
-    @IBAction func unwindToLogInViewController(unwindSegue: UIStoryboardSegue){
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

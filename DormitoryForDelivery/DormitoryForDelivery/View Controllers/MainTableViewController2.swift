@@ -35,14 +35,22 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         setUpSearchController()
      //   fetchRecruitmentTableList()
         navigationBar.backButtonTitle = ""
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.searchMainPost = nil
-        self.filteredButtonMainPost = nil
-//        updateCurrentNumberToServer()
-        fetchRecruitmentTableList()
+        
+        if Auth.auth().currentUser?.uid == nil{
+            performSegue(withIdentifier: "login", sender: self)
+            
+        } else {
+            self.searchMainPost = nil
+            self.filteredButtonMainPost = nil
+    //        updateCurrentNumberToServer()
+            fetchRecruitmentTableList()
+        }
+        
     }
     
     @IBAction func unwindFromRecruitmentTableView(_ unwindSegue: UIStoryboardSegue) {
@@ -223,6 +231,10 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func unwindToMainViewController(unwindSegue: UIStoryboardSegue){
         //self.fetchRecruitmentTableList()
+        if unwindSegue.identifier == "LogOut" {
+            performSegue(withIdentifier: "login", sender: nil)
+        }
+        
     }
     
     
