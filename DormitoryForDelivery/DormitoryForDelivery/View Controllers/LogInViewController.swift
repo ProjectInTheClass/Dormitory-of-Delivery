@@ -42,14 +42,25 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
+        
         let email = emailTextField.text!
         let password = passwordTextField.text!
         
-        
+       
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error == nil{
-                //ToDo: 로그인 성공 user객체에서 정보 사용
-                self.dismiss(animated: true, completion: nil)
+                if Auth.auth().currentUser?.isEmailVerified == true {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    
+                    let alertController = UIAlertController(title: "해당 이메일은 이메일 인증을 하지 않았습니다.", message: nil, preferredStyle: .alert)
+                    let checkAction = UIAlertAction(title: "인증하기", style: .default) { (action) in
+                        self.performSegue(withIdentifier: "doEmailCertification", sender: nil)
+                    }
+                    alertController.addAction(checkAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                
             } else {
                 //ToDo: 로그인 실패 처리
                 let alertController = UIAlertController(title: "이메일과 비밀번호가 올바르지 않습니다.", message: nil, preferredStyle: .alert)
@@ -71,13 +82,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.resignFirstResponder()
         return true
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "doEmailCertification" {
+            let destinationViewController = segue.destination as? EmailCertificationViewController
+            destinationViewController?.emailText = emailTextField.text
+        }
     }
-    */
+    
 }

@@ -41,7 +41,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if Auth.auth().currentUser?.uid == nil{
+        if Auth.auth().currentUser?.uid == nil || Auth.auth().currentUser?.isEmailVerified == false {
             performSegue(withIdentifier: "login", sender: self)
             
         } else {
@@ -247,7 +247,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             destinationViewController?.mainPostInformation = mainPosts[indexPath]
             destinationViewController?.selectedIndexPath = indexPath
             }
-        }
+        } 
     }
     
     
