@@ -297,7 +297,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FBp-YM-M1C">
-                        <barButtonItem key="rightBarButtonItem" image="ellipsis" catalog="system" id="VzA-Mz-GA9"/>
+                        <barButtonItem key="rightBarButtonItem" image="ellipsis" catalog="system" id="VzA-Mz-GA9">
+                            <connections>
+                                <action selector="moreOptionBarButtonTapped:" destination="s6m-6S-5kq" id="8bA-ik-gKw"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="includeParticipateButtonView" destination="Tri-o0-Lp6" id="FTK-OO-5C6"/>

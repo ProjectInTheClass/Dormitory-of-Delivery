@@ -70,6 +70,16 @@ class PostViewController: UIViewController {
         
         
     }
+    @IBAction func moreOptionBarButtonTapped(_ sender: Any) {
+        let moreOptionAlertController = UIAlertController(title: "메뉴", message: nil, preferredStyle: .actionSheet)
+        let alertEditPostAction = UIAlertAction(title: "수정하기", style: .default, handler: nil)
+        let alertDeletePostAction = UIAlertAction(title: "삭제하기", style: .destructive, handler: nil)
+        let alertCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        moreOptionAlertController.addAction(alertEditPostAction)
+        moreOptionAlertController.addAction(alertDeletePostAction)
+        moreOptionAlertController.addAction(alertCancelAction)
+        present(moreOptionAlertController, animated: true, completion: nil)
+    }
     
     func setButtonStatus() {
         participateButton.backgroundColor = .systemBlue
