@@ -17,18 +17,10 @@ class EmailCertificationViewController: UIViewController {
     
     var emailText:String?
     
-    var emailCertification:Bool? {
-        didSet{
-            updateCertificationLabel()
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.text = emailText
-       
     }
-    
     
     @IBAction func emailCertificationButtonTapped(_ sender: Any) {
         Auth.auth().currentUser?.sendEmailVerification() { (error) in
@@ -44,7 +36,6 @@ class EmailCertificationViewController: UIViewController {
     @IBAction func checkButtonTapped(_ sender: Any) {
         Auth.auth().currentUser?.reload { _ in
             if Auth.auth().currentUser?.isEmailVerified == true {
-                self.emailCertification = true
                 let firebaseAuth = Auth.auth()
                 do {
                   try firebaseAuth.signOut()
