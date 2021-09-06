@@ -131,6 +131,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
 //        }
     
     func fetchRecruitmentTableList(){
+        var mainPosts: [RecruitingText] = []
         db.collection("recruitTables").getDocuments(){ (querySnapshot, error) in
             if  error == nil  {
                 self.mainPosts.removeAll()
@@ -148,13 +149,44 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                     let meetingTimeLabel = self.fetchMeetingTime(meetingTime: meetingTime)
                     
                     let mainpost:RecruitingText = RecruitingText(postTitle: title, categories: category,        postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel)
-                    self.mainPosts.append(mainpost)
+                    mainPosts.append(mainpost)
                     
                     //수정 pageNation으로
                 }
             } else {
                 print("Error getting documents: ")
             }
+            
+//             정렬 방법 1
+            mainPosts.sort(by: {(first, second) in
+                    return first.meetingTime > second.meetingTime
+                })
+
+            let myPosts = mainPosts.filter { (element) -> Bool in
+                return element.WriteUid == Auth.auth().currentUser?.uid
+            }
+
+            for (index, myPost) in mainPosts.enumerated() {
+                if myPost.WriteUid == Auth.auth().currentUser?.uid {
+                    mainPosts.remove(at:index)
+                }
+            }
+
+            self.mainPosts = myPosts + mainPosts
+            
+            // 정렬 방법 2
+//            var changeValueIndex: Int = 0
+//
+//            self.mainPosts = mainPosts
+//
+//            for (index, mainPost) in mainPosts.enumerated() {
+//                if mainPost.WriteUid == Auth.auth().currentUser?.uid {
+//                    mainPosts.swapAt(changeValueIndex, index)
+//                    changeValueIndex += 1
+//                }
+//            }
+//            self.mainPosts = mainPosts
+            
             DispatchQueue.main.async(execute: {
                 self.mainTableView.reloadData()
             })
@@ -202,6 +234,11 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         self.mainTableView.reloadData()
     }
+    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//    // 화면을 누르면 키보드 내려가게 하는 것
+//        self.searchController.searchBar.endEditing(true)
+//    }
 
     func fetchMeetingTime(meetingTime:NSNumber) -> String {
         let today = Date().timeIntervalSince1970
