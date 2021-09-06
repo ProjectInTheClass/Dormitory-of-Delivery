@@ -181,13 +181,13 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func setUpSearchController() {
-//        self.mainTableView.tableHeaderView = searchController.searchBar
         self.searchBarView.addSubview(searchController.searchBar)
         searchController.searchBar.placeholder = "제목, 카테고리 등"
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
         searchController.searchBar.sizeToFit()
+        searchController.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
     }
     

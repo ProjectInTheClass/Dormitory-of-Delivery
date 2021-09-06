@@ -1290,7 +1290,7 @@
                     <connections>
                         <outlet property="mainTableView" destination="Vng-IY-FkT" id="5h8-1E-Fix"/>
                         <outlet property="navigationBar" destination="9A1-AG-Ucf" id="Xce-8P-rIt"/>
-                        <outlet property="searchBarView" destination="rUG-R6-rhe" id="zFF-VM-WmF"/>
+                        <outlet property="searchBarView" destination="rUG-R6-rhe" id="Jbr-zJ-O9r"/>
                         <outletCollection property="filterButtonCollection" destination="EUr-rB-dDm" collectionClass="NSMutableArray" id="cME-bH-pSl"/>
                         <outletCollection property="filterButtonCollection" destination="hhW-0C-SHs" collectionClass="NSMutableArray" id="udM-D2-lU3"/>
                         <outletCollection property="filterButtonCollection" destination="Znp-4J-oJ6" collectionClass="NSMutableArray" id="Dhj-f7-7NE"/>
