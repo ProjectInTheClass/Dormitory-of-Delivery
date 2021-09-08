@@ -18,7 +18,7 @@ class ChatMessageCell: UICollectionViewCell {
     var textLabelHeightAnchor: NSLayoutConstraint?
     
     func setUITraits() {
-        containerView.layer.cornerRadius = 4
+        containerView.layer.cornerRadius = 8
         
         textLabel.numberOfLines = 0
         textLabel.lineBreakMode = .byWordWrapping
@@ -30,7 +30,7 @@ class ChatMessageCell: UICollectionViewCell {
         containerViewLeftAnchor = containerView.leftAnchor.constraint(equalTo: leftAnchor, constant: 4)
         containerViewRightAnchor = containerView.rightAnchor.constraint(equalTo: rightAnchor, constant: -4)
         containerViewWidthAnchor = containerView.widthAnchor.constraint(equalToConstant: 200)
-        containerViewHeightAnchor = containerView.heightAnchor.constraint(equalToConstant: frame.height)
+        containerViewHeightAnchor = containerView.heightAnchor.constraint(equalToConstant: frame.height )
         containerViewWidthAnchor?.isActive = true
         containerViewHeightAnchor?.isActive = true
         
@@ -38,7 +38,7 @@ class ChatMessageCell: UICollectionViewCell {
         textLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
         textLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 4).isActive = true
         textLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: 0).isActive = true
-        textLabelHeightAnchor = textLabel.heightAnchor.constraint(equalToConstant: frame.height)
+        textLabelHeightAnchor = textLabel.heightAnchor.constraint(equalToConstant: frame.height )
     }
     
     override func awakeFromNib() {

@@ -39,29 +39,78 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     
     // numberOfItemsInSection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
+        return messages.count - 1
     }
     
     // cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatCell", for: indexPath) as! ChatMessageCell
+        let chatAndNameCell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatAndUserCell", for: indexPath) as! ChatMessageAndUserCell
+        
         let message = messages[indexPath.item]
         cell.textLabel.text = message.text
-        setupChatCell(cell: cell, message: message)
+        chatAndNameCell.textLabel.text = message.text
+        
+        
         if indexPath.row == messages.count - 1 {
             cell.containerView.backgroundColor = UIColor.white
         }
         
         if message.text.count > 0 {
-            cell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 32
+            cell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 20
+            chatAndNameCell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 20
         }
-        return cell
+        
+        if indexPath.row == 0 {
+            // 처음글일경우
+            if message.fromUserId == FirebaseDataService.instance.currentUserUid {
+                // 처음, 글쓴이 = 나일경우
+                setupChatCell(cell: cell, message: message)
+                return cell
+            } else {
+                // 처음, 글쓴이 != 나일경우
+                setupChatAndNameCell(cell: chatAndNameCell, message: message)
+                return chatAndNameCell
+            }
+            
+        } else {
+            if message.fromUserId == FirebaseDataService.instance.currentUserUid {
+                // 글쓴이 = 나일경우
+                setupChatCell(cell: cell, message: message)
+                return cell
+            } else {
+                if messages[indexPath.row].fromUserId == messages[indexPath.row - 1].fromUserId{
+                    // 전메세지 글쓴이 == 현재메세지 글쓴이일 경우
+                    setupChatCell(cell: cell, message: message)
+                    return cell
+                } else {
+                    // 전메세지 글쓴이 != 현재메세지 글쓴이일 경우
+                    setupChatAndNameCell(cell: chatAndNameCell, message: message)
+                    return chatAndNameCell
+                }
+            }
+        }
     }
     
     // sizeForItemAt
     func setupChatCell(cell: ChatMessageCell, message: ChatMessage) {
         if message.fromUserId == FirebaseDataService.instance.currentUserUid {
-            cell.containerView.backgroundColor = UIColor.magenta
+            cell.containerView.backgroundColor = UIColor.init(red: 0.674, green: 0.784, blue: 0.898, alpha: 1)
+            cell.textLabel.textColor = UIColor.white
+            cell.containerViewRightAnchor?.isActive = true
+            cell.containerViewLeftAnchor?.isActive = false
+        } else {
+            cell.containerView.backgroundColor = UIColor.lightGray
+            cell.textLabel.textColor = UIColor.black
+            cell.containerViewRightAnchor?.isActive = false
+            cell.containerViewLeftAnchor?.isActive = true
+        }
+    }
+    
+    func setupChatAndNameCell(cell: ChatMessageAndUserCell, message: ChatMessage) {
+        if message.fromUserId == FirebaseDataService.instance.currentUserUid {
+            cell.containerView.backgroundColor = UIColor.init(red: 0.674, green: 0.784, blue: 0.898, alpha: 1)
             cell.textLabel.textColor = UIColor.white
             cell.containerViewRightAnchor?.isActive = true
             cell.containerViewLeftAnchor?.isActive = false
@@ -117,6 +166,9 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         layout.estimatedItemSize.width = view.frame.width
         chatCollectionView.alwaysBounceVertical = true
         sendButton.isEnabled = false
+        
+        layout.minimumLineSpacing = 4
+        
         // Do any additional setup after loading the view.
     }
     
@@ -157,6 +209,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     @objc func keyboardWillShow(_ notification: Notification) {
         if chatTextField.isFirstResponder {
             height = getKeyboardHeight(notification)
+            //let tabBarHeight = self.tabBarController?.tabBar.frame.size.height
             chatCollectionView.frame.origin.y = height
             view.frame.origin.y = -height
         }
@@ -164,6 +217,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
 
     @objc func keyboardWillHide(_ notification: Notification) {
         if chatTextField.isFirstResponder {
+            
             chatCollectionView.frame.origin.y = 0
             view.frame.origin.y = 0
         }
