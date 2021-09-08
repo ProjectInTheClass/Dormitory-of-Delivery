@@ -35,9 +35,9 @@ class ChatMessageCell: UICollectionViewCell {
         containerViewHeightAnchor?.isActive = true
         
         textLabel.translatesAutoresizingMaskIntoConstraints = false
-        textLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
-        textLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 4).isActive = true
-        textLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: 0).isActive = true
+        textLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        textLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 11).isActive = true
+        textLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10).isActive = true
         textLabelHeightAnchor = textLabel.heightAnchor.constraint(equalToConstant: frame.height )
     }
     

@@ -35,19 +35,19 @@ class ChatMessageAndUserCell: UICollectionViewCell {
         nameLabelLeftAnchor = nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 4)
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 0).isActive = true
+        containerView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 7).isActive = true
         containerViewLeftAnchor = containerView.leftAnchor.constraint(equalTo: leftAnchor, constant: 4)
         containerViewRightAnchor = containerView.rightAnchor.constraint(equalTo: rightAnchor, constant: -4)
         containerViewWidthAnchor = containerView.widthAnchor.constraint(equalToConstant: 200)
-        containerViewHeightAnchor = containerView.heightAnchor.constraint(equalToConstant: frame.height - 20 )
+        containerViewHeightAnchor = containerView.heightAnchor.constraint(equalToConstant: frame.height - 16 )
         containerViewWidthAnchor?.isActive = true
         containerViewHeightAnchor?.isActive = true
         
         textLabel.translatesAutoresizingMaskIntoConstraints = false
-        textLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
-        textLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 4).isActive = true
-        textLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: 0).isActive = true
-        textLabelHeightAnchor = textLabel.heightAnchor.constraint(equalToConstant: frame.height - 20)
+        textLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 16).isActive = true
+        textLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 11).isActive = true
+        textLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10).isActive = true
+        textLabelHeightAnchor = textLabel.heightAnchor.constraint(equalToConstant: frame.height - 16)
     }
     
     override func awakeFromNib() {
@@ -73,7 +73,7 @@ class ChatMessageAndUserCell: UICollectionViewCell {
         let height = measuredFrameHeightForEachMessage(message: textLabel.text!).height + 20
         var newFrame = layoutAttributes.frame
         newFrame.size.width = CGFloat(ceilf(Float(size.width)))
-        newFrame.size.height = height + 20
+        newFrame.size.height = height + 22
         containerViewHeightAnchor?.constant = height
         textLabelHeightAnchor?.constant = height
         layoutAttributes.frame = newFrame

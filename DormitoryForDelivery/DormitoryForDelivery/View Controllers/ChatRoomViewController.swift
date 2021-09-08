@@ -58,8 +58,8 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         }
         
         if message.text.count > 0 {
-            cell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 20
-            chatAndNameCell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 20
+            cell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 25
+            chatAndNameCell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 25
         }
         
         if indexPath.row == 0 {
@@ -167,7 +167,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         chatCollectionView.alwaysBounceVertical = true
         sendButton.isEnabled = false
         
-        layout.minimumLineSpacing = 4
+        layout.minimumLineSpacing = 6
         
         // Do any additional setup after loading the view.
     }
