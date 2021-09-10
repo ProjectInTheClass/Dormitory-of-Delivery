@@ -10,6 +10,7 @@ import UIKit
 protocol PostViewControllerDelegate {
     func currentNumberChanged(currentNumber: Int, selectedIndexPath: Int)
 }
+
 class PostViewController: UIViewController {
     
     
@@ -24,7 +25,6 @@ class PostViewController: UIViewController {
     var selectedIndexPath: Int?
     
     var delegate: PostViewControllerDelegate?
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,6 +131,4 @@ class PostViewController: UIViewController {
             destinationViewController?.mainPostInformation = self.mainPostInformation
         }
     }
-
-
 }

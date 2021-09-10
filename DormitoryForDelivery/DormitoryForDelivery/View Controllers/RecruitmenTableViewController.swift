@@ -10,11 +10,13 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, SelectCategoriesTableViewControllerDelegate, UITextFieldDelegate {
-    
+
     let db:Firestore = Firestore.firestore()
     var chatGroupVC: ChatGroupTableViewController?
     
     var selectedCategories: String?
+    
+    var mainPostInformation: RecruitingText?
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
@@ -47,6 +49,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         setInputKeyboardType()
         noteTextViewPlaceholderSetting()
         updateNumberOfRecruitmentMember()
+        editModeUIUpdate()
         
         updateDoneButtonUI()
         
@@ -200,6 +203,15 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
               else { return writingDoneButton.isEnabled = false }
         
         writingDoneButton.isEnabled = true
+    }
+    
+    func editModeUIUpdate() {
+        if mainPostInformation != nil {
+            titleTextField.text = mainPostInformation?.postTitle
+            noteTextView.text = mainPostInformation?.postNoteText
+            categoriesLabel.text = mainPostInformation?.categories
+            recruitmentCountStepper.value = Double(mainPostInformation!.currentNumber)
+        }
     }
     
    
