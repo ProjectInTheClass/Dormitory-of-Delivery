@@ -14,6 +14,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var chatTextField: UITextField!
     
+    
     var height: CGFloat = 0.0
     var messages: [ChatMessage] = [ChatMessage(fromUserId: "", text: "", timestamp: 0)]
     
@@ -187,6 +188,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
             let groupMessageRef = FirebaseDataService.instance.groupRef.child(groupId).child("messages")
             
             groupMessageRef.observe(.childAdded, with: { (snapshot) in
+                
                 if let dict = snapshot.value as? Dictionary<String, AnyObject> {
                     let message = ChatMessage(
                         fromUserId: dict["fromUserId"] as! String,
@@ -209,17 +211,16 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     @objc func keyboardWillShow(_ notification: Notification) {
         if chatTextField.isFirstResponder {
             height = getKeyboardHeight(notification)
-            //let tabBarHeight = self.tabBarController?.tabBar.frame.size.height
-            chatCollectionView.frame.origin.y = height
-            view.frame.origin.y = -height
+            let tabBarHeight = self.tabBarController!.tabBar.frame.size.height
+            view.frame.origin.y = -height + tabBarHeight
+            chatCollectionView.contentInset.top = height - tabBarHeight
         }
     }
-
+    
     @objc func keyboardWillHide(_ notification: Notification) {
         if chatTextField.isFirstResponder {
-            
-            chatCollectionView.frame.origin.y = 0
             view.frame.origin.y = 0
+            chatCollectionView.contentInset.top = 0
         }
     }
     

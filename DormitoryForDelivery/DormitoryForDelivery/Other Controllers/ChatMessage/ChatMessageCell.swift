@@ -36,6 +36,7 @@ class ChatMessageCell: UICollectionViewCell {
         
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         textLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        textLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
         textLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 11).isActive = true
         textLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10).isActive = true
         textLabelHeightAnchor = textLabel.heightAnchor.constraint(equalToConstant: frame.height )
