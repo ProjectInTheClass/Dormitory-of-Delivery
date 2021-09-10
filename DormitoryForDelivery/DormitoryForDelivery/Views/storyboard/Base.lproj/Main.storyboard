@@ -15,7 +15,7 @@
             <objects>
                 <tableViewController id="LqV-ib-uGn" customClass="RecruitmenTableViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="plh-L1-D0P">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="yXi-TM-FNH">
@@ -308,6 +308,7 @@
                         <outlet property="navigationBar" destination="FBp-YM-M1C" id="0lI-c8-SrZ"/>
                         <outlet property="participateButton" destination="Uip-uy-Fra" id="ltT-zj-EE9"/>
                         <segue destination="mA7-0c-2cT" kind="unwind" identifier="unwindMainView" unwindAction="unwindToMainViewControllerWithUnwindSegue:" id="48v-vX-bra"/>
+                        <segue destination="IMQ-N8-EFv" kind="show" identifier="editPostInformation" id="vqh-P7-hEC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MDE-zB-bgR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -461,7 +462,7 @@
             <objects>
                 <tableViewController id="TLi-Jn-ohC" customClass="SelectCategoriesTableViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FjA-BD-hUa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -500,7 +501,7 @@
                 <navigationController id="IMQ-N8-EFv" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="c4N-3G-X5T"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PTX-Uz-LrJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -2012,6 +2013,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="8YM-W5-RIq"/>
+        <segue reference="vqh-P7-hEC"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>

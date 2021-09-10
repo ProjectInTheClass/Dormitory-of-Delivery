@@ -72,7 +72,9 @@ class PostViewController: UIViewController {
     }
     @IBAction func moreOptionBarButtonTapped(_ sender: Any) {
         let moreOptionAlertController = UIAlertController(title: "메뉴", message: nil, preferredStyle: .actionSheet)
-        let alertEditPostAction = UIAlertAction(title: "수정하기", style: .default, handler: nil)
+        let alertEditPostAction = UIAlertAction(title: "수정하기", style: .default) { action in
+            self.performSegue(withIdentifier: "editPostInformation", sender: nil)
+        }
         let alertDeletePostAction = UIAlertAction(title: "삭제하기", style: .destructive, handler: nil)
         let alertCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         moreOptionAlertController.addAction(alertEditPostAction)
@@ -93,13 +95,13 @@ class PostViewController: UIViewController {
     func participateButtonUpdateUI() {
         guard let currentUid = FirebaseDataService.instance.currentUserUid else {return}
         var array:[String] = []
-        
+
         // 사용자 -> 버튼비활성화
         FirebaseDataService.instance.userRef.child(currentUid).child("groups").getData(completion: { (error,snapshot) in
             if let dict = snapshot.value as? Dictionary<String,AnyObject>{
                 for (key, _) in dict{
                     array.append(key)
-                    
+
                     if array.contains(self.mainPostInformation!.documentId) == true {
                         self.participateButton.backgroundColor = .gray
                         self.participateButton.setTitle("참여중", for: .normal)
@@ -108,15 +110,15 @@ class PostViewController: UIViewController {
                 }
             }
         })
-        
+
         // 작성자 -> 버튼없애기
         if mainPostInformation!.WriteUid == FirebaseDataService.instance.currentUserUid{
             self.participateButton.backgroundColor = .gray
             self.participateButton.setTitle("작성자", for: .normal)
             self.participateButton.isEnabled = false
         }
-            
-        
+
+
     }
     
     
