@@ -14,7 +14,6 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var chatTextField: UITextField!
     
-    
     var height: CGFloat = 0.0
     var messages: [ChatMessage] = [ChatMessage(fromUserId: "", text: "", timestamp: 0)]
     
@@ -97,8 +96,8 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     // sizeForItemAt
     func setupChatCell(cell: ChatMessageCell, message: ChatMessage) {
         if message.fromUserId == FirebaseDataService.instance.currentUserUid {
-            cell.containerView.backgroundColor = UIColor.init(red: 0.674, green: 0.784, blue: 0.898, alpha: 1)
-            cell.textLabel.textColor = UIColor.white
+            cell.containerView.backgroundColor = .white
+            cell.textLabel.textColor = UIColor.black
             cell.containerViewRightAnchor?.isActive = true
             cell.containerViewLeftAnchor?.isActive = false
         } else {
@@ -111,8 +110,8 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     
     func setupChatAndNameCell(cell: ChatMessageAndUserCell, message: ChatMessage) {
         if message.fromUserId == FirebaseDataService.instance.currentUserUid {
-            cell.containerView.backgroundColor = UIColor.init(red: 0.674, green: 0.784, blue: 0.898, alpha: 1)
-            cell.textLabel.textColor = UIColor.white
+            cell.containerView.backgroundColor = .white
+            cell.textLabel.textColor = UIColor.black
             cell.containerViewRightAnchor?.isActive = true
             cell.containerViewLeftAnchor?.isActive = false
         } else {
@@ -150,6 +149,9 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
                 }
                 FirebaseDataService.instance.groupRef.child(groupId).child("lastMessage").setValue(self.chatTextField.text)
                 self.chatTextField.text = nil
+                
+                
+               
             }
         }
     }
@@ -167,6 +169,8 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         layout.estimatedItemSize.width = view.frame.width
         chatCollectionView.alwaysBounceVertical = true
         sendButton.isEnabled = false
+        
+        
         
         layout.minimumLineSpacing = 6
         
@@ -197,11 +201,15 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
                     )
                     self.messages.insert(message, at: self.messages.count - 1)
                     self.chatCollectionView.reloadData()
-                    if self.messages.count >= 1 {
-                        let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
-                        self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition(), animated: true)
-                    }
-                    self.chatCollectionView.frame.origin.y = self.height
+                    
+                   
+                    
+                    
+//                    if self.messages.count >= 1 {
+//                        let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
+//                        self.chatCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
+//                    }
+                    //self.chatCollectionView.frame.origin.y = self.height
                 }
             })
         }
