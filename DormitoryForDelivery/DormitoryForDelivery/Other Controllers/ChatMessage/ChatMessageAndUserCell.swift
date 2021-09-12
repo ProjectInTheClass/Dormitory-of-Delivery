@@ -30,14 +30,14 @@ class ChatMessageAndUserCell: UICollectionViewCell {
     
     func setAnchors() {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
-        nameLabelRightAnchor = nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -4)
-        nameLabelLeftAnchor = nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 4)
+        nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 1).isActive = true
+        //이녀석은 constraint가 안먹는다 ??
+        nameLabelLeftAnchor = nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 6)
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 7).isActive = true
-        containerViewLeftAnchor = containerView.leftAnchor.constraint(equalTo: leftAnchor, constant: 4)
-        containerViewRightAnchor = containerView.rightAnchor.constraint(equalTo: rightAnchor, constant: -4)
+        containerView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
+        containerViewLeftAnchor = containerView.leftAnchor.constraint(equalTo: leftAnchor, constant: 6)
+        containerViewRightAnchor = containerView.rightAnchor.constraint(equalTo: rightAnchor, constant: -6)
         containerViewWidthAnchor = containerView.widthAnchor.constraint(equalToConstant: 200)
         containerViewHeightAnchor = containerView.heightAnchor.constraint(equalToConstant: frame.height - 16 )
         containerViewWidthAnchor?.isActive = true
@@ -74,7 +74,7 @@ class ChatMessageAndUserCell: UICollectionViewCell {
         let height = measuredFrameHeightForEachMessage(message: textLabel.text!).height + 20
         var newFrame = layoutAttributes.frame
         newFrame.size.width = CGFloat(ceilf(Float(size.width)))
-        newFrame.size.height = height + 22
+        newFrame.size.height = height + 22 + 5
         containerViewHeightAnchor?.constant = height
         textLabelHeightAnchor?.constant = height
         layoutAttributes.frame = newFrame

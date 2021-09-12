@@ -10,20 +10,25 @@ import FirebaseFirestore
 
 class ChatGroupTableViewController: UITableViewController {
 
+    @IBOutlet weak var navigationBar: UINavigationItem!
     let db:Firestore = Firestore.firestore()
-    
     var groups: [Group] = []
     var messages: [ChatMessage] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationBar.backButtonTitle = ""
+        self.navigationController?.navigationBar.tintColor = UIColor.black
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchChatGroupList()
+        
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.layoutIfNeeded()
     }
 
     func fetchChatGroupList(){
