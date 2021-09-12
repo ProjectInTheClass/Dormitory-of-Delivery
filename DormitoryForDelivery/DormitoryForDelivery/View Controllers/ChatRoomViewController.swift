@@ -96,12 +96,12 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     // sizeForItemAt
     func setupChatCell(cell: ChatMessageCell, message: ChatMessage) {
         if message.fromUserId == FirebaseDataService.instance.currentUserUid {
-            cell.containerView.backgroundColor = .white
+            cell.containerView.backgroundColor = .yellow
             cell.textLabel.textColor = UIColor.black
             cell.containerViewRightAnchor?.isActive = true
             cell.containerViewLeftAnchor?.isActive = false
         } else {
-            cell.containerView.backgroundColor = UIColor.lightGray
+            cell.containerView.backgroundColor = UIColor.white
             cell.textLabel.textColor = UIColor.black
             cell.containerViewRightAnchor?.isActive = false
             cell.containerViewLeftAnchor?.isActive = true
@@ -110,12 +110,12 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     
     func setupChatAndNameCell(cell: ChatMessageAndUserCell, message: ChatMessage) {
         if message.fromUserId == FirebaseDataService.instance.currentUserUid {
-            cell.containerView.backgroundColor = .white
+            cell.containerView.backgroundColor = .yellow
             cell.textLabel.textColor = UIColor.black
             cell.containerViewRightAnchor?.isActive = true
             cell.containerViewLeftAnchor?.isActive = false
         } else {
-            cell.containerView.backgroundColor = UIColor.lightGray
+            cell.containerView.backgroundColor = UIColor.white
             cell.textLabel.textColor = UIColor.black
             cell.containerViewRightAnchor?.isActive = false
             cell.containerViewLeftAnchor?.isActive = true
@@ -170,7 +170,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         chatCollectionView.alwaysBounceVertical = true
         sendButton.isEnabled = false
         
-        
+        navigationbarUI()
         
         layout.minimumLineSpacing = 6
         
@@ -222,6 +222,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
             let tabBarHeight = self.tabBarController!.tabBar.frame.size.height
             view.frame.origin.y = -height + tabBarHeight
             chatCollectionView.contentInset.top = height - tabBarHeight
+
         }
     }
     
@@ -269,7 +270,13 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         }
         return true
     }
-
+    
+    
+    
+    func navigationbarUI() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named:  "1"), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
     
    
     // MARK: - Navigation
