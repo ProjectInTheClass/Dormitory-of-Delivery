@@ -235,65 +235,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wpg-XS-NEg">
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S0W-Rt-afH">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="O66-qQ-VQx" kind="embed" identifier="sendPostInformation" id="vh1-Mh-ukc"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vdV-X4-QX9">
+                                <rect key="frame" x="349" y="797" width="45" height="45"/>
                                 <subviews>
-                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S0W-Rt-afH">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="710"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnc-kp-Heg">
+                                        <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="참여하기">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
-                                            <segue destination="O66-qQ-VQx" kind="embed" identifier="sendPostInformation" id="vh1-Mh-ukc"/>
+                                            <action selector="participateButtonTapped:" destination="s6m-6S-5kq" eventType="touchUpInside" id="Pke-37-qC7"/>
                                         </connections>
-                                    </containerView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tri-o0-Lp6">
-                                        <rect key="frame" x="0.0" y="710" width="414" height="64"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="DEj-g2-jcB">
-                                                <rect key="frame" x="27" y="12" width="360" height="40"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fxe-xT-ROU">
-                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
-                                                        <color key="backgroundColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="0.75990790562913912" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="150" id="N4q-q1-Sz2"/>
-                                                            <constraint firstAttribute="height" constant="40" id="uhb-FX-4k5"/>
-                                                        </constraints>
-                                                        <state key="normal" title="삭제하기">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uip-uy-Fra">
-                                                        <rect key="frame" x="210" y="0.0" width="150" height="40"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="150" id="MpP-qv-jKk"/>
-                                                            <constraint firstAttribute="height" constant="40" id="iaa-iz-EHF"/>
-                                                        </constraints>
-                                                        <state key="normal" title="참여하기">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="participateButtonTapped:" destination="s6m-6S-5kq" eventType="touchUpInside" id="iq2-Eo-iK2"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstItem="DEj-g2-jcB" firstAttribute="centerX" secondItem="Tri-o0-Lp6" secondAttribute="centerX" id="JHR-gV-bb6"/>
-                                            <constraint firstAttribute="height" constant="64" id="LH6-tM-BgO"/>
-                                            <constraint firstItem="DEj-g2-jcB" firstAttribute="centerY" secondItem="Tri-o0-Lp6" secondAttribute="centerY" id="rGJ-Ko-Ybr"/>
-                                        </constraints>
-                                    </view>
+                                    </button>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="jnc-kp-Heg" firstAttribute="top" secondItem="vdV-X4-QX9" secondAttribute="top" id="J7g-9M-yQm"/>
+                                    <constraint firstAttribute="bottom" secondItem="jnc-kp-Heg" secondAttribute="bottom" id="Kxo-Th-JtL"/>
+                                    <constraint firstAttribute="height" constant="45" id="Q9V-QD-4a1"/>
+                                    <constraint firstAttribute="trailing" secondItem="jnc-kp-Heg" secondAttribute="trailing" id="bAG-G9-GNc"/>
+                                    <constraint firstItem="jnc-kp-Heg" firstAttribute="leading" secondItem="vdV-X4-QX9" secondAttribute="leading" id="lVr-vT-CTT"/>
+                                    <constraint firstAttribute="width" constant="45" id="mZX-lk-uBD"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1jf-J2-JfU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="wpg-XS-NEg" firstAttribute="trailing" secondItem="1jf-J2-JfU" secondAttribute="trailing" id="9iq-zf-EZy"/>
-                            <constraint firstItem="1jf-J2-JfU" firstAttribute="bottom" secondItem="wpg-XS-NEg" secondAttribute="bottom" id="aj5-54-2pX"/>
-                            <constraint firstItem="wpg-XS-NEg" firstAttribute="leading" secondItem="1jf-J2-JfU" secondAttribute="leading" id="gnD-2j-JJv"/>
-                            <constraint firstItem="wpg-XS-NEg" firstAttribute="top" secondItem="1jf-J2-JfU" secondAttribute="top" id="rBz-mv-hty"/>
+                            <constraint firstItem="1jf-J2-JfU" firstAttribute="trailing" secondItem="vdV-X4-QX9" secondAttribute="trailing" constant="20" id="5z4-dx-L7z"/>
+                            <constraint firstItem="1jf-J2-JfU" firstAttribute="bottom" secondItem="vdV-X4-QX9" secondAttribute="bottom" constant="20" id="Ru2-Ep-eAd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FBp-YM-M1C">
@@ -304,9 +282,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="includeParticipateButtonView" destination="Tri-o0-Lp6" id="FTK-OO-5C6"/>
+                        <outlet property="includeParticipateButtonView" destination="vdV-X4-QX9" id="51b-vQ-xEz"/>
                         <outlet property="navigationBar" destination="FBp-YM-M1C" id="0lI-c8-SrZ"/>
-                        <outlet property="participateButton" destination="Uip-uy-Fra" id="ltT-zj-EE9"/>
+                        <outlet property="participateButton" destination="jnc-kp-Heg" id="L5e-1C-Qbf"/>
                         <segue destination="mA7-0c-2cT" kind="unwind" identifier="unwindMainView" unwindAction="unwindToMainViewControllerWithUnwindSegue:" id="48v-vX-bra"/>
                         <segue destination="IMQ-N8-EFv" kind="show" identifier="editPostInformation" id="vqh-P7-hEC"/>
                     </connections>
@@ -321,7 +299,7 @@
             <objects>
                 <tableViewController id="O66-qQ-VQx" customClass="PostTableViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="A7M-Wv-k0u">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="710"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="Ul1-My-RT2">
@@ -495,10 +473,10 @@
             </objects>
             <point key="canvasLocation" x="3587" y="-1896"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Edit Navigation Controller-->
         <scene sceneID="l4R-ax-3th">
             <objects>
-                <navigationController id="IMQ-N8-EFv" sceneMemberID="viewController">
+                <navigationController id="IMQ-N8-EFv" customClass="EditNavigationController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="c4N-3G-X5T"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PTX-Uz-LrJ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

@@ -210,6 +210,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
             titleTextField.text = mainPostInformation?.postTitle
             noteTextView.text = mainPostInformation?.postNoteText
             categoriesLabel.text = mainPostInformation?.categories
+            self.selectedCategories = mainPostInformation?.categories
             recruitmentCountStepper.value = Double(mainPostInformation!.currentNumber)
         }
     }

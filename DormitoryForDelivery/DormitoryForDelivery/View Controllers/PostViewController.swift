@@ -15,8 +15,8 @@ class PostViewController: UIViewController {
     
     
     @IBOutlet weak var navigationBar: UINavigationItem!
-    @IBOutlet weak var includeParticipateButtonView: UIView!
     @IBOutlet weak var participateButton: UIButton!
+    @IBOutlet weak var includeParticipateButtonView: UIView!
     //@IBOutlet weak var currentNumberOfParticipants: UILabel!
     //@IBOutlet weak var currentParticipantsProgressView: UIProgressView!
     
@@ -29,9 +29,6 @@ class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         participateButtonUpdateUI()
-        setIncludeParticipateButtonView()
-        setButtonStatus()
-        
         navigationBar.title = mainPostInformation?.postTitle
     }
     
@@ -83,16 +80,16 @@ class PostViewController: UIViewController {
         present(moreOptionAlertController, animated: true, completion: nil)
     }
     
-    func setButtonStatus() {
-        participateButton.backgroundColor = .systemBlue
-        participateButton.layer.cornerRadius = 6
-    }
-    
-    func setIncludeParticipateButtonView() {
-        includeParticipateButtonView.layer.addBorder([.top], color: UIColor.gray, width: 1.0)
-    }
-    
     func participateButtonUpdateUI() {
+        
+        participateButton.layer.cornerRadius = participateButton.layer.frame.size.width/2
+
+        participateButton.layer.backgroundColor = UIColor.systemBlue.cgColor
+        
+        participateButton.layer.borderWidth = 1.0
+        
+        includeParticipateButtonView.layer.cornerRadius = includeParticipateButtonView.layer.frame.size.width/2
+
         guard let currentUid = FirebaseDataService.instance.currentUserUid else {return}
         var array:[String] = []
 
@@ -129,6 +126,11 @@ class PostViewController: UIViewController {
         if segue.identifier == "sendPostInformation" {
             let destinationViewController = segue.destination as? PostTableViewController
             destinationViewController?.mainPostInformation = self.mainPostInformation
+        }
+        
+        if segue.identifier == "editPostInformation" {
+            let destination = segue.destination as? EditNavigationController
+            destination?.editPost = self.mainPostInformation
         }
     }
 }
