@@ -44,7 +44,6 @@ struct User {
     
     var name:String?
     var studentNumber:Int?
-    var school: School?
     var nickName: String?
     var reputation: Double?
     
