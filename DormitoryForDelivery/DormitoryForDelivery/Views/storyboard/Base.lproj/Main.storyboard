@@ -473,10 +473,10 @@
             </objects>
             <point key="canvasLocation" x="3587" y="-1896"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Edit Navigation Controller-->
         <scene sceneID="l4R-ax-3th">
             <objects>
-                <navigationController id="IMQ-N8-EFv" sceneMemberID="viewController">
+                <navigationController id="IMQ-N8-EFv" customClass="EditNavigationController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="c4N-3G-X5T"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PTX-Uz-LrJ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

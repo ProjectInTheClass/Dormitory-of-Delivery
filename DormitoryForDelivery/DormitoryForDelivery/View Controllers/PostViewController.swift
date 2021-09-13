@@ -127,5 +127,10 @@ class PostViewController: UIViewController {
             let destinationViewController = segue.destination as? PostTableViewController
             destinationViewController?.mainPostInformation = self.mainPostInformation
         }
+        
+        if segue.identifier == "editPostInformation" {
+            let destination = segue.destination as? EditNavigationController
+            destination?.editPost = self.mainPostInformation
+        }
     }
 }
