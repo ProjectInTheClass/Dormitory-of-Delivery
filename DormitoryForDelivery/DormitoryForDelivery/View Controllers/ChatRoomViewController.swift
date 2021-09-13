@@ -184,6 +184,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         if let groupId = self.groupKey {
             let groupMessageRef = FirebaseDataService.instance.groupRef.child(groupId).child("messages")
             
+           
             groupMessageRef.observe(.childAdded, with: { (snapshot) in
                 
                 if let dict = snapshot.value as? Dictionary<String, AnyObject> {
@@ -194,14 +195,12 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
                     )
                     self.messages.insert(message, at: self.messages.count - 1)
                     self.chatCollectionView.reloadData()
-                    
-                   
-                    
-                    
-//                    if self.messages.count >= 1 {
-//                        let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
-//                        self.chatCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
-//                    }
+                    self.chatCollectionView.layoutIfNeeded()
+                    if self.messages.count >= 1 {
+                        let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
+                        
+                        self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.bottom, animated: true)
+                    }
                     //self.chatCollectionView.frame.origin.y = self.height
                 }
             })
