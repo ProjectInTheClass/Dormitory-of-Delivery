@@ -96,8 +96,8 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     // sizeForItemAt
     func setupChatCell(cell: ChatMessageCell, message: ChatMessage) {
         if message.fromUserId == FirebaseDataService.instance.currentUserUid {
-            cell.containerView.backgroundColor = .yellow
-            cell.textLabel.textColor = UIColor.black
+            cell.containerView.backgroundColor = UIColor(red: 41/255, green: 186/255, blue: 93/255, alpha: 1)
+            cell.textLabel.textColor = UIColor.white
             cell.containerViewRightAnchor?.isActive = true
             cell.containerViewLeftAnchor?.isActive = false
         } else {

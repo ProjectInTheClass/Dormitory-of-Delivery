@@ -15,7 +15,7 @@
             <objects>
                 <tableViewController id="LqV-ib-uGn" customClass="RecruitmenTableViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="plh-L1-D0P">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="yXi-TM-FNH">
@@ -354,7 +354,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 4:50" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zB6-3o-Yek">
                                                             <rect key="frame" x="94.5" y="0.0" width="62.5" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" red="0.60784316059999999" green="0.79215681550000006" blue="0.92156863209999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="textColor" red="0.16030099989999999" green="0.73042237759999995" blue="0.36365228890000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -440,7 +440,7 @@
             <objects>
                 <tableViewController id="TLi-Jn-ohC" customClass="SelectCategoriesTableViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FjA-BD-hUa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -479,7 +479,7 @@
                 <navigationController id="IMQ-N8-EFv" customClass="EditNavigationController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="c4N-3G-X5T"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PTX-Uz-LrJ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -500,6 +500,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.16030099989999999" green="0.73042237759999995" blue="0.36365228890000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="KuB-ag-Tet" kind="relationship" relationship="viewControllers" id="p3i-sf-87O"/>
@@ -545,7 +546,7 @@
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Smo-yC-z0c">
                                                 <rect key="frame" x="0.0" y="88" width="318" height="40"/>
-                                                <color key="backgroundColor" red="0.58431375029999999" green="0.70980393890000004" blue="0.81960785390000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" red="0.16030099989999999" green="0.73042237759999995" blue="0.36365228890000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="eAc-ta-YFT"/>
                                                 </constraints>
@@ -581,7 +582,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="배달의 기숙사" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdm-K8-kmB">
                                 <rect key="frame" x="48" y="194" width="318" height="36"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <color key="textColor" red="0.67450982329999998" green="0.78431367870000002" blue="0.89803922179999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="textColor" red="0.16030099989999999" green="0.73042237759999995" blue="0.36365228890000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -682,7 +683,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiM-rK-DGi">
                                 <rect key="frame" x="24" y="406" width="366" height="40"/>
-                                <color key="backgroundColor" red="0.67450982329999998" green="0.78431367870000002" blue="0.89803922179999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.16030099989999999" green="0.73042237759999995" blue="0.36365228890000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="R36-iz-vOB"/>
                                 </constraints>
@@ -746,11 +747,11 @@
             <objects>
                 <viewController id="T6i-sk-wSO" customClass="EmailCertificationViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mYW-RU-Hn0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PwB-T4-DqW">
-                                <rect key="frame" x="24" y="44.5" width="366" height="40"/>
+                                <rect key="frame" x="24" y="132.5" width="366" height="40"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="이메일" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6AF-Kh-MMA">
                                         <rect key="frame" x="0.0" y="0.0" width="278" height="40"/>
@@ -763,7 +764,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNx-rx-UeF">
                                         <rect key="frame" x="286" y="0.0" width="80" height="40"/>
-                                        <color key="backgroundColor" red="0.64705884459999996" green="0.78823530669999997" blue="0.9098039269" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" red="0.16030099989999999" green="0.73042237759999995" blue="0.36365228890000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="iMS-qH-xuR"/>
                                         </constraints>
@@ -782,15 +783,15 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이메일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqe-YW-Qp1">
-                                <rect key="frame" x="30" y="20" width="31.5" height="14.5"/>
+                                <rect key="frame" x="30" y="108" width="31.5" height="14.5"/>
                                 <rect key="contentStretch" x="0.20000000000000001" y="0.0" width="1" height="1"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <color key="textColor" red="0.44705885649999999" green="0.44705885649999999" blue="0.45098042490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WNQ-ja-uY8">
-                                <rect key="frame" x="24" y="114.5" width="366" height="40"/>
-                                <color key="backgroundColor" red="0.67450982329999998" green="0.78431367870000002" blue="0.89803922179999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <rect key="frame" x="24" y="202.5" width="366" height="40"/>
+                                <color key="backgroundColor" red="0.16030099989999999" green="0.73042237759999995" blue="0.36365228890000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="s7j-z3-7zL"/>
                                 </constraints>
@@ -804,7 +805,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" ! 이메일 인증을 해주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8B9-ZK-Rpb">
-                                <rect key="frame" x="24" y="86.5" width="131" height="16"/>
+                                <rect key="frame" x="24" y="174.5" width="131" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" systemColor="systemPinkColor"/>
                                 <nil key="highlightedColor"/>
@@ -897,7 +898,7 @@
                                                                         <constraint firstAttribute="height" constant="16" id="XJB-M5-gJz"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                                    <color key="textColor" red="0.64705884459999996" green="0.78823530669999997" blue="0.9098039269" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    <color key="textColor" red="0.16030099989999999" green="0.73042237759999995" blue="0.36365228890000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -946,10 +947,13 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttI-lU-IGG">
-                                <rect key="frame" x="341" y="714" width="53" height="79"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="66"/>
+                                <rect key="frame" x="347" y="746" width="47" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ttI-lU-IGG" secondAttribute="height" multiplier="1:1" id="hJo-iN-pFA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" image="plus.circle" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="45"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="40" scale="default"/>
                                 </state>
                                 <connections>
                                     <segue destination="IMQ-N8-EFv" kind="presentation" id="mcv-24-QYg"/>
@@ -1290,7 +1294,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="an3-du-pz5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938" y="-1477"/>
+            <point key="canvasLocation" x="937.68115942028987" y="-1477.2321428571429"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GYc-i7-kBW">
@@ -1879,7 +1883,7 @@
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IQb-QP-KQa">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
-                                <color key="backgroundColor" red="0.71372550729999995" green="0.77647060160000003" blue="0.84313726430000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.91175442929999995" green="0.92825907470000002" blue="0.91390919690000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RVL-Yw-wv4">
                                     <size key="itemSize" width="301" height="198"/>
@@ -1994,8 +1998,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Mdb-8C-QEP"/>
-        <segue reference="vqh-P7-hEC"/>
+        <segue reference="8YM-W5-RIq"/>
+        <segue reference="mcv-24-QYg"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>

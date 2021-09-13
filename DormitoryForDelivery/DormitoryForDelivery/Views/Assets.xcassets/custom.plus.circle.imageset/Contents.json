@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "스크린샷 2021-09-13 오후 11.32.40.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "custom.plus.circle@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
