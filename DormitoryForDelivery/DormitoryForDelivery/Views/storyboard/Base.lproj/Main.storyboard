@@ -207,7 +207,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="DG8-Sf-muN">
                             <connections>
-                                <segue destination="vx8-vr-iRK" kind="unwind" identifier="unwindToMainView" unwindAction="unwindFromRecruitmentTableView:" id="d46-zb-POs"/>
+                                <action selector="doneButtonTapped:" destination="LqV-ib-uGn" id="Lkg-Nv-fj1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -223,7 +223,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dzd-T9-anw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="vx8-vr-iRK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2842" y="-1895"/>
         </scene>

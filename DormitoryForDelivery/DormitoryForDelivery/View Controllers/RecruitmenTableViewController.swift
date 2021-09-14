@@ -152,6 +152,37 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func doneButtonTapped(_ sender: Any) {
+        if self.mainPostInformation != nil {
+            dismiss(animated: true, completion: nil)
+        } else {
+            dismiss(animated: true) {
+                //ToDo: Type cating으로 경고 수정, 나중에 유저가 그룹참가를 하면 currentNumber를 update하는 코드구현
+                let currentNumber = 1
+                guard let title = self.titleTextField.text, let category = self.categoriesLabel.text, let noteText = self.noteTextView.text else { return }
+                
+                let newRecruitTable:Dictionary<String, Any> = ["uid":Auth.auth().currentUser!.uid, "title": title, "category":category, "noteText":noteText, "maximumNumber":self.recruitmentCountStepper.value,"currentNumber":currentNumber,"timestamp":NSNumber(value: Date().timeIntervalSince1970),"meetingTime":NSNumber(value:self.meetingDatePicker.date.timeIntervalSince1970)]
+        
+                //fireStore - tables에 작성
+                let newRecruitTableRef = self.db.collection("recruitTables").document()
+                newRecruitTableRef.setData(newRecruitTable)
+                
+                //fireStore - users-table에 작성
+                self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("table").document(newRecruitTableRef.documentID).setData(newRecruitTable)
+                
+                //RealtimeDB에 user-group & gropu에 추가
+                if let uid = FirebaseDataService.instance.currentUserUid {
+                    let userRef = FirebaseDataService.instance.userRef.child(uid)
+                    userRef.child("groups").updateChildValues(([newRecruitTableRef.documentID: 1])) { (error, ref) in
+                        let groupRef = FirebaseDataService.instance.groupRef.child(newRecruitTableRef.documentID)
+                        groupRef.setValue(["name":title, "to":uid, "currentNumber":1, "lastMessage":""])
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
 
     @IBAction func stepperValueChanged(_ sender: Any) {
         updateNumberOfRecruitmentMember()
@@ -211,9 +242,11 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
             noteTextView.text = mainPostInformation?.postNoteText
             categoriesLabel.text = mainPostInformation?.categories
             self.selectedCategories = mainPostInformation?.categories
-            recruitmentCountStepper.value = Double(mainPostInformation!.currentNumber)
+            meetingDateLabel.isHidden = false
+            meetingDateLabel.text = mainPostInformation?.meetingTime
         }
     }
+
     
    
     // MARK: - Table view data source
@@ -264,32 +297,32 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
             destinationViewController?.selectedCategories = selectedCategories
         }
         
-        if segue.identifier == "unwindToMainView"{
-            //ToDo: Type cating으로 경고 수정, 나중에 유저가 그룹참가를 하면 currentNumber를 update하는 코드구현
-            let currentNumber = 1
-            guard let title = titleTextField.text, let category = categoriesLabel.text, let noteText = noteTextView.text else { return }
-            
-            let newRecruitTable:Dictionary<String, Any> = ["uid":Auth.auth().currentUser!.uid, "title": title, "category":category, "noteText":noteText, "maximumNumber":recruitmentCountStepper.value,"currentNumber":currentNumber,"timestamp":NSNumber(value: Date().timeIntervalSince1970),"meetingTime":NSNumber(value:meetingDatePicker.date.timeIntervalSince1970)]
-    
-            //fireStore - tables에 작성
-            let newRecruitTableRef = db.collection("recruitTables").document()
-            newRecruitTableRef.setData(newRecruitTable)
-            
-            //fireStore - users-table에 작성
-            db.collection("users").document(Auth.auth().currentUser!.uid).collection("table").document(newRecruitTableRef.documentID).setData(newRecruitTable)
-            
-            //RealtimeDB에 user-group & gropu에 추가
-            if let uid = FirebaseDataService.instance.currentUserUid {
-                let userRef = FirebaseDataService.instance.userRef.child(uid)
-                userRef.child("groups").updateChildValues(([newRecruitTableRef.documentID: 1])) { (error, ref) in
-                    let groupRef = FirebaseDataService.instance.groupRef.child(newRecruitTableRef.documentID)
-                    groupRef.setValue(["name":title, "to":uid, "currentNumber":1, "lastMessage":""])
-                    return
-                }
-            }
-            
-            
-        }
+//        if segue.identifier == "unwindToMainView"{
+//            //ToDo: Type cating으로 경고 수정, 나중에 유저가 그룹참가를 하면 currentNumber를 update하는 코드구현
+//            let currentNumber = 1
+//            guard let title = titleTextField.text, let category = categoriesLabel.text, let noteText = noteTextView.text else { return }
+//
+//            let newRecruitTable:Dictionary<String, Any> = ["uid":Auth.auth().currentUser!.uid, "title": title, "category":category, "noteText":noteText, "maximumNumber":recruitmentCountStepper.value,"currentNumber":currentNumber,"timestamp":NSNumber(value: Date().timeIntervalSince1970),"meetingTime":NSNumber(value:meetingDatePicker.date.timeIntervalSince1970)]
+//
+//            //fireStore - tables에 작성
+//            let newRecruitTableRef = db.collection("recruitTables").document()
+//            newRecruitTableRef.setData(newRecruitTable)
+//
+//            //fireStore - users-table에 작성
+//            db.collection("users").document(Auth.auth().currentUser!.uid).collection("table").document(newRecruitTableRef.documentID).setData(newRecruitTable)
+//
+//            //RealtimeDB에 user-group & gropu에 추가
+//            if let uid = FirebaseDataService.instance.currentUserUid {
+//                let userRef = FirebaseDataService.instance.userRef.child(uid)
+//                userRef.child("groups").updateChildValues(([newRecruitTableRef.documentID: 1])) { (error, ref) in
+//                    let groupRef = FirebaseDataService.instance.groupRef.child(newRecruitTableRef.documentID)
+//                    groupRef.setValue(["name":title, "to":uid, "currentNumber":1, "lastMessage":""])
+//                    return
+//                }
+//            }
+//
+//
+//        }
         
     }
    

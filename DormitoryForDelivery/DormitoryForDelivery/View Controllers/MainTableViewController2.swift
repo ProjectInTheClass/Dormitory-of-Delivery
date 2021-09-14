@@ -168,7 +168,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
 
             for (index, myPost) in mainPosts.enumerated() {
                 if myPost.WriteUid == Auth.auth().currentUser?.uid {
-                    mainPosts.remove(at:index)
+                    mainPosts.remove(at: index)
                 }
             }
 
