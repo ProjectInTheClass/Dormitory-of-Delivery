@@ -11,12 +11,12 @@ protocol PostViewControllerDelegate {
     func currentNumberChanged(currentNumber: Int, selectedIndexPath: Int)
 }
 
-class PostViewController: UIViewController {
-    
+class PostViewController: UIViewController, SendEditDataDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var participateButton: UIButton!
     @IBOutlet weak var includeParticipateButtonView: UIView!
+    @IBOutlet weak var includePostInformationView: UIView!
     //@IBOutlet weak var currentNumberOfParticipants: UILabel!
     //@IBOutlet weak var currentParticipantsProgressView: UIProgressView!
     
@@ -118,6 +118,12 @@ class PostViewController: UIViewController {
 
     }
     
+    func sendData(mainPostInformation: RecruitingText) {
+        self.mainPostInformation = mainPostInformation
+        navigationBar.title = mainPostInformation.postTitle
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "send"), object: mainPostInformation)
+    }
+    
     
     // MARK: - Navigation
 
@@ -131,6 +137,8 @@ class PostViewController: UIViewController {
         if segue.identifier == "editPostInformation" {
             let destination = segue.destination as? EditNavigationController
             destination?.editPost = self.mainPostInformation
+            let childDestination = destination?.viewControllers.first as? RecruitmenTableViewController
+            childDestination?.delegate = self
         }
     }
 }

@@ -15,7 +15,7 @@
             <objects>
                 <tableViewController id="LqV-ib-uGn" customClass="RecruitmenTableViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="plh-L1-D0P">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="yXi-TM-FNH">
@@ -229,7 +229,7 @@
         <!--Post View Controller-->
         <scene sceneID="Xff-dh-P5h">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="s6m-6S-5kq" customClass="PostViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostViewController" hidesBottomBarWhenPushed="YES" id="s6m-6S-5kq" customClass="PostViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ps0-uC-CRd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -282,6 +282,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="includeParticipateButtonView" destination="vdV-X4-QX9" id="51b-vQ-xEz"/>
+                        <outlet property="includePostInformationView" destination="S0W-Rt-afH" id="JHR-GN-66c"/>
                         <outlet property="navigationBar" destination="FBp-YM-M1C" id="0lI-c8-SrZ"/>
                         <outlet property="participateButton" destination="jnc-kp-Heg" id="L5e-1C-Qbf"/>
                         <segue destination="mA7-0c-2cT" kind="unwind" identifier="unwindMainView" unwindAction="unwindToMainViewControllerWithUnwindSegue:" id="48v-vX-bra"/>
@@ -296,7 +297,7 @@
         <!--Post Table View Controller-->
         <scene sceneID="MG4-gp-EOW">
             <objects>
-                <tableViewController id="O66-qQ-VQx" customClass="PostTableViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PostTableViewController" id="O66-qQ-VQx" customClass="PostTableViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="A7M-Wv-k0u">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -439,7 +440,7 @@
             <objects>
                 <tableViewController id="TLi-Jn-ohC" customClass="SelectCategoriesTableViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FjA-BD-hUa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -475,10 +476,10 @@
         <!--Edit Navigation Controller-->
         <scene sceneID="l4R-ax-3th">
             <objects>
-                <navigationController id="IMQ-N8-EFv" customClass="EditNavigationController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController modalPresentationStyle="fullScreen" id="IMQ-N8-EFv" customClass="EditNavigationController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="c4N-3G-X5T"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PTX-Uz-LrJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

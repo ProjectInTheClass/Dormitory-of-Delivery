@@ -165,14 +165,18 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             let myPosts = mainPosts.filter { (element) -> Bool in
                 return element.WriteUid == Auth.auth().currentUser?.uid
             }
-
-            for (index, myPost) in mainPosts.enumerated() {
-                if myPost.WriteUid == Auth.auth().currentUser?.uid {
-                    mainPosts.remove(at: index)
-                }
+            
+            let differentUserPosts = mainPosts.filter { (element) -> Bool in
+                return element.WriteUid != Auth.auth().currentUser?.uid
             }
 
-            self.mainPosts = myPosts + mainPosts
+//            for (index, myPost) in mainPosts.enumerated() {
+//                if myPost.WriteUid == Auth.auth().currentUser?.uid {
+//                    mainPosts.remove(at: index)
+//                }
+//            }
+
+            self.mainPosts = myPosts + differentUserPosts
             
             // 정렬 방법 2
 //            var changeValueIndex: Int = 0

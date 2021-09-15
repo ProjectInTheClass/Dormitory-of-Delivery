@@ -23,6 +23,10 @@ class PostTableViewController: UITableViewController {
         updateUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "send"), object: nil)
+    }
+
     func updateUI() {
         guard let mainPostInformation = mainPostInformation else { return }
         
@@ -32,8 +36,16 @@ class PostTableViewController: UITableViewController {
         meetingTimeLabel.text = mainPostInformation.meetingTime
     }
     
-
-
+    // 수정 데이터 전달받기
+    
+    @objc func loadList(_ notification : NSNotification)
+    {
+        let data = notification.object as? RecruitingText ?? nil
+        print(data)
+        self.mainPostInformation = data
+        updateUI()
+        self.tableView.reloadData()
+    }
 
     // MARK: - Table view data source
 

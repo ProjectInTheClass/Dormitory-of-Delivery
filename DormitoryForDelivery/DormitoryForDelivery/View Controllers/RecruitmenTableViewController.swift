@@ -9,6 +9,10 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
+protocol SendEditDataDelegate {
+    func sendData(mainPostInformation: RecruitingText)
+}
+
 class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, SelectCategoriesTableViewControllerDelegate, UITextFieldDelegate {
 
     let db:Firestore = Firestore.firestore()
@@ -17,6 +21,8 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     var selectedCategories: String?
     
     var mainPostInformation: RecruitingText?
+    
+    var delegate: SendEditDataDelegate?
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
@@ -41,18 +47,17 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        modalPresentationStyle = .fullScreen
         meetingDateLabel.isHidden = true
-        
         tableView.isScrollEnabled = false
         titleTextField.delegate = self
         noteTextView.delegate = self
+        
         setInputKeyboardType()
         noteTextViewPlaceholderSetting()
-        updateNumberOfRecruitmentMember()
         editModeUIUpdate()
-        
+        updateNumberOfRecruitmentMember()
         updateDoneButtonUI()
-        
         setMinimumdateAndMaxmimumdate()
     }
     
@@ -154,7 +159,22 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     
     @IBAction func doneButtonTapped(_ sender: Any) {
         if self.mainPostInformation != nil {
-            dismiss(animated: true, completion: nil)
+            self.editMainPostInformation()
+            self.delegate?.sendData(mainPostInformation: self.mainPostInformation!)
+            dismiss(animated: true) {
+                self.db.collection("recruitTables").getDocuments() { (snapshot, error) in
+                    if error == nil {
+                        guard let snapshot = snapshot else { return }
+                        for document in snapshot.documents {
+                            let documentID = document.documentID
+                            if documentID == self.mainPostInformation?.documentId {
+                                let data: [String : AnyObject] = ["category" : self.categoriesLabel.text as AnyObject, "currentNumber" : self.mainPostInformation?.currentNumber as AnyObject, "maximumNumber" : self.recruitmentCountStepper.value as AnyObject, "meetingTime" : NSNumber(value: self.meetingDatePicker.date.timeIntervalSince1970) as AnyObject, "noteText" : self.noteTextView.text as AnyObject, "timestamp" : NSNumber(value: Date().timeIntervalSince1970) as AnyObject, "title" : self.titleTextField.text as AnyObject]
+                                self.db.collection("recruitTables").document(documentID).updateData(data)
+                            }
+                        }
+                    }
+                }
+            }
         } else {
             dismiss(animated: true) {
                 //ToDo: Type cating으로 경고 수정, 나중에 유저가 그룹참가를 하면 currentNumber를 update하는 코드구현
@@ -239,12 +259,35 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     func editModeUIUpdate() {
         if mainPostInformation != nil {
             titleTextField.text = mainPostInformation?.postTitle
+            noteTextView.textColor = UIColor.black
             noteTextView.text = mainPostInformation?.postNoteText
             categoriesLabel.text = mainPostInformation?.categories
             self.selectedCategories = mainPostInformation?.categories
+            recruitmentCountStepper.value = Double(mainPostInformation!.maximumNumber)
             meetingDateLabel.isHidden = false
             meetingDateLabel.text = mainPostInformation?.meetingTime
+            guard let datePickerValue = stringToDateType(string: meetingDateLabel.text!) else { return }
+            print(datePickerValue)
+            meetingDatePicker.date = datePickerValue
         }
+    }
+    
+    func stringToDateType(string : String) -> Date? {
+        let formatter = DateFormatter()
+        
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.dateFormat = "a H:mm"
+        
+        return formatter.date(from: string)
+    }
+    
+    func editMainPostInformation() {
+        guard let title = self.titleTextField.text, let category = self.categoriesLabel.text, let noteText = self.noteTextView.text, let meetingTime = self.meetingDateLabel.text else { return }
+        self.mainPostInformation?.postTitle = title
+        self.mainPostInformation?.categories = category
+        self.mainPostInformation?.postNoteText = noteText
+        self.mainPostInformation?.maximumNumber = Int(recruitmentCountStepper.value)
+        self.mainPostInformation?.meetingTime = meetingTime
     }
 
     
@@ -328,3 +371,5 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
    
     
 }
+
+
