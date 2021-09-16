@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class PostTableViewController: UITableViewController {
     
     @IBOutlet weak var userNickNameLabel:UILabel!
@@ -41,7 +42,6 @@ class PostTableViewController: UITableViewController {
     @objc func loadList(_ notification : NSNotification)
     {
         let data = notification.object as? RecruitingText ?? nil
-        print(data)
         self.mainPostInformation = data
         updateUI()
         self.tableView.reloadData()

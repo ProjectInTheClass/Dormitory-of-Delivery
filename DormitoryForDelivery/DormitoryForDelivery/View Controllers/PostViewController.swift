@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 protocol PostViewControllerDelegate {
     func currentNumberChanged(currentNumber: Int, selectedIndexPath: Int)
@@ -25,6 +27,8 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
     var selectedIndexPath: Int?
     
     var delegate: PostViewControllerDelegate?
+    
+    let db: Firestore = Firestore.firestore()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,12 +76,43 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
         let alertEditPostAction = UIAlertAction(title: "수정하기", style: .default) { action in
             self.performSegue(withIdentifier: "editPostInformation", sender: nil)
         }
-        let alertDeletePostAction = UIAlertAction(title: "삭제하기", style: .destructive, handler: nil)
+        let alertDeletePostAction = UIAlertAction(title: "삭제하기", style: .destructive) { action in
+            self.creatConfirmDeleteAlertController()
+        }
         let alertCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
         moreOptionAlertController.addAction(alertEditPostAction)
         moreOptionAlertController.addAction(alertDeletePostAction)
         moreOptionAlertController.addAction(alertCancelAction)
         present(moreOptionAlertController, animated: true, completion: nil)
+    }
+    
+    func creatConfirmDeleteAlertController() {
+        let confirmDeleteAlertController = UIAlertController(title: "삭제하시겠습니까?", message: nil, preferredStyle: .alert)
+        let alertDeleteConfirmAction = UIAlertAction(title: "확인", style: .default) { action in
+            self.db.collection("recruitTables").getDocuments() { (snapshot, error) in
+                if error == nil {
+                    guard let snapshot = snapshot else { return }
+                    for document in snapshot.documents {
+                        let documentID = document.documentID
+                        if documentID == self.mainPostInformation?.documentId {
+                            self.db.collection("recruitTables").document(documentID).delete() { err in
+                                if let err = err {
+                                    print("Error removing document: \(err)")
+                                } else {
+                                    print("Document successfully removed!")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
+        let alertDeleteCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        confirmDeleteAlertController.addAction(alertDeleteCancelAction)
+        confirmDeleteAlertController.addAction(alertDeleteConfirmAction)
+        present(confirmDeleteAlertController, animated: true, completion: nil)
     }
     
     func participateButtonUpdateUI() {

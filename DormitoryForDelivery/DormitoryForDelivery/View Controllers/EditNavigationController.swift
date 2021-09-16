@@ -13,7 +13,6 @@ class EditNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(editPost)
         if let rootViewController = viewControllers.first as? RecruitmenTableViewController {
             rootViewController.mainPostInformation = editPost
         }
