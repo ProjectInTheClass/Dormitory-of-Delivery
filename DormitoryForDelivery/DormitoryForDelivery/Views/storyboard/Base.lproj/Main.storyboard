@@ -283,10 +283,12 @@
                     <connections>
                         <outlet property="includeParticipateButtonView" destination="vdV-X4-QX9" id="51b-vQ-xEz"/>
                         <outlet property="includePostInformationView" destination="S0W-Rt-afH" id="JHR-GN-66c"/>
+                        <outlet property="moreOptionButton" destination="VzA-Mz-GA9" id="aXv-9f-sbX"/>
                         <outlet property="navigationBar" destination="FBp-YM-M1C" id="0lI-c8-SrZ"/>
                         <outlet property="participateButton" destination="jnc-kp-Heg" id="L5e-1C-Qbf"/>
                         <segue destination="mA7-0c-2cT" kind="unwind" identifier="unwindMainView" unwindAction="unwindToMainViewControllerWithUnwindSegue:" id="48v-vX-bra"/>
                         <segue destination="IMQ-N8-EFv" kind="show" identifier="editPostInformation" id="vqh-P7-hEC"/>
+                        <segue destination="mA7-0c-2cT" kind="unwind" unwindAction="unwindToMainViewControllerWithUnwindSegue:" id="ud9-Dk-Znf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MDE-zB-bgR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1999,7 +2001,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="8YM-W5-RIq"/>
-        <segue reference="mcv-24-QYg"/>
+        <segue reference="vqh-P7-hEC"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>

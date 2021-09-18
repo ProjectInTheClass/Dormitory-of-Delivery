@@ -19,6 +19,7 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
     @IBOutlet weak var participateButton: UIButton!
     @IBOutlet weak var includeParticipateButtonView: UIView!
     @IBOutlet weak var includePostInformationView: UIView!
+    @IBOutlet weak var moreOptionButton: UIBarButtonItem!
     //@IBOutlet weak var currentNumberOfParticipants: UILabel!
     //@IBOutlet weak var currentParticipantsProgressView: UIProgressView!
     
@@ -32,6 +33,7 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        moreOptionButtonUpdateUI()
         participateButtonUpdateUI()
         navigationBar.title = mainPostInformation?.postTitle
     }
@@ -107,7 +109,8 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
                     }
                 }
             }
-            self.dismiss(animated: true, completion: nil)
+            FirebaseDataService.instance.groupRef.child(self.mainPostInformation!.documentId).removeValue()
+            self.performSegue(withIdentifier: "unwindMainView", sender: nil)
         }
         let alertDeleteCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         confirmDeleteAlertController.addAction(alertDeleteCancelAction)
@@ -157,6 +160,12 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
         self.mainPostInformation = mainPostInformation
         navigationBar.title = mainPostInformation.postTitle
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "send"), object: mainPostInformation)
+    }
+    
+    func moreOptionButtonUpdateUI() {
+        if mainPostInformation?.WriteUid != Auth.auth().currentUser?.uid {
+            moreOptionButton.isEnabled = false
+        }
     }
     
     

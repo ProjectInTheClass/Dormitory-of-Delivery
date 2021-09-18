@@ -16,6 +16,7 @@ protocol SendEditDataDelegate {
 class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, SelectCategoriesTableViewControllerDelegate, UITextFieldDelegate {
 
     let db:Firestore = Firestore.firestore()
+    
     var chatGroupVC: ChatGroupTableViewController?
     
     var selectedCategories: String?
@@ -190,7 +191,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
                 //fireStore - users-table에 작성
                 self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("table").document(newRecruitTableRef.documentID).setData(newRecruitTable)
                 
-                //RealtimeDB에 user-group & gropu에 추가
+                //RealtimeDB에 user-group & group에 추가
                 if let uid = FirebaseDataService.instance.currentUserUid {
                     let userRef = FirebaseDataService.instance.userRef.child(uid)
                     userRef.child("groups").updateChildValues(([newRecruitTableRef.documentID: 1])) { (error, ref) in
