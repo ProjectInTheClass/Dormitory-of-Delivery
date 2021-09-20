@@ -435,7 +435,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJl-Yd-YAS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3001" y="-1177"/>
+            <point key="canvasLocation" x="2971" y="-1158"/>
         </scene>
         <!--Select Categories Table View Controller-->
         <scene sceneID="8VR-Us-r5G">
@@ -502,7 +502,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" red="0.16030099989999999" green="0.73042237759999995" blue="0.36365228890000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.55686274509803924" green="0.62745098039215685" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="KuB-ag-Tet" kind="relationship" relationship="viewControllers" id="p3i-sf-87O"/>
@@ -1277,6 +1277,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="창원대학교" id="9A1-AG-Ucf"/>
                     <connections>
+                        <outlet property="button" destination="ttI-lU-IGG" id="2rk-5h-VQh"/>
                         <outlet property="mainTableView" destination="Vng-IY-FkT" id="5h8-1E-Fix"/>
                         <outlet property="navigationBar" destination="9A1-AG-Ucf" id="Xce-8P-rIt"/>
                         <outlet property="searchBarView" destination="rUG-R6-rhe" id="Jbr-zJ-O9r"/>

@@ -16,6 +16,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var filterButtonCollection: [UIButton]!
     @IBOutlet weak var navigationBar: UINavigationItem!
     
+    @IBOutlet weak var button: UIButton!
     
     let db: Firestore = Firestore.firestore()
     
@@ -28,14 +29,18 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
-        //checkDeviceNetworkStatus()
         super.viewDidLoad()
         mainTableView.dataSource = self
         mainTableView.delegate = self
         setUpSearchController()
-     //   fetchRecruitmentTableList()
         navigationBar.backButtonTitle = ""
+        navigationController?.navigationBar.setBackgroundImage(UIImage(named: "2"), for: UIBarMetrics.default)
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
+        button.tintColor = UIColor(red:142/255 , green: 160/255, blue: 207/255, alpha: 1)
+        button.backgroundColor = UIColor.white
+        button.layer.cornerRadius = button.layer.frame.size.width/2
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +56,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             fetchRecruitmentTableList()
         }
         
+        print("viewWillAppear")
     }
     
     @IBAction func unwindFromRecruitmentTableView(_ unwindSegue: UIStoryboardSegue) {
@@ -118,18 +124,6 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         performSegue(withIdentifier: "sendPostSegue", sender: indexPath.row)
     }
 
-    
-//    func checkDeviceNetworkStatus() {
-//            if(DeviceManager.shared.networkStatus) == false {
-//                let alert: UIAlertController = UIAlertController(title: "네트워크 상태 확인", message: "네트워크가 불안정 합니다.", preferredStyle: .alert)
-//                let action: UIAlertAction = UIAlertAction(title: "다시 시도", style: .default, handler: { (ACTION) in
-//                    self.checkDeviceNetworkStatus()
-//                })
-//                alert.addAction(action)
-//                present(alert, animated: true, completion: nil)
-//            }
-//        }
-    
     func fetchRecruitmentTableList(){
         var mainPosts: [RecruitingText] = []
         db.collection("recruitTables").getDocuments(){ (querySnapshot, error) in
@@ -157,7 +151,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                 print("Error getting documents: ")
             }
             
-//             정렬 방법 1
+            
             mainPosts.sort(by: {(first, second) in
                     return first.meetingTime > second.meetingTime
                 })
@@ -170,26 +164,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                 return element.WriteUid != Auth.auth().currentUser?.uid
             }
 
-//            for (index, myPost) in mainPosts.enumerated() {
-//                if myPost.WriteUid == Auth.auth().currentUser?.uid {
-//                    mainPosts.remove(at: index)
-//                }
-//            }
-
             self.mainPosts = myPosts + differentUserPosts
-            
-            // 정렬 방법 2
-//            var changeValueIndex: Int = 0
-//
-//            self.mainPosts = mainPosts
-//
-//            for (index, mainPost) in mainPosts.enumerated() {
-//                if mainPost.WriteUid == Auth.auth().currentUser?.uid {
-//                    mainPosts.swapAt(changeValueIndex, index)
-//                    changeValueIndex += 1
-//                }
-//            }
-//            self.mainPosts = mainPosts
             
             DispatchQueue.main.async(execute: {
                 self.mainTableView.reloadData()
