@@ -27,7 +27,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     var searchMainPost: [RecruitingText]?
     
     let searchController = UISearchController(searchResultsController: nil)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTableView.dataSource = self

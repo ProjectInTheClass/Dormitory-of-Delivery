@@ -36,6 +36,8 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
         moreOptionButtonUpdateUI()
         participateButtonUpdateUI()
         navigationBar.title = mainPostInformation?.postTitle
+        
+        navigationUI()
     }
     
     @IBAction func participateButtonTapped(_ sender: Any) {
@@ -168,6 +170,9 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
         }
     }
     
+    func navigationUI() {
+        navigationController?.navigationBar.tintColor = UIColor.white
+    }
     
     // MARK: - Navigation
 

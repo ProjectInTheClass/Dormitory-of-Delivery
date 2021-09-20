@@ -60,6 +60,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         updateNumberOfRecruitmentMember()
         updateDoneButtonUI()
         setMinimumdateAndMaxmimumdate()
+        navigationUI()
     }
     
     func setMinimumdateAndMaxmimumdate() {
@@ -291,7 +292,11 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         self.mainPostInformation?.meetingTime = meetingTime
     }
 
-    
+    func navigationUI() {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(named: "2"), for: UIBarMetrics.default)
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.tintColor = UIColor.white
+    }
    
     // MARK: - Table view data source
 

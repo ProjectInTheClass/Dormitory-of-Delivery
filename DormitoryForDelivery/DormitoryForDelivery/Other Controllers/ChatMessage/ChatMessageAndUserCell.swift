@@ -22,7 +22,7 @@ class ChatMessageAndUserCell: UICollectionViewCell {
     var nameLabelLeftAnchor: NSLayoutConstraint?
     
     func setUITraits() {
-        containerView.layer.cornerRadius = 8
+        containerView.layer.cornerRadius = 15
         
         textLabel.numberOfLines = 0
         textLabel.lineBreakMode = .byWordWrapping

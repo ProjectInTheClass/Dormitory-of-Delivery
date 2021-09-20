@@ -9,11 +9,10 @@ import UIKit
 
 class MainTableViewCell: UITableViewCell {
 
-    //@IBOutlet weak var circularProgressBarView: CircleProgressViewController!
+   
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var catagoryImage: UIImageView!
     @IBOutlet weak var postTitleLabel: UILabel!
-   // @IBOutlet weak var categoriesLabel: UILabel!
     @IBOutlet weak var meetingTimeLabel: UILabel!
     
     override func awakeFromNib() {

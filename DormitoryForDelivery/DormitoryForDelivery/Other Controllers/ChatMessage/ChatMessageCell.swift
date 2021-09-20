@@ -18,7 +18,7 @@ class ChatMessageCell: UICollectionViewCell {
     var textLabelHeightAnchor: NSLayoutConstraint?
     
     func setUITraits() {
-        containerView.layer.cornerRadius = 8
+        containerView.layer.cornerRadius = 15
         
         textLabel.numberOfLines = 0
         textLabel.lineBreakMode = .byWordWrapping

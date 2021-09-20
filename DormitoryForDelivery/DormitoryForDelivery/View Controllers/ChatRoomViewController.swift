@@ -14,6 +14,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var chatTextField: UITextField!
     
+
     var height: CGFloat = 0.0
     var messages: [ChatMessage] = [ChatMessage(fromUserId: "", text: "", timestamp: 0)]
     
@@ -96,7 +97,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     // sizeForItemAt
     func setupChatCell(cell: ChatMessageCell, message: ChatMessage) {
         if message.fromUserId == FirebaseDataService.instance.currentUserUid {
-            cell.containerView.backgroundColor = UIColor(red: 41/255, green: 186/255, blue: 93/255, alpha: 1)
+            cell.containerView.backgroundColor = UIColor(red: 69/255, green: 141/255, blue: 245/255, alpha: 1)
             cell.textLabel.textColor = UIColor.white
             cell.containerViewRightAnchor?.isActive = true
             cell.containerViewLeftAnchor?.isActive = false
@@ -164,7 +165,8 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         chatCollectionView.alwaysBounceVertical = true
         sendButton.isEnabled = false
         
-        navigationbarUI()
+
+
         
         layout.minimumLineSpacing = 1
         
@@ -172,6 +174,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationbarUI()
         subscribeToKeyboardNotifications()
     }
     
@@ -262,12 +265,11 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         }
         return true
     }
-    
-    
-    
+
     func navigationbarUI() {
-        navigationController?.navigationBar.setBackgroundImage(UIImage(named:  "1"), for: UIBarMetrics.default)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(named:  "3"), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
     
    
