@@ -26,7 +26,7 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        navigationUI()
         }
     
     @IBAction func memberRegistrationButtonTapped(_ sender: Any) {
@@ -84,37 +84,6 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate {
                 self.present(alertController, animated: true, completion: nil)
             }
         }
-        
-        
-        
-        
-//        Auth.auth().currentUser?.reload { _ in
-//            if Auth.auth().currentUser?.isEmailVerified == true {
-//                Auth.auth().currentUser?.updatePassword(to: password, completion: nil)
-//
-//                let newUser = ["email":email, "password":password]
-//                self.db.collection("users").document(Auth.auth().currentUser!.uid).setData(newUser) { _ in
-//
-//                    if let uid = FirebaseDataService.instance.currentUserUid {
-//                        FirebaseDataService.instance.userRef.child(uid).child("email").setValue(email)
-//                    }
-//
-//                    let firebaseAuth = Auth.auth()
-//                    do {
-//                      try firebaseAuth.signOut()
-//                    } catch let signOutError as NSError {
-//                      print("Error signing out: %@", signOutError)
-//                    }
-//                }
-//                self.dismiss(animated: true, completion: nil)
-//
-//            } else {
-//                let alertController = UIAlertController(title: "이메일인증을 해주세요.", message: nil, preferredStyle: .alert)
-//                let checkAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-//                alertController.addAction(checkAction)
-//                self.present(alertController, animated: true, completion: nil)
-//            }
-//        }
     }
     
     
@@ -134,7 +103,10 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-  
+    func navigationUI() {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(named: "2"), for: UIBarMetrics.default)
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+    }
     
     
     // MARK: - Navigation

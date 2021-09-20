@@ -142,7 +142,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                     let meetingTime = document.data()["meetingTime"] as! NSNumber
                     let meetingTimeLabel = self.fetchMeetingTime(meetingTime: meetingTime)
                     
-                    let mainpost:RecruitingText = RecruitingText(postTitle: title, categories: category,        postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel)
+                    let mainpost:RecruitingText = RecruitingText(postTitle: title, categories: category, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel)
                     mainPosts.append(mainpost)
                     
                     //수정 pageNation으로
@@ -230,11 +230,10 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if currentDay == meetingDay {
             dateFormatter.dateFormat = "a HH:mm"
+            return dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime))) + " " + "까지"
             
-            return dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime)))
         } else if currentDay + 1 == meetingDay {
             dateFormatter.dateFormat = "a HH:mm"
-            
             return "내일 " + dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime)))
         }
         

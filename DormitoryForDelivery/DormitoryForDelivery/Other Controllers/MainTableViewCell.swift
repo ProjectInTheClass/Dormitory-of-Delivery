@@ -11,34 +11,25 @@ class MainTableViewCell: UITableViewCell {
 
    
     @IBOutlet weak var progressLabel: UILabel!
-    @IBOutlet weak var catagoryImage: UIImageView!
     @IBOutlet weak var postTitleLabel: UILabel!
     @IBOutlet weak var meetingTimeLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var catagoryLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        containerView.layer.cornerRadius = 8
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     
     func update(with main: RecruitingText) {
-        catagoryImage.image = UIImage(named: main.categories)
         postTitleLabel.text = main.postTitle
         meetingTimeLabel.text = main.meetingTime
-        //categoriesLabel.text = main.categories
+        catagoryLabel.text = main.categories
         progressLabel.text = "\(main.currentNumber)/\(main.maximumNumber)"
-        
-//        let progressValue = Float(Float(main.currentNumber) / Float(main.maximumNumber))
-//        circularProgressBarView.trackColor = UIColor.gray
-//        circularProgressBarView.progressColor = UIColor.blue
-//        circularProgressBarView.setProgressWithAnimation(duration: 1.0, value: progressValue)
     }
-    
-    
 }

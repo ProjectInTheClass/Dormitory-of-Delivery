@@ -92,7 +92,7 @@ class ChatGroupTableViewController: UITableViewController {
         cell.lastText.text = groups[indexPath.row].lastMessage
         return cell
     }
-    
+
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
