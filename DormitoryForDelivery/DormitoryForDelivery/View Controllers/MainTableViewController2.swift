@@ -175,20 +175,12 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     func currentNumberChanged(currentNumber: Int, selectedIndexPath: Int) {
         self.mainPosts[selectedIndexPath].currentNumber = currentNumber
         
-        db.collection("recruitTables").getDocuments() { (snapshot, error) in
-            if error == nil {
-                guard let snapshot = snapshot else { return }
-                for document in snapshot.documents {
-                    let title = document.get("title") as! String
-                    if title == self.mainPosts[selectedIndexPath].postTitle {
-                        let documentID = document.documentID
-                        let data: [String : AnyObject] = ["currentNumber" : self.mainPosts[selectedIndexPath].currentNumber as AnyObject]
-                        self.db.collection("recruitTables").document(documentID).updateData(data)
-                        self.mainTableView.reloadData()
-                    }
-                }
-            }
+        let doc = db.collection("recruitTables").document(self.mainPosts[selectedIndexPath].documentId)
+        let data: [String : AnyObject] = ["currentNumber" : self.mainPosts[selectedIndexPath].currentNumber as AnyObject]
+        doc.setData(data, merge: true) { (error) in
+            guard error == nil else { return }
         }
+        self.mainTableView.reloadData()
     }
     
     func setUpSearchController() {

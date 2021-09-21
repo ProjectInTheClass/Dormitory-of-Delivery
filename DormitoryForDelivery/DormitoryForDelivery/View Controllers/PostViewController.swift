@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
@@ -38,6 +39,7 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
         navigationBar.title = mainPostInformation?.postTitle
         
         navigationUI()
+
     }
     
     @IBAction func participateButtonTapped(_ sender: Any) {
@@ -64,6 +66,17 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
                     let userRef = FirebaseDataService.instance.userRef.child(uid)
                     let data = [self.mainPostInformation?.documentId : 1]
                     userRef.child("groups").updateChildValues(data)
+                }
+                let doc =  self.db.collection("messageGroup").document(self.mainPostInformation!.documentId)
+                doc.getDocument { (snapshot: DocumentSnapshot?, error: Error?) in
+                    guard error == nil else {
+               return }
+                    var memberData: [String: [String]] = snapshot!.data() as! [String: [String]]
+                    if var memberData1 = memberData["users"] {
+                        memberData1.append(Auth.auth().currentUser!.uid)
+                        memberData.updateValue(memberData1, forKey: "users")
+                        doc.setData(memberData)
+                    }
                 }
                 self.performSegue(withIdentifier: "unwindMainView", sender: nil)
             }
@@ -94,24 +107,58 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
     func creatConfirmDeleteAlertController() {
         let confirmDeleteAlertController = UIAlertController(title: "삭제하시겠습니까?", message: nil, preferredStyle: .alert)
         let alertDeleteConfirmAction = UIAlertAction(title: "확인", style: .default) { action in
-            self.db.collection("recruitTables").getDocuments() { (snapshot, error) in
-                if error == nil {
-                    guard let snapshot = snapshot else { return }
-                    for document in snapshot.documents {
-                        let documentID = document.documentID
-                        if documentID == self.mainPostInformation?.documentId {
-                            self.db.collection("recruitTables").document(documentID).delete() { err in
-                                if let err = err {
-                                    print("Error removing document: \(err)")
-                                } else {
-                                    print("Document successfully removed!")
-                                }
+            // 파이어스토어 "recruitTables" 데이터 삭제
+            
+            self.db.collection("recruitTables").document(self.mainPostInformation!.documentId).delete { (error) in
+                guard error == nil else { return }
+             }
+//            self.db.collection("recruitTables").getDocuments() { (snapshot, error) in
+//                if error == nil {
+//                    guard let snapshot = snapshot else { return }
+//                    for document in snapshot.documents {
+//                        let documentID = document.documentID
+//                        if documentID == self.mainPostInformation?.documentId {
+//                            self.db.collection("recruitTables").document(documentID).delete() { err in
+//                                if let err = err {
+//                                    print("Error removing document: \(err)")
+//                                } else {
+//                                    print("Document successfully removed!")
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+            // 리얼타임 데이터베이스 users 노드 데이터 삭제
+            let doc =  self.db.collection("messageGroup").document(self.mainPostInformation!.documentId)
+            doc.getDocument { (snapshot: DocumentSnapshot?, error: Error?) in
+                guard error == nil else { return }
+                let memberData: [String: [String]] = snapshot!.data() as! [String: [String]]
+                if let memberData = memberData["users"] {
+                    for users in memberData {
+                        FirebaseDataService.instance.userRef.child(users).child("groups").observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
+                            let userRef = FirebaseDataService.instance.userRef.child(users)
+                            var item = snapshot.value as! [String: Any]
+                            print(item)
+                            item.removeValue(forKey: self.mainPostInformation!.documentId)
+                            print(item)
+                            userRef.child("groups").setValue(item) { (error, ref) in
+                                guard error == nil else {
+                                    print("Error :", error)
+                            return }
+                                print("Edit value success")
                             }
                         }
                     }
                 }
+                // 파이어스토어 "messageGroup" 데이터 삭제
+                self.db.collection("messageGroup").document(self.mainPostInformation!.documentId).delete { (error) in
+                    guard error == nil else { return }
+                 }
             }
+            // 리얼타임 데이터베이스 group 노드 데이터 삭제
             FirebaseDataService.instance.groupRef.child(self.mainPostInformation!.documentId).removeValue()
+
             self.performSegue(withIdentifier: "unwindMainView", sender: nil)
         }
         let alertDeleteCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)

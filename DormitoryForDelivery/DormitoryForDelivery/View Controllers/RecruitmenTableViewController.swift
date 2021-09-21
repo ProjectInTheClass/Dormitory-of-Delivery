@@ -192,6 +192,10 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
                 //fireStore - users-table에 작성
                 self.db.collection("users").document(Auth.auth().currentUser!.uid).collection("table").document(newRecruitTableRef.documentID).setData(newRecruitTable)
                 
+                let messageMember: [String : [String]] = ["users" : [Auth.auth().currentUser!.uid]]
+                //fireStore - messageGroup 사용자 추가
+                self.db.collection("messageGroup").document(newRecruitTableRef.documentID).setData(messageMember)
+                
                 //RealtimeDB에 user-group & group에 추가
                 if let uid = FirebaseDataService.instance.currentUserUid {
                     let userRef = FirebaseDataService.instance.userRef.child(uid)
