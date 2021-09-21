@@ -987,7 +987,7 @@
                                                             <constraint firstAttribute="height" constant="35" id="e7Y-ie-Ui7"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
-                                                        <state key="normal" title="전체보기" image="전체보기"/>
+                                                        <state key="normal" title="전체" image="전체"/>
                                                         <connections>
                                                             <action selector="filterButtonTapped:" destination="wBu-dl-dbY" eventType="touchUpInside" id="qbr-oD-AEt"/>
                                                             <action selector="showAllPostButtonTapped:" destination="wBu-dl-dbY" eventType="touchUpInside" id="OY4-d1-RID"/>
@@ -998,8 +998,8 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="66" id="qTf-oK-wa7"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="12"/>
-                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                        <color key="textColor" red="0.55686274509803924" green="0.62745098039215685" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -1290,16 +1290,26 @@
                         <outlet property="mainTableView" destination="Vng-IY-FkT" id="5h8-1E-Fix"/>
                         <outlet property="navigationBar" destination="9A1-AG-Ucf" id="Xce-8P-rIt"/>
                         <outlet property="searchBarView" destination="rUG-R6-rhe" id="Jbr-zJ-O9r"/>
-                        <outletCollection property="filterButtonCollection" destination="EUr-rB-dDm" collectionClass="NSMutableArray" id="cME-bH-pSl"/>
-                        <outletCollection property="filterButtonCollection" destination="hhW-0C-SHs" collectionClass="NSMutableArray" id="udM-D2-lU3"/>
-                        <outletCollection property="filterButtonCollection" destination="Znp-4J-oJ6" collectionClass="NSMutableArray" id="Dhj-f7-7NE"/>
-                        <outletCollection property="filterButtonCollection" destination="s4R-VY-uLZ" collectionClass="NSMutableArray" id="JbV-zG-j2N"/>
-                        <outletCollection property="filterButtonCollection" destination="Ftt-5S-35g" collectionClass="NSMutableArray" id="at7-le-gwg"/>
-                        <outletCollection property="filterButtonCollection" destination="Nd6-FD-w8d" collectionClass="NSMutableArray" id="frE-Lc-A3s"/>
-                        <outletCollection property="filterButtonCollection" destination="eRk-1S-vjS" collectionClass="NSMutableArray" id="iWk-Hh-gEg"/>
-                        <outletCollection property="filterButtonCollection" destination="ro5-eC-hZD" collectionClass="NSMutableArray" id="VC9-dQ-Zcs"/>
-                        <outletCollection property="filterButtonCollection" destination="qbA-ve-XHq" collectionClass="NSMutableArray" id="lx9-2I-FpM"/>
-                        <outletCollection property="filterButtonCollection" destination="Thv-Oj-Bhn" collectionClass="NSMutableArray" id="VlC-5h-cD4"/>
+                        <outletCollection property="filterLabelCollection" destination="oxq-xs-a63" collectionClass="NSMutableArray" id="KTf-Lj-dF3"/>
+                        <outletCollection property="filterLabelCollection" destination="rk6-gg-VRS" collectionClass="NSMutableArray" id="317-wv-932"/>
+                        <outletCollection property="filterLabelCollection" destination="Tfe-zU-RaQ" collectionClass="NSMutableArray" id="w4R-aK-Ua0"/>
+                        <outletCollection property="filterLabelCollection" destination="tbV-tP-pSR" collectionClass="NSMutableArray" id="51x-oJ-Qio"/>
+                        <outletCollection property="filterLabelCollection" destination="EI1-HN-eKD" collectionClass="NSMutableArray" id="7T8-Af-Jn5"/>
+                        <outletCollection property="filterLabelCollection" destination="XXe-0N-yJx" collectionClass="NSMutableArray" id="gSW-Qn-Rie"/>
+                        <outletCollection property="filterLabelCollection" destination="Cd3-dv-pTc" collectionClass="NSMutableArray" id="rq4-YB-rOq"/>
+                        <outletCollection property="filterLabelCollection" destination="g51-ra-jaV" collectionClass="NSMutableArray" id="hJT-vY-cU3"/>
+                        <outletCollection property="filterLabelCollection" destination="jpi-WI-wan" collectionClass="NSMutableArray" id="NMk-3r-wNT"/>
+                        <outletCollection property="filterLabelCollection" destination="M47-fE-3Gl" collectionClass="NSMutableArray" id="Cch-Q0-RQ1"/>
+                        <outletCollection property="filterButtonCollection" destination="Thv-Oj-Bhn" collectionClass="NSMutableArray" id="wjp-NV-AK9"/>
+                        <outletCollection property="filterButtonCollection" destination="EUr-rB-dDm" collectionClass="NSMutableArray" id="25z-Ij-yH9"/>
+                        <outletCollection property="filterButtonCollection" destination="hhW-0C-SHs" collectionClass="NSMutableArray" id="6Jn-I6-ESX"/>
+                        <outletCollection property="filterButtonCollection" destination="Znp-4J-oJ6" collectionClass="NSMutableArray" id="spp-QX-8O4"/>
+                        <outletCollection property="filterButtonCollection" destination="s4R-VY-uLZ" collectionClass="NSMutableArray" id="HoY-EL-OV0"/>
+                        <outletCollection property="filterButtonCollection" destination="Ftt-5S-35g" collectionClass="NSMutableArray" id="Tev-D4-grf"/>
+                        <outletCollection property="filterButtonCollection" destination="Nd6-FD-w8d" collectionClass="NSMutableArray" id="4S6-8s-icu"/>
+                        <outletCollection property="filterButtonCollection" destination="eRk-1S-vjS" collectionClass="NSMutableArray" id="1Uw-uV-p7W"/>
+                        <outletCollection property="filterButtonCollection" destination="ro5-eC-hZD" collectionClass="NSMutableArray" id="9MI-wC-oOv"/>
+                        <outletCollection property="filterButtonCollection" destination="qbA-ve-XHq" collectionClass="NSMutableArray" id="Mj1-V2-wgq"/>
                         <segue destination="s6m-6S-5kq" kind="show" identifier="sendPostSegue" id="bEZ-Dz-c8p"/>
                         <segue destination="gzs-Ha-SKa" kind="presentation" identifier="login" id="728-d2-gZt"/>
                     </connections>
@@ -2028,7 +2038,7 @@
         <image name="디저트라인" width="512" height="512"/>
         <image name="분식라인" width="512" height="512"/>
         <image name="샐러드라인" width="512" height="512"/>
-        <image name="전체보기" width="512" height="512"/>
+        <image name="전체" width="512" height="512"/>
         <image name="중국집라인" width="512" height="512"/>
         <image name="초밥라인" width="512" height="512"/>
         <image name="커피라인" width="512" height="512"/>

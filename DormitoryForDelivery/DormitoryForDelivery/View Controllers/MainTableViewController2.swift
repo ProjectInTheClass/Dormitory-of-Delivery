@@ -14,8 +14,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var searchBarView: UIView!
     @IBOutlet var filterButtonCollection: [UIButton]!
+    @IBOutlet var filterLabelCollection: [UILabel]!
     @IBOutlet weak var navigationBar: UINavigationItem!
-    
     @IBOutlet weak var button: UIButton!
     
     let db: Firestore = Firestore.firestore()
@@ -67,18 +67,18 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBAction func showAllPostButtonTapped(_ sender: UIButton) {
         self.searchMainPost = nil
         self.filteredButtonMainPost = nil
-//        for selectedButton in filterButtonCollection {
-//            selectedButton.setImage(UIImage(named: "\(selectedButton.currentTitle!)라인"), for: .normal)
-//        }
         self.mainTableView.reloadData()
     }
     
     @IBAction func filterButtonTapped(_ sender: UIButton) {
         for selectedButton in filterButtonCollection {
+            let index = filterButtonCollection.firstIndex {$0 == selectedButton}
             if selectedButton.currentTitle == sender.currentTitle {
                 selectedButton.setImage(UIImage(named: selectedButton.currentTitle!), for: .normal)
+                filterLabelCollection[index!].textColor = UIColor(red: 142/255, green: 160/255, blue: 207/255, alpha: 1)
             } else {
                 selectedButton.setImage(UIImage(named: "\(selectedButton.currentTitle!)라인"), for: .normal)
+                filterLabelCollection[index!].textColor = UIColor.black
             }
         }
 
@@ -100,7 +100,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainTableViewCell
-//
+
         guard let searchMainPost = searchMainPost else { let mainPost = mainPosts[indexPath.row]
             cell.update(with: mainPost)
             return cell
