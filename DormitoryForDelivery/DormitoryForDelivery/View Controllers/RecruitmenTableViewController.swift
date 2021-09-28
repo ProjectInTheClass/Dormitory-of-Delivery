@@ -25,6 +25,10 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     
     var delegate: SendEditDataDelegate?
     
+    let postActivityIndicator = UIActivityIndicatorView()
+    
+    let postActivityIndicatorLoadingView = UIView()
+    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var categoriesLabel: UILabel!
@@ -164,21 +168,14 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
             self.editMainPostInformation()
             self.delegate?.sendData(mainPostInformation: self.mainPostInformation!)
             dismiss(animated: true) {
-                self.db.collection("recruitTables").getDocuments() { (snapshot, error) in
-                    if error == nil {
-                        guard let snapshot = snapshot else { return }
-                        for document in snapshot.documents {
-                            let documentID = document.documentID
-                            if documentID == self.mainPostInformation?.documentId {
-                                let data: [String : AnyObject] = ["category" : self.categoriesLabel.text as AnyObject, "currentNumber" : self.mainPostInformation?.currentNumber as AnyObject, "maximumNumber" : self.recruitmentCountStepper.value as AnyObject, "meetingTime" : NSNumber(value: self.meetingDatePicker.date.timeIntervalSince1970) as AnyObject, "noteText" : self.noteTextView.text as AnyObject, "timestamp" : NSNumber(value: Date().timeIntervalSince1970) as AnyObject, "title" : self.titleTextField.text as AnyObject]
-                                self.db.collection("recruitTables").document(documentID).updateData(data)
-                            }
-                        }
-                    }
+                let doc = self.db.collection("recruitTables").document(self.mainPostInformation!.documentId)
+                let data: [String : AnyObject] = ["category" : self.categoriesLabel.text as AnyObject, "currentNumber" : self.mainPostInformation?.currentNumber as AnyObject, "maximumNumber" : self.recruitmentCountStepper.value as AnyObject, "meetingTime" : NSNumber(value: self.meetingDatePicker.date.timeIntervalSince1970) as AnyObject, "noteText" : self.noteTextView.text as AnyObject, "timestamp" : NSNumber(value: Date().timeIntervalSince1970) as AnyObject, "title" : self.titleTextField.text as AnyObject]
+                doc.setData(data, merge: true) { (error) in
+                    guard error == nil else { return }
                 }
             }
         } else {
-            dismiss(animated: true) {
+                setLoadingScreen()
                 //ToDo: Type cating으로 경고 수정, 나중에 유저가 그룹참가를 하면 currentNumber를 update하는 코드구현
                 let currentNumber = 1
                 guard let title = self.titleTextField.text, let category = self.categoriesLabel.text, let noteText = self.noteTextView.text else { return }
@@ -205,7 +202,13 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
                         return
                     }
                 }
+//            let time = DispatchTime.now() + .seconds(1)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 10) {
+                self.dismiss(animated: true) {
+                    self.removeLoadingScreen()
+                }
             }
+            
         }
     }
     
@@ -301,6 +304,34 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationController?.navigationBar.tintColor = UIColor.white
     }
+    
+    func setLoadingScreen() {
+
+            let width: CGFloat = 30
+            let height: CGFloat = 30
+            let x = (tableView.frame.width / 2) - (width / 2)
+            let y = (tableView.frame.height / 2)
+            postActivityIndicatorLoadingView.frame = CGRect(x: x, y: y, width: width, height: height)
+//            postActivityIndicatorLoadingView.backgroundColor = .blue
+        
+            postActivityIndicator.style = .large
+            postActivityIndicator.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            postActivityIndicator.startAnimating()
+
+            postActivityIndicatorLoadingView.addSubview(postActivityIndicator)
+            
+            tableView.addSubview(postActivityIndicatorLoadingView)
+
+        }
+    
+    func removeLoadingScreen() {
+
+            // Hides and stops the text and the spinner
+            postActivityIndicator.stopAnimating()
+            postActivityIndicator.isHidden = true
+
+        }
+
    
     // MARK: - Table view data source
 

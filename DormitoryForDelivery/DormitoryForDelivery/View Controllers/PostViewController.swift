@@ -37,7 +37,6 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
         moreOptionButtonUpdateUI()
         participateButtonUpdateUI()
         navigationBar.title = mainPostInformation?.postTitle
-        
         navigationUI()
 
     }
