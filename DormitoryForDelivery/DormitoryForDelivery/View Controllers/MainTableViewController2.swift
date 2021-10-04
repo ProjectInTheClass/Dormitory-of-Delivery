@@ -27,15 +27,15 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     var searchMainPost: [RecruitingText]?
     
     let searchController = UISearchController(searchResultsController: nil)
+    let navigationApperance = UINavigationBarAppearance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTableView.dataSource = self
         mainTableView.delegate = self
         setUpSearchController()
-        navigationBar.backButtonTitle = ""
-        navigationController?.navigationBar.setBackgroundImage(UIImage(named: "2"), for: UIBarMetrics.default)
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        navigationUI()
         
         button.tintColor = UIColor(red:142/255 , green: 160/255, blue: 207/255, alpha: 1)
         button.backgroundColor = UIColor.white
@@ -231,6 +231,11 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         
         return ""
        
+    }
+    
+    func navigationUI() {
+        navigationBar.backButtonTitle = ""
+        navigationController?.navigationBar.tintColor = .white
     }
 
     // MARK: - Navigation

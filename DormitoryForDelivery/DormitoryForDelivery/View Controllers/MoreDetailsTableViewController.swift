@@ -39,9 +39,7 @@ class MoreDetailsTableViewController: UITableViewController {
     }
     
     func navigationUI() {
-        navigationController?.navigationBar.setBackgroundImage(UIImage(named:  "2"), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
     }
 
 }

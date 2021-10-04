@@ -13,8 +13,6 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     @IBOutlet weak var chatCollectionView: UICollectionView!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var chatTextField: UITextField!
-    
-
     var height: CGFloat = 0.0
     var messages: [ChatMessage] = [ChatMessage(fromUserId: "", text: "", timestamp: 0)]
     
@@ -200,8 +198,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
                     self.chatCollectionView.reloadData()
                     self.chatCollectionView.layoutIfNeeded()
                     if self.messages.count >= 1 {
-                        let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
-                        
+                        let indexPath = IndexPath(item: self.messages.count - 2, section: 0)
                         self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.bottom, animated: true)
                     }
                     //self.chatCollectionView.frame.origin.y = self.height
@@ -217,6 +214,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
             let tabBarHeight = self.tabBarController!.tabBar.frame.size.height
             view.frame.origin.y = -height + tabBarHeight
             chatCollectionView.contentInset.top = height - tabBarHeight
+            
 
         }
     }

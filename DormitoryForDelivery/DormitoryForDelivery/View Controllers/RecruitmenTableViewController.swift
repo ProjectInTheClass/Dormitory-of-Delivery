@@ -102,8 +102,9 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
             } else {
                 isMeetingTimeDatePickerShown = true
             }
-            tableView.beginUpdates()
-            tableView.endUpdates()
+            //tableView.beginUpdates()
+            //tableView.endUpdates()
+            tableView.reloadData()
         default:
             break
         }
@@ -300,8 +301,6 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     }
 
     func navigationUI() {
-        navigationController?.navigationBar.setBackgroundImage(UIImage(named: "2"), for: UIBarMetrics.default)
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationController?.navigationBar.tintColor = UIColor.white
     }
     

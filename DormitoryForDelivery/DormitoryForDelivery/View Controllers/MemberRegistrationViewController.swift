@@ -27,6 +27,7 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationUI()
+        
         }
     
     @IBAction func memberRegistrationButtonTapped(_ sender: Any) {
@@ -104,8 +105,7 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate {
     }
     
     func navigationUI() {
-        navigationController?.navigationBar.setBackgroundImage(UIImage(named: "2"), for: UIBarMetrics.default)
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.tintColor = .white
     }
     
     
