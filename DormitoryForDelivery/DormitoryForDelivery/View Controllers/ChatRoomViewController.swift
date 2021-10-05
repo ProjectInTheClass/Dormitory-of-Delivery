@@ -41,52 +41,151 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         return messages.count - 1
     }
     
+    // MARK: - CellForItemAt
     // cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatCell", for: indexPath) as! ChatMessageCell
-        let chatAndNameCell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatAndUserCell", for: indexPath) as! ChatMessageAndUserCell
+        let chatMessageCell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatMessageCell", for: indexPath) as! ChatMessageCell
+        let chatMessageLeftTimeCell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatLeftTimeCell", for: indexPath) as! ChatMessageLeftTimeCell
+        let chatMessageRightTimeCell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatRightTimeCell", for: indexPath) as! ChatMessageRightTimeCell
+        let chatMessageAndUserCell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatMessageAndUserCell", for: indexPath) as! ChatMessageAndUserCell
+        let chatMessageRightTimeAndUserCell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatRightTimeAndUserCell", for: indexPath) as! ChatMessageRightTimeAndUserCell
         
         let message = messages[indexPath.item]
-        cell.textLabel.text = message.text
-        chatAndNameCell.textLabel.text = message.text
+        let messagesCount = messages.count
         
+        chatMessageCell.textLabel.text = message.text
+        chatMessageLeftTimeCell.textLabel.text = message.text
+        chatMessageRightTimeCell.textLabel.text = message.text
+        chatMessageAndUserCell.textLabel.text = message.text
+        chatMessageRightTimeAndUserCell.textLabel.text = message.text
         
-        if indexPath.row == messages.count - 1 {
-            cell.containerView.backgroundColor = UIColor.white
-        }
+        chatMessageLeftTimeCell.timeLabel.text = fetchMeetingTime(meetingTime: message.timestamp)
+        chatMessageRightTimeCell.timeLabel.text = fetchMeetingTime(meetingTime: message.timestamp)
+        chatMessageRightTimeAndUserCell.timeLabel.text = fetchMeetingTime(meetingTime: message.timestamp)
         
         if message.text.count > 0 {
-            cell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 25
-            chatAndNameCell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 25
+            chatMessageCell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 25
+            chatMessageLeftTimeCell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 25
+            chatMessageRightTimeCell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 25
+            chatMessageAndUserCell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 25
+            chatMessageRightTimeAndUserCell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 25
         }
         
-        if indexPath.row == 0 {
-            // 처음글일경우
+        //메세지가 한개밖에 없는경우 즉, 첫메세지 = 마지막메세지
+        if indexPath.row == 0 && indexPath.row == messagesCount - 2{
             if message.fromUserId == FirebaseDataService.instance.currentUserUid {
-                // 처음, 글쓴이 = 나일경우
-                setupChatCell(cell: cell, message: message)
-                return cell
+                setupChatLeftTimeCell(cell: chatMessageLeftTimeCell, message: message)
+                return chatMessageLeftTimeCell
             } else {
-                // 처음, 글쓴이 != 나일경우
-                setupChatAndNameCell(cell: chatAndNameCell, message: message)
-                return chatAndNameCell
+                return chatMessageRightTimeAndUserCell
             }
-            
+        //메세지가 두개이상일때, 마지막메세지가 아닐 경우
+        } else if indexPath.row != messagesCount - 2 {
+            if message.fromUserId == FirebaseDataService.instance.currentUserUid {
+                if indexPath.row == 0{
+                    if messages[indexPath.row].fromUserId == messages[indexPath.row + 1].fromUserId {
+                        if fetchMeetingTime(meetingTime: messages[indexPath.row].timestamp) == fetchMeetingTime(meetingTime: messages[indexPath.row + 1].timestamp){
+                            setupChatCell(cell: chatMessageCell, message: message)
+                            return chatMessageCell
+                        } else {
+                            setupChatLeftTimeCell(cell: chatMessageLeftTimeCell, message: message)
+                            return chatMessageLeftTimeCell
+                        }
+                    } else {
+                        setupChatLeftTimeCell(cell: chatMessageLeftTimeCell, message: message)
+                        return chatMessageLeftTimeCell
+                    }
+                } else {
+                    if messages[indexPath.row].fromUserId == messages[indexPath.row - 1].fromUserId {
+                        // 내가글쓰고 이전글이 내가쓴글
+                        if messages[indexPath.row].fromUserId == messages[indexPath.row + 1].fromUserId {
+                            if fetchMeetingTime(meetingTime: messages[indexPath.row].timestamp) == fetchMeetingTime(meetingTime: messages[indexPath.row + 1].timestamp) {
+                                setupChatCell(cell: chatMessageCell, message: message)
+                                return chatMessageCell
+                            } else {
+                                setupChatLeftTimeCell(cell: chatMessageLeftTimeCell, message: message)
+                                return chatMessageLeftTimeCell
+                            }
+                        } else {
+                            setupChatLeftTimeCell(cell: chatMessageLeftTimeCell, message: message)
+                            return chatMessageLeftTimeCell
+                        }
+                    } else {
+                        // 내가글쓰고 이전글이 상대방이쓴글
+                        if messages[indexPath.row].fromUserId == messages[indexPath.row + 1].fromUserId {
+                            // 다음글이 내가쓴글
+                            if fetchMeetingTime(meetingTime: messages[indexPath.row].timestamp) == fetchMeetingTime(meetingTime: messages[indexPath.row + 1].timestamp) {
+                                setupChatCell(cell: chatMessageCell, message: message)
+                                return chatMessageCell
+                            } else {
+                                setupChatLeftTimeCell(cell: chatMessageLeftTimeCell, message: message)
+                                return chatMessageLeftTimeCell
+                            }
+                        } else {
+                            // 다음글이 상대방이쓴글
+                            setupChatLeftTimeCell(cell: chatMessageLeftTimeCell, message: message)
+                            return chatMessageLeftTimeCell
+                        }
+                    }
+                }
+            } else {
+                //상대방(들)이 쓴글
+                if indexPath.row == 0{
+                    if messages[indexPath.row].fromUserId == messages[indexPath.row + 1].fromUserId {
+                        if fetchMeetingTime(meetingTime: messages[indexPath.row].timestamp) == fetchMeetingTime(meetingTime: messages[indexPath.row + 1].timestamp) {
+                            setupChatAndUserCell(cell: chatMessageAndUserCell, message: message)
+                            return chatMessageAndUserCell
+                        } else {
+                            setupChatRightTimeAndUserCell(cell: chatMessageRightTimeAndUserCell, message: message)
+                            return chatMessageRightTimeAndUserCell
+                        }
+                    } else {
+                        setupChatRightTimeAndUserCell(cell: chatMessageRightTimeAndUserCell, message: message)
+                        return chatMessageRightTimeAndUserCell
+                    }
+                } else {
+                    if messages[indexPath.row].fromUserId == messages[indexPath.row - 1].fromUserId {
+                        //상대방이 글쓰고 이전글이 같은사람
+                        if messages[indexPath.row].fromUserId == messages[indexPath.row + 1].fromUserId {
+                            if fetchMeetingTime(meetingTime: messages[indexPath.row].timestamp) == fetchMeetingTime(meetingTime: messages[indexPath.row + 1].timestamp) {
+                                setupChatCell(cell: chatMessageCell, message: message)
+                                return chatMessageCell
+                            } else {
+                                setupChatRightTimeCell(cell: chatMessageRightTimeCell, message: message)
+                                return chatMessageRightTimeCell
+                            }
+                        } else {
+                            setupChatRightTimeCell(cell: chatMessageRightTimeCell, message: message)
+                            return chatMessageRightTimeCell
+                        }
+                    } else {
+                        //상대방이 글쓰고 이전글이 다른사람
+                        if messages[indexPath.row].fromUserId == messages[indexPath.row + 1].fromUserId {
+                            if fetchMeetingTime(meetingTime: messages[indexPath.row].timestamp) == fetchMeetingTime(meetingTime: messages[indexPath.row + 1].timestamp) {
+                                setupChatAndUserCell(cell: chatMessageAndUserCell, message: message)
+                                return chatMessageAndUserCell
+                            } else {
+                                setupChatRightTimeAndUserCell(cell: chatMessageRightTimeAndUserCell, message: message)
+                                return chatMessageRightTimeAndUserCell
+                            }
+                        } else {
+                            setupChatRightTimeAndUserCell(cell: chatMessageRightTimeAndUserCell, message: message)
+                            return chatMessageRightTimeAndUserCell
+                        }
+                    }
+                }
+            }
+        //메세지가 두개이상일때, 마지막메세지일 경우
         } else {
             if message.fromUserId == FirebaseDataService.instance.currentUserUid {
-                // 글쓴이 = 나일경우
-                setupChatCell(cell: cell, message: message)
-                return cell
+                setupChatLeftTimeCell(cell: chatMessageLeftTimeCell, message: message)
+                return chatMessageLeftTimeCell
             } else {
                 if messages[indexPath.row].fromUserId == messages[indexPath.row - 1].fromUserId{
-                    // 전메세지 글쓴이 == 현재메세지 글쓴이일 경우
-                    setupChatCell(cell: cell, message: message)
-                    return cell
+                    return chatMessageRightTimeCell
                 } else {
-                    // 전메세지 글쓴이 != 현재메세지 글쓴이일 경우
-                    setupChatAndNameCell(cell: chatAndNameCell, message: message)
-                    return chatAndNameCell
+                    return chatMessageRightTimeAndUserCell
                 }
             }
         }
@@ -107,13 +206,35 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         }
     }
     
-    func setupChatAndNameCell(cell: ChatMessageAndUserCell, message: ChatMessage) {
-        if message.fromUserId != FirebaseDataService.instance.currentUserUid {
-            cell.containerView.backgroundColor = UIColor.white
-            cell.textLabel.textColor = UIColor.black
-            cell.containerViewLeftAnchor?.isActive = true
-        }
+    func setupChatLeftTimeCell(cell: ChatMessageLeftTimeCell, message: ChatMessage){
+        cell.containerView.backgroundColor = UIColor(red: 69/255, green: 141/255, blue: 245/255, alpha: 1)
+        cell.textLabel.textColor = UIColor.white
     }
+    
+    func setupChatRightTimeCell(cell: ChatMessageRightTimeCell, message: ChatMessage){
+        cell.containerView.backgroundColor = UIColor.white
+        cell.textLabel.textColor = UIColor.black
+    }
+    
+    func setupChatAndUserCell(cell: ChatMessageAndUserCell, message: ChatMessage) {
+        cell.containerView.backgroundColor = UIColor.white
+        cell.textLabel.textColor = UIColor.black
+    }
+    
+    func setupChatRightTimeAndUserCell(cell: ChatMessageRightTimeAndUserCell, message: ChatMessage){
+        cell.containerView.backgroundColor = UIColor.white
+        cell.textLabel.textColor = UIColor.black
+    }
+   
+    
+    func fetchMeetingTime(meetingTime: NSNumber) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        dateFormatter.dateFormat = "a h:mm"
+        
+        return dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime)))
+    }
+    // MARK: - SetupCell
     
     // 텍스트 줄변경시 메시지의 높이를 동적으로 변경해줌
     private func measuredFrameHeightForEachMessage(message: String) -> CGRect {
@@ -142,9 +263,6 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
                 }
                 FirebaseDataService.instance.groupRef.child(groupId).child("lastMessage").setValue(self.chatTextField.text)
                 self.chatTextField.text = nil
-                
-                
-               
             }
         }
     }
@@ -163,11 +281,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         chatCollectionView.alwaysBounceVertical = true
         sendButton.isEnabled = false
         
-
-
-        
         layout.minimumLineSpacing = 1
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -184,10 +298,8 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     func fetchMessages() {
         if let groupId = self.groupKey {
             let groupMessageRef = FirebaseDataService.instance.groupRef.child(groupId).child("messages")
-            
            
             groupMessageRef.observe(.childAdded, with: { (snapshot) in
-                
                 if let dict = snapshot.value as? Dictionary<String, AnyObject> {
                     let message = ChatMessage(
                         fromUserId: dict["fromUserId"] as! String,
@@ -214,8 +326,6 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
             let tabBarHeight = self.tabBarController!.tabBar.frame.size.height
             view.frame.origin.y = -height + tabBarHeight
             chatCollectionView.contentInset.top = height - tabBarHeight
-            
-
         }
     }
     

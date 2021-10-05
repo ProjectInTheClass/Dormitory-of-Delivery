@@ -1,24 +1,22 @@
 //
-//  ChatMessageAndUserCell.swift
+//  ChatMessageRightTimeCell.swift
 //  DormitoryForDelivery
 //
-//  Created by 김동현 on 2021/09/08.
+//  Created by 김동현 on 2021/10/05.
 //
 
 import UIKit
 
-class ChatMessageAndUserCell: UICollectionViewCell {
+class ChatMessageRightTimeCell: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var textLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     var containerViewWidthAnchor: NSLayoutConstraint?
     var containerViewRightAnchor: NSLayoutConstraint?
     var containerViewLeftAnchor: NSLayoutConstraint?
     var containerViewHeightAnchor: NSLayoutConstraint?
     var textLabelHeightAnchor: NSLayoutConstraint?
-    var nameLabelRightAnchor: NSLayoutConstraint?
-    var nameLabelLeftAnchor: NSLayoutConstraint?
     
     func setUITraits() {
         containerView.layer.cornerRadius = 15
@@ -28,26 +26,23 @@ class ChatMessageAndUserCell: UICollectionViewCell {
     }
     
     func setAnchors() {
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 1).isActive = true
-        //이녀석은 constraint가 안먹는다 ??
-        nameLabelLeftAnchor = nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 6)
-        
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
+        containerView.topAnchor.constraint(equalTo: topAnchor, constant: 1).isActive = true
         containerView.leftAnchor.constraint(equalTo: leftAnchor, constant: 6).isActive = true
         
         containerViewWidthAnchor = containerView.widthAnchor.constraint(equalToConstant: 200)
-        containerViewHeightAnchor = containerView.heightAnchor.constraint(equalToConstant: frame.height - 16 )
+        containerViewHeightAnchor = containerView.heightAnchor.constraint(equalToConstant: frame.height )
         containerViewWidthAnchor?.isActive = true
         containerViewHeightAnchor?.isActive = true
         
         textLabel.translatesAutoresizingMaskIntoConstraints = false
-        textLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 16).isActive = true
+        textLabel.topAnchor.constraint(equalTo: topAnchor, constant: 11).isActive = true
         textLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
         textLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 11).isActive = true
         textLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10).isActive = true
-        textLabelHeightAnchor = textLabel.heightAnchor.constraint(equalToConstant: frame.height - 16)
+        textLabelHeightAnchor = textLabel.heightAnchor.constraint(equalToConstant: frame.height )
+        
+        timeLabel.leftAnchor.constraint(equalTo: containerView.rightAnchor, constant: 5).isActive = true
     }
     
     override func awakeFromNib() {
@@ -73,7 +68,7 @@ class ChatMessageAndUserCell: UICollectionViewCell {
         let height = measuredFrameHeightForEachMessage(message: textLabel.text!).height + 20
         var newFrame = layoutAttributes.frame
         newFrame.size.width = CGFloat(ceilf(Float(size.width)))
-        newFrame.size.height = height + 22 + 5
+        newFrame.size.height = height + 5
         containerViewHeightAnchor?.constant = height
         textLabelHeightAnchor?.constant = height
         layoutAttributes.frame = newFrame

@@ -32,6 +32,9 @@
 		D8ABC1B126D29C67009AB503 /* ChatGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ABC1B026D29C67009AB503 /* ChatGroupTableViewController.swift */; };
 		D8ABC1B326D2A759009AB503 /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ABC1B226D2A759009AB503 /* ChatRoomViewController.swift */; };
 		D8ABC1B526D2ADF3009AB503 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ABC1B426D2ADF3009AB503 /* ChatMessageCell.swift */; };
+		D8B78386270C17B600E9D684 /* ChatMessageLeftTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B78385270C17B600E9D684 /* ChatMessageLeftTimeCell.swift */; };
+		D8B78388270C191200E9D684 /* ChatMessageRightTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B78387270C191200E9D684 /* ChatMessageRightTimeCell.swift */; };
+		D8B7838A270C19DB00E9D684 /* ChatMessageRightTimeAndUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B78389270C19DB00E9D684 /* ChatMessageRightTimeAndUserCell.swift */; };
 		D8C18F4226B6E73C00242ED7 /* RecruitmenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C18F4126B6E73C00242ED7 /* RecruitmenTableViewController.swift */; };
 		D8C18F4426B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C18F4326B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift */; };
 		FFFC7174C1402A3F4E6896DF /* Pods_DormitoryForDelivery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61902CFB1D74595B278E6C11 /* Pods_DormitoryForDelivery.framework */; };
@@ -68,6 +71,9 @@
 		D8ABC1B026D29C67009AB503 /* ChatGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGroupTableViewController.swift; sourceTree = "<group>"; };
 		D8ABC1B226D2A759009AB503 /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 		D8ABC1B426D2ADF3009AB503 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		D8B78385270C17B600E9D684 /* ChatMessageLeftTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageLeftTimeCell.swift; sourceTree = "<group>"; };
+		D8B78387270C191200E9D684 /* ChatMessageRightTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageRightTimeCell.swift; sourceTree = "<group>"; };
+		D8B78389270C19DB00E9D684 /* ChatMessageRightTimeAndUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageRightTimeAndUserCell.swift; sourceTree = "<group>"; };
 		D8C18F4126B6E73C00242ED7 /* RecruitmenTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmenTableViewController.swift; sourceTree = "<group>"; };
 		D8C18F4326B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoriesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,7 +189,10 @@
 			isa = PBXGroup;
 			children = (
 				D8ABC1B426D2ADF3009AB503 /* ChatMessageCell.swift */,
+				D8B78385270C17B600E9D684 /* ChatMessageLeftTimeCell.swift */,
+				D8B78387270C191200E9D684 /* ChatMessageRightTimeCell.swift */,
 				D825487C26E87E2E00208372 /* ChatMessageAndUserCell.swift */,
+				D8B78389270C19DB00E9D684 /* ChatMessageRightTimeAndUserCell.swift */,
 			);
 			path = ChatMessage;
 			sourceTree = "<group>";
@@ -341,13 +350,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8B78388270C191200E9D684 /* ChatMessageRightTimeCell.swift in Sources */,
 				0C17CA1D26B8159E00D92B81 /* MainTableViewCell.swift in Sources */,
 				D8ABC1AF26D28533009AB503 /* chattingDataModel.swift in Sources */,
 				D80E34B926CA8F1B008CD104 /* MoreDetailsTableViewController.swift in Sources */,
+				D8B7838A270C19DB00E9D684 /* ChatMessageRightTimeAndUserCell.swift in Sources */,
 				0C26FE9726BE2414003C3501 /* MainTableViewController2.swift in Sources */,
 				D8C18F4426B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift in Sources */,
 				D8ABC1B126D29C67009AB503 /* ChatGroupTableViewController.swift in Sources */,
 				D8A0378E26DB7D6900477A5B /* ChatGroupTableViewCell.swift in Sources */,
+				D8B78386270C17B600E9D684 /* ChatMessageLeftTimeCell.swift in Sources */,
 				D825487A26E5E77800208372 /* EmailCertificationViewController.swift in Sources */,
 				0C4DC3E626C94D0B006A44DF /* PostViewController.swift in Sources */,
 				D825487D26E87E2E00208372 /* ChatMessageAndUserCell.swift in Sources */,

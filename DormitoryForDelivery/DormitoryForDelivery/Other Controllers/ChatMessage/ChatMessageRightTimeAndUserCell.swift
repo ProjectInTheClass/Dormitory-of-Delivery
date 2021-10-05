@@ -1,16 +1,17 @@
 //
-//  ChatMessageAndUserCell.swift
+//  ChatMessageRightTimeAndUserCell.swift
 //  DormitoryForDelivery
 //
-//  Created by 김동현 on 2021/09/08.
+//  Created by 김동현 on 2021/10/05.
 //
 
 import UIKit
 
-class ChatMessageAndUserCell: UICollectionViewCell {
+class ChatMessageRightTimeAndUserCell: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     var containerViewWidthAnchor: NSLayoutConstraint?
     var containerViewRightAnchor: NSLayoutConstraint?
@@ -48,6 +49,8 @@ class ChatMessageAndUserCell: UICollectionViewCell {
         textLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 11).isActive = true
         textLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10).isActive = true
         textLabelHeightAnchor = textLabel.heightAnchor.constraint(equalToConstant: frame.height - 16)
+        
+        timeLabel.leftAnchor.constraint(equalTo: containerView.rightAnchor, constant: 5).isActive = true
     }
     
     override func awakeFromNib() {

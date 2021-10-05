@@ -1925,19 +1925,19 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chatCell" id="Ba0-YK-KFH" customClass="ChatMessageCell" customModule="DormitoryForDelivery" customModuleProvider="target">
-                                                <rect key="frame" x="56.5" y="0.0" width="301" height="198"/>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chatMessageCell" id="Ba0-YK-KFH" customClass="ChatMessageCell" customModule="DormitoryForDelivery" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="3" width="185" height="100"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="301" height="198"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="185" height="100"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rfc-V5-q0I">
-                                                            <rect key="frame" x="31" y="35" width="240" height="128"/>
+                                                            <rect key="frame" x="28" y="14" width="128" height="73"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwz-zn-doa">
-                                                                    <rect key="frame" x="99" y="54" width="42" height="21"/>
+                                                                    <rect key="frame" x="43" y="26" width="42" height="21"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -1948,32 +1948,32 @@
                                                         </view>
                                                     </subviews>
                                                 </view>
-                                                <size key="customSize" width="301" height="198"/>
+                                                <size key="customSize" width="185" height="100"/>
                                                 <connections>
                                                     <outlet property="containerView" destination="rfc-V5-q0I" id="LSR-vO-Xf2"/>
                                                     <outlet property="textLabel" destination="Lwz-zn-doa" id="UZt-6a-FIN"/>
                                                 </connections>
                                             </collectionViewCell>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chatAndUserCell" id="19b-zK-2YU" customClass="ChatMessageAndUserCell" customModule="DormitoryForDelivery" customModuleProvider="target">
-                                                <rect key="frame" x="56.5" y="208" width="301" height="198"/>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chatMessageAndUserCell" id="19b-zK-2YU" customClass="ChatMessageAndUserCell" customModule="DormitoryForDelivery" customModuleProvider="target">
+                                                <rect key="frame" x="269" y="0.0" width="145" height="106"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="301" height="198"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="106"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLH-Wg-NwV">
-                                                            <rect key="frame" x="31" y="35" width="240" height="128"/>
+                                                            <rect key="frame" x="20" y="17" width="107" height="68"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7i5-J9-BhV">
-                                                                    <rect key="frame" x="99" y="54" width="42" height="21"/>
+                                                                    <rect key="frame" x="33" y="31" width="42" height="21"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="16 김동현" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJY-YF-wda">
-                                                                    <rect key="frame" x="99" y="25" width="48" height="15"/>
+                                                                    <rect key="frame" x="30" y="8" width="48" height="15"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1984,11 +1984,139 @@
                                                         </view>
                                                     </subviews>
                                                 </view>
-                                                <size key="customSize" width="301" height="198"/>
+                                                <size key="customSize" width="145" height="106"/>
                                                 <connections>
                                                     <outlet property="containerView" destination="SLH-Wg-NwV" id="PLj-kU-Cji"/>
                                                     <outlet property="nameLabel" destination="CJY-YF-wda" id="R5q-Ck-YiG"/>
                                                     <outlet property="textLabel" destination="7i5-J9-BhV" id="mvw-SV-J0L"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chatLeftTimeCell" id="buA-vb-kCI" userLabel="chatLeftTimeCell" customClass="ChatMessageLeftTimeCell" customModule="DormitoryForDelivery" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="116" width="185" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="185" height="100"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="SCa-iq-j8h">
+                                                            <rect key="frame" x="10" y="14" width="164" height="73"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noV-ba-sM2">
+                                                                    <rect key="frame" x="0.0" y="58.5" width="31" height="14.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pqq-xJ-hEg">
+                                                                    <rect key="frame" x="36" y="0.0" width="128" height="73"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2NE-yy-19f">
+                                                                            <rect key="frame" x="43" y="26" width="42" height="21"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </view>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </view>
+                                                <size key="customSize" width="185" height="100"/>
+                                                <connections>
+                                                    <outlet property="containerView" destination="pqq-xJ-hEg" id="AHn-tB-IuM"/>
+                                                    <outlet property="textLabel" destination="2NE-yy-19f" id="Wch-5v-hAI"/>
+                                                    <outlet property="timeLabel" destination="noV-ba-sM2" id="Q7S-yf-NNE"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chatRightTimeCell" id="Gyg-QW-7eI" userLabel="chatRightTimeCell" customClass="ChatMessageRightTimeCell" customModule="DormitoryForDelivery" customModuleProvider="target">
+                                                <rect key="frame" x="229" y="116" width="185" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="185" height="100"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="bottom" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="aOR-hi-yYm">
+                                                            <rect key="frame" x="8" y="14" width="166" height="73"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9i1-54-B0v">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="73"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzB-hM-jsu">
+                                                                            <rect key="frame" x="43" y="26" width="42" height="21"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4N-kG-qeA">
+                                                                    <rect key="frame" x="135" y="58.5" width="31" height="14.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </view>
+                                                <size key="customSize" width="185" height="100"/>
+                                                <connections>
+                                                    <outlet property="containerView" destination="9i1-54-B0v" id="ALd-7v-th4"/>
+                                                    <outlet property="textLabel" destination="vzB-hM-jsu" id="TrE-jZ-hue"/>
+                                                    <outlet property="timeLabel" destination="d4N-kG-qeA" id="Kx9-ck-KFD"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chatRightTimeAndUserCell" id="Sg0-T9-dWA" userLabel="chatRightTimeAndNameCell" customClass="ChatMessageRightTimeAndUserCell" customModule="DormitoryForDelivery" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="226" width="171" height="99"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="171" height="99"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="bottom" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="yQl-8g-YH6">
+                                                            <rect key="frame" x="10" y="15" width="140" height="68"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NgA-8h-pqp">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="107" height="68"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNJ-e4-LEe">
+                                                                            <rect key="frame" x="33" y="31" width="42" height="21"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="16 김동현" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysq-Uf-fEa">
+                                                                            <rect key="frame" x="30" y="8" width="48" height="15"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIm-Pe-kZB">
+                                                                    <rect key="frame" x="109" y="53.5" width="31" height="14.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </view>
+                                                <size key="customSize" width="171" height="99"/>
+                                                <connections>
+                                                    <outlet property="containerView" destination="NgA-8h-pqp" id="ptN-Wc-pWO"/>
+                                                    <outlet property="nameLabel" destination="ysq-Uf-fEa" id="1hO-be-SXX"/>
+                                                    <outlet property="textLabel" destination="XNJ-e4-LEe" id="tUN-NT-Nno"/>
+                                                    <outlet property="timeLabel" destination="fIm-Pe-kZB" id="kdt-7c-cq6"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
