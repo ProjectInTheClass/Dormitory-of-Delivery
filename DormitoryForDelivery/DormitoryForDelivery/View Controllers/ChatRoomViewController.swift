@@ -41,7 +41,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         return messages.count - 1
     }
     
-    // MARK: - CellForItemAt
+    // MARK: - CellForItemAt
     // cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -50,8 +50,9 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         let chatMessageRightTimeCell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatRightTimeCell", for: indexPath) as! ChatMessageRightTimeCell
         let chatMessageAndUserCell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatMessageAndUserCell", for: indexPath) as! ChatMessageAndUserCell
         let chatMessageRightTimeAndUserCell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatRightTimeAndUserCell", for: indexPath) as! ChatMessageRightTimeAndUserCell
+        let enterenceCell = collectionView.dequeueReusableCell(withReuseIdentifier: "enterenceCell", for: indexPath) as! EnterenceCell
         
-        let message = messages[indexPath.item]
+        var message = messages[indexPath.item]
         let messagesCount = messages.count
         
         chatMessageCell.textLabel.text = message.text
@@ -70,6 +71,20 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
             chatMessageRightTimeCell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 25
             chatMessageAndUserCell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 25
             chatMessageRightTimeAndUserCell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(message: message.text).width + 25
+        }
+        
+        guard message.text.contains("/In/") == false else {
+            message.text.removeFirst(4)
+            enterenceCell.textLabel.text = message.text
+            setupEnterenceCell(cell: enterenceCell, message: message)
+            return enterenceCell
+        }
+        
+        guard message.text.contains("/Out/") == false else {
+            message.text.removeFirst(5)
+            enterenceCell.textLabel.text = message.text
+            setupEnterenceCell(cell: enterenceCell, message: message)
+            return enterenceCell
         }
         
         //메세지가 한개밖에 없는경우 즉, 첫메세지 = 마지막메세지
@@ -149,8 +164,13 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
                         //상대방이 글쓰고 이전글이 같은사람
                         if messages[indexPath.row].fromUserId == messages[indexPath.row + 1].fromUserId {
                             if fetchMeetingTime(meetingTime: messages[indexPath.row].timestamp) == fetchMeetingTime(meetingTime: messages[indexPath.row + 1].timestamp) {
-                                setupChatCell(cell: chatMessageCell, message: message)
-                                return chatMessageCell
+                                if messages[indexPath.row + 1].text.contains("/Out/"){
+                                    setupChatRightTimeCell(cell: chatMessageRightTimeCell, message: message)
+                                    return chatMessageRightTimeCell
+                                } else {
+                                    setupChatCell(cell: chatMessageCell, message: message)
+                                    return chatMessageCell
+                                }
                             } else {
                                 setupChatRightTimeCell(cell: chatMessageRightTimeCell, message: message)
                                 return chatMessageRightTimeCell
@@ -226,6 +246,10 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         cell.textLabel.textColor = UIColor.black
     }
    
+    func setupEnterenceCell(cell: EnterenceCell, message: ChatMessage){
+        cell.containerView.backgroundColor = UIColor(red: 142/255, green: 154/255, blue: 163/255, alpha: 1)
+        cell.textLabel.textColor = UIColor.white
+    }
     
     func fetchMeetingTime(meetingTime: NSNumber) -> String {
         let dateFormatter = DateFormatter()
@@ -240,7 +264,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     private func measuredFrameHeightForEachMessage(message: String) -> CGRect {
         let size = CGSize(width: 200, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-        return NSString(string: message).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)], context: nil)
+        return NSString(string: message).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)], context: nil)
     }
     
     @IBAction func sendButtonTapped(_ sender: UIButton){
@@ -374,6 +398,40 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         return true
     }
 
+    @IBAction func moreOptionBarButtonTapped(_ sender: Any) {
+        let moreOptionAlertController = UIAlertController(title: "채팅방에서 나가기를 하면 대화내용 및 채팅목록에서 삭제됩니다. 채팅방을 나가시겠습니까?", message: nil, preferredStyle: .actionSheet)
+        let alertDeletePostAction = UIAlertAction(title: "삭제하기", style: .destructive) { action in
+            self.deleteButtonTapped()
+        }
+        let alertCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        moreOptionAlertController.addAction(alertDeletePostAction)
+        moreOptionAlertController.addAction(alertCancelAction)
+        present(moreOptionAlertController, animated: true, completion: nil)
+    }
+    
+    func deleteButtonTapped() {
+        guard let fromUserId = FirebaseDataService.instance.currentUserUid else {
+            return
+        }
+        
+        let data: Dictionary<String, AnyObject> = [
+            "fromUserId" : fromUserId as AnyObject,
+            "text" : "/Out/16김동현님이 나갔습니다." as AnyObject,
+            "timestamp" : NSNumber(value: Date().timeIntervalSince1970)
+        ]
+        
+        if let groupId = self.groupKey {
+            let ref = FirebaseDataService.instance.groupRef.child(groupId).child("messages").childByAutoId()
+            ref.updateChildValues(data) { (error, ref) in
+                guard error == nil else {
+                    print(error as Any)
+                    return
+                }
+            }
+        }
+    }
+    
     func navigationbarUI() {
         navigationController?.navigationBar.setBackgroundImage(UIImage(named:  "3"), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()

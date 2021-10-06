@@ -1937,9 +1937,9 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwz-zn-doa">
-                                                                    <rect key="frame" x="43" y="26" width="42" height="21"/>
+                                                                    <rect key="frame" x="43" y="26" width="38" height="18"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -1966,9 +1966,9 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7i5-J9-BhV">
-                                                                    <rect key="frame" x="33" y="31" width="42" height="21"/>
+                                                                    <rect key="frame" x="33" y="31" width="38" height="18"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -2011,9 +2011,9 @@
                                                                     <rect key="frame" x="36" y="0.0" width="128" height="73"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2NE-yy-19f">
-                                                                            <rect key="frame" x="43" y="26" width="42" height="21"/>
+                                                                            <rect key="frame" x="43" y="26" width="38" height="18"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -2045,9 +2045,9 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="73"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzB-hM-jsu">
-                                                                            <rect key="frame" x="43" y="26" width="42" height="21"/>
+                                                                            <rect key="frame" x="43" y="26" width="38" height="18"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -2072,7 +2072,7 @@
                                                 </connections>
                                             </collectionViewCell>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chatRightTimeAndUserCell" id="Sg0-T9-dWA" userLabel="chatRightTimeAndNameCell" customClass="ChatMessageRightTimeAndUserCell" customModule="DormitoryForDelivery" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="226" width="171" height="99"/>
+                                                <rect key="frame" x="0.0" y="226.5" width="171" height="99"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="171" height="99"/>
@@ -2085,9 +2085,9 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="107" height="68"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNJ-e4-LEe">
-                                                                            <rect key="frame" x="33" y="31" width="42" height="21"/>
+                                                                            <rect key="frame" x="33" y="31" width="38" height="18"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -2117,6 +2117,35 @@
                                                     <outlet property="nameLabel" destination="ysq-Uf-fEa" id="1hO-be-SXX"/>
                                                     <outlet property="textLabel" destination="XNJ-e4-LEe" id="tUN-NT-Nno"/>
                                                     <outlet property="timeLabel" destination="fIm-Pe-kZB" id="kdt-7c-cq6"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="enterenceCell" id="DGR-BA-I3B" userLabel="enterenceCell" customClass="EnterenceCell" customModule="DormitoryForDelivery" customModuleProvider="target">
+                                                <rect key="frame" x="181" y="226" width="185" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="185" height="100"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1qN-HX-rCf">
+                                                            <rect key="frame" x="28" y="14" width="128" height="73"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rU1-73-mwr">
+                                                                    <rect key="frame" x="43" y="26" width="31" height="15"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="0.5725490196078431" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </view>
+                                                    </subviews>
+                                                </view>
+                                                <size key="customSize" width="185" height="100"/>
+                                                <connections>
+                                                    <outlet property="containerView" destination="1qN-HX-rCf" id="bxs-eI-Wcy"/>
+                                                    <outlet property="textLabel" destination="rU1-73-mwr" id="hVU-wy-67p"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -2172,7 +2201,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Fsn-jW-chg">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="line.horizontal.3" catalog="system" id="SVc-Gp-8nE"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="line.horizontal.3" catalog="system" id="SVc-Gp-8nE">
+                            <connections>
+                                <action selector="moreOptionBarButtonTapped:" destination="A2B-cd-b9I" id="woU-qy-SJd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="chatCollectionView" destination="IQb-QP-KQa" id="aGG-tE-YCH"/>
@@ -2193,7 +2226,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="8YM-W5-RIq"/>
-        <segue reference="mcv-24-QYg"/>
+        <segue reference="vqh-P7-hEC"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="2" width="858" height="432"/>

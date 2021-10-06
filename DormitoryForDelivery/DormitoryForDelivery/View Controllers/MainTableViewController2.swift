@@ -221,11 +221,11 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         let meetingDay = Int(dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime))))!
         
         if currentDay == meetingDay {
-            dateFormatter.dateFormat = "a HH:mm"
+            dateFormatter.dateFormat = "a hh:mm"
             return dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime))) + " " + "까지"
             
         } else if currentDay + 1 == meetingDay {
-            dateFormatter.dateFormat = "a HH:mm"
+            dateFormatter.dateFormat = "a hh:mm"
             return "내일 " + dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime)))
         }
         

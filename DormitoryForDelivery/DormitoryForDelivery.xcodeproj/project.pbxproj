@@ -25,6 +25,7 @@
 		D825487D26E87E2E00208372 /* ChatMessageAndUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D825487C26E87E2E00208372 /* ChatMessageAndUserCell.swift */; };
 		D85366C226B1AD0A0045B8C8 /* ListsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85366C126B1AD0A0045B8C8 /* ListsTableViewCell.swift */; };
 		D85DAD4926BAA6A000E1A419 /* DeviceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85DAD4826BAA6A000E1A419 /* DeviceConfiguration.swift */; };
+		D89740C9270DD45500C4B459 /* EnterenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89740C8270DD45500C4B459 /* EnterenceCell.swift */; };
 		D8A0378E26DB7D6900477A5B /* ChatGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0378D26DB7D6900477A5B /* ChatGroupTableViewCell.swift */; };
 		D8A0379026DB865D00477A5B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8A0378F26DB865D00477A5B /* GoogleService-Info.plist */; };
 		D8ABC1AD26D283C8009AB503 /* FirebaseDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ABC1AC26D283C8009AB503 /* FirebaseDataService.swift */; };
@@ -64,6 +65,7 @@
 		D825487C26E87E2E00208372 /* ChatMessageAndUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageAndUserCell.swift; sourceTree = "<group>"; };
 		D85366C126B1AD0A0045B8C8 /* ListsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsTableViewCell.swift; sourceTree = "<group>"; };
 		D85DAD4826BAA6A000E1A419 /* DeviceConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfiguration.swift; sourceTree = "<group>"; };
+		D89740C8270DD45500C4B459 /* EnterenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterenceCell.swift; sourceTree = "<group>"; };
 		D8A0378D26DB7D6900477A5B /* ChatGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGroupTableViewCell.swift; sourceTree = "<group>"; };
 		D8A0378F26DB865D00477A5B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D8ABC1AC26D283C8009AB503 /* FirebaseDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataService.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				D8B78387270C191200E9D684 /* ChatMessageRightTimeCell.swift */,
 				D825487C26E87E2E00208372 /* ChatMessageAndUserCell.swift */,
 				D8B78389270C19DB00E9D684 /* ChatMessageRightTimeAndUserCell.swift */,
+				D89740C8270DD45500C4B459 /* EnterenceCell.swift */,
 			);
 			path = ChatMessage;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				D8143DB826C8F7EC003B70E8 /* MemberRegistrationViewController.swift in Sources */,
 				CC7586A526B8524B008EF905 /* LogInViewController.swift in Sources */,
 				D85366C226B1AD0A0045B8C8 /* ListsTableViewCell.swift in Sources */,
+				D89740C9270DD45500C4B459 /* EnterenceCell.swift in Sources */,
 				0C4DC3EC26C94D49006A44DF /* PostTableViewController.swift in Sources */,
 				D85DAD4926BAA6A000E1A419 /* DeviceConfiguration.swift in Sources */,
 				D8ABC1AD26D283C8009AB503 /* FirebaseDataService.swift in Sources */,
