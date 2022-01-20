@@ -204,7 +204,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
                     }
                 }
 //            let time = DispatchTime.now() + .seconds(1)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 10) {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
                 self.dismiss(animated: true) {
                     self.removeLoadingScreen()
                 }
