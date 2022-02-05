@@ -68,6 +68,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         self.searchMainPost = nil
         self.filteredButtonMainPost = nil
         self.mainTableView.reloadData()
+        
     }
     
     @IBAction func filterButtonTapped(_ sender: UIButton) {
