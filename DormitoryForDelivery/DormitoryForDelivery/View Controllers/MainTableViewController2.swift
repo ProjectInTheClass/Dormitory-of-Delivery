@@ -27,14 +27,17 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     var searchMainPost: [RecruitingText]?
     
     let searchController = UISearchController(searchResultsController: nil)
+    
     let navigationApperance = UINavigationBarAppearance()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTableView.dataSource = self
         mainTableView.delegate = self
         setUpSearchController()
-        
+        initRefresh()
         navigationUI()
         
         button.tintColor = UIColor(red:142/255 , green: 160/255, blue: 207/255, alpha: 1)
@@ -234,11 +237,33 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
        
     }
     
-    func navigationUI() {
+    private func navigationUI() {
         navigationBar.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = .white
     }
+    
+    private func initRefresh() {
+        mainTableView.refreshControl = UIRefreshControl()
+        mainTableView.refreshControl?.addTarget(self, action: #selector(pullToRefreshTableView(sender: )), for: .valueChanged)
+    }
 
+    @objc private func pullToRefreshTableView(sender: Any) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.fetchRecruitmentTableList()
+            self.mainTableView.reloadData()
+            self.mainTableView.refreshControl?.endRefreshing()
+        }
+
+    }
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        let currentOffset = scrollView.contentOffset
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        
+        if maximumOffset < currentOffset {
+            
+        }
+    }
     // MARK: - Navigation
     
     
