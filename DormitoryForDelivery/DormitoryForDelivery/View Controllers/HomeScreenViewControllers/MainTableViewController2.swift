@@ -256,14 +256,15 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
 
     }
     
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        let currentOffset = scrollView.contentOffset
-        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
-        
-        if maximumOffset < currentOffset {
-            
-        }
-    }
+//    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+//        let currentOffset = scrollView.contentOffset
+//        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+//
+//        if maximumOffset < currentOffset {
+//
+//        }
+//    }
+
     // MARK: - Navigation
     
     
