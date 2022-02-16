@@ -19,6 +19,8 @@
 		71B6D10927BCE7B2009D8ADC /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B6D10827BCE7B2009D8ADC /* TutorialViewController.swift */; };
 		71B6D10D27BCED27009D8ADC /* TutorialSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B6D10C27BCED27009D8ADC /* TutorialSlide.swift */; };
 		71B6D11127BCF278009D8ADC /* TutorialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B6D11027BCF277009D8ADC /* TutorialCollectionViewCell.swift */; };
+		71B6D11327BD1775009D8ADC /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B6D11227BD1775009D8ADC /* Extention.swift */; };
+		71B6D11527BD1951009D8ADC /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B6D11427BD1951009D8ADC /* UserDefaultsExtension.swift */; };
 		CC7586A526B8524B008EF905 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7586A426B8524B008EF905 /* LogInViewController.swift */; };
 		D80E34B926CA8F1B008CD104 /* MoreDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80E34B826CA8F1B008CD104 /* MoreDetailsTableViewController.swift */; };
 		D8143DB826C8F7EC003B70E8 /* MemberRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8143DB726C8F7EB003B70E8 /* MemberRegistrationViewController.swift */; };
@@ -61,6 +63,8 @@
 		71B6D10827BCE7B2009D8ADC /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		71B6D10C27BCED27009D8ADC /* TutorialSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialSlide.swift; sourceTree = "<group>"; };
 		71B6D11027BCF277009D8ADC /* TutorialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCollectionViewCell.swift; sourceTree = "<group>"; };
+		71B6D11227BD1775009D8ADC /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
+		71B6D11427BD1951009D8ADC /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
 		B7F007BF26FA59F1F6599373 /* Pods-DormitoryForDelivery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DormitoryForDelivery.debug.xcconfig"; path = "Target Support Files/Pods-DormitoryForDelivery/Pods-DormitoryForDelivery.debug.xcconfig"; sourceTree = "<group>"; };
 		CAD7B5AA9DCDA7CA71B229C8 /* Pods-DormitoryForDelivery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DormitoryForDelivery.release.xcconfig"; path = "Target Support Files/Pods-DormitoryForDelivery/Pods-DormitoryForDelivery.release.xcconfig"; sourceTree = "<group>"; };
 		CC7586A426B8524B008EF905 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 			children = (
 				71B6D10827BCE7B2009D8ADC /* TutorialViewController.swift */,
 				71B6D11027BCF277009D8ADC /* TutorialCollectionViewCell.swift */,
+				71B6D11227BD1775009D8ADC /* Extention.swift */,
+				71B6D11427BD1951009D8ADC /* UserDefaultsExtension.swift */,
 			);
 			path = TutorialScreenViewControllers;
 			sourceTree = "<group>";
@@ -394,11 +400,13 @@
 				0C17CA1D26B8159E00D92B81 /* MainTableViewCell.swift in Sources */,
 				D8ABC1AF26D28533009AB503 /* chattingDataModel.swift in Sources */,
 				71B6D10D27BCED27009D8ADC /* TutorialSlide.swift in Sources */,
+				71B6D11327BD1775009D8ADC /* Extention.swift in Sources */,
 				D80E34B926CA8F1B008CD104 /* MoreDetailsTableViewController.swift in Sources */,
 				D8B7838A270C19DB00E9D684 /* ChatMessageRightTimeAndUserCell.swift in Sources */,
 				0C26FE9726BE2414003C3501 /* MainTableViewController2.swift in Sources */,
 				D8C18F4426B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift in Sources */,
 				D8ABC1B126D29C67009AB503 /* ChatGroupTableViewController.swift in Sources */,
+				71B6D11527BD1951009D8ADC /* UserDefaultsExtension.swift in Sources */,
 				D8A0378E26DB7D6900477A5B /* ChatGroupTableViewCell.swift in Sources */,
 				D8B78386270C17B600E9D684 /* ChatMessageLeftTimeCell.swift in Sources */,
 				D825487A26E5E77800208372 /* EmailCertificationViewController.swift in Sources */,

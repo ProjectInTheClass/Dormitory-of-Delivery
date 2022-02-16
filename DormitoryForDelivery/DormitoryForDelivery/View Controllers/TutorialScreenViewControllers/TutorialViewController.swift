@@ -47,6 +47,7 @@ class TutorialViewController: UIViewController {
         let controller = storyboard?.instantiateViewController(identifier: "MainTableViewController") as! UITabBarController
             controller.modalPresentationStyle = .fullScreen
             controller.modalTransitionStyle = .coverVertical
+            UserDefaults.standard.hasTutorial = true
             present(controller, animated: true, completion: nil)
         
     }
@@ -57,6 +58,7 @@ class TutorialViewController: UIViewController {
         let controller = storyboard?.instantiateViewController(identifier: "MainTableViewController") as! UITabBarController
             controller.modalPresentationStyle = .fullScreen
             controller.modalTransitionStyle = .coverVertical
+            UserDefaults.standard.hasTutorial = true
             present(controller, animated: true, completion: nil)
             
         }else{
