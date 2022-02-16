@@ -16,6 +16,9 @@
 		0CE619F327BB529E00D51BEC /* HomeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE619F227BB529E00D51BEC /* HomeScreen.storyboard */; };
 		0CE619F527BB52A900D51BEC /* ChattingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE619F427BB52A900D51BEC /* ChattingScreen.storyboard */; };
 		0CE619F727BB52B200D51BEC /* SettingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE619F627BB52B200D51BEC /* SettingScreen.storyboard */; };
+		71B6D10927BCE7B2009D8ADC /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B6D10827BCE7B2009D8ADC /* TutorialViewController.swift */; };
+		71B6D10D27BCED27009D8ADC /* TutorialSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B6D10C27BCED27009D8ADC /* TutorialSlide.swift */; };
+		71B6D11127BCF278009D8ADC /* TutorialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B6D11027BCF277009D8ADC /* TutorialCollectionViewCell.swift */; };
 		CC7586A526B8524B008EF905 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7586A426B8524B008EF905 /* LogInViewController.swift */; };
 		D80E34B926CA8F1B008CD104 /* MoreDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80E34B826CA8F1B008CD104 /* MoreDetailsTableViewController.swift */; };
 		D8143DB826C8F7EC003B70E8 /* MemberRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8143DB726C8F7EB003B70E8 /* MemberRegistrationViewController.swift */; };
@@ -55,6 +58,9 @@
 		0CE619F427BB52A900D51BEC /* ChattingScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChattingScreen.storyboard; sourceTree = "<group>"; };
 		0CE619F627BB52B200D51BEC /* SettingScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingScreen.storyboard; sourceTree = "<group>"; };
 		61902CFB1D74595B278E6C11 /* Pods_DormitoryForDelivery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DormitoryForDelivery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71B6D10827BCE7B2009D8ADC /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		71B6D10C27BCED27009D8ADC /* TutorialSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialSlide.swift; sourceTree = "<group>"; };
+		71B6D11027BCF277009D8ADC /* TutorialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7F007BF26FA59F1F6599373 /* Pods-DormitoryForDelivery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DormitoryForDelivery.debug.xcconfig"; path = "Target Support Files/Pods-DormitoryForDelivery/Pods-DormitoryForDelivery.debug.xcconfig"; sourceTree = "<group>"; };
 		CAD7B5AA9DCDA7CA71B229C8 /* Pods-DormitoryForDelivery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DormitoryForDelivery.release.xcconfig"; path = "Target Support Files/Pods-DormitoryForDelivery/Pods-DormitoryForDelivery.release.xcconfig"; sourceTree = "<group>"; };
 		CC7586A426B8524B008EF905 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +146,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		71B6D10727BCE731009D8ADC /* TutorialScreenViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				71B6D10827BCE7B2009D8ADC /* TutorialViewController.swift */,
+				71B6D11027BCF277009D8ADC /* TutorialCollectionViewCell.swift */,
+			);
+			path = TutorialScreenViewControllers;
+			sourceTree = "<group>";
+		};
 		C7793127C360A3918BCF984C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +198,7 @@
 		D81BA20F26AED3F3009B1FE3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				71B6D10727BCE731009D8ADC /* TutorialScreenViewControllers */,
 				0CE619F827BB55C900D51BEC /* HomeScreenViewControllers */,
 				0CE619F927BB563400D51BEC /* ChattingScreenViewControllers */,
 				0CE619FA27BB567B00D51BEC /* SettingScreenViewControllers */,
@@ -197,6 +213,7 @@
 				0C17CA1A26B7F40500D92B81 /* RecruitingText.swift */,
 				D8ABC1AC26D283C8009AB503 /* FirebaseDataService.swift */,
 				D8ABC1AE26D28533009AB503 /* chattingDataModel.swift */,
+				71B6D10C27BCED27009D8ADC /* TutorialSlide.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -376,6 +393,7 @@
 				D8B78388270C191200E9D684 /* ChatMessageRightTimeCell.swift in Sources */,
 				0C17CA1D26B8159E00D92B81 /* MainTableViewCell.swift in Sources */,
 				D8ABC1AF26D28533009AB503 /* chattingDataModel.swift in Sources */,
+				71B6D10D27BCED27009D8ADC /* TutorialSlide.swift in Sources */,
 				D80E34B926CA8F1B008CD104 /* MoreDetailsTableViewController.swift in Sources */,
 				D8B7838A270C19DB00E9D684 /* ChatMessageRightTimeAndUserCell.swift in Sources */,
 				0C26FE9726BE2414003C3501 /* MainTableViewController2.swift in Sources */,
@@ -390,11 +408,13 @@
 				0CB4A01526EF74B5003818A0 /* EditNavigationController.swift in Sources */,
 				D81BA1D826AA8B5C009B1FE3 /* AppDelegate.swift in Sources */,
 				0C17CA1B26B7F40500D92B81 /* RecruitingText.swift in Sources */,
+				71B6D11127BCF278009D8ADC /* TutorialCollectionViewCell.swift in Sources */,
 				D8143DB826C8F7EC003B70E8 /* MemberRegistrationViewController.swift in Sources */,
 				CC7586A526B8524B008EF905 /* LogInViewController.swift in Sources */,
 				D85366C226B1AD0A0045B8C8 /* ListsTableViewCell.swift in Sources */,
 				D89740C9270DD45500C4B459 /* EnterenceCell.swift in Sources */,
 				0C4DC3EC26C94D49006A44DF /* PostTableViewController.swift in Sources */,
+				71B6D10927BCE7B2009D8ADC /* TutorialViewController.swift in Sources */,
 				D85DAD4926BAA6A000E1A419 /* DeviceConfiguration.swift in Sources */,
 				D8ABC1AD26D283C8009AB503 /* FirebaseDataService.swift in Sources */,
 				D8ABC1B526D2ADF3009AB503 /* ChatMessageCell.swift in Sources */,
