@@ -49,7 +49,7 @@ class TutorialViewController: UIViewController {
             controller.modalPresentationStyle = .fullScreen
             controller.modalTransitionStyle = .coverVertical
             UserDefaults.standard.hasTutorial = true
-            present(controller, animated: true, completion: nil)
+            present(controller, animated: false, completion: nil)
             
         }else{
             currentPage += 1
