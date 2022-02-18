@@ -45,10 +45,29 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         button.layer.cornerRadius = button.layer.frame.size.width/2
 
     }
+
+    func checkAndShowLoginOrIntro() -> Bool {
+        let flag = UserDefaults.standard.hasTutorial
+        
+        if flag == false {
+            let vc = TutorialViewController.instantiate()
+            
+            vc.modalPresentationStyle = .fullScreen
+            
+            self.present(vc, animated: false, completion: nil)
+        }
+        return flag
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // 첫 진입시 안내 페이지 표현
+        if checkAndShowLoginOrIntro() == false { // 인트로 보여주는 중
+            return  // 멈춰.
+        }
+        
+        // 로그인 체크.
         if Auth.auth().currentUser?.uid == nil || Auth.auth().currentUser?.isEmailVerified == false {
             performSegue(withIdentifier: "login", sender: self)
             

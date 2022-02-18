@@ -19,13 +19,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        var controller: UIViewController!
-        if UserDefaults.standard.hasTutorial{
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            controller = storyboard.instantiateViewController(identifier: "MainTableViewController") as! UITabBarController
-        }else{
-            controller = TutorialViewController.instantiate()
-        }
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainTableViewController") as! UITabBarController
+        
+//        var controller: UIViewController!
+//        if UserDefaults.standard.hasTutorial{
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            controller = storyboard.instantiateViewController(identifier: "MainTableViewController") as! UITabBarController
+//        }else{
+//            controller = TutorialViewController.instantiate()
+//        }
         
         window?.rootViewController = controller
         window?.makeKeyAndVisible()

@@ -45,11 +45,14 @@ class TutorialViewController: UIViewController {
     
     @IBAction func NextButtonClicked(_ sender: Any) {
         if currentPage == slides.count - 1{
-        let controller = storyboard?.instantiateViewController(identifier: "MainTableViewController") as! UITabBarController
-            controller.modalPresentationStyle = .fullScreen
-            controller.modalTransitionStyle = .coverVertical
             UserDefaults.standard.hasTutorial = true
-            present(controller, animated: false, completion: nil)
+            
+            self.dismiss(animated: true, completion: nil) // 화면을 치운다.
+//        let controller = storyboard?.instantiateViewController(identifier: "MainTableViewController") as! UITabBarController
+//            controller.modalPresentationStyle = .fullScreen
+//            controller.modalTransitionStyle = .coverVertical
+            
+//            present(controller, animated: false, completion: nil)
             
         }else{
             currentPage += 1
