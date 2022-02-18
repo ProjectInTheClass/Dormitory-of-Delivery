@@ -89,28 +89,11 @@
                                 <color key="pageIndicatorTintColor" systemColor="opaqueSeparatorColor"/>
                                 <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>
                             </pageControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s0s-Eg-B3q">
-                                <rect key="frame" x="229" y="785" width="150" height="50"/>
-                                <color key="backgroundColor" systemColor="linkColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="1Su-KP-9XC"/>
-                                    <constraint firstAttribute="width" constant="150" id="krJ-3p-84y"/>
-                                </constraints>
-                                <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="건너뛰기">
-                                    <backgroundConfiguration key="background" cornerRadius="30"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="NextButtonClicked:" destination="z4x-ag-Rk5" eventType="touchUpInside" id="blE-OU-uFw"/>
-                                    <action selector="NextToButton:" destination="z4x-ag-Rk5" eventType="touchUpInside" id="3gI-RO-ZDf"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPI-nS-8Du">
-                                <rect key="frame" x="35" y="785" width="150" height="50"/>
+                                <rect key="frame" x="57" y="785" width="300" height="50"/>
                                 <color key="backgroundColor" systemColor="linkColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="6R3-PU-MKX"/>
+                                    <constraint firstAttribute="width" constant="300" id="6R3-PU-MKX"/>
                                     <constraint firstAttribute="height" constant="50" id="RND-27-XtC"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="labelColor"/>
@@ -129,19 +112,16 @@
                             <constraint firstItem="hTs-XE-W4r" firstAttribute="leading" secondItem="trQ-bI-E3v" secondAttribute="leading" id="4Nr-T8-JeJ"/>
                             <constraint firstItem="hTs-XE-W4r" firstAttribute="trailing" secondItem="trQ-bI-E3v" secondAttribute="trailing" id="CsV-RG-6Bb"/>
                             <constraint firstItem="trQ-bI-E3v" firstAttribute="bottom" secondItem="SPI-nS-8Du" secondAttribute="bottom" constant="27" id="Ige-ZP-OiJ"/>
-                            <constraint firstItem="trQ-bI-E3v" firstAttribute="trailing" secondItem="s0s-Eg-B3q" secondAttribute="trailing" constant="35" id="Phv-Mu-pb7"/>
+                            <constraint firstItem="SPI-nS-8Du" firstAttribute="centerX" secondItem="trQ-bI-E3v" secondAttribute="centerX" id="L0L-lQ-Tmy"/>
                             <constraint firstItem="hTs-XE-W4r" firstAttribute="top" secondItem="trQ-bI-E3v" secondAttribute="top" id="R8e-St-ia1"/>
                             <constraint firstItem="SPI-nS-8Du" firstAttribute="top" secondItem="MGJ-1L-gIx" secondAttribute="bottom" constant="8" symbolic="YES" id="YI9-jP-bRj"/>
                             <constraint firstItem="MGJ-1L-gIx" firstAttribute="top" secondItem="hTs-XE-W4r" secondAttribute="bottom" constant="25" id="Z0x-wZ-IiU"/>
                             <constraint firstItem="MGJ-1L-gIx" firstAttribute="centerX" secondItem="trQ-bI-E3v" secondAttribute="centerX" id="ajv-Pd-eaF"/>
-                            <constraint firstItem="trQ-bI-E3v" firstAttribute="bottom" secondItem="s0s-Eg-B3q" secondAttribute="bottom" constant="27" id="hhm-7d-KEd"/>
-                            <constraint firstItem="SPI-nS-8Du" firstAttribute="leading" secondItem="trQ-bI-E3v" secondAttribute="leading" constant="35" id="vDe-ah-C8R"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="CollectionView" destination="hTs-XE-W4r" id="m4g-bq-WoX"/>
                         <outlet property="NextButton" destination="SPI-nS-8Du" id="fdC-2R-pI3"/>
-                        <outlet property="NextToPage" destination="s0s-Eg-B3q" id="qSM-nj-6DP"/>
                         <outlet property="PageController" destination="MGJ-1L-gIx" id="38d-Yx-peI"/>
                     </connections>
                 </viewController>

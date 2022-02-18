@@ -12,7 +12,6 @@ class TutorialViewController: UIViewController {
     @IBOutlet weak var CollectionView: UICollectionView!
     @IBOutlet weak var PageController: UIPageControl!
     @IBOutlet weak var NextButton: UIButton!
-    @IBOutlet weak var NextToPage: UIButton!
     var slides: [TutotialSlide] = []
     
     var currentPage = 0 {
@@ -32,7 +31,6 @@ class TutorialViewController: UIViewController {
         super.viewDidLoad()
         
         NextButton.layer.cornerRadius = 10
-        NextToPage.layer.cornerRadius = 10
         
         slides = [
             TutotialSlide(title: "메인화면 입니다.", description: "먹고 싶은 메뉴또는 마음에 드는 채팅방을 고를 수 있습니다.", image: UIImage(named: "HomeView")!),
@@ -43,14 +41,6 @@ class TutorialViewController: UIViewController {
 
     }
     
-    @IBAction func NextToButton(_ sender: Any) {
-        let controller = storyboard?.instantiateViewController(identifier: "MainTableViewController") as! UITabBarController
-            controller.modalPresentationStyle = .fullScreen
-            controller.modalTransitionStyle = .coverVertical
-            UserDefaults.standard.hasTutorial = true
-            present(controller, animated: true, completion: nil)
-        
-    }
     
     
     @IBAction func NextButtonClicked(_ sender: Any) {
