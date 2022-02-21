@@ -18,6 +18,8 @@ class MainTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        // 페이징할때 nil값이 발견 되길래 가드문으로 언랩해줬다.
+        guard let containerView = containerView else { return }
         containerView.layer.cornerRadius = 8
     }
 
@@ -31,5 +33,13 @@ class MainTableViewCell: UITableViewCell {
         meetingTimeLabel.text = main.meetingTime
         catagoryLabel.text = main.categories
         progressLabel.text = "\(main.currentNumber)/\(main.maximumNumber)"
+    }
+}
+
+class LoadingCell: UITableViewCell {
+    @IBOutlet weak var nextPageLoadingIndicatior: UIActivityIndicatorView!
+    
+    func startNextPageLoadingIndicatior() {
+        nextPageLoadingIndicatior.startAnimating()
     }
 }

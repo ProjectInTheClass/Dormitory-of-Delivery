@@ -30,7 +30,9 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     let navigationApperance = UINavigationBarAppearance()
     
+    var mainPostsHasNextPage: Bool = true
     
+    var lastDocumentSnapshot: DocumentSnapshot?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +80,6 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             fetchRecruitmentTableList()
         }
         
-        print("viewWillAppear")
     }
     
     @IBAction func unwindFromRecruitmentTableView(_ unwindSegue: UIStoryboardSegue) {
@@ -113,29 +114,43 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         self.mainTableView.reloadData()
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        guard let searchMainPost = searchMainPost else { return mainPosts.count }
-        
-        guard let filteredButtonMainPost = filteredButtonMainPost else { return searchMainPost.count }
-            return filteredButtonMainPost.count
+            if section == 0 {
+            guard let searchMainPost = searchMainPost else { return mainPosts.count }
+            
+            guard let filteredButtonMainPost = filteredButtonMainPost else { return searchMainPost.count }
+                return filteredButtonMainPost.count
+            } else if section == 1 && mainPostsHasNextPage {
+                return 1
+            }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainTableViewCell
+        if indexPath.section == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainTableViewCell
 
-        guard let searchMainPost = searchMainPost else { let mainPost = mainPosts[indexPath.row]
-            cell.update(with: mainPost)
+            guard let searchMainPost = searchMainPost else { let mainPost = mainPosts[indexPath.row]
+                cell.update(with: mainPost)
+                return cell
+            }
+            
+            guard let filteredButtonMainPost = filteredButtonMainPost else { let mainPost = searchMainPost[indexPath.row]
+                cell.update(with: mainPost)
+                return cell
+            }
+            let filterPost = filteredButtonMainPost[indexPath.row]
+            cell.update(with: filterPost)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "IndicateCell", for: indexPath) as! LoadingCell
+            cell.startNextPageLoadingIndicatior()
             return cell
         }
-        
-        guard let filteredButtonMainPost = filteredButtonMainPost else { let mainPost = searchMainPost[indexPath.row]
-            cell.update(with: mainPost)
-            return cell
-        }
-        let filterPost = filteredButtonMainPost[indexPath.row]
-        cell.update(with: filterPost)
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -148,11 +163,27 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func fetchRecruitmentTableList(){
-        var mainPosts: [RecruitingText] = []
-        db.collection("recruitTables").getDocuments(){ (querySnapshot, error) in
-            if  error == nil  {
-                self.mainPosts.removeAll()
-                for document in querySnapshot!.documents{
+        // 쿼리로 페이지네이션 구현
+        var mainPostQuery: Query!
+        if self.mainPosts.isEmpty {
+            mainPostQuery = self.db.collection("recruitTables")
+                .order(by: "timestamp", descending: true)
+                .limit(to: 10)
+        } else {
+            guard let lastDocumentSnapshot = lastDocumentSnapshot else { return }
+            mainPostQuery = self.db.collection("recruitTables")
+                .order(by: "timestamp", descending: true)
+                .start(afterDocument: lastDocumentSnapshot)
+                .limit(to: 10)
+
+        }
+        mainPostQuery.getDocuments() { (snapshot, error) in
+            if error != nil {
+                print("error")
+            } else if snapshot!.isEmpty {
+                self.mainPostsHasNextPage = false
+            } else {
+                for document in snapshot!.documents{
                     let title = document.data()["title"] as! String
                     let uid = document.data()["uid"] as! String
                     let category = document.data()["category"] as! String
@@ -161,36 +192,16 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                     let currentNumber = document.data()["currentNumber"] as! Int
                     let timestamp = document.data()["timestamp"] as! NSNumber
                     let documentId = document.documentID
-                    
                     let meetingTime = document.data()["meetingTime"] as! NSNumber
                     let meetingTimeLabel = self.fetchMeetingTime(meetingTime: meetingTime)
-                    
-                    let mainpost:RecruitingText = RecruitingText(postTitle: title, categories: category, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel)
-                    mainPosts.append(mainpost)
-                    
-                    //수정 pageNation으로
+                    let testPost:RecruitingText = RecruitingText(postTitle: title, categories: category, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel)
+                    self.mainPosts.append(testPost)
                 }
-            } else {
-                print("Error getting documents: ")
             }
-            
-            
-            mainPosts.sort(by: {(first, second) in
-                    return first.meetingTime > second.meetingTime
-                })
-
-            let myPosts = mainPosts.filter { (element) -> Bool in
-                return element.WriteUid == Auth.auth().currentUser?.uid
-            }
-            
-            let differentUserPosts = mainPosts.filter { (element) -> Bool in
-                return element.WriteUid != Auth.auth().currentUser?.uid
-            }
-
-            self.mainPosts = myPosts + differentUserPosts
-            
             DispatchQueue.main.async(execute: {
                 self.mainTableView.reloadData()
+                self.lastDocumentSnapshot = snapshot!.documents.last
+//                self.mainTableView.reloadSections(IndexSet(integer: 0), with: .none)
             })
         }
     }
@@ -268,21 +279,67 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @objc private func pullToRefreshTableView(sender: Any) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.mainPostsHasNextPage = true
+            self.mainPosts.removeAll()
             self.fetchRecruitmentTableList()
-            self.mainTableView.reloadData()
             self.mainTableView.refreshControl?.endRefreshing()
         }
 
     }
+    // 페이징 동작 함수
+//    private func pagingMainTableView() {
+//        let mainPostCount: Int = mainPosts.count
+//        var nextPagePost: [RecruitingText] = []
+//        print(self.mainPosts[mainPostCount - 1].timestamp)
+//        let pagingQuery = self.db.collection("recruitTables")
+////            .whereField("timeStamp", isGreaterThan: self.mainPosts[mainPostCount - 1].timestamp)
+////            .order(by: "timeStamp", descending: true)
+////            .start(after: [self.mainPosts[mainPostCount - 1].timestamp])
+////            .limit(to: 10)
+//        pagingQuery.getDocuments() { (snapshot, error) in
+//            if error == nil {
+//                for document in snapshot!.documents{
+//                        let title = document.data()["title"] as! String
+//                        let uid = document.data()["uid"] as! String
+//                        let category = document.data()["category"] as! String
+//                        let noteText = document.data()["noteText"] as! String
+//                        let maximumNumber = document.data()["maximumNumber"] as! Int
+//                        let currentNumber = document.data()["currentNumber"] as! Int
+//                        let timestamp = document.data()["timestamp"] as! NSNumber
+//                        let documentId = document.documentID
+//                        let meetingTime = document.data()["meetingTime"] as! NSNumber
+//                        let meetingTimeLabel = self.fetchMeetingTime(meetingTime: meetingTime)
+//                        let testPost:RecruitingText = RecruitingText(postTitle: title, categories: category, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel)
+//                        nextPagePost.append(testPost)
+//                    }
+//                }   else {
+//                        print("error")
+//                    }
+//                self.mainPosts += nextPagePost
+//                print(nextPagePost)
+//                self.mainTableView.reloadData()
+//                }
+//            }
     
-//    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-//        let currentOffset = scrollView.contentOffset
-//        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
-//
-//        if maximumOffset < currentOffset {
-//
-//        }
-//    }
+    // 사용자의 스크롤이 끝나고 천천히 멈추는 동작이 시작될 때 호출, 스크롤이 끝에 갔을 때 페이징 할 수 있게 해주는 함수
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        let currentOffset = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.height
+        if currentOffset > (contentHeight - height) {
+            if mainPostsHasNextPage {
+                beginpaginMainTableView()
+            }
+        }
+    }
+    // 인디케이터 섹션 불러오는 함수
+    private func beginpaginMainTableView() {
+        DispatchQueue.main.async {
+            self.mainTableView.reloadSections(IndexSet(integer: 1), with: .none)
+//            self.pagingMainTableView()
+            self.fetchRecruitmentTableList()
+        }
+    }
 
     // MARK: - Navigation
     
