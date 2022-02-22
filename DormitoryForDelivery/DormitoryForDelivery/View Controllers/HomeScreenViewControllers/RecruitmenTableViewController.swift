@@ -21,6 +21,8 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     
     var selectedCategories: String?
     
+    var selectedCategoryNumber: Int?
+    
     var mainPostInformation: RecruitingText?
     
     var delegate: SendEditDataDelegate?
@@ -166,22 +168,24 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     
     @IBAction func doneButtonTapped(_ sender: Any) {
         if self.mainPostInformation != nil {
+            creatSelectedCategoriesNumber()
             self.editMainPostInformation()
             self.delegate?.sendData(mainPostInformation: self.mainPostInformation!)
             dismiss(animated: true) {
                 let doc = self.db.collection("recruitTables").document(self.mainPostInformation!.documentId)
-                let data: [String : AnyObject] = ["category" : self.categoriesLabel.text as AnyObject, "currentNumber" : self.mainPostInformation?.currentNumber as AnyObject, "maximumNumber" : self.recruitmentCountStepper.value as AnyObject, "meetingTime" : NSNumber(value: self.meetingDatePicker.date.timeIntervalSince1970) as AnyObject, "noteText" : self.noteTextView.text as AnyObject, "timestamp" : NSNumber(value: Date().timeIntervalSince1970) as AnyObject, "title" : self.titleTextField.text as AnyObject]
+                let data: [String : AnyObject] = ["category" : self.categoriesLabel.text as AnyObject, "currentNumber" : self.mainPostInformation?.currentNumber as AnyObject, "maximumNumber" : self.recruitmentCountStepper.value as AnyObject, "meetingTime" : NSNumber(value: self.meetingDatePicker.date.timeIntervalSince1970) as AnyObject, "noteText" : self.noteTextView.text as AnyObject, "timestamp" : NSNumber(value: Date().timeIntervalSince1970) as AnyObject, "title" : self.titleTextField.text as AnyObject, "categoryNumber" : self.selectedCategoryNumber as AnyObject]
                 doc.setData(data, merge: true) { (error) in
                     guard error == nil else { return }
                 }
             }
         } else {
                 setLoadingScreen()
+                creatSelectedCategoriesNumber()
                 //ToDo: Type cating으로 경고 수정, 나중에 유저가 그룹참가를 하면 currentNumber를 update하는 코드구현
                 let currentNumber = 1
-                guard let title = self.titleTextField.text, let category = self.categoriesLabel.text, let noteText = self.noteTextView.text else { return }
+            guard let title = self.titleTextField.text, let category = self.categoriesLabel.text, let noteText = self.noteTextView.text, let categoryNumber = self.selectedCategoryNumber else { return }
                 
-                let newRecruitTable:Dictionary<String, Any> = ["uid":Auth.auth().currentUser!.uid, "title": title, "category":category, "noteText":noteText, "maximumNumber":self.recruitmentCountStepper.value,"currentNumber":currentNumber,"timestamp":NSNumber(value: Date().timeIntervalSince1970),"meetingTime":NSNumber(value:self.meetingDatePicker.date.timeIntervalSince1970)]
+            let newRecruitTable:Dictionary<String, Any> = ["uid":Auth.auth().currentUser!.uid, "title": title, "category":category, "noteText":noteText, "maximumNumber":self.recruitmentCountStepper.value,"currentNumber":currentNumber,"timestamp":NSNumber(value: Date().timeIntervalSince1970),"meetingTime":NSNumber(value:self.meetingDatePicker.date.timeIntervalSince1970), "categoryNumber":categoryNumber]
         
                 //fireStore - tables에 작성
                 let newRecruitTableRef = self.db.collection("recruitTables").document()
@@ -324,13 +328,32 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         }
     
     func removeLoadingScreen() {
-
             // Hides and stops the text and the spinner
             postActivityIndicator.stopAnimating()
             postActivityIndicator.isHidden = true
-
         }
-
+    
+    private func creatSelectedCategoriesNumber() {
+        if selectedCategories == "커피" {
+            self.selectedCategoryNumber = 1
+        } else if selectedCategories == "디저트" {
+            self.selectedCategoryNumber = 2
+        } else if selectedCategories == "햄버거" {
+            self.selectedCategoryNumber = 3
+        } else if selectedCategories == "돈까스" {
+            self.selectedCategoryNumber = 4
+        } else if selectedCategories == "초밥" {
+            self.selectedCategoryNumber = 5
+        } else if selectedCategories == "샐러드" {
+            self.selectedCategoryNumber = 6
+        } else if selectedCategories == "중국집" {
+            self.selectedCategoryNumber = 7
+        } else if selectedCategories == "한식" {
+            self.selectedCategoryNumber = 8
+        } else if selectedCategories == "분식" {
+            self.selectedCategoryNumber = 9
+        }
+    }
    
     // MARK: - Table view data source
 

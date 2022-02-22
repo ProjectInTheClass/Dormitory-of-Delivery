@@ -10,6 +10,7 @@ import Foundation
 struct RecruitingText {
     var postTitle: String
     var categories: String
+    var categoryNumber: Int
     var postNoteText: String
     var maximumNumber: Int
     var currentNumber: Int

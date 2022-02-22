@@ -24,13 +24,17 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var filteredButtonMainPost: [RecruitingText]? = nil
     
+    var filterCategoryNumber: Int?
+    
+    var tappedFilterButtonTitle: String?
+    
     var searchMainPost: [RecruitingText]?
     
     let searchController = UISearchController(searchResultsController: nil)
     
     let navigationApperance = UINavigationBarAppearance()
     
-    var mainPostsHasNextPage: Bool = true
+    var mainPostsHasNextPage: Bool = false
     
     var lastDocumentSnapshot: DocumentSnapshot?
     
@@ -63,7 +67,6 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         // 첫 진입시 안내 페이지 표현
         if checkAndShowLoginOrIntro() == false { // 인트로 보여주는 중
             return  // 멈춰.
@@ -76,7 +79,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         } else {
             self.searchMainPost = nil
             self.filteredButtonMainPost = nil
-    //        updateCurrentNumberToServer()
+            self.mainPosts = [] // 메인 화면으로 넘어갈 때 테이블뷰에 새로운 글까지 넣기위한 코드
             fetchRecruitmentTableList()
         }
         
@@ -86,12 +89,9 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
-
+// 필터 관련 함수
     @IBAction func showAllPostButtonTapped(_ sender: UIButton) {
-        self.searchMainPost = nil
-        self.filteredButtonMainPost = nil
-        self.mainTableView.reloadData()
-        
+
     }
     
     @IBAction func filterButtonTapped(_ sender: UIButton) {
@@ -105,14 +105,23 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                 filterLabelCollection[index!].textColor = UIColor.black
             }
         }
-
-        self.searchMainPost = []
-        let selectedButtonTitle = sender.title(for: .normal)
-        self.filteredButtonMainPost = self.mainPosts.filter { (element) -> Bool in
-            return element.categories == selectedButtonTitle!
+        if sender.currentTitle == "전체" {
+            self.tappedFilterButtonTitle = nil
+            self.mainPosts = []
+            self.searchMainPost = nil
+            self.filteredButtonMainPost = nil
+            fetchRecruitmentTableList()
+        } else {
+        self.tappedFilterButtonTitle = sender.currentTitle
+        creatSelectedCategoriesNumber(name: self.tappedFilterButtonTitle!)
+        fetchRecruitmentTableList()
         }
-        self.mainTableView.reloadData()
-    }
+  }
+
+
+
+
+
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -120,9 +129,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             if section == 0 {
-            guard let searchMainPost = searchMainPost else { return mainPosts.count }
-            
-            guard let filteredButtonMainPost = filteredButtonMainPost else { return searchMainPost.count }
+//            guard let searchMainPost = searchMainPost else { return mainPosts.count }
+                guard let filteredButtonMainPost = filteredButtonMainPost else { return self.mainPosts.count }
                 return filteredButtonMainPost.count
             } else if section == 1 && mainPostsHasNextPage {
                 return 1
@@ -134,12 +142,11 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         if indexPath.section == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainTableViewCell
 
-            guard let searchMainPost = searchMainPost else { let mainPost = mainPosts[indexPath.row]
-                cell.update(with: mainPost)
-                return cell
-            }
-            
-            guard let filteredButtonMainPost = filteredButtonMainPost else { let mainPost = searchMainPost[indexPath.row]
+//            guard let searchMainPost = searchMainPost else { let mainPost = mainPosts[indexPath.row]
+//                cell.update(with: mainPost)
+//                return cell
+//            }
+            guard let filteredButtonMainPost = filteredButtonMainPost else { let mainPost = self.mainPosts[indexPath.row]
                 cell.update(with: mainPost)
                 return cell
             }
@@ -165,8 +172,17 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     func fetchRecruitmentTableList(){
         // 쿼리로 페이지네이션 구현
         var mainPostQuery: Query!
+        
+        var filterPost: [RecruitingText] = []
+        
         if self.mainPosts.isEmpty {
             mainPostQuery = self.db.collection("recruitTables")
+                .order(by: "timestamp", descending: true)
+                .limit(to: 10)
+        } else if self.tappedFilterButtonTitle != nil {
+            self.filteredButtonMainPost = []
+            mainPostQuery = self.db.collection("recruitTables")
+                .whereField("categoryNumber", isEqualTo: self.filterCategoryNumber)
                 .order(by: "timestamp", descending: true)
                 .limit(to: 10)
         } else {
@@ -178,33 +194,38 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
 
         }
         mainPostQuery.getDocuments() { (snapshot, error) in
-            if error != nil {
-                print("error")
-            } else if snapshot!.isEmpty {
-                self.mainPostsHasNextPage = false
-            } else {
-                for document in snapshot!.documents{
-                    let title = document.data()["title"] as! String
-                    let uid = document.data()["uid"] as! String
-                    let category = document.data()["category"] as! String
-                    let noteText = document.data()["noteText"] as! String
-                    let maximumNumber = document.data()["maximumNumber"] as! Int
-                    let currentNumber = document.data()["currentNumber"] as! Int
-                    let timestamp = document.data()["timestamp"] as! NSNumber
-                    let documentId = document.documentID
-                    let meetingTime = document.data()["meetingTime"] as! NSNumber
-                    let meetingTimeLabel = self.fetchMeetingTime(meetingTime: meetingTime)
-                    let testPost:RecruitingText = RecruitingText(postTitle: title, categories: category, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel)
-                    self.mainPosts.append(testPost)
+                if error != nil {
+                    print("error")
+                } else if snapshot!.isEmpty {
+                    print("Snapshot is empty")
+                    self.mainPostsHasNextPage = false
+                    self.mainTableView.reloadData()
+                } else {
+                        for document in snapshot!.documents{
+                            let title = document.data()["title"] as! String
+                            let uid = document.data()["uid"] as! String
+                            let category = document.data()["category"] as! String
+                            let categoryNumber = document.data()["categoryNumber"] as! Int
+                            let noteText = document.data()["noteText"] as! String
+                            let maximumNumber = document.data()["maximumNumber"] as! Int
+                            let currentNumber = document.data()["currentNumber"] as! Int
+                            let timestamp = document.data()["timestamp"] as! NSNumber
+                            let documentId = document.documentID
+                            let meetingTime = document.data()["meetingTime"] as! NSNumber
+                            let meetingTimeLabel = self.fetchMeetingTime(meetingTime: meetingTime)
+                            let mainPost:RecruitingText = RecruitingText(postTitle: title, categories: category, categoryNumber: categoryNumber, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel)
+                            if self.tappedFilterButtonTitle != nil {
+                                filterPost.append(mainPost)
+                                self.filteredButtonMainPost = filterPost
+                            } else {
+                                self.mainPosts.append(mainPost)
+                            }
+                        }
+                        self.mainTableView.reloadData()
+                        self.lastDocumentSnapshot = snapshot!.documents.last
                 }
             }
-            DispatchQueue.main.async(execute: {
-                self.mainTableView.reloadData()
-                self.lastDocumentSnapshot = snapshot!.documents.last
-//                self.mainTableView.reloadSections(IndexSet(integer: 0), with: .none)
-            })
         }
-    }
     
     func currentNumberChanged(currentNumber: Int, selectedIndexPath: Int) {
         self.mainPosts[selectedIndexPath].currentNumber = currentNumber
@@ -278,54 +299,28 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     @objc private func pullToRefreshTableView(sender: Any) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.mainPostsHasNextPage = true
-            self.mainPosts.removeAll()
-            self.fetchRecruitmentTableList()
-            self.mainTableView.refreshControl?.endRefreshing()
-        }
-
+        // DispatchQueue.main.asyncAfter 사용하면 앱이 튕기는 현상 발생!! (이유 모름)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if self.mainPosts.count >= 10 {
+                self.mainPostsHasNextPage = true
+            }
+            if self.tappedFilterButtonTitle != nil {
+                self.mainTableView.refreshControl?.endRefreshing()
+            } else {
+                self.mainPosts.removeAll()
+                self.fetchRecruitmentTableList()
+                self.mainTableView.refreshControl?.endRefreshing()
+            }
+//        }
     }
-    // 페이징 동작 함수
-//    private func pagingMainTableView() {
-//        let mainPostCount: Int = mainPosts.count
-//        var nextPagePost: [RecruitingText] = []
-//        print(self.mainPosts[mainPostCount - 1].timestamp)
-//        let pagingQuery = self.db.collection("recruitTables")
-////            .whereField("timeStamp", isGreaterThan: self.mainPosts[mainPostCount - 1].timestamp)
-////            .order(by: "timeStamp", descending: true)
-////            .start(after: [self.mainPosts[mainPostCount - 1].timestamp])
-////            .limit(to: 10)
-//        pagingQuery.getDocuments() { (snapshot, error) in
-//            if error == nil {
-//                for document in snapshot!.documents{
-//                        let title = document.data()["title"] as! String
-//                        let uid = document.data()["uid"] as! String
-//                        let category = document.data()["category"] as! String
-//                        let noteText = document.data()["noteText"] as! String
-//                        let maximumNumber = document.data()["maximumNumber"] as! Int
-//                        let currentNumber = document.data()["currentNumber"] as! Int
-//                        let timestamp = document.data()["timestamp"] as! NSNumber
-//                        let documentId = document.documentID
-//                        let meetingTime = document.data()["meetingTime"] as! NSNumber
-//                        let meetingTimeLabel = self.fetchMeetingTime(meetingTime: meetingTime)
-//                        let testPost:RecruitingText = RecruitingText(postTitle: title, categories: category, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel)
-//                        nextPagePost.append(testPost)
-//                    }
-//                }   else {
-//                        print("error")
-//                    }
-//                self.mainPosts += nextPagePost
-//                print(nextPagePost)
-//                self.mainTableView.reloadData()
-//                }
-//            }
-    
     // 사용자의 스크롤이 끝나고 천천히 멈추는 동작이 시작될 때 호출, 스크롤이 끝에 갔을 때 페이징 할 수 있게 해주는 함수
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         let currentOffset = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.height
+        if self.mainPosts.count >= 10 {
+            self.mainPostsHasNextPage = true
+        }
         if currentOffset > (contentHeight - height) {
             if mainPostsHasNextPage {
                 beginpaginMainTableView()
@@ -336,8 +331,29 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     private func beginpaginMainTableView() {
         DispatchQueue.main.async {
             self.mainTableView.reloadSections(IndexSet(integer: 1), with: .none)
-//            self.pagingMainTableView()
             self.fetchRecruitmentTableList()
+        }
+    }
+    // 필터 쿼리가 한글이 적용이 안되어서 카테고리를 번호로 바꿔주는 함수
+    private func creatSelectedCategoriesNumber( name: String) {
+        if name == "커피" {
+            self.filterCategoryNumber = 1
+        } else if name == "디저트" {
+            self.filterCategoryNumber = 2
+        } else if name == "햄버거" {
+            self.filterCategoryNumber = 3
+        } else if name == "돈까스" {
+            self.filterCategoryNumber = 4
+        } else if name == "초밥" {
+            self.filterCategoryNumber = 5
+        } else if name == "샐러드" {
+            self.filterCategoryNumber = 6
+        } else if name == "중국집" {
+            self.filterCategoryNumber = 7
+        } else if name == "한식" {
+            self.filterCategoryNumber = 8
+        } else if name == "분식" {
+            self.filterCategoryNumber = 9
         }
     }
 
