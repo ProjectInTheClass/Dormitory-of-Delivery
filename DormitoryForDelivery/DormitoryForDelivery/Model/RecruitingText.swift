@@ -18,4 +18,5 @@ struct RecruitingText {
     let timestamp: NSNumber
     let documentId: String
     var meetingTime: String
+    var titleComponentArray: [String]
 }

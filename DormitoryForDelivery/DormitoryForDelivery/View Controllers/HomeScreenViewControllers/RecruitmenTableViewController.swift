@@ -31,6 +31,8 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     
     let postActivityIndicatorLoadingView = UIView()
     
+    var titleComponentArray: [String]?
+    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var categoriesLabel: UILabel!
@@ -169,11 +171,12 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     @IBAction func doneButtonTapped(_ sender: Any) {
         if self.mainPostInformation != nil {
             creatSelectedCategoriesNumber()
+            changeTitleToArray(sender: self.titleTextField.text!)
             self.editMainPostInformation()
             self.delegate?.sendData(mainPostInformation: self.mainPostInformation!)
             dismiss(animated: true) {
                 let doc = self.db.collection("recruitTables").document(self.mainPostInformation!.documentId)
-                let data: [String : AnyObject] = ["category" : self.categoriesLabel.text as AnyObject, "currentNumber" : self.mainPostInformation?.currentNumber as AnyObject, "maximumNumber" : self.recruitmentCountStepper.value as AnyObject, "meetingTime" : NSNumber(value: self.meetingDatePicker.date.timeIntervalSince1970) as AnyObject, "noteText" : self.noteTextView.text as AnyObject, "timestamp" : NSNumber(value: Date().timeIntervalSince1970) as AnyObject, "title" : self.titleTextField.text as AnyObject, "categoryNumber" : self.selectedCategoryNumber as AnyObject]
+                let data: [String : AnyObject] = ["category" : self.categoriesLabel.text as AnyObject, "currentNumber" : self.mainPostInformation?.currentNumber as AnyObject, "maximumNumber" : self.recruitmentCountStepper.value as AnyObject, "meetingTime" : NSNumber(value: self.meetingDatePicker.date.timeIntervalSince1970) as AnyObject, "noteText" : self.noteTextView.text as AnyObject, "timestamp" : NSNumber(value: Date().timeIntervalSince1970) as AnyObject, "title" : self.titleTextField.text as AnyObject, "categoryNumber" : self.selectedCategoryNumber as AnyObject, "titleComponentArray" : self.titleComponentArray as AnyObject]
                 doc.setData(data, merge: true) { (error) in
                     guard error == nil else { return }
                 }
@@ -181,11 +184,12 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         } else {
                 setLoadingScreen()
                 creatSelectedCategoriesNumber()
+                changeTitleToArray(sender: self.titleTextField.text!)
                 //ToDo: Type cating으로 경고 수정, 나중에 유저가 그룹참가를 하면 currentNumber를 update하는 코드구현
                 let currentNumber = 1
-            guard let title = self.titleTextField.text, let category = self.categoriesLabel.text, let noteText = self.noteTextView.text, let categoryNumber = self.selectedCategoryNumber else { return }
+            guard let title = self.titleTextField.text, let category = self.categoriesLabel.text, let noteText = self.noteTextView.text, let categoryNumber = self.selectedCategoryNumber, let titleComponentArray = self.titleComponentArray else { return }
                 
-            let newRecruitTable:Dictionary<String, Any> = ["uid":Auth.auth().currentUser!.uid, "title": title, "category":category, "noteText":noteText, "maximumNumber":self.recruitmentCountStepper.value,"currentNumber":currentNumber,"timestamp":NSNumber(value: Date().timeIntervalSince1970),"meetingTime":NSNumber(value:self.meetingDatePicker.date.timeIntervalSince1970), "categoryNumber":categoryNumber]
+            let newRecruitTable:Dictionary<String, Any> = ["uid":Auth.auth().currentUser!.uid, "title": title, "category":category, "noteText":noteText, "maximumNumber":self.recruitmentCountStepper.value,"currentNumber":currentNumber,"timestamp":NSNumber(value: Date().timeIntervalSince1970),"meetingTime":NSNumber(value:self.meetingDatePicker.date.timeIntervalSince1970), "categoryNumber":categoryNumber, "titleComponentArray":titleComponentArray]
         
                 //fireStore - tables에 작성
                 let newRecruitTableRef = self.db.collection("recruitTables").document()
@@ -332,7 +336,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
             postActivityIndicator.stopAnimating()
             postActivityIndicator.isHidden = true
         }
-    
+    // 카테고리 한글이 쿼리로 안보내져서 번호이용 해봄
     private func creatSelectedCategoriesNumber() {
         if selectedCategories == "커피" {
             self.selectedCategoryNumber = 1
@@ -353,6 +357,15 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
         } else if selectedCategories == "분식" {
             self.selectedCategoryNumber = 9
         }
+    }
+    // 검색 기능을위해 제목을 하나씩 쪼개서 배열에 담는 함수
+    private func changeTitleToArray(sender: String) {
+        // 파이어베이스가 Character타입을 읽을 수 없는 것 같음 그래서 String으로 변환 애초에 쪼갤 때 String으로 변경할 방법 찾으면 수정
+        var titleArray: [String] = []
+        for titleComponent in sender {
+            titleArray.append(String(titleComponent))
+        }
+        self.titleComponentArray = titleArray
     }
    
     // MARK: - Table view data source

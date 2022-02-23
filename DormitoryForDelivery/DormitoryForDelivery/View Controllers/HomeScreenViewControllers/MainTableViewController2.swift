@@ -212,8 +212,9 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                             let timestamp = document.data()["timestamp"] as! NSNumber
                             let documentId = document.documentID
                             let meetingTime = document.data()["meetingTime"] as! NSNumber
+                            let titleComponentArray = document.data()["titleComponentArray"] as! [String]
                             let meetingTimeLabel = self.fetchMeetingTime(meetingTime: meetingTime)
-                            let mainPost:RecruitingText = RecruitingText(postTitle: title, categories: category, categoryNumber: categoryNumber, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel)
+                            let mainPost:RecruitingText = RecruitingText(postTitle: title, categories: category, categoryNumber: categoryNumber, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel, titleComponentArray: titleComponentArray)
                             if self.tappedFilterButtonTitle != nil {
                                 filterPost.append(mainPost)
                                 self.filteredButtonMainPost = filterPost
@@ -254,9 +255,11 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         var searchQuery: Query!
         var searchPost: [RecruitingText] = []
         print(searchController.searchBar.text!)
+        var findPostArray: [String] = []
+        findPostArray.append(searchController.searchBar.text!)
         searchQuery = self.db.collection("recruitTables")
-            .whereField("title", isEqualTo: searchController.searchBar.text!)
-            .order(by: "timestamp", descending: true)
+            .whereField("titleComponentArray", arrayContainsAny: findPostArray)
+//            .order(by: "timestamp", descending: true)
         searchQuery.getDocuments { (snapshot, error) in
             if error != nil {
                 print("error")
@@ -274,11 +277,13 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                         let timestamp = document.data()["timestamp"] as! NSNumber
                         let documentId = document.documentID
                         let meetingTime = document.data()["meetingTime"] as! NSNumber
+                        let titleComponentArray = document.data()["titleComponentArray"] as! [String]
                         let meetingTimeLabel = self.fetchMeetingTime(meetingTime: meetingTime)
-                        let searchingPost:RecruitingText = RecruitingText(postTitle: title, categories: category, categoryNumber: categoryNumber, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel)
+                        let searchingPost:RecruitingText = RecruitingText(postTitle: title, categories: category, categoryNumber: categoryNumber, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel, titleComponentArray: titleComponentArray)
                         searchPost.append(searchingPost)
                     }
                 print(searchPost)
+                self.mainTableView.reloadData()
                 }
             }
         }

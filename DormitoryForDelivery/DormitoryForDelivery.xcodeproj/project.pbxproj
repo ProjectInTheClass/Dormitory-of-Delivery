@@ -12,6 +12,7 @@
 		0C26FE9726BE2414003C3501 /* MainTableViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26FE9626BE2414003C3501 /* MainTableViewController2.swift */; };
 		0C4DC3E626C94D0B006A44DF /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4DC3E526C94D0B006A44DF /* PostViewController.swift */; };
 		0C4DC3EC26C94D49006A44DF /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4DC3EB26C94D49006A44DF /* PostTableViewController.swift */; };
+		0C75F39F27C681CD00751717 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C75F39E27C681CD00751717 /* SearchViewController.swift */; };
 		0CB4A01526EF74B5003818A0 /* EditNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB4A01426EF74B5003818A0 /* EditNavigationController.swift */; };
 		0CE619F327BB529E00D51BEC /* HomeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE619F227BB529E00D51BEC /* HomeScreen.storyboard */; };
 		0CE619F527BB52A900D51BEC /* ChattingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE619F427BB52A900D51BEC /* ChattingScreen.storyboard */; };
@@ -55,6 +56,7 @@
 		0C26FE9626BE2414003C3501 /* MainTableViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController2.swift; sourceTree = "<group>"; };
 		0C4DC3E526C94D0B006A44DF /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		0C4DC3EB26C94D49006A44DF /* PostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
+		0C75F39E27C681CD00751717 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0CB4A01426EF74B5003818A0 /* EditNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNavigationController.swift; sourceTree = "<group>"; };
 		0CE619F227BB529E00D51BEC /* HomeScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeScreen.storyboard; sourceTree = "<group>"; };
 		0CE619F427BB52A900D51BEC /* ChattingScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChattingScreen.storyboard; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				0C26FE9626BE2414003C3501 /* MainTableViewController2.swift */,
+				0C75F39E27C681CD00751717 /* SearchViewController.swift */,
 				D8C18F4126B6E73C00242ED7 /* RecruitmenTableViewController.swift */,
 				D8C18F4326B6EE5D00242ED7 /* SelectCategoriesTableViewController.swift */,
 				CC7586A426B8524B008EF905 /* LogInViewController.swift */,
@@ -408,6 +411,7 @@
 				D8ABC1B126D29C67009AB503 /* ChatGroupTableViewController.swift in Sources */,
 				71B6D11527BD1951009D8ADC /* UserDefaultsExtension.swift in Sources */,
 				D8A0378E26DB7D6900477A5B /* ChatGroupTableViewCell.swift in Sources */,
+				0C75F39F27C681CD00751717 /* SearchViewController.swift in Sources */,
 				D8B78386270C17B600E9D684 /* ChatMessageLeftTimeCell.swift in Sources */,
 				D825487A26E5E77800208372 /* EmailCertificationViewController.swift in Sources */,
 				0C4DC3E626C94D0B006A44DF /* PostViewController.swift in Sources */,
