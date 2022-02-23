@@ -90,9 +90,9 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
 // 필터 관련 함수
-    @IBAction func showAllPostButtonTapped(_ sender: UIButton) {
-
-    }
+//    @IBAction func showAllPostButtonTapped(_ sender: UIButton) {
+//
+//    }
     
     @IBAction func filterButtonTapped(_ sender: UIButton) {
         for selectedButton in filterButtonCollection {
@@ -173,14 +173,14 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         // 쿼리로 페이지네이션 구현
         var mainPostQuery: Query!
         
-        var filterPost: [RecruitingText] = []
+        var filterPost: [RecruitingText] = [] // 필터 포스트 변수에 append가 안되서 서버에서 불러온 데이터 여기에 저장했다가 필터 포스트 변수에 "=" 연산자로 대입
         
         if self.mainPosts.isEmpty {
             mainPostQuery = self.db.collection("recruitTables")
                 .order(by: "timestamp", descending: true)
                 .limit(to: 10)
         } else if self.tappedFilterButtonTitle != nil {
-            self.filteredButtonMainPost = []
+            self.filteredButtonMainPost = [] // 해당 버튼의 카테고리에 글이 없을 때 테이블 뷰에 전체글이 뿌려지는 거 방지하는 코드
             mainPostQuery = self.db.collection("recruitTables")
                 .whereField("categoryNumber", isEqualTo: self.filterCategoryNumber)
                 .order(by: "timestamp", descending: true)
@@ -238,6 +238,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         self.mainTableView.reloadData()
     }
     
+    // 서치바 UI만들기
     func setUpSearchController() {
         self.searchBarView.addSubview(searchController.searchBar)
         searchController.searchBar.placeholder = "제목, 카테고리 등"
@@ -250,16 +251,37 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        self.filteredButtonMainPost = nil
-        if searchMainPost == nil || searchController.searchBar.text!.isEmpty {
-            searchMainPost = mainPosts
-        } else {
-            self.searchMainPost = mainPosts.filter { (element) in
-                return element.postTitle.contains(searchController.searchBar.text!) || element.categories.contains(searchController.searchBar.text!)
+        var searchQuery: Query!
+        var searchPost: [RecruitingText] = []
+        print(searchController.searchBar.text!)
+        searchQuery = self.db.collection("recruitTables")
+            .whereField("title", isEqualTo: searchController.searchBar.text!)
+            .order(by: "timestamp", descending: true)
+        searchQuery.getDocuments { (snapshot, error) in
+            if error != nil {
+                print("error")
+            } else if snapshot!.isEmpty {
+                print("Snapshot is empty")
+            } else {
+                    for document in snapshot!.documents{
+                        let title = document.data()["title"] as! String
+                        let uid = document.data()["uid"] as! String
+                        let category = document.data()["category"] as! String
+                        let categoryNumber = document.data()["categoryNumber"] as! Int
+                        let noteText = document.data()["noteText"] as! String
+                        let maximumNumber = document.data()["maximumNumber"] as! Int
+                        let currentNumber = document.data()["currentNumber"] as! Int
+                        let timestamp = document.data()["timestamp"] as! NSNumber
+                        let documentId = document.documentID
+                        let meetingTime = document.data()["meetingTime"] as! NSNumber
+                        let meetingTimeLabel = self.fetchMeetingTime(meetingTime: meetingTime)
+                        let searchingPost:RecruitingText = RecruitingText(postTitle: title, categories: category, categoryNumber: categoryNumber, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel)
+                        searchPost.append(searchingPost)
+                    }
+                print(searchPost)
+                }
             }
         }
-        self.mainTableView.reloadData()
-    }
     
 //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 //    // 화면을 누르면 키보드 내려가게 하는 것

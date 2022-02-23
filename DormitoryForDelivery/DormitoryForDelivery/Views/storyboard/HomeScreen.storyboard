@@ -1000,7 +1000,6 @@
                                                         <state key="normal" title="전체" image="전체"/>
                                                         <connections>
                                                             <action selector="filterButtonTapped:" destination="9x6-J1-GTs" eventType="touchUpInside" id="KgY-ho-CT6"/>
-                                                            <action selector="showAllPostButtonTapped:" destination="9x6-J1-GTs" eventType="touchUpInside" id="dZA-X8-tym"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전체" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wn1-pt-fcQ">
