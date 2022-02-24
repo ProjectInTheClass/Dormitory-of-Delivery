@@ -169,6 +169,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
     }
     
     @IBAction func doneButtonTapped(_ sender: Any) {
+        self.writingDoneButton.isEnabled = false // 버튼 두번누를 때 글이 두개 작성되는걸 방지하는 코드
         if self.mainPostInformation != nil {
             creatSelectedCategoriesNumber()
             changeTitleToArray(sender: self.titleTextField.text!)

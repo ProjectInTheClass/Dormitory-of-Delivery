@@ -13,9 +13,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func currentNumberChanged(currentNumber: Int, selectedIndexPath: Int) {
         
     }
-    
-
-    
 
     @IBOutlet weak var searchBarView: UIView!
     @IBOutlet weak var searchTableView: UITableView!
