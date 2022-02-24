@@ -20,7 +20,7 @@ class TutorialViewController: UIViewController {
             if currentPage == slides.count - 1{
                 NextButton.setTitle("시작합니다!", for: .normal)
             } else {
-                NextButton.setTitle("다음", for: .normal)
+                NextButton.setTitle("건너뛰기", for: .normal)
             }
         }
     }
@@ -44,7 +44,7 @@ class TutorialViewController: UIViewController {
     
     
     @IBAction func NextButtonClicked(_ sender: Any) {
-        if currentPage == slides.count - 1{
+        
             UserDefaults.standard.hasTutorial = true
             
             self.dismiss(animated: true, completion: nil) // 화면을 치운다.
@@ -54,11 +54,7 @@ class TutorialViewController: UIViewController {
             
 //            present(controller, animated: false, completion: nil)
             
-        }else{
-            currentPage += 1
-            let indexPath = IndexPath(item: currentPage, section: 0)
-            CollectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
-        }
+        
     }
     
 
@@ -86,3 +82,5 @@ extension TutorialViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
 }
+
+ 
