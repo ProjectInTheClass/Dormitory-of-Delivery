@@ -81,6 +81,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             self.filteredButtonMainPost = nil
             self.mainPosts = [] // 메인 화면으로 넘어갈 때 테이블뷰에 새로운 글까지 넣기위한 코드
             fetchRecruitmentTableList()
+            self.mainTableView.reloadData()
         }
         
     }

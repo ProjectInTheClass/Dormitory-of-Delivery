@@ -854,7 +854,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yRP-La-9V5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-17" y="-1477"/>
+            <point key="canvasLocation" x="-1148" y="-1493"/>
         </scene>
         <!--창원대학교-->
         <scene sceneID="TJc-Ad-dEb">
@@ -1331,7 +1331,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LdH-u6-TXU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="937.68115942028987" y="-1477.2321428571429"/>
+            <point key="canvasLocation" x="-193" y="-1493"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Hj-BI-z5O">
@@ -1484,6 +1484,7 @@
                     <connections>
                         <outlet property="searchBarView" destination="R4j-HT-qLP" id="0v1-99-Fbl"/>
                         <outlet property="searchTableView" destination="Gq7-C7-Wfv" id="PeO-Jf-uyZ"/>
+                        <segue destination="hOd-0E-zwr" kind="show" identifier="sendPostSegue" id="CRO-jg-Hth"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qsH-K7-1Kt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1494,6 +1495,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="0FG-kd-D7x"/>
         <segue reference="JcR-VF-5jB"/>
+        <segue reference="CRO-jg-Hth"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="2" width="858" height="432"/>

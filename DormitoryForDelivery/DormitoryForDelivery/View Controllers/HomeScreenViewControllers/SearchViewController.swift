@@ -8,7 +8,12 @@
 import UIKit
 import FirebaseFirestore
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate, PostViewControllerDelegate{
+    
+    func currentNumberChanged(currentNumber: Int, selectedIndexPath: Int) {
+        
+    }
+    
 
     
 
@@ -43,6 +48,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.update(with: searchMainPost)
             return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "sendPostSegue", sender: indexPath.row)
+    }
+
     
     private func setUpSearchController() {
         self.searchBarView.addSubview(searchController.searchBar)
@@ -136,5 +146,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Pass the selected object to the new view controller.
     }
     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "sendPostSegue" {
+            let destinationViewController = segue.destination as? PostViewController
+            destinationViewController?.delegate = self
+            if let indexPath = sender as? Int {
+                destinationViewController?.mainPostInformation = self.searchMainPost[indexPath]
+                destinationViewController?.selectedIndexPath = indexPath
+            }
+        }
+    }
 
 }
