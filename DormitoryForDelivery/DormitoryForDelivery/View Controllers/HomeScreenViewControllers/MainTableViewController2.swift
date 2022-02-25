@@ -42,7 +42,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         mainTableView.dataSource = self
         mainTableView.delegate = self
-        setUpSearchController()
+//        setUpSearchController()
         initRefresh()
         navigationUI()
         
@@ -192,7 +192,6 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                 .order(by: "timestamp", descending: true)
                 .start(afterDocument: lastDocumentSnapshot)
                 .limit(to: 10)
-
         }
         mainPostQuery.getDocuments() { (snapshot, error) in
                 if error != nil {

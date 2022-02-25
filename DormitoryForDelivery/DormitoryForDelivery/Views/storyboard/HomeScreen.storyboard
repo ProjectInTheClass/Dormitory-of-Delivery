@@ -865,7 +865,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FJr-zE-cYj">
-                                <rect key="frame" x="0.0" y="331" width="414" height="565"/>
+                                <rect key="frame" x="0.0" y="263" width="414" height="633"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="65" id="brW-ws-uL8" customClass="MainTableViewCell" customModule="DormitoryForDelivery" customModuleProvider="target">
@@ -1267,23 +1267,13 @@
                                     <constraint firstItem="Ku2-5u-n3A" firstAttribute="leading" secondItem="8YA-ei-rdV" secondAttribute="leading" constant="15" id="wuF-sB-p1v"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7W-hb-E18">
-                                <rect key="frame" x="0.0" y="272" width="414" height="60"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="vQD-7O-Ywi"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ut0-dG-fve"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="8YA-ei-rdV" firstAttribute="top" secondItem="Ut0-dG-fve" secondAttribute="top" id="29x-7k-Xig"/>
-                            <constraint firstItem="x7W-hb-E18" firstAttribute="leading" secondItem="Ut0-dG-fve" secondAttribute="leading" id="3Rh-OF-aCS"/>
-                            <constraint firstItem="x7W-hb-E18" firstAttribute="top" secondItem="Ut0-dG-fve" secondAttribute="top" constant="184" id="4QK-Sg-0cN"/>
-                            <constraint firstItem="x7W-hb-E18" firstAttribute="trailing" secondItem="Ut0-dG-fve" secondAttribute="trailing" id="FAR-0Y-6jl"/>
                             <constraint firstItem="8YA-ei-rdV" firstAttribute="leading" secondItem="Ut0-dG-fve" secondAttribute="leading" id="FgG-B4-gLG"/>
-                            <constraint firstItem="FJr-zE-cYj" firstAttribute="top" secondItem="8YA-ei-rdV" secondAttribute="bottom" constant="68" id="NW5-Su-8ag"/>
+                            <constraint firstItem="FJr-zE-cYj" firstAttribute="top" secondItem="8YA-ei-rdV" secondAttribute="bottom" id="NW5-Su-8ag"/>
                             <constraint firstItem="8YA-ei-rdV" firstAttribute="top" secondItem="Ut0-dG-fve" secondAttribute="top" id="VNI-W9-6OO"/>
                             <constraint firstItem="Ut0-dG-fve" firstAttribute="trailing" secondItem="OFw-kt-CSw" secondAttribute="trailing" constant="20" id="aMK-Kd-A7l"/>
                             <constraint firstItem="FJr-zE-cYj" firstAttribute="leading" secondItem="Ut0-dG-fve" secondAttribute="leading" id="fNR-m5-08Q"/>
@@ -1304,7 +1294,6 @@
                         <outlet property="button" destination="OFw-kt-CSw" id="zJT-AF-pUM"/>
                         <outlet property="mainTableView" destination="FJr-zE-cYj" id="EYg-EQ-Wfl"/>
                         <outlet property="navigationBar" destination="4j5-td-hn9" id="qFS-ZN-4Ue"/>
-                        <outlet property="searchBarView" destination="x7W-hb-E18" id="brE-3p-FmY"/>
                         <outletCollection property="filterLabelCollection" destination="wn1-pt-fcQ" collectionClass="NSMutableArray" id="tCs-mX-CVC"/>
                         <outletCollection property="filterLabelCollection" destination="stH-Vg-HT9" collectionClass="NSMutableArray" id="ceF-KL-ASy"/>
                         <outletCollection property="filterLabelCollection" destination="81U-6V-p33" collectionClass="NSMutableArray" id="HHd-qi-Bk2"/>
@@ -1495,7 +1484,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="0FG-kd-D7x"/>
         <segue reference="JcR-VF-5jB"/>
-        <segue reference="CRO-jg-Hth"/>
+        <segue reference="3XJ-5t-W0x"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="2" width="858" height="432"/>
