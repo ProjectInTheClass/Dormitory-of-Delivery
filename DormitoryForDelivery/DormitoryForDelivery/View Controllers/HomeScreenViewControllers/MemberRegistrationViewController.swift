@@ -20,7 +20,19 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var checkPasswordTextField: UITextField! { didSet {
         checkPasswordTextField.delegate = self
     }}
+    
+    @IBOutlet weak var studentNumberTextField: UITextField! { didSet {
+        studentNumberTextField.delegate = self
+    }}
+    
+    @IBOutlet weak var userNameTextField: UITextField! { didSet {
+        userNameTextField.delegate = self
+    }}
+    
     @IBOutlet weak var memberRegistrationButton: UIButton!
+    
+   
+    
     
     let db:Firestore = Firestore.firestore()
     
