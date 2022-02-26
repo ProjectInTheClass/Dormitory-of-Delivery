@@ -14,7 +14,7 @@ class MoreDetailsTableViewController: UITableViewController {
         super.viewDidLoad()
         navigationUI()
     }
-      
+    
     @IBAction func logOutButtonTapped(_ sender: Any) {
         let alertController = UIAlertController(title: "로그아웃하시겠습니까?", message: nil, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)

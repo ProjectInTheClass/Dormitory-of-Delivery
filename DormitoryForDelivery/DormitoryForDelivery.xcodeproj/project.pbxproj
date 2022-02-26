@@ -19,6 +19,7 @@
 		0CE619F727BB52B200D51BEC /* SettingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE619F627BB52B200D51BEC /* SettingScreen.storyboard */; };
 		715F3ECD27CA05F000521706 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715F3ECC27CA05F000521706 /* ResetPasswordViewController.swift */; };
 		715F3ECF27CA0B7900521706 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715F3ECE27CA0B7900521706 /* Service.swift */; };
+		715F3ED127CA368600521706 /* MyinfoCustomCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715F3ED027CA368600521706 /* MyinfoCustomCellTableViewCell.swift */; };
 		71B6D10927BCE7B2009D8ADC /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B6D10827BCE7B2009D8ADC /* TutorialViewController.swift */; };
 		71B6D10D27BCED27009D8ADC /* TutorialSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B6D10C27BCED27009D8ADC /* TutorialSlide.swift */; };
 		71B6D11127BCF278009D8ADC /* TutorialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B6D11027BCF277009D8ADC /* TutorialCollectionViewCell.swift */; };
@@ -66,6 +67,7 @@
 		61902CFB1D74595B278E6C11 /* Pods_DormitoryForDelivery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DormitoryForDelivery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		715F3ECC27CA05F000521706 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		715F3ECE27CA0B7900521706 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		715F3ED027CA368600521706 /* MyinfoCustomCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyinfoCustomCellTableViewCell.swift; sourceTree = "<group>"; };
 		71B6D10827BCE7B2009D8ADC /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		71B6D10C27BCED27009D8ADC /* TutorialSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialSlide.swift; sourceTree = "<group>"; };
 		71B6D11027BCF277009D8ADC /* TutorialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				D80E34B826CA8F1B008CD104 /* MoreDetailsTableViewController.swift */,
 				715F3ECC27CA05F000521706 /* ResetPasswordViewController.swift */,
 				715F3ECE27CA0B7900521706 /* Service.swift */,
+				715F3ED027CA368600521706 /* MyinfoCustomCellTableViewCell.swift */,
 			);
 			path = SettingScreenViewControllers;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 			files = (
 				D8B78388270C191200E9D684 /* ChatMessageRightTimeCell.swift in Sources */,
 				0C17CA1D26B8159E00D92B81 /* MainTableViewCell.swift in Sources */,
+				715F3ED127CA368600521706 /* MyinfoCustomCellTableViewCell.swift in Sources */,
 				D8ABC1AF26D28533009AB503 /* chattingDataModel.swift in Sources */,
 				71B6D10D27BCED27009D8ADC /* TutorialSlide.swift in Sources */,
 				71B6D11327BD1775009D8ADC /* Extention.swift in Sources */,
