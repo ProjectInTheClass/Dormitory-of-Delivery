@@ -10,6 +10,8 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
+  
+    let db:Firestore = Firestore.firestore()
     
     @IBOutlet weak var emailTextField: UITextField!{ didSet {
         emailTextField.delegate = self
@@ -20,19 +22,19 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
     @IBOutlet weak var checkPasswordTextField: UITextField! { didSet {
         checkPasswordTextField.delegate = self
     }}
-    
     @IBOutlet weak var studentNumberTextField: UITextField! { didSet {
         studentNumberTextField.delegate = self
     }}
-    
     @IBOutlet weak var userNameTextField: UITextField! { didSet {
         userNameTextField.delegate = self
     }}
-    
     @IBOutlet weak var memberRegistrationButton: UIButton!
-    
     @IBOutlet weak var scrollView: UIScrollView!
     
+    
+    @IBAction func emailTextDidChanged(_ sender: Any) {
+        checkMaxLength(textField: emailTextField, maxLength: 25)
+    }
     @IBAction func contentViewTapped(_ sender: Any) {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
@@ -40,20 +42,16 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
         userNameTextField.resignFirstResponder()
     }
     
-    let db:Firestore = Firestore.firestore()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationUI()
         scrollView.delegate = self
         try! Auth.auth().signOut()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
     }
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         unsubscribeFromKeyboardNotifications()
@@ -129,7 +127,6 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
         }
     }
     
-    
     @IBAction func dismissButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -171,7 +168,13 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func navigationUI() {
+    private func checkMaxLength(textField: UITextField!, maxLength: Int) {
+        if (textField.text?.count ?? 0 > maxLength) {
+                textField.deleteBackward()
+            }
+    }
+    
+    private func navigationUI() {
         navigationController?.navigationBar.tintColor = .white
     }
     
@@ -185,6 +188,4 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
             destinationViewController?.emailText = emailTextField.text! + "@gs.cwnu.ac.kr"
         }
     }
-    
-
 }
