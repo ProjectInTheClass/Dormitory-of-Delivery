@@ -873,7 +873,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJ4-xb-8ID">
-                                <rect key="frame" x="24" y="202.5" width="366" height="40"/>
+                                <rect key="frame" x="24" y="197.5" width="366" height="40"/>
                                 <color key="backgroundColor" red="0.5568627451" green="0.62745098040000002" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="pqz-lM-MnS"/>
@@ -887,31 +887,22 @@
                                     <action selector="memberRegistrationButtonTapped:" destination="1ed-f6-hbT" eventType="touchUpInside" id="Sg4-mJ-yhu"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" ! 이메일 인증을 해주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7FG-26-nU7">
-                                <rect key="frame" x="24" y="174.5" width="131" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" systemColor="systemPinkColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="maX-gX-alX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="HJ4-xb-8ID" firstAttribute="top" secondItem="4pw-4M-b96" secondAttribute="bottom" constant="30" id="0Kh-Z4-cKb"/>
+                            <constraint firstItem="HJ4-xb-8ID" firstAttribute="top" secondItem="4pw-4M-b96" secondAttribute="bottom" constant="25" id="0Kh-Z4-cKb"/>
                             <constraint firstItem="DIi-fv-2AU" firstAttribute="top" secondItem="maX-gX-alX" secondAttribute="top" constant="20" id="3eL-lj-qF4"/>
                             <constraint firstItem="4pw-4M-b96" firstAttribute="top" secondItem="DIi-fv-2AU" secondAttribute="bottom" constant="10" id="IFU-4f-43P"/>
                             <constraint firstItem="HJ4-xb-8ID" firstAttribute="leading" secondItem="maX-gX-alX" secondAttribute="leading" constant="24" id="Li3-WL-beY"/>
                             <constraint firstItem="4pw-4M-b96" firstAttribute="leading" secondItem="maX-gX-alX" secondAttribute="leading" constant="24" id="Wer-rG-97F"/>
                             <constraint firstItem="maX-gX-alX" firstAttribute="trailing" secondItem="HJ4-xb-8ID" secondAttribute="trailing" constant="24" id="cX5-sL-eFn"/>
                             <constraint firstItem="DIi-fv-2AU" firstAttribute="leading" secondItem="dYk-ej-KJO" secondAttribute="leading" constant="6" id="gz5-OK-cnU"/>
-                            <constraint firstItem="7FG-26-nU7" firstAttribute="top" secondItem="4pw-4M-b96" secondAttribute="bottom" constant="2" id="mIS-Ra-kFb"/>
                             <constraint firstItem="maX-gX-alX" firstAttribute="trailing" secondItem="4pw-4M-b96" secondAttribute="trailing" constant="24" id="seK-2x-4gZ"/>
-                            <constraint firstItem="7FG-26-nU7" firstAttribute="leading" secondItem="maX-gX-alX" secondAttribute="leading" constant="24" id="ybf-Wc-m30"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="이메일 인증" id="pAL-tZ-nc3"/>
                     <connections>
-                        <outlet property="certificationLabel" destination="7FG-26-nU7" id="Zfl-mL-EMM"/>
                         <outlet property="emailCertificationButton" destination="sqL-4b-TqK" id="YFU-rr-MFr"/>
                         <outlet property="emailTextField" destination="dYk-ej-KJO" id="lwr-xm-PjX"/>
                     </connections>
@@ -1585,7 +1576,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="0Pb-cc-gjd"/>
-        <segue reference="JcR-VF-5jB"/>
+        <segue reference="Zcc-f1-QDY"/>
         <segue reference="3XJ-5t-W0x"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -1615,9 +1606,6 @@
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

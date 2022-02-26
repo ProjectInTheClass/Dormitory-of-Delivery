@@ -59,10 +59,11 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
     
     @IBAction func memberRegistrationButtonTapped(_ sender: Any) {
         let password = passwordTextField.text!
-        let email = emailTextField.text! + "@gs.cwnu.ac.kr"
+        let email = emailTextField.text! + "@gs.cwnu.ac.kr" //20165157@gs.cwnu.ac.kr
         let studentNumber = studentNumberTextField.text!
         let userName = userNameTextField.text!
-        let newUser = ["email":email, "studentNumber":studentNumber, "userName":userName]
+        let userID = emailTextField.text! + " " + userName
+        let newUser = ["email":email, "studentNumber":studentNumber, "userName":userName, "userID":userID]
         
         guard emailTextField.text?.isEmpty == false, passwordTextField.text?.isEmpty == false, checkPasswordTextField.text?.isEmpty == false else {
             let alertController = UIAlertController(title: "이메일과 비밀번호를 작성해주세요.", message: nil, preferredStyle: .alert)
@@ -95,6 +96,8 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
                     // 이메일과 비밀번호로 계정을 생성한후 오류가 없을시 데이터베이스에 정보도 입력
                     if error == nil {
                         self.db.collection("users").document(Auth.auth().currentUser!.uid).setData(newUser)
+                        FirebaseDataService.instance.userRef.child(Auth.auth().currentUser!.uid).child("userID").setValue(userID)
+                        
                         self.performSegue(withIdentifier: "emailCertification", sender: nil)
                     // 계정생성시 오류발생
                     } else {

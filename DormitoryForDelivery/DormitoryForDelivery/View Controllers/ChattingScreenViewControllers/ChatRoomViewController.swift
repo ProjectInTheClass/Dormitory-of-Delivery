@@ -6,15 +6,17 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
+    
+    let db: Firestore = Firestore.firestore()
     @IBOutlet weak var item: UINavigationItem!
     @IBOutlet weak var chatCollectionView: UICollectionView!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var chatTextField: UITextField!
     var height: CGFloat = 0.0
-    var messages: [ChatMessage] = [ChatMessage(fromUserId: "", text: "", timestamp: 0)]
+    var messages: [ChatMessage] = [ChatMessage(fromUserId: "", userID: "", text: "", timestamp: 0)]
     
     var groupKey: String? {
         didSet {
@@ -60,6 +62,11 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         chatMessageRightTimeCell.textLabel.text = message.text
         chatMessageAndUserCell.textLabel.text = message.text
         chatMessageRightTimeAndUserCell.textLabel.text = message.text
+        
+        //수정중//
+        chatMessageAndUserCell.nameLabel.text = message.userID
+        chatMessageRightTimeAndUserCell.nameLabel.text = message.userID
+        //  //
         
         chatMessageLeftTimeCell.timeLabel.text = fetchMeetingTime(meetingTime: message.timestamp)
         chatMessageRightTimeCell.timeLabel.text = fetchMeetingTime(meetingTime: message.timestamp)
@@ -267,27 +274,37 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         return NSString(string: message).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)], context: nil)
     }
     
+    
     @IBAction func sendButtonTapped(_ sender: UIButton){
         guard let fromUserId = FirebaseDataService.instance.currentUserUid else {
             return
         }
         
-        let data: Dictionary<String, AnyObject> = [
-            "fromUserId" : fromUserId as AnyObject,
-            "text" : chatTextField.text! as AnyObject,
-            "timestamp" : NSNumber(value: Date().timeIntervalSince1970)
-        ]
-        
-        if let groupId = self.groupKey {
-            let ref = FirebaseDataService.instance.groupRef.child(groupId).child("messages").childByAutoId()
-            ref.updateChildValues(data) { (error, ref) in
-                guard error == nil else {
-                    print(error as Any)
-                    return
+        //userID구해오기
+        FirebaseDataService.instance.userRef.child(fromUserId).child("userID").getData { (error,snapshot) in
+            guard error == nil else { return }
+            
+            let userID = snapshot.value as! String
+            let data: Dictionary<String, AnyObject> = [
+                "fromUserId" : fromUserId as AnyObject,
+                "userID" : userID as AnyObject,
+                "text" : self.chatTextField.text! as AnyObject,
+                "timestamp" : NSNumber(value: Date().timeIntervalSince1970)
+            ]
+            
+            if let groupId = self.groupKey {
+                let ref = FirebaseDataService.instance.groupRef.child(groupId).child("messages").childByAutoId()
+                ref.updateChildValues(data) { (error, ref) in
+                    guard error == nil else {
+                        print(error as Any)
+                        return
+                    }
+                    
+                    FirebaseDataService.instance.groupRef.child(groupId).child("lastMessage").setValue(self.chatTextField.text)
+                    self.chatTextField.text = nil
                 }
-                FirebaseDataService.instance.groupRef.child(groupId).child("lastMessage").setValue(self.chatTextField.text)
-                self.chatTextField.text = nil
             }
+            
         }
     }
     
@@ -327,6 +344,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
                 if let dict = snapshot.value as? Dictionary<String, AnyObject> {
                     let message = ChatMessage(
                         fromUserId: dict["fromUserId"] as! String,
+                        userID: dict["userID"] as! String,
                         text: dict["text"] as! String,
                         timestamp: dict["timestamp"] as! NSNumber
                     )

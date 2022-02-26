@@ -9,6 +9,7 @@ import Foundation
 
 struct ChatMessage {
     var fromUserId: String
+    var userID: String
     var text: String
     var timestamp: NSNumber
 }
@@ -19,13 +20,6 @@ struct Group {
     var currentNumber: Int
     var lastMessage: String
     
-//    init(key: String, name: String, currentNumber: Int) {
-//        self.key = key
-//        self.name = name
-//        self.currentNumber = currentNumber
-//        
-//    }
-    
     init(key: String, data: Dictionary<String, AnyObject>) {
         self.key = key
         self.name = data["name"] as! String
@@ -33,7 +27,6 @@ struct Group {
         self.lastMessage = data["lastMessage"] as! String
         }
     }
-
 
 struct User {
     var uid: String

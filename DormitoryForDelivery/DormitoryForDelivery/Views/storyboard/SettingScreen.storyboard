@@ -290,8 +290,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="내 정보" id="mMn-ke-Ge3"/>
                     <connections>
-                        <outlet property="MyInfoCell" destination="WpS-Xm-6QR" id="UmL-ci-me3"/>
-                        <outlet property="SettingsTableView" destination="vmx-en-98Y" id="DmL-2r-Ahk"/>
                         <segue destination="ZMR-T8-rbB" kind="unwind" identifier="logOut" unwindAction="unwindToMainViewControllerWithUnwindSegue:" id="qu7-I9-tiZ"/>
                     </connections>
                 </tableViewController>

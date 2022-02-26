@@ -8,12 +8,10 @@
 import UIKit
 import FirebaseAuth
 
-
 class EmailCertificationViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var emailCertificationButton: UIButton!
-    @IBOutlet weak var certificationLabel: UILabel!
     
     var emailText:String?
     
@@ -51,16 +49,6 @@ class EmailCertificationViewController: UIViewController {
                 alertController.addAction(checkAction)
                 self.present(alertController, animated: true, completion: nil)
             }
-        }
-    }
-    
-    func updateCertificationLabel() {
-        if Auth.auth().currentUser?.isEmailVerified == true {
-            certificationLabel.text = "이메일 인증이 완료되었습니다."
-            certificationLabel.textColor = .blue
-        } else {
-            certificationLabel.text = " ! 이메일 인증을 해주세요."
-            certificationLabel.textColor = .red
         }
     }
     /*
