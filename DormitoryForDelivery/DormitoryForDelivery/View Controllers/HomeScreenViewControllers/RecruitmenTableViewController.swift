@@ -367,6 +367,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
             titleArray.append(String(titleComponent))
         }
         self.titleComponentArray = titleArray
+        print(titleArray)
     }
    
     // MARK: - Table view data source

@@ -18,6 +18,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.delegate = self
     }}
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true

@@ -67,11 +67,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     // 검색 확인 버튼을 눌렀을 때 서버에서 해당 데이터 가져오기
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.searchMainPost = []
         var searchQuery: Query!
-        var searchPost: [RecruitingText] = []
-        print(searchController.searchBar.text!)
         var findPostArray: [String] = []
-        findPostArray.append(searchController.searchBar.text!)
+        for titleComponent in searchController.searchBar.text! {
+            findPostArray.append(String(titleComponent))
+        }
+        print(findPostArray)
         searchQuery = self.db.collection("recruitTables")
             .whereField("titleComponentArray", arrayContainsAny: findPostArray)
 //            .order(by: "timestamp", descending: true)
@@ -99,7 +101,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         let searchingPost:RecruitingText = RecruitingText(postTitle: title, categories: category, categoryNumber: categoryNumber, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel, titleComponentArray: titleComponentArray)
                         self.searchMainPost.append(searchingPost)
                     }
-                print(searchPost)
                 self.searchTableView.reloadData()
                 }
             }

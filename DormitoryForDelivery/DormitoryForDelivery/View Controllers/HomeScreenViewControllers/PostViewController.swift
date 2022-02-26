@@ -170,7 +170,9 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
         
         participateButton.layer.cornerRadius = participateButton.layer.frame.size.width/2
 
-        participateButton.layer.backgroundColor = UIColor.systemBlue.cgColor
+        participateButton.layer.backgroundColor = UIColor(displayP3Red: 142/255, green: 160/255, blue: 207/255, alpha: 1).cgColor
+        
+        participateButton.layer.borderColor = UIColor(displayP3Red: 142/255, green: 160/255, blue: 207/255, alpha: 1).cgColor
         
         participateButton.layer.borderWidth = 1.0
         
