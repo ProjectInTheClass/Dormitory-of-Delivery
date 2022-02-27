@@ -340,7 +340,6 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     func fetchMessages() {
         if let groupId = self.groupKey {
             let groupMessageRef = FirebaseDataService.instance.groupRef.child(groupId).child("messages")
-           
             groupMessageRef.observe(.childAdded, with: { (snapshot) in
                 if let dict = snapshot.value as? Dictionary<String, AnyObject> {
                     let message = ChatMessage(
@@ -352,11 +351,16 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
                     self.messages.insert(message, at: self.messages.count - 1)
                     self.chatCollectionView.reloadData()
                     self.chatCollectionView.layoutIfNeeded()
+                    
                     if self.messages.count >= 1 {
                         let indexPath = IndexPath(item: self.messages.count - 2, section: 0)
-                        self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.bottom, animated: true)
+                        //화면이 제일 밑에서 3~4개정도 위에있을때만 제일 하단으로 스크롤되게 변경
+                        // 추가사항 : 채팅방으로 첫진입시 젤밑으로 or 전에 읽었던데 까지  => 로컬로 위치데이터넣고 다른함수 추가로 사용해야 가능할
+                        let navigationBarHeight = self.navigationController?.navigationBar.frame.height
+                        if self.chatCollectionView.frame.height + 150 >= self.chatCollectionView.contentSize.height - self.chatCollectionView.contentOffset.y - navigationBarHeight! {
+                            self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.bottom, animated: false)
+                        }
                     }
-                    self.chatCollectionView.frame.origin.y = self.height
                 }
             })
         }
