@@ -16,15 +16,14 @@ class MoreDetailsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FetchData()
         SettingsTableView.backgroundColor = .systemGray6
-        
         SettingsTableView.delegate = self
         SettingsTableView.dataSource = self
         navigationUI()
         SettingsTableView.rowHeight = UITableView.automaticDimension
         let nibName = UINib(nibName: "MyInfoTableViewCell", bundle: nil)
         SettingsTableView.register(nibName, forCellReuseIdentifier: "MyInfoTableViewCell")
-        FetchData()
     }
     
     func FetchData(){
@@ -40,6 +39,8 @@ class MoreDetailsTableViewController: UITableViewController {
                     self.email = email
                     self.studentNumber = studentNumber
                     self.name = name
+                    self.SettingsTableView.reloadData()
+                    
                 }
             }
     }
@@ -71,6 +72,7 @@ class MoreDetailsTableViewController: UITableViewController {
     }
     
     
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 1{
             return 130
@@ -82,7 +84,7 @@ class MoreDetailsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let SectionView = UIView(frame: CGRect(x: 0, y: 0, width: SettingsTableView.frame.width, height: 18))
         
-        let SectionLabel = UILabel(frame: CGRect(x: 15, y: -5, width: SectionView.frame.width, height: 18))
+        let SectionLabel = UILabel(frame: CGRect(x: 15, y: -5, width: SectionView.frame.width, height: 14))
         
         SectionLabel.text = SectionName[section]
         SectionView.addSubview(SectionLabel)
@@ -122,6 +124,8 @@ class MoreDetailsTableViewController: UITableViewController {
             return MyInfo
         }else{
             let MyInfoCell = SettingsTableView.dequeueReusableCell(withIdentifier: "MyInfoCell", for: indexPath)
+            
+            MyInfoCell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
             
             if indexPath.section == 2{
                 MyInfoCell.textLabel?.text = "\(AccInfo[indexPath.row])"
