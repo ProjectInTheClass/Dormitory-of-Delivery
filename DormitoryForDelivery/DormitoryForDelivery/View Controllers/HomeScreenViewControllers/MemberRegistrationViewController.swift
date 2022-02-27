@@ -30,10 +30,9 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
     }}
     @IBOutlet weak var memberRegistrationButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var contentView: UIView!
     
-    
+    var contentViewheight: CGFloat?
     
     @IBAction func emailTextDidChanged(_ sender: Any) {
         checkMaxLength(textField: emailTextField, maxLength: 25)
@@ -50,6 +49,7 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
         super.viewDidLoad()
         navigationUI()
         scrollView.delegate = self
+        contentViewheight = contentView.frame.height
         try! Auth.auth().signOut()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -153,7 +153,7 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
         let height = getKeyboardHeight(notification)
         
         view.frame.origin.y = -height
-        scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: self.contentView.frame.height)
+        scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: self.contentViewheight!)
         scrollView.contentInset.top = height
     }
     
