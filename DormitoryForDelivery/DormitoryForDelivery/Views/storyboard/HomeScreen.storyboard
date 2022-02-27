@@ -748,7 +748,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9VD-8M-x1c"/>
-                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="abZ-29-scd" firstAttribute="trailing" secondItem="9VD-8M-x1c" secondAttribute="trailing" id="HAl-ka-lGU"/>
                             <constraint firstItem="abZ-29-scd" firstAttribute="bottom" secondItem="9VD-8M-x1c" secondAttribute="bottom" id="Psb-Kd-EPN"/>
@@ -1572,9 +1572,6 @@
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
