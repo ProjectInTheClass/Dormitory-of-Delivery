@@ -16,7 +16,6 @@ class MoreDetailsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        FetchData()
         SettingsTableView.backgroundColor = .systemGray6
         SettingsTableView.delegate = self
         SettingsTableView.dataSource = self
@@ -24,6 +23,11 @@ class MoreDetailsTableViewController: UITableViewController {
         SettingsTableView.rowHeight = UITableView.automaticDimension
         let nibName = UINib(nibName: "MyInfoTableViewCell", bundle: nil)
         SettingsTableView.register(nibName, forCellReuseIdentifier: "MyInfoTableViewCell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FetchData()
     }
     
     func FetchData(){
