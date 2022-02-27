@@ -31,6 +31,9 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
     @IBOutlet weak var memberRegistrationButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var contentView: UIView!
+    
+    
     
     @IBAction func emailTextDidChanged(_ sender: Any) {
         checkMaxLength(textField: emailTextField, maxLength: 25)
@@ -38,6 +41,7 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
     @IBAction func contentViewTapped(_ sender: Any) {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
+        checkPasswordTextField.resignFirstResponder()
         studentNumberTextField.resignFirstResponder()
         userNameTextField.resignFirstResponder()
     }
@@ -137,21 +141,24 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
+        checkPasswordTextField.resignFirstResponder()
         studentNumberTextField.resignFirstResponder()
         userNameTextField.resignFirstResponder()
         return true
     }
     
+    // MARK: - KEYBOARD notification
+    
     @objc func keyboardWillShow(_ notification: Notification) {
         let height = getKeyboardHeight(notification)
+        
         view.frame.origin.y = -height
-        scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height)
+        scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: self.contentView.frame.height)
         scrollView.contentInset.top = height
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
         view.frame.origin.y = 0
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scrollView.contentInset.top = 0
     }
     
