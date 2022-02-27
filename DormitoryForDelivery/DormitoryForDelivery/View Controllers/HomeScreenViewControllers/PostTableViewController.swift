@@ -13,13 +13,14 @@ class PostTableViewController: UITableViewController {
     var mainPostInformation: RecruitingText?
     
     var rowHeight: CGFloat?
-    
 
+    @IBOutlet weak var postTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsSelection = false
+        postTextView.isScrollEnabled = false
         updateUI()
-        tableView.rowHeight = UITableView.automaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,11 +30,14 @@ class PostTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.tableView.rowHeight
-    }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 77
+    }
     func updateUI() {
         guard let mainPostInformation = mainPostInformation else { return }
         
