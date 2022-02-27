@@ -10,6 +10,12 @@ import UIKit
 class MyinfoCustomCellTableViewCell: UITableViewCell {
     
     
+    @IBOutlet weak var RMail: UILabel!
+    @IBOutlet weak var RNumber: UILabel!
+    @IBOutlet weak var RName: UILabel!
+    @IBOutlet weak var MailLabel: UILabel!
+    @IBOutlet weak var NumberLabel: UILabel!
+    @IBOutlet weak var NameLable: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

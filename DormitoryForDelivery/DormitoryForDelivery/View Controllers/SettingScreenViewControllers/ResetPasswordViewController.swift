@@ -16,7 +16,7 @@ class ResetPasswordViewController: UIViewController {
     @IBOutlet weak var EmInput: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        UINavigationBar.appearance().tintColor = .white
         // Do any additional setup after loading the view.
     }
     
