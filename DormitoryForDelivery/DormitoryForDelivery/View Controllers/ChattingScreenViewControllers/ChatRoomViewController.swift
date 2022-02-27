@@ -63,10 +63,8 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         chatMessageAndUserCell.textLabel.text = message.text
         chatMessageRightTimeAndUserCell.textLabel.text = message.text
         
-        //수정중//
         chatMessageAndUserCell.nameLabel.text = message.userID
         chatMessageRightTimeAndUserCell.nameLabel.text = message.userID
-        //  //
         
         chatMessageLeftTimeCell.timeLabel.text = fetchMeetingTime(meetingTime: message.timestamp)
         chatMessageRightTimeCell.timeLabel.text = fetchMeetingTime(meetingTime: message.timestamp)
