@@ -10,31 +10,37 @@ import UIKit
 
 class PostTableViewController: UITableViewController {
     
-    @IBOutlet weak var userNickNameLabel:UILabel!
-    @IBOutlet weak var postContentTextView: UITextView!
-    @IBOutlet weak var progressLabel: UILabel!
-    @IBOutlet weak var meetingTimeLabel: UILabel!
-    
     var mainPostInformation: RecruitingText?
+    
+    var rowHeight: CGFloat?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsSelection = false
         updateUI()
+        tableView.rowHeight = UITableView.automaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "send"), object: nil)
     }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.tableView.rowHeight
+    }
 
     func updateUI() {
         guard let mainPostInformation = mainPostInformation else { return }
         
-        //postCategoriesLabel.text = "#\(mainPostInformation.categories)"
-        postContentTextView.text = mainPostInformation.postNoteText
-        progressLabel.text = "\(mainPostInformation.currentNumber) / \(mainPostInformation.maximumNumber)"
-        meetingTimeLabel.text = mainPostInformation.meetingTime
+//        //postCategoriesLabel.text = "#\(mainPostInformation.categories)"
+//        postContentTextView.text = mainPostInformation.postNoteText
+//        progressLabel.text = "\(mainPostInformation.currentNumber) / \(mainPostInformation.maximumNumber)"
+//        meetingTimeLabel.text = mainPostInformation.meetingTime
     }
     
     // 수정 데이터 전달받기

@@ -168,7 +168,7 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
     
     func participateButtonUpdateUI() {
         
-        participateButton.layer.cornerRadius = participateButton.layer.frame.size.width/2
+        participateButton.layer.cornerRadius = 6
 
         participateButton.layer.backgroundColor = UIColor(displayP3Red: 142/255, green: 160/255, blue: 207/255, alpha: 1).cgColor
         
@@ -176,7 +176,7 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
         
         participateButton.layer.borderWidth = 1.0
         
-        includeParticipateButtonView.layer.cornerRadius = includeParticipateButtonView.layer.frame.size.width/2
+        includeParticipateButtonView.layer.cornerRadius = 6
 
         guard let currentUid = FirebaseDataService.instance.currentUserUid else {return}
         var array:[String] = []
