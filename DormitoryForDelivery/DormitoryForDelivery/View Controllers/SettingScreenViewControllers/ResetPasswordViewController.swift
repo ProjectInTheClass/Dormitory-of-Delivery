@@ -16,7 +16,8 @@ class ResetPasswordViewController: UIViewController {
     @IBOutlet weak var EmInput: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        UINavigationBar.appearance().tintColor = .white
+        SendButton.layer.shadowRadius = 6
+        
         // Do any additional setup after loading the view.
     }
     
