@@ -130,6 +130,9 @@
                         </navigationBarAppearance>
                         <navigationBarAppearance key="scrollEdgeAppearance">
                             <color key="backgroundColor" red="0.54108172659999998" green="0.6304117441" blue="0.8289681673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </textAttributes>
                         </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -395,14 +398,14 @@
                                             <outletCollection property="gestureRecognizers" destination="WbQ-oA-oNy" appends="YES" id="5xe-p3-vCp"/>
                                         </connections>
                                     </collectionView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bEd-SL-LUP">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bEd-SL-LUP" userLabel="contain View">
                                         <rect key="frame" x="0.0" y="720" width="414" height="54"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pSy-Bm-Qkt">
                                                 <rect key="frame" x="8" y="10" width="344" height="34"/>
                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1FW-b0-VDc">
                                                 <rect key="frame" x="360" y="10" width="46" height="34"/>
@@ -417,7 +420,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="pSy-Bm-Qkt" firstAttribute="top" secondItem="bEd-SL-LUP" secondAttribute="top" constant="10" id="B16-Ma-ZBe"/>
                                             <constraint firstAttribute="trailing" secondItem="1FW-b0-VDc" secondAttribute="trailing" constant="8" id="DOA-ht-9IJ"/>
@@ -433,7 +436,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8S3-js-qDw"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.81176471709999998" green="0.82352948189999997" blue="0.84313726430000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="TGe-rc-jGx" firstAttribute="top" secondItem="8S3-js-qDw" secondAttribute="top" id="903-TJ-SkI"/>
@@ -452,6 +455,7 @@
                     <connections>
                         <outlet property="chatCollectionView" destination="CkK-4g-rlH" id="pv2-VA-gaQ"/>
                         <outlet property="chatTextField" destination="pSy-Bm-Qkt" id="434-Xg-iDq"/>
+                        <outlet property="containView" destination="bEd-SL-LUP" id="CP7-QQ-ObZ"/>
                         <outlet property="item" destination="Hem-QL-yFi" id="Azb-Km-y1E"/>
                         <outlet property="sendButton" destination="1FW-b0-VDc" id="Zfn-BA-Wmk"/>
                     </connections>

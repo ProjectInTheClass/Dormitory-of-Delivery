@@ -15,6 +15,9 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     @IBOutlet weak var chatCollectionView: UICollectionView!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var chatTextField: UITextField!
+    
+    @IBOutlet weak var containView: UIView!
+    
     var height: CGFloat = 0.0
     var messages: [ChatMessage] = [ChatMessage(fromUserId: "", userID: "", text: "", timestamp: 0)]
     
@@ -353,33 +356,32 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
                         let indexPath = IndexPath(item: self.messages.count - 2, section: 0)
                         self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.bottom, animated: true)
                     }
-                    //self.chatCollectionView.frame.origin.y = self.height
+                    self.chatCollectionView.frame.origin.y = self.height
                 }
             })
         }
     }
     
     // get keyboard height and shift the view from bottom to higher
+    // MARK: - KEYBOARD Notification
     @objc func keyboardWillShow(_ notification: Notification) {
-        if chatTextField.isFirstResponder {
-            height = getKeyboardHeight(notification)
-            let tabBarHeight = self.tabBarController!.tabBar.frame.size.height
-            view.frame.origin.y = -height + tabBarHeight
-            chatCollectionView.contentInset.top = height - tabBarHeight
-        }
+        height = getKeyboardHeight(notification)
+        let tabBarHeight = self.tabBarController!.tabBar.frame.size.height
+        view.frame.origin.y = -height + tabBarHeight
+        containView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -tabBarHeight).isActive = true
+        chatCollectionView.contentInset.top = height - tabBarHeight
+        
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
-        if chatTextField.isFirstResponder {
-            view.frame.origin.y = 0
-            chatCollectionView.contentInset.top = 0
-        }
+        height = getKeyboardHeight(notification)
+        view.frame.origin.y = 0
+        chatCollectionView.contentInset.top = 0
     }
     
     func getKeyboardHeight(_ notification: Notification) -> CGFloat {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
-        print(keyboardSize.cgRectValue.height)
         return keyboardSize.cgRectValue.height
     }
     
