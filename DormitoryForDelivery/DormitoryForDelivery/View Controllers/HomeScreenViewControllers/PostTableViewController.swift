@@ -14,13 +14,24 @@ class PostTableViewController: UITableViewController {
     
     var rowHeight: CGFloat?
 
+    @IBOutlet weak var recruitInformationView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var postWriterNameLabel: UILabel!
+    @IBOutlet weak var postCreatTimeLabel: UILabel!
+    @IBOutlet weak var recruitMemberNumberLabel: UILabel!
+    @IBOutlet weak var orderTimeLabel: UILabel!
     @IBOutlet weak var postTextView: UITextView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        updateUI()
         tableView.allowsSelection = false
         postTextView.isScrollEnabled = false
-        updateUI()
+        recruitInformationView.layer.addBorder([.top], color: UIColor.opaqueSeparator, width: 1.0)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,14 +49,6 @@ class PostTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 77
     }
-    func updateUI() {
-        guard let mainPostInformation = mainPostInformation else { return }
-        
-//        //postCategoriesLabel.text = "#\(mainPostInformation.categories)"
-//        postContentTextView.text = mainPostInformation.postNoteText
-//        progressLabel.text = "\(mainPostInformation.currentNumber) / \(mainPostInformation.maximumNumber)"
-//        meetingTimeLabel.text = mainPostInformation.meetingTime
-    }
     
     // 수정 데이터 전달받기
     
@@ -55,6 +58,15 @@ class PostTableViewController: UITableViewController {
         self.mainPostInformation = data
         updateUI()
         self.tableView.reloadData()
+    }
+    
+    private func updateUI() {
+        guard let mainPostInformation = mainPostInformation else { return }
+        print(mainPostInformation)
+        titleLabel.text = mainPostInformation.postTitle
+        orderTimeLabel.text = mainPostInformation.meetingTime
+        recruitMemberNumberLabel.text = "\(mainPostInformation.currentNumber) / \(mainPostInformation.maximumNumber)"
+        postTextView.text = mainPostInformation.postNoteText
     }
 
     // MARK: - Table view data source
@@ -114,4 +126,30 @@ class PostTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension CALayer {
+    func addBorder(_ arr_edge: [UIRectEdge], color: UIColor, width: CGFloat) {
+        for edge in arr_edge {
+            let border = CALayer()
+            switch edge {
+            case UIRectEdge.top:
+                border.frame = CGRect.init(x: 0, y: 0, width: frame.width, height: width)
+                break
+            case UIRectEdge.bottom:
+                border.frame = CGRect.init(x: 0, y: frame.height - width, width: frame.width, height: width)
+                break
+            case UIRectEdge.left:
+                border.frame = CGRect.init(x: 0, y: 0, width: width, height: frame.height)
+                break
+            case UIRectEdge.right:
+                border.frame = CGRect.init(x: frame.width - width, y: 0, width: width, height: frame.height)
+                break
+            default:
+                break
+            }
+            border.backgroundColor = color.cgColor;
+            self.addSublayer(border)
+        }
+    }
 }

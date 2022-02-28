@@ -304,7 +304,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if currentDay == meetingDay {
             dateFormatter.dateFormat = "a hh:mm"
-            return dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime))) + " " + "까지"
+            return dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime)))
             
         } else if currentDay + 1 == meetingDay {
             dateFormatter.dateFormat = "a hh:mm"
