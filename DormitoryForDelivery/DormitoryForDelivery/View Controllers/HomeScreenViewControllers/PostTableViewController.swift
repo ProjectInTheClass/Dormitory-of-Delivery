@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Foundation
 
 class PostTableViewController: UITableViewController {
     
@@ -21,6 +21,7 @@ class PostTableViewController: UITableViewController {
     @IBOutlet weak var recruitMemberNumberLabel: UILabel!
     @IBOutlet weak var orderTimeLabel: UILabel!
     @IBOutlet weak var postTextView: UITextView!
+    @IBOutlet weak var categoryLabel: UILabel!
     
     
     
@@ -31,6 +32,7 @@ class PostTableViewController: UITableViewController {
         tableView.allowsSelection = false
         postTextView.isScrollEnabled = false
         recruitInformationView.layer.addBorder([.top], color: UIColor.opaqueSeparator, width: 1.0)
+
         
     }
     
@@ -62,11 +64,24 @@ class PostTableViewController: UITableViewController {
     
     private func updateUI() {
         guard let mainPostInformation = mainPostInformation else { return }
+        updateWritingDate()
         print(mainPostInformation)
         titleLabel.text = mainPostInformation.postTitle
         orderTimeLabel.text = mainPostInformation.meetingTime
         recruitMemberNumberLabel.text = "\(mainPostInformation.currentNumber) / \(mainPostInformation.maximumNumber)"
         postTextView.text = mainPostInformation.postNoteText
+        categoryLabel.text = mainPostInformation.categories
+    }
+    
+    private func updateWritingDate() {
+        let writingDateInformation = Date(timeIntervalSince1970: self.mainPostInformation?.timestamp as! TimeInterval)
+        let calender = Calendar.current
+        let writingYear = calender.component(.year, from: writingDateInformation)
+        let writingMonth = calender.component(.month, from: writingDateInformation)
+        let writingDay = calender.component(.day, from: writingDateInformation)
+        let writingHour = calender.component(.hour, from: writingDateInformation)
+        let writingMinute = calender.component(.minute, from: writingDateInformation)
+        self.postCreatTimeLabel.text = "\(writingYear)년 \(writingMonth)월 \(writingDay)일 \(writingHour):\(writingMinute)"
     }
 
     // MARK: - Table view data source
