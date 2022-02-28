@@ -26,7 +26,7 @@ class EnterenceCell: UICollectionViewCell {
     
     func setAnchors() {
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.widthAnchor.constraint(equalToConstant: 140).isActive = true
+        containerView.widthAnchor.constraint(equalToConstant: 180).isActive = true
         containerView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         containerView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         containerView.heightAnchor.constraint(equalToConstant: 30).isActive = true

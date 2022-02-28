@@ -88,9 +88,9 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
             return enterenceCell
         }
         
-        guard message.text.contains("/Out/") == false else {
-            message.text.removeFirst(5)
-            enterenceCell.textLabel.text = message.text
+        guard message.text.contains("/Out/") == true else {
+            message.text.removeFirst(6)
+            enterenceCell.textLabel.text = message.text + "님이 나갔습니다."
             setupEnterenceCell(cell: enterenceCell, message: message)
             return enterenceCell
         }
