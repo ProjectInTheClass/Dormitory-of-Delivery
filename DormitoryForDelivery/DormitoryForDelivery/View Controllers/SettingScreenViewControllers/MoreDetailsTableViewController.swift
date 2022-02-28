@@ -79,16 +79,16 @@ class MoreDetailsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 1{
-            return 130
+            return 100
         }else{
             return UITableView.automaticDimension
         }
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let SectionView = UIView(frame: CGRect(x: 0, y: 0, width: SettingsTableView.frame.width, height: 18))
+        let SectionView = UIView(frame: CGRect(x: 0, y: 0, width: SettingsTableView.frame.width, height: 20))
         
-        let SectionLabel = UILabel(frame: CGRect(x: 15, y: -5, width: SectionView.frame.width, height: 14))
+        let SectionLabel = UILabel(frame: CGRect(x: 15, y: -5, width: SectionView.frame.width, height: SectionView.frame.height))
         
         SectionLabel.text = SectionName[section]
         SectionView.addSubview(SectionLabel)
@@ -121,6 +121,7 @@ class MoreDetailsTableViewController: UITableViewController {
         
         if indexPath.section == 1 {
             let MyInfo = SettingsTableView.dequeueReusableCell(withIdentifier: "MyInfoTableViewCell", for: indexPath) as! MyInfoTableViewCell
+            MyInfo.selectionStyle = .none
             MyInfo.RName.text = name
             MyInfo.RMail.text = email
             MyInfo.RNumber.text = studentNumber

@@ -91,6 +91,7 @@
                             <constraint firstItem="hTs-XE-W4r" firstAttribute="top" secondItem="SPI-nS-8Du" secondAttribute="bottom" constant="8" symbolic="YES" id="zOR-hq-hxB"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="9f7-dC-lBU"/>
                     <connections>
                         <outlet property="CollectionView" destination="hTs-XE-W4r" id="m4g-bq-WoX"/>
                         <outlet property="NextButton" destination="SPI-nS-8Du" id="fdC-2R-pI3"/>

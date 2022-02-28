@@ -76,33 +76,32 @@
         <!--Reset Password View Controller-->
         <scene sceneID="0C6-tc-cKM">
             <objects>
-                <viewController id="zcI-xC-WBY" customClass="ResetPasswordViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="zcI-xC-WBY" customClass="ResetPasswordViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7DS-lj-aRM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="비밀번호 변경" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEB-Gm-ZLD">
-                                <rect key="frame" x="125.5" y="238" width="163" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <rect key="frame" x="139.5" y="118" width="135.5" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="이메일" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aTb-zv-gD7">
-                                <rect key="frame" x="48" y="324" width="318" height="40"/>
+                                <rect key="frame" x="48" y="208" width="318" height="40"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="318" id="J4G-24-HYA"/>
-                                    <constraint firstAttribute="height" constant="40" id="Sng-Yh-brp"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="TvV-A5-dKD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YbE-jd-hIS">
-                                <rect key="frame" x="48" y="372" width="318" height="40"/>
+                                <rect key="frame" x="48" y="256" width="318" height="40"/>
                                 <color key="backgroundColor" red="0.56862747670000002" green="0.62352943419999995" blue="0.79607844350000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="FPT-Eg-7YV"/>
+                                    <constraint firstAttribute="height" constant="40" id="JOP-b6-COq"/>
                                     <constraint firstAttribute="width" constant="318" id="wfB-Tp-cl3"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="systemBackgroundColor"/>
@@ -112,20 +111,29 @@
                                     <action selector="SendEm:" destination="zcI-xC-WBY" eventType="touchUpInside" id="qvi-n6-ZuY"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이메일로 변경 확인 메일을 전송합니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMt-JE-JQs">
+                                <rect key="frame" x="100.5" y="163" width="213" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" systemColor="systemBlueColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="N2E-0X-Vr2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="aTb-zv-gD7" firstAttribute="top" secondItem="xEB-Gm-ZLD" secondAttribute="bottom" constant="50" id="DQ4-pG-ePk"/>
+                            <constraint firstItem="aTb-zv-gD7" firstAttribute="top" secondItem="xEB-Gm-ZLD" secondAttribute="bottom" constant="60" id="DQ4-pG-ePk"/>
                             <constraint firstItem="YbE-jd-hIS" firstAttribute="centerX" secondItem="N2E-0X-Vr2" secondAttribute="centerX" id="FvX-PM-zTt"/>
                             <constraint firstItem="YbE-jd-hIS" firstAttribute="top" secondItem="aTb-zv-gD7" secondAttribute="bottom" constant="8" symbolic="YES" id="Mo3-BB-Poa"/>
+                            <constraint firstItem="NMt-JE-JQs" firstAttribute="top" secondItem="xEB-Gm-ZLD" secondAttribute="bottom" constant="15" id="OdY-pM-OHr"/>
                             <constraint firstItem="aTb-zv-gD7" firstAttribute="centerX" secondItem="N2E-0X-Vr2" secondAttribute="centerX" id="PLP-gW-Afj"/>
-                            <constraint firstItem="xEB-Gm-ZLD" firstAttribute="top" secondItem="N2E-0X-Vr2" secondAttribute="top" constant="150" id="fts-qJ-QUm"/>
+                            <constraint firstItem="NMt-JE-JQs" firstAttribute="centerX" secondItem="N2E-0X-Vr2" secondAttribute="centerX" id="e1A-Py-m1G"/>
+                            <constraint firstItem="xEB-Gm-ZLD" firstAttribute="top" secondItem="N2E-0X-Vr2" secondAttribute="top" constant="30" id="fts-qJ-QUm"/>
                             <constraint firstItem="xEB-Gm-ZLD" firstAttribute="centerX" secondItem="N2E-0X-Vr2" secondAttribute="centerX" id="zkX-YU-Pjr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="e8i-a5-l7b"/>
                     <connections>
+                        <outlet property="DetailsLabel" destination="NMt-JE-JQs" id="gq3-iI-6Go"/>
                         <outlet property="EmInput" destination="aTb-zv-gD7" id="ebg-Ru-grR"/>
                         <outlet property="Label" destination="xEB-Gm-ZLD" id="PAV-VB-dP0"/>
                         <outlet property="SendButton" destination="YbE-jd-hIS" id="3FT-0G-1z9"/>
@@ -140,6 +148,9 @@
         <image name="2" width="858" height="432"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

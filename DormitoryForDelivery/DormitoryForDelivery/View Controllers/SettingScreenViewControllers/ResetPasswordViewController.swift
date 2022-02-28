@@ -11,17 +11,21 @@ import Firebase
 
 class ResetPasswordViewController: UIViewController {
 
+    @IBOutlet weak var DetailsLabel: UILabel!
     @IBOutlet weak var SendButton: UIButton!
     @IBOutlet weak var Label: UILabel!
     @IBOutlet weak var EmInput: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        SendButton.layer.shadowRadius = 6
-        
+        SendButton.layer.cornerRadius = 6
+        navigationColor()
         // Do any additional setup after loading the view.
     }
     
 
+    func navigationColor() {
+            navigationController?.navigationBar.tintColor = UIColor.white
+        }
     @IBAction func SendEm(_ sender: Any) {
         let auth = Auth.auth()
         
