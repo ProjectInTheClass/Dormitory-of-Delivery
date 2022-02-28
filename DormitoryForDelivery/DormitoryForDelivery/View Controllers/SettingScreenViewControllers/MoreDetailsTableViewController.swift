@@ -88,7 +88,7 @@ class MoreDetailsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let SectionView = UIView(frame: CGRect(x: 0, y: 0, width: SettingsTableView.frame.width, height: 20))
         
-        let SectionLabel = UILabel(frame: CGRect(x: 15, y: -5, width: SectionView.frame.width, height: SectionView.frame.height))
+        let SectionLabel = UILabel(frame: CGRect(x: 10, y: -10, width: SectionView.frame.width, height: SectionView.frame.height))
         
         SectionLabel.text = SectionName[section]
         SectionView.addSubview(SectionLabel)
