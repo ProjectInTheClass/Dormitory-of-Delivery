@@ -17,6 +17,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField! { didSet{
         passwordTextField.delegate = self
     }}
+    @IBOutlet weak var logInButton: UIButton!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .darkContent
@@ -24,6 +25,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        logInButton.layer.cornerRadius = 6
         self.navigationController?.navigationBar.isHidden = true
         
         

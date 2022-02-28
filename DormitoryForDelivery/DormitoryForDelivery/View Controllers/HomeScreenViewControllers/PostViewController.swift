@@ -66,10 +66,9 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
                     let data = [self.mainPostInformation?.documentId : 1]
                     userRef.child("groups").updateChildValues(data)
                 }
-                let doc =  self.db.collection("messageGroup").document(self.mainPostInformation!.documentId)
+                let doc = self.db.collection("messageGroup").document(self.mainPostInformation!.documentId)
                 doc.getDocument { (snapshot: DocumentSnapshot?, error: Error?) in
-                    guard error == nil else {
-               return }
+                    guard error == nil else { return }
                     var memberData: [String: [String]] = snapshot!.data() as! [String: [String]]
                     if var memberData1 = memberData["users"] {
                         memberData1.append(Auth.auth().currentUser!.uid)
@@ -144,7 +143,8 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
                             userRef.child("groups").setValue(item) { (error, ref) in
                                 guard error == nil else {
                                     print("Error :", error)
-                            return }
+                                    return
+                                }
                                 print("Edit value success")
                             }
                         }

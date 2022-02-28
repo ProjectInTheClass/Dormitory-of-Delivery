@@ -277,14 +277,11 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     
     
     @IBAction func sendButtonTapped(_ sender: UIButton){
-        guard let fromUserId = FirebaseDataService.instance.currentUserUid else {
-            return
-        }
+        guard let fromUserId = FirebaseDataService.instance.currentUserUid else { return }
         
         //userID구해오기
         FirebaseDataService.instance.userRef.child(fromUserId).child("userID").getData { (error,snapshot) in
             guard error == nil else { return }
-            
             let userID = snapshot.value as! String
             let data: Dictionary<String, AnyObject> = [
                 "fromUserId" : fromUserId as AnyObject,
@@ -356,8 +353,8 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
                         let indexPath = IndexPath(item: self.messages.count - 2, section: 0)
                         //화면이 제일 밑에서 3~4개정도 위에있을때만 제일 하단으로 스크롤되게 변경
                         // 추가사항 : 채팅방으로 첫진입시 젤밑으로 or 전에 읽었던데 까지  => 로컬로 위치데이터넣고 다른함수 추가로 사용해야 가능할
-                        let navigationBarHeight = self.navigationController?.navigationBar.frame.height
-                        if self.chatCollectionView.frame.height + 150 >= self.chatCollectionView.contentSize.height - self.chatCollectionView.contentOffset.y - navigationBarHeight! {
+                        guard let navigationBarHeight = self.navigationController?.navigationBar.frame.height else { return }
+                        if self.chatCollectionView.frame.height + 150 >= self.chatCollectionView.contentSize.height - self.chatCollectionView.contentOffset.y - navigationBarHeight {
                             self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.bottom, animated: false)
                         }
                     }
@@ -374,7 +371,6 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         view.frame.origin.y = -height + tabBarHeight
         containView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -tabBarHeight).isActive = true
         chatCollectionView.contentInset.top = height - tabBarHeight
-        
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
@@ -432,28 +428,6 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         present(moreOptionAlertController, animated: true, completion: nil)
     }
     
-    func deleteButtonTapped() {
-        guard let fromUserId = FirebaseDataService.instance.currentUserUid else {
-            return
-        }
-        
-        let data: Dictionary<String, AnyObject> = [
-            "fromUserId" : fromUserId as AnyObject,
-            "text" : "/Out/16김동현님이 나갔습니다." as AnyObject,
-            "timestamp" : NSNumber(value: Date().timeIntervalSince1970)
-        ]
-        
-        if let groupId = self.groupKey {
-            let ref = FirebaseDataService.instance.groupRef.child(groupId).child("messages").childByAutoId()
-            ref.updateChildValues(data) { (error, ref) in
-                guard error == nil else {
-                    print(error as Any)
-                    return
-                }
-            }
-        }
-    }
-    
     func navigationbarUI() {
         navigationController?.navigationBar.setBackgroundImage(UIImage(named:  "3"), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -470,4 +444,67 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     }*/
     
 
+}
+
+extension ChatRoomViewController {
+    // 채팅창 Alert로 채팅방 나갈때 실행
+    func deleteButtonTapped() {
+        guard let fromUserId = FirebaseDataService.instance.currentUserUid else { return }
+        guard let groupId = self.groupKey else { return }
+        
+        // retimeDB - userRef 읽기
+        FirebaseDataService.instance.userRef.child(fromUserId).getData { (error,snapshot) in
+            guard error == nil else { return }
+            let item = snapshot.value as! [String: Any]
+            
+            var groups = item["groups"] as! [String: Any]
+            let userID = item["userID"] as! String
+            
+            let data: Dictionary<String, AnyObject> = [
+                "fromUserId" : fromUserId as AnyObject,
+                "userID" : userID as AnyObject,
+                "text" : "/out/ \(userID)" as AnyObject,
+                "timestamp" : NSNumber(value: Date().timeIntervalSince1970)
+            ]
+            
+            // 현재 접속중인 groupRef 읽기
+            let messagesRef = FirebaseDataService.instance.groupRef.child(groupId).child("messages").childByAutoId()
+            // ""/out/ \(userID)"" 메세지 전송
+            messagesRef.updateChildValues(data) { (error, snapshot) in
+                guard error == nil else { return }
+            }
+            
+        // 삭제해야할 데이터 #1(groups에서 현재그룹 삭제), #2(Firestore-messageGroup에서 user삭제)
+        // 변경해야할 데이터 #3(group에서 현재그룹 currentNumber-1)
+        // #1
+            groups.removeValue(forKey: groupId)
+            let groupsRef = FirebaseDataService.instance.userRef.child(fromUserId)
+            groupsRef.updateChildValues(["groups" : groups])
+        }
+        
+        // #2
+        let messageGroupDocument = self.db.collection("messageGroup").document(groupId)
+        messageGroupDocument.getDocument { (snapshot: DocumentSnapshot?, error: Error?) in
+            guard error == nil else { return }
+            let item = snapshot!.data() as! [String: [String]]
+            var userDictionary: [String: [String]] = item
+            
+            if var userArray = userDictionary["users"] {
+                if let firstIndex = userArray.firstIndex(of: fromUserId) {
+                    userArray.remove(at: firstIndex)
+                }
+                userDictionary.updateValue(userArray, forKey: "users")
+                messageGroupDocument.setData(userDictionary)
+            }
+        }
+        
+        // #3
+        FirebaseDataService.instance.groupRef.child(groupId).getData { (error, snapshot) in
+            guard error == nil else { return }
+            let item = snapshot.value as! [String: Any]
+            let currentNumber = item["currentNumber"] as! Int
+            FirebaseDataService.instance.groupRef.child(groupId).updateChildValues(["currentNumber" : currentNumber - 1])
+        }
+        navigationController?.popViewController(animated: true)
+    }
 }

@@ -632,6 +632,7 @@
                     <navigationItem key="navigationItem" id="m5V-Ch-dXI"/>
                     <connections>
                         <outlet property="emailTextField" destination="45i-UI-8OS" id="s1s-mS-sdc"/>
+                        <outlet property="logInButton" destination="HMe-Dr-Siz" id="5vE-wq-M0R"/>
                         <outlet property="passwordTextField" destination="srf-ay-AHv" id="Kmk-vO-Y8m"/>
                         <segue destination="Rtm-ta-tg8" kind="presentation" identifier="doEmailCertification" id="0FG-kd-D7x"/>
                     </connections>
@@ -943,6 +944,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="이메일 인증" id="pAL-tZ-nc3"/>
                     <connections>
+                        <outlet property="checkButton" destination="HJ4-xb-8ID" id="005-vy-Rn5"/>
                         <outlet property="emailCertificationButton" destination="sqL-4b-TqK" id="YFU-rr-MFr"/>
                         <outlet property="emailTextField" destination="dYk-ej-KJO" id="lwr-xm-PjX"/>
                     </connections>

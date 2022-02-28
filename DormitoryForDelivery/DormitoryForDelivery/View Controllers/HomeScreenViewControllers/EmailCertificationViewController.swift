@@ -12,11 +12,14 @@ class EmailCertificationViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var emailCertificationButton: UIButton!
+    @IBOutlet weak var checkButton: UIButton!
     
     var emailText:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailCertificationButton.layer.cornerRadius = 6
+        checkButton.layer.cornerRadius = 6
         emailTextField.text = emailText
     }
     

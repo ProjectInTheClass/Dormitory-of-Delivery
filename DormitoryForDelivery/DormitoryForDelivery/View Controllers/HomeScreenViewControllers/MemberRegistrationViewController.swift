@@ -29,6 +29,7 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
         userNameTextField.delegate = self
     }}
     @IBOutlet weak var memberRegistrationButton: UIButton!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     
@@ -48,6 +49,7 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationUI()
+        memberRegistrationButton.layer.cornerRadius = 6
         scrollView.delegate = self
         contentViewheight = contentView.frame.height
         try! Auth.auth().signOut()
