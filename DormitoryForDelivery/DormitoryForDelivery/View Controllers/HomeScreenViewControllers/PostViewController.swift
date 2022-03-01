@@ -55,17 +55,38 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
             let alertOkayAction = UIAlertAction(title: "확인", style: .default) { action in
                 self.delegate?.currentNumberChanged(currentNumber: self.mainPostInformation!.currentNumber + 1, selectedIndexPath: self.selectedIndexPath!)
                 
-                
-                
                 // 그룹 현재인원 +1
                 FirebaseDataService.instance.groupRef.child(self.mainPostInformation!.documentId).updateChildValues(["currentNumber" : self.mainPostInformation!.currentNumber + 1])
                 
-                // 내가 속한그룹에 그룹추가
+                // 그룹추가 #1.realtimeDB - user - groups에 추가,  #2.db - messageGroup에 추가
+                // #1
                 if let uid = FirebaseDataService.instance.currentUserUid {
+                    let nowTime = NSNumber(value: Date().timeIntervalSince1970)
                     let userRef = FirebaseDataService.instance.userRef.child(uid)
-                    let data = [self.mainPostInformation?.documentId : 1]
+                    let data = [self.mainPostInformation?.documentId : nowTime]
                     userRef.child("groups").updateChildValues(data)
+                    
+                    // realDB - group - message: 들어가는 메세지 저장
+                    FirebaseDataService.instance.userRef.child(uid).child("userID").getData { (error,snapshot) in
+                        guard error == nil else { return }
+                        let userID = snapshot.value as! String
+                        let data: Dictionary<String, AnyObject> = [
+                            "fromUserId" : uid as AnyObject,
+                            "userID" : userID as AnyObject,
+                            "text" : "/In/ \(userID)" as AnyObject,
+                            "timestamp" : nowTime
+                        ]
+                        
+                        if let documentId = self.mainPostInformation?.documentId {
+                            let ref = FirebaseDataService.instance.groupRef.child(documentId).child("messages").childByAutoId()
+                            ref.updateChildValues(data) { (error, ref) in
+                                guard error == nil else { return }
+                            }
+                        }
+                    }
+                    
                 }
+                // #2
                 let doc = self.db.collection("messageGroup").document(self.mainPostInformation!.documentId)
                 doc.getDocument { (snapshot: DocumentSnapshot?, error: Error?) in
                     guard error == nil else { return }

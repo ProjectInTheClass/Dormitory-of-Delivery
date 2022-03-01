@@ -83,12 +83,12 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         
         guard message.text.contains("/In/") == false else {
             message.text.removeFirst(4)
-            enterenceCell.textLabel.text = message.text
+            enterenceCell.textLabel.text = message.text + "님이 참가했습니다."
             setupEnterenceCell(cell: enterenceCell, message: message)
             return enterenceCell
         }
         
-        guard message.text.contains("/Out/") == true else {
+        guard message.text.contains("/Out/") == false else {
             message.text.removeFirst(6)
             enterenceCell.textLabel.text = message.text + "님이 나갔습니다."
             setupEnterenceCell(cell: enterenceCell, message: message)
@@ -463,7 +463,7 @@ extension ChatRoomViewController {
             let data: Dictionary<String, AnyObject> = [
                 "fromUserId" : fromUserId as AnyObject,
                 "userID" : userID as AnyObject,
-                "text" : "/out/ \(userID)" as AnyObject,
+                "text" : "/Out/ \(userID)" as AnyObject,
                 "timestamp" : NSNumber(value: Date().timeIntervalSince1970)
             ]
             

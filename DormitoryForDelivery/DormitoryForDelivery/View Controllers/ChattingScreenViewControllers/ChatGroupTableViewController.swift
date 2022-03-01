@@ -20,24 +20,18 @@ class ChatGroupTableViewController: UITableViewController {
         super.viewDidLoad()
         navigationBar.backButtonTitle = ""
         self.navigationController?.navigationBar.tintColor = UIColor.black
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchChatGroupList()
-        
         navigationbarUI()
-      //self.navigationController?.navigationBar.layoutIfNeeded()
-        
-        
     }
 
     func fetchChatGroupList(){
         if let uid = FirebaseDataService.instance.currentUserUid{
             FirebaseDataService.instance.userRef.child(uid).child("groups").observeSingleEvent(of: .value, with: { (snapshot) in
-                if let dict = snapshot.value as? Dictionary<String, Int>{
+                if let dict = snapshot.value as? Dictionary<String, Any>{
                     self.groups.removeAll()
                     for (key, _) in dict {
                         FirebaseDataService.instance.groupRef.child(key).observe(.value, with: { (snapshot) in
@@ -58,13 +52,9 @@ class ChatGroupTableViewController: UITableViewController {
         }
     }
     
-    func navigationbarUI() {
+    private func navigationbarUI() {
         navigationController?.navigationBar.tintColor = .white
     }
-    
-    
-    
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -101,7 +91,6 @@ class ChatGroupTableViewController: UITableViewController {
                 let groupref = FirebaseDataService.instance.groupRef.child(groupKey).child("users").child(currentUser)
                 
                 groupref.setValue(nil)
-                
                 userref.setValue(nil) {
                     self.groups.remove(at: indexPath.row)
                     tableView.deleteRows(at: [indexPath], with: .fade)
@@ -117,6 +106,4 @@ class ChatGroupTableViewController: UITableViewController {
             chatVC.groupKey = sender as? String
         }
     }
-    
-
 }
