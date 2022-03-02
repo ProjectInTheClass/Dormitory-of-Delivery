@@ -1260,7 +1260,7 @@
                                                             <constraint firstAttribute="width" constant="35" id="tQw-Z6-hK9"/>
                                                             <constraint firstAttribute="height" constant="35" id="w4J-Qz-wLU"/>
                                                         </constraints>
-                                                        <state key="normal" title="초밥" image="초밥라인"/>
+                                                        <state key="normal" title="초밥" image="초밥라인"/>
                                                         <connections>
                                                             <action selector="filterButtonTapped:" destination="9x6-J1-GTs" eventType="touchUpInside" id="wy6-6h-Hvv"/>
                                                         </connections>
@@ -1338,7 +1338,7 @@
                                                             <constraint firstAttribute="width" secondItem="j4L-BO-194" secondAttribute="height" multiplier="1:1" id="Vp4-Ud-3hT"/>
                                                             <constraint firstAttribute="height" constant="35" id="fKP-kS-gND"/>
                                                         </constraints>
-                                                        <state key="normal" title="한식" image="한식라인"/>
+                                                        <state key="normal" title="한식" image="한식라인"/>
                                                         <connections>
                                                             <action selector="filterButtonTapped:" destination="9x6-J1-GTs" eventType="touchUpInside" id="7Ur-F9-Rye"/>
                                                         </connections>
@@ -1618,7 +1618,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="0Pb-cc-gjd"/>
-        <segue reference="Zcc-f1-QDY"/>
+        <segue reference="JcR-VF-5jB"/>
         <segue reference="3XJ-5t-W0x"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -1636,9 +1636,9 @@
         <image name="샐러드라인" width="512" height="512"/>
         <image name="전체" width="512" height="512"/>
         <image name="중국집라인" width="512" height="512"/>
-        <image name="초밥라인" width="512" height="512"/>
+        <image name="초밥라인" width="128" height="128"/>
         <image name="커피라인" width="512" height="512"/>
-        <image name="한식라인" width="512" height="512"/>
+        <image name="한식라인" width="128" height="128"/>
         <image name="햄버거라인" width="512" height="512"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
