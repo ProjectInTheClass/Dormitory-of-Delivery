@@ -71,7 +71,7 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
                         guard error == nil else { return }
                         let userID = snapshot.value as! String
                         let data: Dictionary<String, AnyObject> = [
-                            "fromUserId" : uid as AnyObject,
+                            "fromUserId" : "System" as AnyObject,
                             "userID" : userID as AnyObject,
                             "text" : "/In/ \(userID)" as AnyObject,
                             "timestamp" : nowTime

@@ -68,7 +68,7 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
         let email = emailTextField.text! + "@gs.cwnu.ac.kr" //20165157@gs.cwnu.ac.kr
         let studentNumber = studentNumberTextField.text!
         let userName = userNameTextField.text!
-        let userID = emailTextField.text! + " " + userName
+        let userID = studentNumberTextField.text! + " " + userName
         let newUser = ["email":email, "studentNumber":studentNumber, "userName":userName, "userID":userID]
         
         guard emailTextField.text?.isEmpty == false, passwordTextField.text?.isEmpty == false, checkPasswordTextField.text?.isEmpty == false else {

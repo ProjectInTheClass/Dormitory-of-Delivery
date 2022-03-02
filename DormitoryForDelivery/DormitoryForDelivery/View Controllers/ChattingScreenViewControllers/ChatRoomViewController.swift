@@ -15,7 +15,6 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     @IBOutlet weak var chatCollectionView: UICollectionView!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var chatTextField: UITextField!
-    
     @IBOutlet weak var containView: UIView!
     
     var height: CGFloat = 0.0
@@ -218,54 +217,6 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
             }
         }
     }
-    
-    // sizeForItemAt
-    func setupChatCell(cell: ChatMessageCell, message: ChatMessage) {
-        if message.fromUserId == FirebaseDataService.instance.currentUserUid {
-            cell.containerView.backgroundColor = UIColor(red: 69/255, green: 141/255, blue: 245/255, alpha: 1)
-            cell.textLabel.textColor = UIColor.white
-            cell.containerViewRightAnchor?.isActive = true
-            cell.containerViewLeftAnchor?.isActive = false
-        } else {
-            cell.containerView.backgroundColor = UIColor.white
-            cell.textLabel.textColor = UIColor.black
-            cell.containerViewRightAnchor?.isActive = false
-            cell.containerViewLeftAnchor?.isActive = true
-        }
-    }
-    
-    func setupChatLeftTimeCell(cell: ChatMessageLeftTimeCell, message: ChatMessage){
-        cell.containerView.backgroundColor = UIColor(red: 69/255, green: 141/255, blue: 245/255, alpha: 1)
-        cell.textLabel.textColor = UIColor.white
-    }
-    
-    func setupChatRightTimeCell(cell: ChatMessageRightTimeCell, message: ChatMessage){
-        cell.containerView.backgroundColor = UIColor.white
-        cell.textLabel.textColor = UIColor.black
-    }
-    
-    func setupChatAndUserCell(cell: ChatMessageAndUserCell, message: ChatMessage) {
-        cell.containerView.backgroundColor = UIColor.white
-        cell.textLabel.textColor = UIColor.black
-    }
-    
-    func setupChatRightTimeAndUserCell(cell: ChatMessageRightTimeAndUserCell, message: ChatMessage){
-        cell.containerView.backgroundColor = UIColor.white
-        cell.textLabel.textColor = UIColor.black
-    }
-   
-    func setupEnterenceCell(cell: EnterenceCell, message: ChatMessage){
-        cell.containerView.backgroundColor = UIColor(red: 142/255, green: 154/255, blue: 163/255, alpha: 1)
-        cell.textLabel.textColor = UIColor.white
-    }
-    
-    func fetchMeetingTime(meetingTime: NSNumber) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ko_kr")
-        dateFormatter.dateFormat = "a h:mm"
-        
-        return dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime)))
-    }
     // MARK: - SetupCell
     
     // 텍스트 줄변경시 메시지의 높이를 동적으로 변경해줌
@@ -319,7 +270,6 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         layout.estimatedItemSize.width = view.frame.width
         chatCollectionView.alwaysBounceVertical = true
         sendButton.isEnabled = false
-        
         layout.minimumLineSpacing = 1
     }
     
@@ -335,6 +285,15 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     }
     
     func fetchMessages() {
+        // enterenceTiemstemp initialize
+        var enterenceTimestemp: NSNumber = 0
+        let uid = FirebaseDataService.instance.currentUserUid!
+        FirebaseDataService.instance.userRef.child(uid).child("groups").getData { (error, snapshot) in
+            guard error == nil else { return }
+            let item = snapshot.value as! [String: Any]
+            enterenceTimestemp = item[self.groupKey!] as! NSNumber
+        }
+        
         if let groupId = self.groupKey {
             let groupMessageRef = FirebaseDataService.instance.groupRef.child(groupId).child("messages")
             groupMessageRef.observe(.childAdded, with: { (snapshot) in
@@ -345,9 +304,8 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
                         text: dict["text"] as! String,
                         timestamp: dict["timestamp"] as! NSNumber
                     )
-                    self.messages.insert(message, at: self.messages.count - 1)
-                    self.chatCollectionView.reloadData()
-                    self.chatCollectionView.layoutIfNeeded()
+                    // 채팅방 참가시간보다 이전메세지는 불러오지않음
+                    self.compareTimestamp(message: message, fromUserId: dict["fromUserId"] as! String, enterenceTimestemp: enterenceTimestemp)
                     
                     if self.messages.count >= 1 {
                         let indexPath = IndexPath(item: self.messages.count - 2, section: 0)
@@ -360,6 +318,15 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
                     }
                 }
             })
+        }
+    }
+    
+    private func compareTimestamp(message: ChatMessage, fromUserId: String, enterenceTimestemp: NSNumber){
+        let messageTimestamp = message.timestamp
+        if Double(truncating: messageTimestamp) >= Double(truncating: enterenceTimestemp) {
+            self.messages.insert(message, at: self.messages.count - 1)
+            self.chatCollectionView.reloadData()
+            self.chatCollectionView.layoutIfNeeded()
         }
     }
     
@@ -442,9 +409,58 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }*/
-    
-
 }
+
+extension ChatRoomViewController {
+    // sizeForItemAt
+    private func setupChatCell(cell: ChatMessageCell, message: ChatMessage) {
+        if message.fromUserId == FirebaseDataService.instance.currentUserUid {
+            cell.containerView.backgroundColor = UIColor(red: 69/255, green: 141/255, blue: 245/255, alpha: 1)
+            cell.textLabel.textColor = UIColor.white
+            cell.containerViewRightAnchor?.isActive = true
+            cell.containerViewLeftAnchor?.isActive = false
+        } else {
+            cell.containerView.backgroundColor = UIColor.white
+            cell.textLabel.textColor = UIColor.black
+            cell.containerViewRightAnchor?.isActive = false
+            cell.containerViewLeftAnchor?.isActive = true
+        }
+    }
+    
+    private func setupChatLeftTimeCell(cell: ChatMessageLeftTimeCell, message: ChatMessage){
+        cell.containerView.backgroundColor = UIColor(red: 69/255, green: 141/255, blue: 245/255, alpha: 1)
+        cell.textLabel.textColor = UIColor.white
+    }
+    
+    private func setupChatRightTimeCell(cell: ChatMessageRightTimeCell, message: ChatMessage){
+        cell.containerView.backgroundColor = UIColor.white
+        cell.textLabel.textColor = UIColor.black
+    }
+    
+    private func setupChatAndUserCell(cell: ChatMessageAndUserCell, message: ChatMessage) {
+        cell.containerView.backgroundColor = UIColor.white
+        cell.textLabel.textColor = UIColor.black
+    }
+    
+    private func setupChatRightTimeAndUserCell(cell: ChatMessageRightTimeAndUserCell, message: ChatMessage){
+        cell.containerView.backgroundColor = UIColor.white
+        cell.textLabel.textColor = UIColor.black
+    }
+   
+    private func setupEnterenceCell(cell: EnterenceCell, message: ChatMessage){
+        cell.containerView.backgroundColor = UIColor(red: 142/255, green: 154/255, blue: 163/255, alpha: 1)
+        cell.textLabel.textColor = UIColor.white
+    }
+    
+    private func fetchMeetingTime(meetingTime: NSNumber) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        dateFormatter.dateFormat = "a h:mm"
+        
+        return dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(truncating: meetingTime)))
+    }
+}
+
 
 extension ChatRoomViewController {
     // 채팅창 Alert로 채팅방 나갈때 실행
@@ -461,7 +477,7 @@ extension ChatRoomViewController {
             let userID = item["userID"] as! String
             
             let data: Dictionary<String, AnyObject> = [
-                "fromUserId" : fromUserId as AnyObject,
+                "fromUserId" : "System" as AnyObject,
                 "userID" : userID as AnyObject,
                 "text" : "/Out/ \(userID)" as AnyObject,
                 "timestamp" : NSNumber(value: Date().timeIntervalSince1970)
@@ -474,9 +490,10 @@ extension ChatRoomViewController {
                 guard error == nil else { return }
             }
             
-        // 삭제해야할 데이터 #1(groups에서 현재그룹 삭제), #2(Firestore-messageGroup에서 user삭제)
-        // 변경해야할 데이터 #3(group에서 현재그룹 currentNumber-1)
+        // 삭제해야할 데이터 #1(groups에서 현재그룹 삭제), #2(db - messageGroup에서 user삭제)
+        // 변경해야할 데이터 #3(group에서 현재그룹 currentNumber-1), #4(db - recruitTables - currentNumber-1)
         // #1
+            
             groups.removeValue(forKey: groupId)
             let groupsRef = FirebaseDataService.instance.userRef.child(fromUserId)
             groupsRef.updateChildValues(["groups" : groups])
@@ -505,6 +522,18 @@ extension ChatRoomViewController {
             let currentNumber = item["currentNumber"] as! Int
             FirebaseDataService.instance.groupRef.child(groupId).updateChildValues(["currentNumber" : currentNumber - 1])
         }
+        
+        // #4
+        let recruitTablesDocument = self.db.collection("recruitTables").document(groupId)
+        recruitTablesDocument.getDocument { (snapshot: DocumentSnapshot?, error: Error?) in
+            guard error == nil else { return }
+            var item = snapshot!.data()!
+            let currentNumber = item["currentNumber"] as! Int
+            
+            item.updateValue(currentNumber - 1, forKey: "currentNumber")
+            recruitTablesDocument.setData(item)
+        }
+        
         navigationController?.popViewController(animated: true)
     }
 }
