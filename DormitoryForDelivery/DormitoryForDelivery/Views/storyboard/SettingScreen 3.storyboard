@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rAk-v7-gOC">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="BT5-I5-qC9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rAk-v7-gOC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="more" id="Q2o-Gf-xhR"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aOY-CT-GSj">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <navigationBarAppearance key="standardAppearance" backgroundImage="2">
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
+                        <navigationBarAppearance key="scrollEdgeAppearance" backgroundImage="2">
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vQT-Od-S2h" kind="relationship" relationship="rootViewController" id="JBx-Ua-d7b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NC1-zD-7p2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-7" y="1422"/>
+        </scene>
+        <!--내 정보-->
+        <scene sceneID="j4j-qL-6Na">
+            <objects>
+                <tableViewController id="vQT-Od-S2h" customClass="MoreDetailsTableViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="mYw-ai-1jF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyInfoCell" id="eDx-NW-yVx">
+                                <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eDx-NW-yVx" id="PHK-Dr-UpH">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vQT-Od-S2h" id="PgL-zP-86I"/>
+                            <outlet property="delegate" destination="vQT-Od-S2h" id="rbM-KL-EH0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="내 정보" id="mMn-ke-Ge3"/>
+                    <connections>
+                        <outlet property="SettingsTableView" destination="mYw-ai-1jF" id="eRS-d0-cbn"/>
+                        <segue destination="ZMR-T8-rbB" kind="unwind" identifier="logOut" unwindAction="unwindToMainViewControllerWithUnwindSegue:" id="qu7-I9-tiZ"/>
+                        <segue destination="zcI-xC-WBY" kind="show" identifier="ChangePassword" id="PBv-I3-FHb"/>
+                    </connections>
+                </tableViewController>
+                <exit id="ZMR-T8-rbB" userLabel="Exit" sceneMemberID="exit"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SEX-9W-IQE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="1422"/>
+        </scene>
+        <!--Reset Password View Controller-->
+        <scene sceneID="0C6-tc-cKM">
+            <objects>
+                <viewController id="zcI-xC-WBY" customClass="ResetPasswordViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7DS-lj-aRM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이메일을 입력하십시오" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEB-Gm-ZLD">
+                                <rect key="frame" x="74" y="118" width="266.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="이메일" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aTb-zv-gD7">
+                                <rect key="frame" x="48" y="204" width="318" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="318" id="J4G-24-HYA"/>
+                                    <constraint firstAttribute="height" constant="40" id="Sng-Yh-brp"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="TvV-A5-dKD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YbE-jd-hIS">
+                                <rect key="frame" x="48" y="252" width="318" height="40"/>
+                                <color key="backgroundColor" red="0.56862747670000002" green="0.62352943419999995" blue="0.79607844350000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="FPT-Eg-7YV"/>
+                                    <constraint firstAttribute="width" constant="318" id="wfB-Tp-cl3"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="이메일 전송"/>
+                                <connections>
+                                    <action selector="SendEm:" destination="zcI-xC-WBY" eventType="touchUpInside" id="qvi-n6-ZuY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="N2E-0X-Vr2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="aTb-zv-gD7" firstAttribute="top" secondItem="xEB-Gm-ZLD" secondAttribute="bottom" constant="50" id="DQ4-pG-ePk"/>
+                            <constraint firstItem="YbE-jd-hIS" firstAttribute="centerX" secondItem="N2E-0X-Vr2" secondAttribute="centerX" id="FvX-PM-zTt"/>
+                            <constraint firstItem="YbE-jd-hIS" firstAttribute="top" secondItem="aTb-zv-gD7" secondAttribute="bottom" constant="8" symbolic="YES" id="Mo3-BB-Poa"/>
+                            <constraint firstItem="aTb-zv-gD7" firstAttribute="centerX" secondItem="N2E-0X-Vr2" secondAttribute="centerX" id="PLP-gW-Afj"/>
+                            <constraint firstItem="xEB-Gm-ZLD" firstAttribute="top" secondItem="N2E-0X-Vr2" secondAttribute="top" constant="30" id="fts-qJ-QUm"/>
+                            <constraint firstItem="xEB-Gm-ZLD" firstAttribute="centerX" secondItem="N2E-0X-Vr2" secondAttribute="centerX" id="zkX-YU-Pjr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="e8i-a5-l7b"/>
+                    <connections>
+                        <outlet property="EmInput" destination="aTb-zv-gD7" id="ebg-Ru-grR"/>
+                        <outlet property="Label" destination="xEB-Gm-ZLD" id="PAV-VB-dP0"/>
+                        <outlet property="SendButton" destination="YbE-jd-hIS" id="3FT-0G-1z9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CPs-rk-KDh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1827.5362318840582" y="1421.6517857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="2" width="858" height="432"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

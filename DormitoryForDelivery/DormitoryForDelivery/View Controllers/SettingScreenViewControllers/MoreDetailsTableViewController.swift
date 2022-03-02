@@ -2,8 +2,16 @@
 //  MoreDetailsTableViewController.swift
 //  DormitoryForDelivery
 //
-//  Created by 김동현 on 2021/08/16.
+//  Created by 김덕환 on 2021/08/16.
 //
+
+
+/*
+ 초밥
+ <a href="https://www.flaticon.com/kr/free-icons/" title="초밥 아이콘">초밥 아이콘  제작자: Freepik - Flaticon</a>
+ 
+ */
+
 
 import UIKit
 import FirebaseAuth
