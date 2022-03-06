@@ -7,14 +7,22 @@
 
 import UIKit
 import Foundation
+import FirebaseFirestore
 
 class PostTableViewController: UITableViewController {
+    
+    let db: Firestore = Firestore.firestore()
     
     var mainPostInformation: RecruitingText?
     
     var rowHeight: CGFloat?
+    
+    var writerName: String = ""
 
+    // 테두리 색변경
     @IBOutlet weak var recruitInformationView: UIView!
+    // 모집 정보들 기입하는 뷰
+    @IBOutlet weak var recruitInformationListVIew: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var postWriterNameLabel: UILabel!
     @IBOutlet weak var postCreatTimeLabel: UILabel!
@@ -27,8 +35,7 @@ class PostTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        updateUI()
+        readWriterNameFromServer()
         tableView.allowsSelection = false
         postTextView.isScrollEnabled = false
         recruitInformationView.layer.addBorder([.top], color: UIColor.opaqueSeparator, width: 1.0)
@@ -64,6 +71,7 @@ class PostTableViewController: UITableViewController {
     
     private func updateUI() {
         guard let mainPostInformation = mainPostInformation else { return }
+        self.recruitInformationListVIew.layer.cornerRadius = 6
         updateWritingDate()
         print(mainPostInformation)
         titleLabel.text = mainPostInformation.postTitle
@@ -71,6 +79,8 @@ class PostTableViewController: UITableViewController {
         recruitMemberNumberLabel.text = "\(mainPostInformation.currentNumber) / \(mainPostInformation.maximumNumber)"
         postTextView.text = mainPostInformation.postNoteText
         categoryLabel.text = mainPostInformation.categories
+        postWriterNameLabel.text = self.writerName
+        
     }
     
     private func updateWritingDate() {
@@ -82,6 +92,20 @@ class PostTableViewController: UITableViewController {
         let writingHour = calender.component(.hour, from: writingDateInformation)
         let writingMinute = calender.component(.minute, from: writingDateInformation)
         self.postCreatTimeLabel.text = "\(writingYear)년 \(writingMonth)월 \(writingDay)일 \(writingHour):\(writingMinute)"
+    }
+    
+    private func readWriterNameFromServer() {
+        self.db.collection("users").document(self.mainPostInformation?.WriteUid ?? "").getDocument { (snapShot, error) in
+            if error != nil {
+                print("error")
+            } else {
+                guard let snapShot = snapShot?.data() else { return }
+                let writerName = snapShot["userName"] as! String
+//                print(writerName)
+                self.writerName = writerName
+                self.updateUI()
+            }
+        }
     }
 
     // MARK: - Table view data source

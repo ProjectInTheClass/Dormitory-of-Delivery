@@ -325,7 +325,7 @@
                                                     <nil key="textColor"/>
                                                     <color key="highlightedColor" systemColor="labelColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이태영" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0c-DX-G1q" userLabel="InfoLabel">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이태영" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0c-DX-G1q" userLabel="writerNameLabel">
                                                     <rect key="frame" x="20" y="96" width="55" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="55" id="4vr-4D-fQb"/>
@@ -485,6 +485,7 @@
                         <outlet property="postCreatTimeLabel" destination="DA0-XO-j08" id="6Pf-Yi-Qaq"/>
                         <outlet property="postTextView" destination="orC-ao-Ab3" id="zmq-gu-x4n"/>
                         <outlet property="postWriterNameLabel" destination="u0c-DX-G1q" id="YRj-f9-jgv"/>
+                        <outlet property="recruitInformationListVIew" destination="EqQ-ei-7gP" id="W2u-LN-gAJ"/>
                         <outlet property="recruitInformationView" destination="r8h-Lk-8Iw" id="5n3-37-l2j"/>
                         <outlet property="recruitMemberNumberLabel" destination="tb9-U6-0kD" id="78T-e3-K6q"/>
                         <outlet property="titleLabel" destination="1Ox-t6-wur" id="7X4-S5-Jvp"/>
