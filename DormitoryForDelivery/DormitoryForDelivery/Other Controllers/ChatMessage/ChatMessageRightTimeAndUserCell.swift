@@ -23,7 +23,6 @@ class ChatMessageRightTimeAndUserCell: UICollectionViewCell {
     
     func setUITraits() {
         containerView.layer.cornerRadius = 15
-        
         textLabel.numberOfLines = 0
         textLabel.lineBreakMode = .byWordWrapping
     }
@@ -31,7 +30,6 @@ class ChatMessageRightTimeAndUserCell: UICollectionViewCell {
     func setAnchors() {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 1).isActive = true
-        //이녀석은 constraint가 안먹는다 ??
         nameLabelLeftAnchor = nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 6)
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,6 +48,7 @@ class ChatMessageRightTimeAndUserCell: UICollectionViewCell {
         textLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10).isActive = true
         textLabelHeightAnchor = textLabel.heightAnchor.constraint(equalToConstant: frame.height - 16)
         
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
         timeLabel.leftAnchor.constraint(equalTo: containerView.rightAnchor, constant: 5).isActive = true
     }
     

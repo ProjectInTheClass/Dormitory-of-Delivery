@@ -325,8 +325,8 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="171" height="99"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="bottom" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="w6M-Gr-ckS">
-                                                            <rect key="frame" x="10" y="15" width="140" height="68"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="w6M-Gr-ckS">
+                                                            <rect key="frame" x="10" y="15" width="143" height="68"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ahg-pa-4Oq">
                                                                     <rect key="frame" x="0.0" y="0.0" width="107" height="68"/>
@@ -349,7 +349,7 @@
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCg-7e-iqQ">
-                                                                    <rect key="frame" x="109" y="53.5" width="31" height="14.5"/>
+                                                                    <rect key="frame" x="112" y="53.5" width="31" height="14.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
