@@ -42,6 +42,7 @@ class ChatMessageRightTimeCell: UICollectionViewCell {
         textLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10).isActive = true
         textLabelHeightAnchor = textLabel.heightAnchor.constraint(equalToConstant: frame.height )
         
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
         timeLabel.leftAnchor.constraint(equalTo: containerView.rightAnchor, constant: 5).isActive = true
     }
     
