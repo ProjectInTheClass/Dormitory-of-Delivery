@@ -202,7 +202,7 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
         guard let currentUid = FirebaseDataService.instance.currentUserUid else {return}
         var array:[String] = []
 
-        // 사용자 -> 버튼비활성화
+        // 사용자 or 작성자 -> 버튼 비활성화
         FirebaseDataService.instance.userRef.child(currentUid).child("groups").getData(completion: { (error,snapshot) in
             if let dict = snapshot.value as? Dictionary<String,AnyObject>{
                 for (key, _) in dict{
@@ -211,18 +211,20 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
                     if array.contains(self.mainPostInformation!.documentId) == true {
                         self.participateButton.backgroundColor = .gray
                         self.participateButton.setTitle("참여중", for: .normal)
+                        self.participateButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
                         self.participateButton.isEnabled = false
                     }
                 }
             }
         })
+        
+//            self.mainPostInformation!.WriteUid == FirebaseDataService.instance.currentUserUid{
+//            self.participateButton.backgroundColor = .gray
+//            self.participateButton.setTitle("작성자", for: .normal)
+//            self.participateButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+//            self.participateButton.isEnabled = false
+//        }
 
-        // 작성자 -> 버튼없애기
-        if mainPostInformation!.WriteUid == FirebaseDataService.instance.currentUserUid{
-            self.participateButton.backgroundColor = .gray
-            self.participateButton.setTitle("작성자", for: .normal)
-            self.participateButton.isEnabled = false
-        }
 
 
     }

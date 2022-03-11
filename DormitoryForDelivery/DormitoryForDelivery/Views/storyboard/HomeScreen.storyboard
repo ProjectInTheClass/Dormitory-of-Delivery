@@ -251,7 +251,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qaA-Dh-FmE">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="45"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="참여하기">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1643,7 +1643,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="0FG-kd-D7x"/>
-        <segue reference="JcR-VF-5jB"/>
+        <segue reference="Zcc-f1-QDY"/>
         <segue reference="3XJ-5t-W0x"/>
     </inferredMetricsTieBreakers>
     <resources>
