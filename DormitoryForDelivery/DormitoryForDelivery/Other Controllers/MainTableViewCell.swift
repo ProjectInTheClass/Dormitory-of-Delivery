@@ -9,35 +9,37 @@ import UIKit
 
 class MainTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var circularProgressBarView: CircleProgressViewController!
+   
     @IBOutlet weak var progressLabel: UILabel!
-    @IBOutlet weak var catagoryImage: UIImageView!
     @IBOutlet weak var postTitleLabel: UILabel!
-    @IBOutlet weak var categoriesLabel: UILabel!
+    @IBOutlet weak var meetingTimeLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var catagoryLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        // 페이징할때 nil값이 발견 되길래 가드문으로 언랩해줬다.
+        guard let containerView = containerView else { return }
+        containerView.layer.cornerRadius = 8
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     
     func update(with main: RecruitingText) {
-        catagoryImage.image = UIImage(named: main.categories)
         postTitleLabel.text = main.postTitle
-        categoriesLabel.text = main.categories
+        meetingTimeLabel.text = main.meetingTime
+        catagoryLabel.text = main.categories
         progressLabel.text = "\(main.currentNumber)/\(main.maximumNumber)"
-        
-        let progressValue = Float(Float(main.currentNumber) / Float(main.maximumNumber))
-        circularProgressBarView.trackColor = UIColor.gray
-        circularProgressBarView.progressColor = UIColor.blue
-        circularProgressBarView.setProgressWithAnimation(duration: 1.0, value: progressValue)
     }
+}
+
+class LoadingCell: UITableViewCell {
+    @IBOutlet weak var nextPageLoadingIndicatior: UIActivityIndicatorView!
     
-    
+    func startNextPageLoadingIndicatior() {
+        nextPageLoadingIndicatior.startAnimating()
+    }
 }
