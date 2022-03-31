@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "GroupCreateView.png",
+      "filename" : "group.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "GroupCreateView-1.png",
+      "filename" : "group-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "GroupCreateView-2.png",
+      "filename" : "group-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

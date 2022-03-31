@@ -33,9 +33,11 @@ class TutorialViewController: UIViewController {
         NextButton.layer.cornerRadius = 10
         
         slides = [
-            TutotialSlide(title: "메인화면 입니다.", description: "먹고 싶은 메뉴또는 마음에 드는 채팅방을 고를 수 있습니다.", image: UIImage(named: "HomeView")!),
-            TutotialSlide(title: "채팅방 생성화면 입니다.", description: "주문시간과 내용을 입력합니다.", image: UIImage(named: "GroupCreateView")!),
-            TutotialSlide(title: "채팅방 생성된 화면입니다.", description: "사용자들과 원활한 소통후 즐거운 식사 시간이 되길 바랍니다.", image: UIImage(named: "CreateView")!)
+            TutotialSlide(title: "main", description: "", image: UIImage(named: "home")!),
+            TutotialSlide(title: "group", description: "", image: UIImage(named: "group1")!),
+            TutotialSlide(title: "write", description: "", image: UIImage(named: "write1")!),
+            TutotialSlide(title: "commu", description: "", image: UIImage(named: "commu")!),
+            TutotialSlide(title: "chatting", description: "", image: UIImage(named: "chatting")!)
         ]
         PageController.numberOfPages = slides.count
 
