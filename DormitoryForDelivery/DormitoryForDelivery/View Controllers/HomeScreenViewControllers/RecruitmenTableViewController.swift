@@ -318,7 +318,7 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
             let width: CGFloat = 30
             let height: CGFloat = 30
             let x = (tableView.frame.width / 2) - (width / 2)
-            let y = (tableView.frame.height / 2)
+        let y = (tableView.frame.height / 3.0)
             postActivityIndicatorLoadingView.frame = CGRect(x: x, y: y, width: width, height: height)
 //            postActivityIndicatorLoadingView.backgroundColor = .blue
         
