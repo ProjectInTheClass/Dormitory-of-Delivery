@@ -632,9 +632,12 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2y-wY-0sA">
                                         <rect key="frame" x="0.0" y="197" width="318" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="ID/비밀번호 찾기">
+                                        <state key="normal" title="비밀번호 재설정">
                                             <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="Hi5-J6-gIP" kind="presentation" modalPresentationStyle="fullScreen" id="zdt-iE-xcf"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -1643,6 +1646,92 @@
             </objects>
             <point key="canvasLocation" x="938" y="-2242"/>
         </scene>
+        <!--Reset Password View Controller-->
+        <scene sceneID="Ab9-1T-XuA">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="Hi5-J6-gIP" customClass="ResetPasswordViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Cew-6i-XVD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="비밀번호 변경" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Si-v6-vCn">
+                                <rect key="frame" x="139.5" y="144" width="135.5" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="이메일" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iDe-dq-fu0">
+                                <rect key="frame" x="48" y="234" width="318" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="D2f-cz-yLl"/>
+                                    <constraint firstAttribute="width" constant="318" id="nj0-cL-CEA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Jb-zv-8R4">
+                                <rect key="frame" x="48" y="282" width="318" height="40"/>
+                                <color key="backgroundColor" red="0.56862747670000002" green="0.62352943419999995" blue="0.79607844350000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="318" id="3VV-fp-N6A"/>
+                                    <constraint firstAttribute="height" constant="40" id="ae5-mH-481"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="이메일 전송"/>
+                                <connections>
+                                    <action selector="SendEm:" destination="Hi5-J6-gIP" eventType="touchUpInside" id="0bz-G3-SMs"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이메일로 변경 확인 메일을 전송합니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sh-TK-wKi">
+                                <rect key="frame" x="100.5" y="189" width="213" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" systemColor="systemBlueColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJK-VF-svX">
+                                <rect key="frame" x="362" y="44" width="42" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6Wj-9x-tOK"/>
+                                </constraints>
+                                <color key="tintColor" red="0.5568627451" green="0.62745098040000002" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system" title=""/>
+                                <connections>
+                                    <action selector="goToLoginView:" destination="Hi5-J6-gIP" eventType="touchUpInside" id="uCn-v1-aKt"/>
+                                    <segue destination="XuJ-6E-MAh" kind="unwind" identifier="unwindToLoginView" unwindAction="unwindToLoginViewWithSegue:" id="8PD-nT-Gwq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="sCS-LE-koj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3sh-TK-wKi" firstAttribute="top" secondItem="4Si-v6-vCn" secondAttribute="bottom" constant="15" id="KXY-WT-5Pw"/>
+                            <constraint firstItem="4Jb-zv-8R4" firstAttribute="centerX" secondItem="sCS-LE-koj" secondAttribute="centerX" id="Mdv-Sv-oS8"/>
+                            <constraint firstItem="4Si-v6-vCn" firstAttribute="top" secondItem="sCS-LE-koj" secondAttribute="top" constant="100" id="WrA-aP-77E"/>
+                            <constraint firstItem="4Si-v6-vCn" firstAttribute="centerX" secondItem="sCS-LE-koj" secondAttribute="centerX" id="XO3-tc-F1U"/>
+                            <constraint firstItem="sCS-LE-koj" firstAttribute="trailing" secondItem="RJK-VF-svX" secondAttribute="trailing" constant="10" id="YFl-qv-Q9e"/>
+                            <constraint firstItem="RJK-VF-svX" firstAttribute="top" secondItem="sCS-LE-koj" secondAttribute="top" id="ZLR-av-jTi"/>
+                            <constraint firstItem="iDe-dq-fu0" firstAttribute="top" secondItem="4Si-v6-vCn" secondAttribute="bottom" constant="60" id="mdc-te-Enr"/>
+                            <constraint firstItem="4Jb-zv-8R4" firstAttribute="top" secondItem="iDe-dq-fu0" secondAttribute="bottom" constant="8" symbolic="YES" id="rtl-2Y-lh0"/>
+                            <constraint firstItem="iDe-dq-fu0" firstAttribute="centerX" secondItem="sCS-LE-koj" secondAttribute="centerX" id="tph-rY-ndA"/>
+                            <constraint firstItem="3sh-TK-wKi" firstAttribute="centerX" secondItem="sCS-LE-koj" secondAttribute="centerX" id="zKD-eW-xVr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="cl7-Wh-QlX"/>
+                    <connections>
+                        <outlet property="DetailsLabel" destination="3sh-TK-wKi" id="9bC-l7-ZtY"/>
+                        <outlet property="EmInput" destination="iDe-dq-fu0" id="r6y-O7-PZL"/>
+                        <outlet property="Label" destination="4Si-v6-vCn" id="wHI-ch-mSx"/>
+                        <outlet property="SendButton" destination="4Jb-zv-8R4" id="Xql-5d-fpA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="On9-vE-cWo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="XuJ-6E-MAh" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1951" y="258"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="0FG-kd-D7x"/>
@@ -1676,6 +1765,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

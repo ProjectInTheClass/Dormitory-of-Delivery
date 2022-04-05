@@ -15,6 +15,8 @@ class ResetPasswordViewController: UIViewController {
     @IBOutlet weak var SendButton: UIButton!
     @IBOutlet weak var Label: UILabel!
     @IBOutlet weak var EmInput: UITextField!
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         SendButton.layer.cornerRadius = 6
@@ -26,6 +28,7 @@ class ResetPasswordViewController: UIViewController {
     func navigationColor() {
             navigationController?.navigationBar.tintColor = UIColor.white
         }
+    
     @IBAction func SendEm(_ sender: Any) {
         let auth = Auth.auth()
         
@@ -39,5 +42,9 @@ class ResetPasswordViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
+  
+    @IBAction func goToLoginView(_ sender: Any) {
+        performSegue(withIdentifier: "unwindToLoginView", sender: self)
+    }
 }
+

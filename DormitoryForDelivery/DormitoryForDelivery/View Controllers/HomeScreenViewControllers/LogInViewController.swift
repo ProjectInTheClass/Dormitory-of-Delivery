@@ -23,6 +23,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return .darkContent
     }
     
+    @IBAction func unwindToLoginView(segue: UIStoryboardSegue) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         logInButton.layer.cornerRadius = 6
