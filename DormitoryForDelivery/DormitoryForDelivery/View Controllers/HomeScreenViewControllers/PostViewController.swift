@@ -31,6 +31,10 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
     var delegate: PostViewControllerDelegate?
     
     let db: Firestore = Firestore.firestore()
+    
+    var reasonForReport: String?
+    
+    var reportInformation: ReportForm = ReportForm(reasonForReport: "", reportPostWriterName: "", reportPostTitle: "", reportpostNoteText: "", reportPostWriterEmail: "", reportPostWriterStudentNumber: "", reporterName: "", reporterStudentNumber: "", reporterEmail: "", reportTime: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,7 +129,7 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
         } else {
             let moreOptionAlertController = UIAlertController(title: "메뉴", message: nil, preferredStyle: .actionSheet)
             let alertReportPostAction = UIAlertAction(title: "신고하기", style: .destructive) { action in
-                
+                self.choiceReasonForReport()
             }
             let alertCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
             moreOptionAlertController.addAction(alertReportPostAction)
@@ -203,6 +207,139 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
         confirmDeleteAlertController.addAction(alertDeleteCancelAction)
         confirmDeleteAlertController.addAction(alertDeleteConfirmAction)
         present(confirmDeleteAlertController, animated: true, completion: nil)
+    }
+    
+    // 신고사유 선택하는 메소드
+    private func choiceReasonForReport() {
+        let reasonForReportAlertController = UIAlertController(title: "신고사유", message: nil, preferredStyle: .actionSheet)
+        let firstReasonForReportAction = UIAlertAction(title: "욕설/비하", style: .default) { action in
+            let confirmReportAlertController = UIAlertController(title: "욕설/비하", message: "관리자가 확인 후 해당 글 삭제 및 작성자 제재조치 합니다.", preferredStyle: .alert)
+            let reportCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            let reportConfirmAction = UIAlertAction(title: "확인", style: .default) { action in
+                self.reasonForReport = "욕설/비하"
+                self.updateReportInformation()
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                    self.saveInappositePostToServer()
+                    }
+            }
+            confirmReportAlertController.addAction(reportCancelAction)
+            confirmReportAlertController.addAction(reportConfirmAction)
+            self.present(confirmReportAlertController, animated: true, completion: nil)
+        }
+        let secondReasonForReportAction = UIAlertAction(title: "정치적 발언", style: .default) { action in
+            let confirmReportAlertController = UIAlertController(title: "정치적 발언", message: "관리자가 확인 후 해당 글 삭제 및 작성자 제재조치 합니다.", preferredStyle: .alert)
+            let reportCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            let reportConfirmAction = UIAlertAction(title: "확인", style: .default) { action in
+                self.reasonForReport = "정치적 발언"
+                self.updateReportInformation()
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                    self.saveInappositePostToServer()
+                    }
+            }
+            confirmReportAlertController.addAction(reportCancelAction)
+            confirmReportAlertController.addAction(reportConfirmAction)
+            self.present(confirmReportAlertController, animated: true, completion: nil)
+        }
+        let thirdReasonForReportAction = UIAlertAction(title: "음란물/불건전한 만남 및 대화", style: .default) { action in
+            let confirmReportAlertController = UIAlertController(title: "음란물/불건전한 만남 및 대화", message: "관리자가 확인 후 해당 글 삭제 및 작성자 제재조치 합니다.", preferredStyle: .alert)
+            let reportCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            let reportConfirmAction = UIAlertAction(title: "확인", style: .default) { action in
+                self.reasonForReport = "음란물/불건전한 만남 및 대화"
+                self.updateReportInformation()
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                    self.saveInappositePostToServer()
+                    }
+            }
+            confirmReportAlertController.addAction(reportCancelAction)
+            confirmReportAlertController.addAction(reportConfirmAction)
+            self.present(confirmReportAlertController, animated: true, completion: nil)
+        }
+        let fourthReasonForReportAction = UIAlertAction(title: "사기/낚시", style: .default) { action in
+            let confirmReportAlertController = UIAlertController(title: "사기/낚시", message: "관리자가 확인 후 해당 글 삭제 및 작성자 제재조치 합니다.", preferredStyle: .alert)
+            let reportCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            let reportConfirmAction = UIAlertAction(title: "확인", style: .default) { action in
+                self.reasonForReport = "사기/낚시"
+                self.updateReportInformation()
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                    self.saveInappositePostToServer()
+                    }
+            }
+            confirmReportAlertController.addAction(reportCancelAction)
+            confirmReportAlertController.addAction(reportConfirmAction)
+            self.present(confirmReportAlertController, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        reasonForReportAlertController.addAction(firstReasonForReportAction)
+        reasonForReportAlertController.addAction(secondReasonForReportAction)
+        reasonForReportAlertController.addAction(thirdReasonForReportAction)
+        reasonForReportAlertController.addAction(fourthReasonForReportAction)
+        reasonForReportAlertController.addAction(cancelAction)
+        present(reasonForReportAlertController, animated: true, completion: nil)
+    }
+    
+    // 신고된 게시글을 서버에 저장하는 메소드
+    private func saveInappositePostToServer() {
+        let reportDocumentRef = db.collection("reportList").document()
+        let reportData: [String : Any] = ["신고자이름" : self.reportInformation.reporterName, "신고자학번" : self.reportInformation.reporterStudentNumber, "신고자이메일" : self.reportInformation.reporterEmail, "신고사유" : self.reportInformation.reasonForReport, "신고시간" : self.reportInformation.reportTime, "신고된게시글작성자" : self.reportInformation.reportPostWriterName, "신고된게시글작성자학번" : self.reportInformation.reportPostWriterStudentNumber, "신고된게시글작성자이메일" : self.reportInformation.reportPostWriterEmail, "신고된게시글제목" : self.reportInformation.reportPostTitle, "신고된게시글내용" : self.reportInformation.reportpostNoteText]
+        reportDocumentRef.setData(reportData)
+    }
+    
+    // 신고된 게시글을 서버에 저장하기 전 해당 게시글의 정보를 수집하는 메소드
+    private func updateReportInformation() {
+        updateReporterInformationFromServer()
+        updateReportPostWriterInformation()
+        updateReportDate()
+        self.reportInformation.reportPostTitle = self.mainPostInformation?.postTitle ?? ""
+        self.reportInformation.reportpostNoteText = self.mainPostInformation?.postNoteText ?? ""
+        self.reportInformation.reasonForReport = self.reasonForReport!
+        
+
+    }
+    
+    // 신고 시간 계산하는 메소드
+    private func updateReportDate() {
+        let reportDateInformation = Date(timeIntervalSince1970: NSNumber(value: Date().timeIntervalSince1970) as! TimeInterval)
+        let calender = Calendar.current
+        let reportYear = calender.component(.year, from: reportDateInformation)
+        let reportMonth = calender.component(.month, from: reportDateInformation)
+        let reportDay = calender.component(.day, from: reportDateInformation)
+        let reportHour = calender.component(.hour, from: reportDateInformation)
+        let reportMinute = calender.component(.minute, from: reportDateInformation)
+        self.reportInformation.reportTime = "\(reportYear)년 \(reportMonth)월 \(reportDay)일 \(reportHour):\(reportMinute)"
+    }
+    
+    // 신고자의 정보를 불러오는 메소드
+    private func updateReporterInformationFromServer() {
+        self.db.collection("users").document(Auth.auth().currentUser?.uid ?? "").getDocument { (snapShot, error) in
+            if error != nil {
+                print("error")
+            } else {
+                guard let snapShot = snapShot?.data() else { return }
+                let reporterName = snapShot["userName"] as! String
+                let reporterStudentNumber = snapShot["studentNumber"] as! String
+                let reporterEmail = snapShot["email"] as! String
+                self.reportInformation.reporterName = reporterName
+                self.reportInformation.reporterStudentNumber = reporterStudentNumber
+                self.reportInformation.reporterEmail = reporterEmail
+            }
+        }
+    }
+    
+    // 신고된 게시글의 작성자의 정보를 불러오는 메소드
+    private func updateReportPostWriterInformation() {
+        self.db.collection("users").document(self.mainPostInformation?.WriteUid ?? "").getDocument { (snapShot, error) in
+            if error != nil {
+                print("error")
+            } else {
+                guard let snapShot = snapShot?.data() else { return }
+                let reportPostWriterName = snapShot["userName"] as! String
+                let reportPostWriterStudentNumber = snapShot["studentNumber"] as! String
+                let reportPostWriterEmail = snapShot["email"] as! String
+                self.reportInformation.reportPostWriterName = reportPostWriterName
+                self.reportInformation.reportPostWriterStudentNumber = reportPostWriterStudentNumber
+                self.reportInformation.reportPostWriterEmail = reportPostWriterEmail
+            }
+        }
     }
     
     func participateButtonUpdateUI() {

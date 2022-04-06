@@ -101,7 +101,6 @@ class PostTableViewController: UITableViewController {
             } else {
                 guard let snapShot = snapShot?.data() else { return }
                 let writerName = snapShot["userName"] as! String
-//                print(writerName)
                 self.writerName = writerName
                 self.updateUI()
             }

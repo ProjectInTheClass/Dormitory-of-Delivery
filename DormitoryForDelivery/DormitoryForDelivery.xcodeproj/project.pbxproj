@@ -14,6 +14,7 @@
 		0C4DC3EC26C94D49006A44DF /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4DC3EB26C94D49006A44DF /* PostTableViewController.swift */; };
 		0C75F39F27C681CD00751717 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C75F39E27C681CD00751717 /* SearchViewController.swift */; };
 		0CB4A01526EF74B5003818A0 /* EditNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB4A01426EF74B5003818A0 /* EditNavigationController.swift */; };
+		0CC7C1E027FD84AF0000063B /* ReportForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C1DF27FD84AF0000063B /* ReportForm.swift */; };
 		0CE619F327BB529E00D51BEC /* HomeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE619F227BB529E00D51BEC /* HomeScreen.storyboard */; };
 		0CE619F527BB52A900D51BEC /* ChattingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE619F427BB52A900D51BEC /* ChattingScreen.storyboard */; };
 		0CE619F727BB52B200D51BEC /* SettingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE619F627BB52B200D51BEC /* SettingScreen.storyboard */; };
@@ -62,6 +63,7 @@
 		0C4DC3EB26C94D49006A44DF /* PostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
 		0C75F39E27C681CD00751717 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0CB4A01426EF74B5003818A0 /* EditNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNavigationController.swift; sourceTree = "<group>"; };
+		0CC7C1DF27FD84AF0000063B /* ReportForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportForm.swift; sourceTree = "<group>"; };
 		0CE619F227BB529E00D51BEC /* HomeScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeScreen.storyboard; sourceTree = "<group>"; };
 		0CE619F427BB52A900D51BEC /* ChattingScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChattingScreen.storyboard; sourceTree = "<group>"; };
 		0CE619F627BB52B200D51BEC /* SettingScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingScreen.storyboard; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				D8ABC1AC26D283C8009AB503 /* FirebaseDataService.swift */,
 				D8ABC1AE26D28533009AB503 /* chattingDataModel.swift */,
 				71B6D10C27BCED27009D8ADC /* TutorialSlide.swift */,
+				0CC7C1DF27FD84AF0000063B /* ReportForm.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				D8ABC1B526D2ADF3009AB503 /* ChatMessageCell.swift in Sources */,
 				D81BA1DA26AA8B5C009B1FE3 /* SceneDelegate.swift in Sources */,
 				D8ABC1B326D2A759009AB503 /* ChatRoomViewController.swift in Sources */,
+				0CC7C1E027FD84AF0000063B /* ReportForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
