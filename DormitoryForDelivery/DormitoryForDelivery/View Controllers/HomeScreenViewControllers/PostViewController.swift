@@ -34,7 +34,7 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        moreOptionButtonUpdateUI()
+//        moreOptionButtonUpdateUI()
         participateButtonUpdateUI()
 //        navigationBar.title = mainPostInformation?.postTitle
         navigationUI()
@@ -108,19 +108,31 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
         
     }
     @IBAction func moreOptionBarButtonTapped(_ sender: Any) {
-        let moreOptionAlertController = UIAlertController(title: "메뉴", message: nil, preferredStyle: .actionSheet)
-        let alertEditPostAction = UIAlertAction(title: "수정하기", style: .default) { action in
-            self.performSegue(withIdentifier: "editPostInformation", sender: nil)
+        if mainPostInformation?.WriteUid == Auth.auth().currentUser?.uid {
+            let moreOptionAlertController = UIAlertController(title: "메뉴", message: nil, preferredStyle: .actionSheet)
+            let alertEditPostAction = UIAlertAction(title: "수정하기", style: .default) { action in
+                self.performSegue(withIdentifier: "editPostInformation", sender: nil)
+            }
+            let alertDeletePostAction = UIAlertAction(title: "삭제하기", style: .destructive) { action in
+                self.creatConfirmDeleteAlertController()
+            }
+            let alertCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            
+            moreOptionAlertController.addAction(alertEditPostAction)
+            moreOptionAlertController.addAction(alertDeletePostAction)
+            moreOptionAlertController.addAction(alertCancelAction)
+            present(moreOptionAlertController, animated: true, completion: nil)
+        } else {
+            let moreOptionAlertController = UIAlertController(title: "메뉴", message: nil, preferredStyle: .actionSheet)
+            let alertReportPostAction = UIAlertAction(title: "신고하기", style: .destructive) { action in
+                
+            }
+            let alertCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            moreOptionAlertController.addAction(alertReportPostAction)
+            moreOptionAlertController.addAction(alertCancelAction)
+            present(moreOptionAlertController, animated: true, completion: nil)
         }
-        let alertDeletePostAction = UIAlertAction(title: "삭제하기", style: .destructive) { action in
-            self.creatConfirmDeleteAlertController()
-        }
-        let alertCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        
-        moreOptionAlertController.addAction(alertEditPostAction)
-        moreOptionAlertController.addAction(alertDeletePostAction)
-        moreOptionAlertController.addAction(alertCancelAction)
-        present(moreOptionAlertController, animated: true, completion: nil)
+
     }
     
     func creatConfirmDeleteAlertController() {
@@ -178,8 +190,14 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
             }
             // 리얼타임 데이터베이스 group 노드 데이터 삭제
             FirebaseDataService.instance.groupRef.child(self.mainPostInformation!.documentId).removeValue()
-
-            self.performSegue(withIdentifier: "unwindMainView", sender: nil)
+            let announceDeleteAlertController = UIAlertController(title: nil, message: "삭제 되었습니다.", preferredStyle: .alert)
+//            let confirmAnnounceDeleteAlertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+//            announceDeleteAlertController.addAction(confirmAnnounceDeleteAlertAction)
+            self.present(announceDeleteAlertController, animated: true) {
+                self.dismiss(animated: true) {
+                self.performSegue(withIdentifier: "unwindMainView", sender: nil)
+                }
+            }
         }
         let alertDeleteCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         confirmDeleteAlertController.addAction(alertDeleteCancelAction)
@@ -235,11 +253,11 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "send"), object: mainPostInformation)
     }
     
-    func moreOptionButtonUpdateUI() {
-        if mainPostInformation?.WriteUid != Auth.auth().currentUser?.uid {
-            moreOptionButton.isEnabled = false
-        }
-    }
+//    func moreOptionButtonUpdateUI() {
+//        if mainPostInformation?.WriteUid != Auth.auth().currentUser?.uid {
+//            moreOptionButton.isEnabled = false
+//        }
+//    }
     
     func navigationUI() {
         navigationController?.navigationBar.tintColor = UIColor.white
