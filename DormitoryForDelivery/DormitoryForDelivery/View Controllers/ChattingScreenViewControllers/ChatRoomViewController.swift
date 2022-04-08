@@ -520,20 +520,32 @@ extension ChatRoomViewController {
             guard error == nil else { return }
             let item = snapshot.value as! [String: Any]
             let currentNumber = item["currentNumber"] as! Int
-            FirebaseDataService.instance.groupRef.child(groupId).updateChildValues(["currentNumber" : currentNumber - 1])
+//            if currentNumber == 1 {
+//                self.db.collection("recruitTables").document(groupId).delete { (error) in
+//                    guard error == nil else { return }
+//                 }
+//                self.db.collection("messageGroup").document(groupId).delete { (error) in
+//                    guard error == nil else { return }
+//                }
+//                FirebaseDataService.instance.groupRef.child(groupId).removeValue()
+//            } else {
+                FirebaseDataService.instance.groupRef.child(groupId).updateChildValues(["currentNumber" : currentNumber - 1])
+                // #4
+                let recruitTablesDocument = self.db.collection("recruitTables").document(groupId)
+                recruitTablesDocument.getDocument { (snapshot: DocumentSnapshot?, error: Error?) in
+                    guard error == nil else { return }
+                    var item = snapshot!.data()!
+                    let currentNumber = item["currentNumber"] as! Int
+                    
+                    item.updateValue(currentNumber - 1, forKey: "currentNumber")
+                    recruitTablesDocument.setData(item)
+//                }
+            }
         }
         
-        // #4
-        let recruitTablesDocument = self.db.collection("recruitTables").document(groupId)
-        recruitTablesDocument.getDocument { (snapshot: DocumentSnapshot?, error: Error?) in
-            guard error == nil else { return }
-            var item = snapshot!.data()!
-            let currentNumber = item["currentNumber"] as! Int
-            
-            item.updateValue(currentNumber - 1, forKey: "currentNumber")
-            recruitTablesDocument.setData(item)
-        }
         
-        navigationController?.popViewController(animated: true)
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+            self.navigationController?.popViewController(animated: true)
+//        }
     }
 }

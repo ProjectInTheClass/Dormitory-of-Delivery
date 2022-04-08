@@ -101,7 +101,13 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
                         doc.setData(memberData)
                     }
                 }
-                self.performSegue(withIdentifier: "unwindMainView", sender: nil)
+                
+                let announceDeleteAlertController = UIAlertController(title: nil, message: "참여 되었습니다.", preferredStyle: .alert)
+                self.present(announceDeleteAlertController, animated: true) {
+                    self.dismiss(animated: true) {
+                    self.performSegue(withIdentifier: "unwindMainView", sender: nil)
+                    }
+                }
             }
             participateAlertController.addAction(alertCancelAction)
             participateAlertController.addAction(alertOkayAction)
@@ -147,23 +153,7 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
             self.db.collection("recruitTables").document(self.mainPostInformation!.documentId).delete { (error) in
                 guard error == nil else { return }
              }
-//            self.db.collection("recruitTables").getDocuments() { (snapshot, error) in
-//                if error == nil {
-//                    guard let snapshot = snapshot else { return }
-//                    for document in snapshot.documents {
-//                        let documentID = document.documentID
-//                        if documentID == self.mainPostInformation?.documentId {
-//                            self.db.collection("recruitTables").document(documentID).delete() { err in
-//                                if let err = err {
-//                                    print("Error removing document: \(err)")
-//                                } else {
-//                                    print("Document successfully removed!")
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
+            
             // 리얼타임 데이터베이스 users 노드 데이터 삭제
             let doc =  self.db.collection("messageGroup").document(self.mainPostInformation!.documentId)
             doc.getDocument { (snapshot: DocumentSnapshot?, error: Error?) in
@@ -195,8 +185,6 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
             // 리얼타임 데이터베이스 group 노드 데이터 삭제
             FirebaseDataService.instance.groupRef.child(self.mainPostInformation!.documentId).removeValue()
             let announceDeleteAlertController = UIAlertController(title: nil, message: "삭제 되었습니다.", preferredStyle: .alert)
-//            let confirmAnnounceDeleteAlertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-//            announceDeleteAlertController.addAction(confirmAnnounceDeleteAlertAction)
             self.present(announceDeleteAlertController, animated: true) {
                 self.dismiss(animated: true) {
                 self.performSegue(withIdentifier: "unwindMainView", sender: nil)
@@ -218,6 +206,10 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
             let reportConfirmAction = UIAlertAction(title: "확인", style: .default) { action in
                 self.reasonForReport = "욕설/비하"
                 self.updateReportInformation()
+                let announceReportAlertController = UIAlertController(title: nil, message: "신고 접수 되었습니다.", preferredStyle: .alert)
+                self.present(announceReportAlertController, animated: true) {
+                    self.dismiss(animated: true, completion: nil)
+                }
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
                     self.saveInappositePostToServer()
                     }
@@ -232,6 +224,10 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
             let reportConfirmAction = UIAlertAction(title: "확인", style: .default) { action in
                 self.reasonForReport = "정치적 발언"
                 self.updateReportInformation()
+                let announceReportAlertController = UIAlertController(title: nil, message: "신고 접수 되었습니다.", preferredStyle: .alert)
+                self.present(announceReportAlertController, animated: true) {
+                    self.dismiss(animated: true, completion: nil)
+                }
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
                     self.saveInappositePostToServer()
                     }
@@ -246,8 +242,12 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
             let reportConfirmAction = UIAlertAction(title: "확인", style: .default) { action in
                 self.reasonForReport = "음란물/불건전한 만남 및 대화"
                 self.updateReportInformation()
+                let announceReportAlertController = UIAlertController(title: nil, message: "신고 접수 되었습니다.", preferredStyle: .alert)
+                self.present(announceReportAlertController, animated: true) {
+                    self.dismiss(animated: true, completion: nil)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
                     self.saveInappositePostToServer()
+                    }
                     }
             }
             confirmReportAlertController.addAction(reportCancelAction)
@@ -260,8 +260,12 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
             let reportConfirmAction = UIAlertAction(title: "확인", style: .default) { action in
                 self.reasonForReport = "사기/낚시"
                 self.updateReportInformation()
+                let announceReportAlertController = UIAlertController(title: nil, message: "신고 접수 되었습니다.", preferredStyle: .alert)
+                self.present(announceReportAlertController, animated: true) {
+                    self.dismiss(animated: true, completion: nil)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
                     self.saveInappositePostToServer()
+                    }
                     }
             }
             confirmReportAlertController.addAction(reportCancelAction)
