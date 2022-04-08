@@ -59,7 +59,7 @@ class MoreDetailsTableViewController: UITableViewController {
     
     let SectionName = ["","내 정보", "계정", "기타"]
     let AccInfo = ["비밀번호 변경", "로그아웃"]
-    let EtcInfo = ["라이센스"]
+    let EtcInfo = ["라이센스", "문의하기"]
     var email: String?
     var studentNumber: String?
     var name: String?
@@ -116,7 +116,7 @@ class MoreDetailsTableViewController: UITableViewController {
             return 2
         }
         else if section == 3{
-            return 1
+            return 2
         }
         else{
             return 0
@@ -153,8 +153,8 @@ class MoreDetailsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let section2 = indexPath.section
-        if section2 == 2{
+        let selectedSection = indexPath.section
+        if selectedSection == 2{
             if indexPath.row == 0{
                 self.performSegue(withIdentifier: "ChangePassword", sender: nil)
             }
@@ -169,6 +169,10 @@ class MoreDetailsTableViewController: UITableViewController {
                 alertController.addAction(checkAction)
                 present(alertController, animated: true, completion: nil)
                 
+            }
+        } else {
+            if indexPath.row == 1 {
+                self.performSegue(withIdentifier: "Inqury", sender: nil)
             }
         }
         SettingsTableView.deselectRow(at: indexPath, animated: false)

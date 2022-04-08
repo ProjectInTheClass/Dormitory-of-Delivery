@@ -13,6 +13,8 @@
 		0C4DC3E626C94D0B006A44DF /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4DC3E526C94D0B006A44DF /* PostViewController.swift */; };
 		0C4DC3EC26C94D49006A44DF /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4DC3EB26C94D49006A44DF /* PostTableViewController.swift */; };
 		0C75F39F27C681CD00751717 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C75F39E27C681CD00751717 /* SearchViewController.swift */; };
+		0C7F40F728006E8900D1B784 /* InquryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7F40F628006E8900D1B784 /* InquryViewController.swift */; };
+		0C7F40F92800792000D1B784 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7F40F82800792000D1B784 /* WebKit.framework */; };
 		0CB4A01526EF74B5003818A0 /* EditNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB4A01426EF74B5003818A0 /* EditNavigationController.swift */; };
 		0CC7C1E027FD84AF0000063B /* ReportForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C1DF27FD84AF0000063B /* ReportForm.swift */; };
 		0CE619F327BB529E00D51BEC /* HomeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE619F227BB529E00D51BEC /* HomeScreen.storyboard */; };
@@ -62,6 +64,8 @@
 		0C4DC3E526C94D0B006A44DF /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		0C4DC3EB26C94D49006A44DF /* PostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
 		0C75F39E27C681CD00751717 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		0C7F40F628006E8900D1B784 /* InquryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquryViewController.swift; sourceTree = "<group>"; };
+		0C7F40F82800792000D1B784 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		0CB4A01426EF74B5003818A0 /* EditNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNavigationController.swift; sourceTree = "<group>"; };
 		0CC7C1DF27FD84AF0000063B /* ReportForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportForm.swift; sourceTree = "<group>"; };
 		0CE619F227BB529E00D51BEC /* HomeScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeScreen.storyboard; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C7F40F92800792000D1B784 /* WebKit.framework in Frameworks */,
 				FFFC7174C1402A3F4E6896DF /* Pods_DormitoryForDelivery.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,6 +158,7 @@
 				715F3ECC27CA05F000521706 /* ResetPasswordViewController.swift */,
 				715F3ECE27CA0B7900521706 /* Service.swift */,
 				715F3ED227CBAFA800521706 /* MyInfoTableViewCell.swift */,
+				0C7F40F628006E8900D1B784 /* InquryViewController.swift */,
 				715F3ED327CBAFA800521706 /* MyInfoTableViewCell.xib */,
 			);
 			path = SettingScreenViewControllers;
@@ -181,6 +187,7 @@
 		C7793127C360A3918BCF984C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C7F40F82800792000D1B784 /* WebKit.framework */,
 				61902CFB1D74595B278E6C11 /* Pods_DormitoryForDelivery.framework */,
 			);
 			name = Frameworks;
@@ -415,6 +422,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C7F40F728006E8900D1B784 /* InquryViewController.swift in Sources */,
 				D8B78388270C191200E9D684 /* ChatMessageRightTimeCell.swift in Sources */,
 				0C17CA1D26B8159E00D92B81 /* MainTableViewCell.swift in Sources */,
 				D8ABC1AF26D28533009AB503 /* chattingDataModel.swift in Sources */,

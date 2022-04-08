@@ -66,12 +66,48 @@
                         <outlet property="SettingsTableView" destination="mYw-ai-1jF" id="eRS-d0-cbn"/>
                         <segue destination="ZMR-T8-rbB" kind="unwind" identifier="logOut" unwindAction="unwindToMainViewControllerWithUnwindSegue:" id="qu7-I9-tiZ"/>
                         <segue destination="zcI-xC-WBY" kind="show" identifier="ChangePassword" id="PBv-I3-FHb"/>
+                        <segue destination="n6U-Yr-1N4" kind="show" identifier="Inqury" id="fEv-gV-l2x"/>
                     </connections>
                 </tableViewController>
                 <exit id="ZMR-T8-rbB" userLabel="Exit" sceneMemberID="exit"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SEX-9W-IQE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="900" y="1422"/>
+        </scene>
+        <!--Inqury View Controller-->
+        <scene sceneID="F26-oH-FzZ">
+            <objects>
+                <viewController id="n6U-Yr-1N4" customClass="InquryViewController" customModule="DormitoryForDelivery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MEg-98-dwE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ys-Mp-Uky">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="f11-xF-QPb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1ys-Mp-Uky" firstAttribute="top" secondItem="f11-xF-QPb" secondAttribute="top" id="6kD-CX-owQ"/>
+                            <constraint firstItem="f11-xF-QPb" firstAttribute="trailing" secondItem="1ys-Mp-Uky" secondAttribute="trailing" id="RS7-h3-xBc"/>
+                            <constraint firstItem="f11-xF-QPb" firstAttribute="bottom" secondItem="1ys-Mp-Uky" secondAttribute="bottom" id="Vs8-ga-fI8"/>
+                            <constraint firstItem="1ys-Mp-Uky" firstAttribute="leading" secondItem="f11-xF-QPb" secondAttribute="leading" id="adQ-Xt-kUb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gfm-Il-FUc"/>
+                    <connections>
+                        <outlet property="inquryWebView" destination="1ys-Mp-Uky" id="Pfg-Sh-Esb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TVY-j1-pjK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1864" y="1124"/>
         </scene>
         <!--Reset Password View Controller-->
         <scene sceneID="0C6-tc-cKM">
@@ -141,7 +177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CPs-rk-KDh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1827.5362318840582" y="1421.6517857142856"/>
+            <point key="canvasLocation" x="1864" y="1783"/>
         </scene>
     </scenes>
     <resources>
