@@ -16,7 +16,7 @@ class InquryViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = .white
         
-        let url = URL(string: "https://www.notion.so/580c6f19899b40f3a5af105b1f0f4703")
+        let url = URL(string: "https://glittery-column-32f.notion.site/580c6f19899b40f3a5af105b1f0f4703")
         let requestInquryWebView = URLRequest(url: url!)
         inquryWebView.load(requestInquryWebView)
 
