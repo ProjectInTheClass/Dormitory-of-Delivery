@@ -50,15 +50,18 @@ class TermsOfServiceTableViewController: UITableViewController {
     
     @IBAction func acceptAllTermButtonTapped(_ sender: UIButton) {
         acceptAllTerm.toggle()
-        acceptFirstTerm.toggle()
-        acceptSecondTerm.toggle()
-        acceptThirdTerm.toggle()
         if acceptAllTerm {
+            acceptFirstTerm = true
+            acceptSecondTerm = true
+            acceptThirdTerm = true
             sender.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
             for button in self.acceptTermButton {
                 button.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
             }
         } else {
+            acceptFirstTerm = false
+            acceptSecondTerm = false
+            acceptThirdTerm = false
             sender.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
             for button in self.acceptTermButton {
                 button.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
