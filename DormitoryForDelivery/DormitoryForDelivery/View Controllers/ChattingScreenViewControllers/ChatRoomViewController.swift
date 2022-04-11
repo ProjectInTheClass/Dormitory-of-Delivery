@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseFirestore
 
 class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -385,7 +386,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
 
     @IBAction func moreOptionBarButtonTapped(_ sender: Any) {
         let moreOptionAlertController = UIAlertController(title: "채팅방에서 나가기를 하면 대화내용 및 채팅목록에서 삭제됩니다. 채팅방을 나가시겠습니까?", message: nil, preferredStyle: .actionSheet)
-        let alertDeletePostAction = UIAlertAction(title: "삭제하기", style: .destructive) { action in
+        let alertDeletePostAction = UIAlertAction(title: "나가기", style: .destructive) { action in
             self.deleteButtonTapped()
         }
         let alertCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -468,84 +469,112 @@ extension ChatRoomViewController {
         guard let fromUserId = FirebaseDataService.instance.currentUserUid else { return }
         guard let groupId = self.groupKey else { return }
         
-        // retimeDB - userRef 읽기
-        FirebaseDataService.instance.userRef.child(fromUserId).getData { (error,snapshot) in
-            guard error == nil else { return }
-            let item = snapshot.value as! [String: Any]
-            
-            var groups = item["groups"] as! [String: Any]
-            let userID = item["userID"] as! String
-            
-            let data: Dictionary<String, AnyObject> = [
-                "fromUserId" : "System" as AnyObject,
-                "userID" : userID as AnyObject,
-                "text" : "/Out/ \(userID)" as AnyObject,
-                "timestamp" : NSNumber(value: Date().timeIntervalSince1970)
-            ]
-            
-            // 현재 접속중인 groupRef 읽기
-            let messagesRef = FirebaseDataService.instance.groupRef.child(groupId).child("messages").childByAutoId()
-            // ""/out/ \(userID)"" 메세지 전송
-            messagesRef.updateChildValues(data) { (error, snapshot) in
-                guard error == nil else { return }
-            }
-            
-        // 삭제해야할 데이터 #1(groups에서 현재그룹 삭제), #2(db - messageGroup에서 user삭제)
-        // 변경해야할 데이터 #3(group에서 현재그룹 currentNumber-1), #4(db - recruitTables - currentNumber-1)
-        // #1
-            
-            groups.removeValue(forKey: groupId)
-            let groupsRef = FirebaseDataService.instance.userRef.child(fromUserId)
-            groupsRef.updateChildValues(["groups" : groups])
-        }
-        
-        // #2
-        let messageGroupDocument = self.db.collection("messageGroup").document(groupId)
-        messageGroupDocument.getDocument { (snapshot: DocumentSnapshot?, error: Error?) in
-            guard error == nil else { return }
-            let item = snapshot!.data() as! [String: [String]]
-            var userDictionary: [String: [String]] = item
-            
-            if var userArray = userDictionary["users"] {
-                if let firstIndex = userArray.firstIndex(of: fromUserId) {
-                    userArray.remove(at: firstIndex)
-                }
-                userDictionary.updateValue(userArray, forKey: "users")
-                messageGroupDocument.setData(userDictionary)
-            }
-        }
-        
-        // #3
         FirebaseDataService.instance.groupRef.child(groupId).getData { (error, snapshot) in
             guard error == nil else { return }
             let item = snapshot.value as! [String: Any]
             let currentNumber = item["currentNumber"] as! Int
-//            if currentNumber == 1 {
-//                self.db.collection("recruitTables").document(groupId).delete { (error) in
-//                    guard error == nil else { return }
-//                 }
-//                self.db.collection("messageGroup").document(groupId).delete { (error) in
-//                    guard error == nil else { return }
-//                }
-//                FirebaseDataService.instance.groupRef.child(groupId).removeValue()
-//            } else {
-                FirebaseDataService.instance.groupRef.child(groupId).updateChildValues(["currentNumber" : currentNumber - 1])
-                // #4
-                let recruitTablesDocument = self.db.collection("recruitTables").document(groupId)
-                recruitTablesDocument.getDocument { (snapshot: DocumentSnapshot?, error: Error?) in
+            if currentNumber == 1 {
+                let doc =  self.db.collection("messageGroup").document(groupId)
+                doc.getDocument { (snapshot: DocumentSnapshot?, error: Error?) in
                     guard error == nil else { return }
-                    var item = snapshot!.data()!
-                    let currentNumber = item["currentNumber"] as! Int
+                    let memberData: [String: [String]] = snapshot!.data() as! [String: [String]]
+                    if let memberData = memberData["users"] {
+                        for users in memberData {
+                            FirebaseDataService.instance.userRef.child(users).child("groups").observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
+                                let userRef = FirebaseDataService.instance.userRef.child(users)
+                                var item = snapshot.value as! [String: Any]
+                                print(item)
+                                item.removeValue(forKey: FirebaseDataService.instance.currentUserUid!)
+                                print(item)
+                                userRef.child("groups").setValue(item) { (error, ref) in
+                                    guard error == nil else {
+                                        print("Error :", error)
+                                        return
+                                    }
+                                    print("Edit value success")
+                                }
+                            }
+                        }
+                    }
+                    // 파이어스토어 "messageGroup" 데이터 삭제
+                    self.db.collection("messageGroup").document(groupId).delete { (error) in
+                        guard error == nil else { return }
+                     }
+                }
+                self.db.collection("recruitTables").document(groupId).delete { (error) in
+                    guard error == nil else { return }
+                 }
+                FirebaseDataService.instance.groupRef.child(groupId).removeValue()
+            } else {
+                // retimeDB - userRef 읽기
+                FirebaseDataService.instance.userRef.child(fromUserId).getData { (error,snapshot) in
+                    guard error == nil else { return }
+                    let item = snapshot.value as! [String: Any]
                     
-                    item.updateValue(currentNumber - 1, forKey: "currentNumber")
-                    recruitTablesDocument.setData(item)
-//                }
+                    var groups = item["groups"] as! [String: Any]
+                    let userID = item["userID"] as! String
+                    
+                    let data: Dictionary<String, AnyObject> = [
+                        "fromUserId" : "System" as AnyObject,
+                        "userID" : userID as AnyObject,
+                        "text" : "/Out/ \(userID)" as AnyObject,
+                        "timestamp" : NSNumber(value: Date().timeIntervalSince1970)
+                    ]
+                    
+                    // 현재 접속중인 groupRef 읽기
+                    let messagesRef = FirebaseDataService.instance.groupRef.child(groupId).child("messages").childByAutoId()
+                    // ""/out/ \(userID)"" 메세지 전송
+                    messagesRef.updateChildValues(data) { (error, snapshot) in
+                        guard error == nil else { return }
+                    }
+                    
+                // 삭제해야할 데이터 #1(groups에서 현재그룹 삭제), #2(db - messageGroup에서 user삭제)
+                // 변경해야할 데이터 #3(group에서 현재그룹 currentNumber-1), #4(db - recruitTables - currentNumber-1)
+                // #1
+                    
+                    groups.removeValue(forKey: groupId)
+                    let groupsRef = FirebaseDataService.instance.userRef.child(fromUserId)
+                    groupsRef.updateChildValues(["groups" : groups])
+                }
+                
+                // #2
+                let messageGroupDocument = self.db.collection("messageGroup").document(groupId)
+                messageGroupDocument.getDocument { (snapshot: DocumentSnapshot?, error: Error?) in
+                    guard error == nil else { return }
+                    let item = snapshot!.data() as! [String: [String]]
+                    var userDictionary: [String: [String]] = item
+                    
+                    if var userArray = userDictionary["users"] {
+                        if let firstIndex = userArray.firstIndex(of: fromUserId) {
+                            userArray.remove(at: firstIndex)
+                        }
+                        userDictionary.updateValue(userArray, forKey: "users")
+                        messageGroupDocument.setData(userDictionary)
+                    }
+                }
+                
+                // #3
+                FirebaseDataService.instance.groupRef.child(groupId).updateChildValues(["currentNumber" : currentNumber - 1])
+                    // #4
+                    let recruitTablesDocument = self.db.collection("recruitTables").document(groupId)
+                    recruitTablesDocument.getDocument { (snapshot: DocumentSnapshot?, error: Error?) in
+                        guard error == nil else { return }
+                        var item = snapshot!.data()!
+                        let currentNumber = item["currentNumber"] as! Int
+                        
+                        item.updateValue(currentNumber - 1, forKey: "currentNumber")
+                        recruitTablesDocument.setData(item)
+        //                }
+                    }
+                }
             }
-        }
-        
-        
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
             self.navigationController?.popViewController(animated: true)
-//        }
+        }
     }
+
+        
+        
+
 }
+
