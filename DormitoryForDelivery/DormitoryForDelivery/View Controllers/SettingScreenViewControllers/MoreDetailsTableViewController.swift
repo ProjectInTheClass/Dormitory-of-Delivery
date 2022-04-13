@@ -21,6 +21,7 @@ import FirebaseFirestore
 class MoreDetailsTableViewController: UITableViewController {
     
     let db: Firestore = Firestore.firestore()
+    let currentUid = Auth.auth().currentUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,7 @@ class MoreDetailsTableViewController: UITableViewController {
         SettingsTableView.rowHeight = UITableView.automaticDimension
         let nibName = UINib(nibName: "MyInfoTableViewCell", bundle: nil)
         SettingsTableView.register(nibName, forCellReuseIdentifier: "MyInfoTableViewCell")
+        print(currentUid)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,7 +60,7 @@ class MoreDetailsTableViewController: UITableViewController {
     }
     
     let SectionName = ["","내 정보", "계정", "기타"]
-    let AccInfo = ["비밀번호 변경", "로그아웃"]
+    let AccInfo = ["비밀번호 변경", "탈퇴하기", "로그아웃"]
     let EtcInfo = ["라이센스", "문의하기"]
     var email: String?
     var studentNumber: String?
@@ -113,7 +115,7 @@ class MoreDetailsTableViewController: UITableViewController {
             return 1
         }
         else if section == 2{
-            return 2
+            return 3
         }
         else if section == 3{
             return 2
@@ -159,7 +161,25 @@ class MoreDetailsTableViewController: UITableViewController {
                 self.performSegue(withIdentifier: "ChangePassword", sender: nil)
             }
             
-            if indexPath.row == 1{
+            if indexPath.row == 1 {
+                let alertController = UIAlertController(title: "회원 탈퇴하시겠습니까?", message: nil, preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+                let checkAction = UIAlertAction(title: "확인", style: .default) { action in
+                    self.currentUid!.delete { error in
+                        if let error = error {
+                            print("error")
+                        } else {
+                            print("account deleted")
+                        }
+                    }
+                    self.performSegue(withIdentifier: "logOut", sender: nil)
+                }
+                alertController.addAction(cancelAction)
+                alertController.addAction(checkAction)
+                present(alertController, animated: true, completion: nil)
+            }
+            
+            if indexPath.row == 2{
                 let alertController = UIAlertController(title: "로그아웃하시겠습니까?", message: nil, preferredStyle: .alert)
                 let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
                 alertController.addAction(cancelAction)
