@@ -21,6 +21,12 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     var height: CGFloat = 0.0
     var messages: [ChatMessage] = [ChatMessage(fromUserId: "", userID: "", text: "", timestamp: 0)]
     
+    // 신고하기에서 선택된 사람
+    var selectedReportMemberUid: String = ""
+    var reasonForReport: String = ""
+    var reportInformation: ReportForm = ReportForm(reasonForReport: "", reportPostWriterName: "", reportPostTitle: "", reportPostNoteText: "", reportPostWriterEmail: "", reportPostWriterStudentNumber: "", reporterName: "", reporterStudentNumber: "", reporterEmail: "", reportTime: "")
+    
+    
     var groupKey: String? {
         didSet {
             if let key = groupKey {
@@ -45,6 +51,10 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count - 1
     }
+    
+    
+
+
     
     // MARK: - CellForItemAt
     // cellForItemAt
@@ -262,6 +272,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
         chatTextField.resignFirstResponder()
     }
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         chatCollectionView.delegate = self
@@ -386,11 +397,15 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, UICollectio
 
     @IBAction func moreOptionBarButtonTapped(_ sender: Any) {
         let moreOptionAlertController = UIAlertController(title: "채팅방에서 나가기를 하면 대화내용 및 채팅목록에서 삭제됩니다. 채팅방을 나가시겠습니까?", message: nil, preferredStyle: .actionSheet)
+        let alertReportChattingAction = UIAlertAction(title: "신고하기", style: .destructive) { action in
+            self.reportChatButtonTapped()
+        }
         let alertDeletePostAction = UIAlertAction(title: "나가기", style: .destructive) { action in
             self.deleteButtonTapped()
         }
         let alertCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
+        moreOptionAlertController.addAction(alertReportChattingAction)
         moreOptionAlertController.addAction(alertDeletePostAction)
         moreOptionAlertController.addAction(alertCancelAction)
         present(moreOptionAlertController, animated: true, completion: nil)
@@ -572,9 +587,193 @@ extension ChatRoomViewController {
             self.navigationController?.popViewController(animated: true)
         }
     }
-
+    
+    private func reportChatButtonTapped() {
+        guard let groupId = self.groupKey else { return }
         
-        
+        let currentUser: String? = FirebaseDataService.instance.currentUserUid
+        let groupMemberInformationAlertForReport = UIAlertController(title: "신고하기", message: nil, preferredStyle: .actionSheet)
+        let chatGroupMemberDocument = Firestore.firestore().collection("messageGroup").document(groupId)
+        let userInformationDocument = Firestore.firestore().collection("users")
+        chatGroupMemberDocument.getDocument { (snapShot, error) in
+            if error != nil {
+                print("error")
+            } else if snapShot!.data()?.isEmpty == nil {
+                print("snapShot is empty")
+            }
+            
+            else {
+                let item = snapShot!.data()!
+                guard var groupMembers = item["users"] as? [String] else { return }
+                
+                groupMembers = groupMembers.filter { $0 != currentUser }
+                
+                for member in groupMembers {
+                    userInformationDocument.document(member).getDocument { (snapShot, error) in
+                        if error != nil {
+                            print("error")
+                        } else {
+                            let item = snapShot!.data()!
+                            guard let groupMemberId = item["userID"] as? String else { return }
+                            let reportGroupMemberAlertAction = UIAlertAction(title: groupMemberId, style: .default) { action in
+                                self.reportInformation.reportPostWriterName = item["userName"] as! String
+                                self.reportInformation.reportPostWriterStudentNumber = item["studentNumber"] as! String
+                                self.reportInformation.reportPostWriterEmail = item["email"] as! String
+                                self.choiceReasonForReport()
+                            }
+                            groupMemberInformationAlertForReport.addAction(reportGroupMemberAlertAction)
+                        }
 
+                    }
+                }
+                let cancelReportAlertAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+                groupMemberInformationAlertForReport.addAction(cancelReportAlertAction)
+                self.present(groupMemberInformationAlertForReport, animated: true, completion: nil)
+            }
+        }
+            
+    }
+    
+    private func choiceReasonForReport() {
+        let reasonForReportAlertController = UIAlertController(title: "신고사유", message: nil, preferredStyle: .actionSheet)
+        let firstReasonForReportAction = UIAlertAction(title: "욕설/비하", style: .default) { action in
+            let confirmReportAlertController = UIAlertController(title: "욕설/비하", message: "관리자가 확인 후 해당 글 삭제 및 작성자 제재조치 합니다.", preferredStyle: .alert)
+            let reportCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            let reportConfirmAction = UIAlertAction(title: "확인", style: .default) { action in
+                self.reportInformation.reasonForReport = "욕설/비하"
+                self.updateReportInformation()
+                let announceReportAlertController = UIAlertController(title: nil, message: "신고 접수 되었습니다.", preferredStyle: .alert)
+                self.present(announceReportAlertController, animated: true) {
+                    self.dismiss(animated: true, completion: nil)
+                }
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                    self.saveInappositePostToServer()
+                    }
+            }
+            confirmReportAlertController.addAction(reportCancelAction)
+            confirmReportAlertController.addAction(reportConfirmAction)
+            self.present(confirmReportAlertController, animated: true, completion: nil)
+        }
+        let secondReasonForReportAction = UIAlertAction(title: "정치적 발언", style: .default) { action in
+            let confirmReportAlertController = UIAlertController(title: "정치적 발언", message: "관리자가 확인 후 해당 글 삭제 및 작성자 제재조치 합니다.", preferredStyle: .alert)
+            let reportCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            let reportConfirmAction = UIAlertAction(title: "확인", style: .default) { action in
+                self.reportInformation.reasonForReport = "정치적 발언"
+                self.updateReportInformation()
+                let announceReportAlertController = UIAlertController(title: nil, message: "신고 접수 되었습니다.", preferredStyle: .alert)
+                self.present(announceReportAlertController, animated: true) {
+                    self.dismiss(animated: true, completion: nil)
+                }
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                    self.saveInappositePostToServer()
+                    }
+            }
+            confirmReportAlertController.addAction(reportCancelAction)
+            confirmReportAlertController.addAction(reportConfirmAction)
+            self.present(confirmReportAlertController, animated: true, completion: nil)
+        }
+        let thirdReasonForReportAction = UIAlertAction(title: "음란물/불건전한 만남 및 대화", style: .default) { action in
+            let confirmReportAlertController = UIAlertController(title: "음란물/불건전한 만남 및 대화", message: "관리자가 확인 후 해당 글 삭제 및 작성자 제재조치 합니다.", preferredStyle: .alert)
+            let reportCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            let reportConfirmAction = UIAlertAction(title: "확인", style: .default) { action in
+                self.reportInformation.reasonForReport = "음란물/불건전한 만남 및 대화"
+                self.updateReportInformation()
+                let announceReportAlertController = UIAlertController(title: nil, message: "신고 접수 되었습니다.", preferredStyle: .alert)
+                self.present(announceReportAlertController, animated: true) {
+                    self.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                    self.saveInappositePostToServer()
+                    }
+                    }
+            }
+            confirmReportAlertController.addAction(reportCancelAction)
+            confirmReportAlertController.addAction(reportConfirmAction)
+            self.present(confirmReportAlertController, animated: true, completion: nil)
+        }
+        let fourthReasonForReportAction = UIAlertAction(title: "사기/낚시", style: .default) { action in
+            let confirmReportAlertController = UIAlertController(title: "사기/낚시", message: "관리자가 확인 후 해당 글 삭제 및 작성자 제재조치 합니다.", preferredStyle: .alert)
+            let reportCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            let reportConfirmAction = UIAlertAction(title: "확인", style: .default) { action in
+                self.reportInformation.reasonForReport = "사기/낚시"
+                self.updateReportInformation()
+                let announceReportAlertController = UIAlertController(title: nil, message: "신고 접수 되었습니다.", preferredStyle: .alert)
+                self.present(announceReportAlertController, animated: true) {
+                    self.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                    self.saveInappositePostToServer()
+                    }
+                    }
+            }
+            confirmReportAlertController.addAction(reportCancelAction)
+            confirmReportAlertController.addAction(reportConfirmAction)
+            self.present(confirmReportAlertController, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        reasonForReportAlertController.addAction(firstReasonForReportAction)
+        reasonForReportAlertController.addAction(secondReasonForReportAction)
+        reasonForReportAlertController.addAction(thirdReasonForReportAction)
+        reasonForReportAlertController.addAction(fourthReasonForReportAction)
+        reasonForReportAlertController.addAction(cancelAction)
+        present(reasonForReportAlertController, animated: true, completion: nil)
+    }
+
+    private func saveInappositePostToServer() {
+        let reportDocumentRef = db.collection("chatReportList").document()
+        let reportData: [String : Any] = ["신고자이름" : self.reportInformation.reporterName, "신고자학번" : self.reportInformation.reporterStudentNumber, "신고자이메일" : self.reportInformation.reporterEmail, "신고사유" : self.reportInformation.reasonForReport, "신고시간" : self.reportInformation.reportTime, "신고된게시글작성자" : self.reportInformation.reportPostWriterName, "신고된게시글작성자학번" : self.reportInformation.reportPostWriterStudentNumber, "신고된게시글작성자이메일" : self.reportInformation.reportPostWriterEmail, "신고된게시글제목" : self.reportInformation.reportPostTitle, "신고된게시글내용" : self.reportInformation.reportPostNoteText]
+        reportDocumentRef.setData(reportData)
+    }
+
+    private func updateReportInformation() {
+        updateReporterInformationFromServer()
+        updateReportPostInformation()
+        updateReportDate()
+    }
+
+    private func updateReportPostInformation() {
+        guard let groupId = self.groupKey else { return }
+        self.db.collection("recruitTables").document(groupId).getDocument { (snapShot, error) in
+            if error != nil {
+                print("error")
+            } else {
+                guard let snapShot = snapShot?.data() else { return }
+                let reportPostName = snapShot["title"] as! String
+                let reportPostNoteText = snapShot["noteText"] as! String
+
+                self.reportInformation.reportPostTitle = reportPostName
+                self.reportInformation.reportPostNoteText = reportPostNoteText
+            }
+        }
+    }
+
+    private func updateReportDate() {
+        let reportDateInformation = Date(timeIntervalSince1970: NSNumber(value: Date().timeIntervalSince1970) as! TimeInterval)
+        let calender = Calendar.current
+        let reportYear = calender.component(.year, from: reportDateInformation)
+        let reportMonth = calender.component(.month, from: reportDateInformation)
+        let reportDay = calender.component(.day, from: reportDateInformation)
+        let reportHour = calender.component(.hour, from: reportDateInformation)
+        let reportMinute = calender.component(.minute, from: reportDateInformation)
+        self.reportInformation.reportTime = "\(reportYear)년 \(reportMonth)월 \(reportDay)일 \(reportHour):\(reportMinute)"
+    }
+    
+    // 신고된 게시글의 작성자의 정보를 불러오는 메소드
+    private func updateReporterInformationFromServer() {
+        let currentUser: String? = FirebaseDataService.instance.currentUserUid
+        self.db.collection("users").document(currentUser!).getDocument { (snapShot, error) in
+            if error != nil {
+                print("error")
+            } else {
+                guard let snapShot = snapShot?.data() else { return }
+                let reporterName = snapShot["userName"] as! String
+                let reporterStudentNumber = snapShot["studentNumber"] as! String
+                let reporterEmail = snapShot["email"] as! String
+                self.reportInformation.reporterName = reporterName
+                self.reportInformation.reporterStudentNumber = reporterStudentNumber
+                self.reportInformation.reporterEmail = reporterEmail
+            }
+        }
+    }
+        
 }
+
 

@@ -34,7 +34,7 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
     
     var reasonForReport: String?
     
-    var reportInformation: ReportForm = ReportForm(reasonForReport: "", reportPostWriterName: "", reportPostTitle: "", reportpostNoteText: "", reportPostWriterEmail: "", reportPostWriterStudentNumber: "", reporterName: "", reporterStudentNumber: "", reporterEmail: "", reportTime: "")
+    var reportInformation: ReportForm = ReportForm(reasonForReport: "", reportPostWriterName: "", reportPostTitle: "", reportPostNoteText: "", reportPostWriterEmail: "", reportPostWriterStudentNumber: "", reporterName: "", reporterStudentNumber: "", reporterEmail: "", reportTime: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -284,7 +284,7 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
     // 신고된 게시글을 서버에 저장하는 메소드
     private func saveInappositePostToServer() {
         let reportDocumentRef = db.collection("reportList").document()
-        let reportData: [String : Any] = ["신고자이름" : self.reportInformation.reporterName, "신고자학번" : self.reportInformation.reporterStudentNumber, "신고자이메일" : self.reportInformation.reporterEmail, "신고사유" : self.reportInformation.reasonForReport, "신고시간" : self.reportInformation.reportTime, "신고된게시글작성자" : self.reportInformation.reportPostWriterName, "신고된게시글작성자학번" : self.reportInformation.reportPostWriterStudentNumber, "신고된게시글작성자이메일" : self.reportInformation.reportPostWriterEmail, "신고된게시글제목" : self.reportInformation.reportPostTitle, "신고된게시글내용" : self.reportInformation.reportpostNoteText]
+        let reportData: [String : Any] = ["신고자이름" : self.reportInformation.reporterName, "신고자학번" : self.reportInformation.reporterStudentNumber, "신고자이메일" : self.reportInformation.reporterEmail, "신고사유" : self.reportInformation.reasonForReport, "신고시간" : self.reportInformation.reportTime, "신고된게시글작성자" : self.reportInformation.reportPostWriterName, "신고된게시글작성자학번" : self.reportInformation.reportPostWriterStudentNumber, "신고된게시글작성자이메일" : self.reportInformation.reportPostWriterEmail, "신고된게시글제목" : self.reportInformation.reportPostTitle, "신고된게시글내용" : self.reportInformation.reportPostNoteText]
         reportDocumentRef.setData(reportData)
     }
     
@@ -294,7 +294,7 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
         updateReportPostWriterInformation()
         updateReportDate()
         self.reportInformation.reportPostTitle = self.mainPostInformation?.postTitle ?? ""
-        self.reportInformation.reportpostNoteText = self.mainPostInformation?.postNoteText ?? ""
+        self.reportInformation.reportPostNoteText = self.mainPostInformation?.postNoteText ?? ""
         self.reportInformation.reasonForReport = self.reasonForReport!
         
 

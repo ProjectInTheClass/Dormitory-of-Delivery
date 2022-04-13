@@ -186,15 +186,18 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHw-y8-FSO">
                                                                     <rect key="frame" x="43" y="26" width="38" height="18"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <gestureRecognizers/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <gestureRecognizers/>
                                                         </view>
                                                     </subviews>
                                                 </view>
+                                                <gestureRecognizers/>
                                                 <size key="customSize" width="185" height="100"/>
                                                 <connections>
                                                     <outlet property="containerView" destination="5wQ-od-jYv" id="K7j-03-vED"/>
@@ -215,6 +218,7 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwl-4Z-1Cg">
                                                                     <rect key="frame" x="33" y="31" width="38" height="18"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <gestureRecognizers/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -228,9 +232,11 @@
                                                                 </label>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <gestureRecognizers/>
                                                         </view>
                                                     </subviews>
                                                 </view>
+                                                <gestureRecognizers/>
                                                 <size key="customSize" width="145" height="106"/>
                                                 <connections>
                                                     <outlet property="containerView" destination="VCM-N8-MRa" id="nwM-Sh-xKP"/>
@@ -260,17 +266,20 @@
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P54-FQ-beT">
                                                                             <rect key="frame" x="43" y="26" width="38" height="18"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <gestureRecognizers/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <gestureRecognizers/>
                                                                 </view>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
                                                 </view>
+                                                <gestureRecognizers/>
                                                 <size key="customSize" width="185" height="100"/>
                                                 <connections>
                                                     <outlet property="containerView" destination="AeE-iV-3WX" id="tYZ-SW-9bl"/>
@@ -294,12 +303,14 @@
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfI-xj-L6f">
                                                                             <rect key="frame" x="43" y="26" width="38" height="18"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <gestureRecognizers/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <gestureRecognizers/>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zF-B5-hZO">
                                                                     <rect key="frame" x="133" y="58.5" width="31" height="14.5"/>
@@ -311,6 +322,7 @@
                                                         </stackView>
                                                     </subviews>
                                                 </view>
+                                                <gestureRecognizers/>
                                                 <size key="customSize" width="185" height="100"/>
                                                 <connections>
                                                     <outlet property="containerView" destination="Tm5-Vc-Xsp" id="vqG-Yl-LNQ"/>
@@ -334,6 +346,7 @@
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGe-2x-Rgv">
                                                                             <rect key="frame" x="33" y="31" width="38" height="18"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <gestureRecognizers/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -347,6 +360,7 @@
                                                                         </label>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <gestureRecognizers/>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCg-7e-iqQ">
                                                                     <rect key="frame" x="112" y="53.5" width="31" height="14.5"/>
@@ -358,6 +372,7 @@
                                                         </stackView>
                                                     </subviews>
                                                 </view>
+                                                <gestureRecognizers/>
                                                 <size key="customSize" width="171" height="99"/>
                                                 <connections>
                                                     <outlet property="containerView" destination="Ahg-pa-4Oq" id="bT9-3S-jJY"/>
@@ -380,15 +395,18 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSg-gh-o5U">
                                                                     <rect key="frame" x="43" y="26" width="31" height="15"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <gestureRecognizers/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                             <color key="backgroundColor" red="0.57254901960000004" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <gestureRecognizers/>
                                                         </view>
                                                     </subviews>
                                                 </view>
+                                                <gestureRecognizers/>
                                                 <size key="customSize" width="185" height="100"/>
                                                 <connections>
                                                     <outlet property="containerView" destination="NQs-sd-bfX" id="2U0-TL-bHz"/>
@@ -396,9 +414,6 @@
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="WbQ-oA-oNy" appends="YES" id="5xe-p3-vCp"/>
-                                        </connections>
                                     </collectionView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bEd-SL-LUP" userLabel="contain View">
                                         <rect key="frame" x="0.0" y="720" width="414" height="54"/>
@@ -449,7 +464,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Hem-QL-yFi">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="line.horizontal.3" catalog="system" id="gaJ-bE-MOk">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="ellipsis" catalog="system" id="gaJ-bE-MOk">
                             <connections>
                                 <action selector="moreOptionBarButtonTapped:" destination="ghf-hH-gGX" id="udb-U2-P99"/>
                             </connections>
@@ -464,17 +479,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LjP-dr-SQA" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="WbQ-oA-oNy">
-                    <connections>
-                        <action selector="collectionViewTapped:" destination="ghf-hH-gGX" id="lGH-Fv-900"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1553.6231884057972" y="575.89285714285711"/>
         </scene>
     </scenes>
     <resources>
-        <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
+        <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="message" catalog="system" width="128" height="113"/>
         <image name="message.fill" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">

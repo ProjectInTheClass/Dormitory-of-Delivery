@@ -11,7 +11,7 @@ struct ReportForm {
     var reasonForReport: String
     var reportPostWriterName: String
     var reportPostTitle: String
-    var reportpostNoteText: String
+    var reportPostNoteText: String
     var reportPostWriterEmail: String
     var reportPostWriterStudentNumber: String
     var reporterName: String
