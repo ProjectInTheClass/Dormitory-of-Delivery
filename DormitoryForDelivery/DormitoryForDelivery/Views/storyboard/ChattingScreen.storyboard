@@ -161,8 +161,39 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TGe-rc-jGx">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbK-dv-lCs">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7ra-Bj-OiR">
+                                                <rect key="frame" x="0.0" y="8" width="414" height="36"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="부적절하거나 불쾌감을 줄 수 있는 대화는 제제의 대상입니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyC-W0-sB1">
+                                                        <rect key="frame" x="29" y="0.0" width="356.5" height="18"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="목격시 신고하기를 통해 신고 바랍니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCd-I3-WW9">
+                                                        <rect key="frame" x="93" y="18" width="228" height="18"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.68627452850000004" green="0.7254902124" blue="0.8156862855" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstItem="7ra-Bj-OiR" firstAttribute="leading" secondItem="vbK-dv-lCs" secondAttribute="leading" id="1Qm-yC-svT"/>
+                                            <constraint firstItem="7ra-Bj-OiR" firstAttribute="top" secondItem="vbK-dv-lCs" secondAttribute="top" constant="8" id="1uh-V4-UUK"/>
+                                            <constraint firstAttribute="bottom" secondItem="7ra-Bj-OiR" secondAttribute="bottom" constant="8" id="7ep-IU-qZG"/>
+                                            <constraint firstAttribute="height" constant="52" id="JK8-XD-gXp"/>
+                                            <constraint firstAttribute="trailing" secondItem="7ra-Bj-OiR" secondAttribute="trailing" id="MUX-gT-Zq5"/>
+                                            <constraint firstAttribute="width" constant="414" id="Tb4-f5-kRL"/>
+                                        </constraints>
+                                    </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CkK-4g-rlH">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
+                                        <rect key="frame" x="0.0" y="52" width="414" height="668"/>
                                         <color key="backgroundColor" red="0.68627452850000004" green="0.7254902124" blue="0.8156862855" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <gestureRecognizers/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WeJ-xi-RSd">
@@ -454,7 +485,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8S3-js-qDw"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="TGe-rc-jGx" firstAttribute="top" secondItem="8S3-js-qDw" secondAttribute="top" id="903-TJ-SkI"/>
@@ -492,6 +523,9 @@
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>
