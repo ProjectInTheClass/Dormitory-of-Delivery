@@ -102,7 +102,7 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
                     }
                 }
                 
-                let announceDeleteAlertController = UIAlertController(title: nil, message: "참여 되었습니다.", preferredStyle: .alert)
+                let announceDeleteAlertController = UIAlertController(title: nil, message: "참여되었습니다.", preferredStyle: .alert)
                 self.present(announceDeleteAlertController, animated: true) {
                     self.dismiss(animated: true) {
                     self.performSegue(withIdentifier: "unwindMainView", sender: nil)
@@ -206,10 +206,13 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
         let blockAbusiveUserAlertController = UIAlertController(title: "차단하기", message: "해당 사용자의 글이 모두 차단됩니다.", preferredStyle: .alert)
         let blockAbusiveUserAction = UIAlertAction(title: "확인", style: .default) { action in
             self.sendBlockAbusiveUserListToServer()
+            let announceBlockAlertController = UIAlertController(title: nil, message: "차단되었습니다.", preferredStyle: .alert)
+            self.present(announceBlockAlertController, animated: true) {
                 self.dismiss(animated: true) {
-                    self.performSegue(withIdentifier: "unwindMainView", sender: nil)
+                self.performSegue(withIdentifier: "unwindMainView", sender: nil)
                 }
             }
+        }
         let blockAbusiveUserCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         blockAbusiveUserAlertController.addAction(blockAbusiveUserCancelAction)
         blockAbusiveUserAlertController.addAction(blockAbusiveUserAction)

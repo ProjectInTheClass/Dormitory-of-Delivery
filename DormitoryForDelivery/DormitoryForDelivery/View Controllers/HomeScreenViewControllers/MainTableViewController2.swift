@@ -346,10 +346,11 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.mainPostsHasNextPage = true
             }
             if self.tappedFilterButtonTitle != nil {
+                readAbusiveUserListFromServer()
                 self.mainTableView.refreshControl?.endRefreshing()
             } else {
                 self.mainPosts.removeAll()
-                self.fetchRecruitmentTableList()
+                readAbusiveUserListFromServer()
                 self.mainTableView.refreshControl?.endRefreshing()
             }
 //        }
@@ -403,7 +404,11 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             if error != nil {
                 print("error")
             } else {
-                guard let blockList = snapShot?.data()?["blockAbusiveUserList"] as? [String] else { return }
+                guard let blockList = snapShot?.data()?["blockAbusiveUserList"] as? [String] else {
+                    self.abusiveUserList.removeAll()
+                    self.fetchRecruitmentTableList()
+                    return
+                }
                 self.abusiveUserList = blockList
                 self.fetchRecruitmentTableList()
             }
