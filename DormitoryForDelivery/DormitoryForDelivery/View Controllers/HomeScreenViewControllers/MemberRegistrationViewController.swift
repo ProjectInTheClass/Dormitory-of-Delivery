@@ -69,7 +69,7 @@ class MemberRegistrationViewController: UIViewController, UITextFieldDelegate, U
         let studentNumber = studentNumberTextField.text!
         let userName = userNameTextField.text!
         let userID = studentNumberTextField.text! + " " + userName
-        let newUser = ["email":email, "studentNumber":studentNumber, "userName":userName, "userID":userID, "AgreetoTermsofUse": "true"]
+        let newUser = ["email" : email, "studentNumber" : studentNumber, "userName" : userName, "userID" : userID, "AgreetoTermsofUse" : "true"]
         
         guard emailTextField.text?.isEmpty == false, passwordTextField.text?.isEmpty == false, checkPasswordTextField.text?.isEmpty == false else {
             let alertController = UIAlertController(title: "이메일과 비밀번호를 작성해주세요.", message: nil, preferredStyle: .alert)

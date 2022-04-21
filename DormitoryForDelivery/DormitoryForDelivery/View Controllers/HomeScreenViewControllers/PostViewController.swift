@@ -128,8 +128,8 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
             }
             let alertCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
             
-            moreOptionAlertController.addAction(alertEditPostAction)
             moreOptionAlertController.addAction(alertDeletePostAction)
+            moreOptionAlertController.addAction(alertEditPostAction)
             moreOptionAlertController.addAction(alertCancelAction)
             present(moreOptionAlertController, animated: true, completion: nil)
         } else {
@@ -137,8 +137,12 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
             let alertReportPostAction = UIAlertAction(title: "신고하기", style: .destructive) { action in
                 self.choiceReasonForReport()
             }
+            let alertBlockAbusiveUserAction = UIAlertAction(title: "차단하기", style: .destructive) { action in
+                self.blockAbusiveUserButtonTapped()
+            }
             let alertCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
             moreOptionAlertController.addAction(alertReportPostAction)
+            moreOptionAlertController.addAction(alertBlockAbusiveUserAction)
             moreOptionAlertController.addAction(alertCancelAction)
             present(moreOptionAlertController, animated: true, completion: nil)
         }
@@ -195,6 +199,38 @@ class PostViewController: UIViewController, SendEditDataDelegate, UINavigationCo
         confirmDeleteAlertController.addAction(alertDeleteCancelAction)
         confirmDeleteAlertController.addAction(alertDeleteConfirmAction)
         present(confirmDeleteAlertController, animated: true, completion: nil)
+    }
+    
+    // 차단하기 버튼이 눌렸을 때 호출
+    private func blockAbusiveUserButtonTapped() {
+        let blockAbusiveUserAlertController = UIAlertController(title: "차단하기", message: "해당 사용자의 글이 모두 차단됩니다.", preferredStyle: .alert)
+        let blockAbusiveUserAction = UIAlertAction(title: "확인", style: .default) { action in
+            self.sendBlockAbusiveUserListToServer()
+                self.dismiss(animated: true) {
+                    self.performSegue(withIdentifier: "unwindMainView", sender: nil)
+                }
+            }
+        let blockAbusiveUserCancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        blockAbusiveUserAlertController.addAction(blockAbusiveUserCancelAction)
+        blockAbusiveUserAlertController.addAction(blockAbusiveUserAction)
+        self.present(blockAbusiveUserAlertController, animated: true, completion: nil)
+    }
+    
+    // 차단하는 메소드 -> firestore user 컬렉션에 차단리스트를 업데이트
+    private func sendBlockAbusiveUserListToServer() {
+        let userRef = self.db.collection("users").document(Auth.auth().currentUser!.uid)
+        userRef.getDocument { (snapShot, error) in
+            if error != nil {
+                print("error")
+            } else {
+                guard var blockAbusiveUserList: [String] = snapShot?["blockAbusiveUserList"] as? [String] else {
+                    userRef.updateData(["blockAbusiveUserList" : [self.mainPostInformation?.WriteUid]])
+                    return
+                }
+                    blockAbusiveUserList.append(self.mainPostInformation?.WriteUid ?? "")
+                    userRef.updateData(["blockAbusiveUserList" : blockAbusiveUserList])
+            }
+        }
     }
     
     // 신고사유 선택하는 메소드

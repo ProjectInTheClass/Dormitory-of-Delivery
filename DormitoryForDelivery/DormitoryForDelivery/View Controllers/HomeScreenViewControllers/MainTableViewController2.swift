@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class MainTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PostViewControllerDelegate, UISearchResultsUpdating {
+class MainTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PostViewControllerDelegate {
 
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var searchBarView: UIView!
@@ -38,6 +38,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var lastDocumentSnapshot: DocumentSnapshot?
     
+    var abusiveUserList: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTableView.dataSource = self
@@ -45,7 +47,6 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
 //        setUpSearchController()
         initRefresh()
         navigationUI()
-        
         button.tintColor = UIColor(red:142/255 , green: 160/255, blue: 207/255, alpha: 1)
         button.backgroundColor = UIColor.white
         button.layer.cornerRadius = button.layer.frame.size.width/2
@@ -80,7 +81,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             self.searchMainPost = nil
             self.filteredButtonMainPost = nil
             self.mainPosts = [] // 메인 화면으로 넘어갈 때 테이블뷰에 새로운 글까지 넣기위한 코드
-            fetchRecruitmentTableList()
+            readAbusiveUserListFromServer()
             self.mainTableView.reloadData()
         }
         
@@ -171,6 +172,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func fetchRecruitmentTableList(){
+
         // 쿼리로 페이지네이션 구현
         var mainPostQuery: Query!
         
@@ -194,39 +196,51 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                 .limit(to: 10)
         }
         mainPostQuery.getDocuments() { (snapshot, error) in
-                if error != nil {
-                    print("error")
-                } else if snapshot!.isEmpty {
-                    print("Snapshot is empty")
-                    self.mainPostsHasNextPage = false
-                    self.mainTableView.reloadData()
-                } else {
-                        for document in snapshot!.documents{
-                            let title = document.data()["title"] as! String
-                            let uid = document.data()["uid"] as! String
-                            let category = document.data()["category"] as! String
-                            let categoryNumber = document.data()["categoryNumber"] as! Int
-                            let noteText = document.data()["noteText"] as! String
-                            let maximumNumber = document.data()["maximumNumber"] as! Int
-                            let currentNumber = document.data()["currentNumber"] as! Int
-                            let timestamp = document.data()["timestamp"] as! NSNumber
-                            let documentId = document.documentID
-                            let meetingTime = document.data()["meetingTime"] as! NSNumber
-                            let titleComponentArray = document.data()["titleComponentArray"] as! [String]
-                            let meetingTimeLabel = self.fetchMeetingTime(meetingTime: meetingTime)
-                            let mainPost:RecruitingText = RecruitingText(postTitle: title, categories: category, categoryNumber: categoryNumber, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel, titleComponentArray: titleComponentArray)
-                            if self.tappedFilterButtonTitle != nil {
-                                filterPost.append(mainPost)
-                                self.filteredButtonMainPost = filterPost
-                            } else {
-                                self.mainPosts.append(mainPost)
-                            }
-                        }
-                        self.mainTableView.reloadData()
-                        self.lastDocumentSnapshot = snapshot!.documents.last
+            if error != nil {
+                print("error")
+            } else if snapshot!.isEmpty {
+                print("Snapshot is empty")
+                self.mainPostsHasNextPage = false
+                self.mainTableView.reloadData()
+            } else {
+                for document in snapshot!.documents{
+                    let title = document.data()["title"] as! String
+                    let uid = document.data()["uid"] as! String
+                    let category = document.data()["category"] as! String
+                    let categoryNumber = document.data()["categoryNumber"] as! Int
+                    let noteText = document.data()["noteText"] as! String
+                    let maximumNumber = document.data()["maximumNumber"] as! Int
+                    let currentNumber = document.data()["currentNumber"] as! Int
+                    let timestamp = document.data()["timestamp"] as! NSNumber
+                    let documentId = document.documentID
+                    let meetingTime = document.data()["meetingTime"] as! NSNumber
+                    let titleComponentArray = document.data()["titleComponentArray"] as! [String]
+                    let meetingTimeLabel = self.fetchMeetingTime(meetingTime: meetingTime)
+                    let mainPost:RecruitingText = RecruitingText(postTitle: title, categories: category, categoryNumber: categoryNumber, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel, titleComponentArray: titleComponentArray)
+                    if self.tappedFilterButtonTitle != nil {
+                        filterPost.append(mainPost)
+                        self.filteredButtonMainPost = filterPost
+                    } else {
+                        self.mainPosts.append(mainPost)
+                    }
                 }
+                if self.filteredButtonMainPost != nil {
+                    for abusiveUser in self.abusiveUserList {
+                        guard var filteredButtonMainPost = self.filteredButtonMainPost else { return }
+                        filteredButtonMainPost = filteredButtonMainPost.filter { $0.WriteUid != abusiveUser }
+                        self.filteredButtonMainPost = filteredButtonMainPost
+                    }
+                } else {
+                    print(self.abusiveUserList)
+                    for abusiveUser in self.abusiveUserList {
+                        self.mainPosts = self.mainPosts.filter { $0.WriteUid != abusiveUser }
+                    }
+                }
+                self.mainTableView.reloadData()
+                self.lastDocumentSnapshot = snapshot!.documents.last
             }
         }
+    }
     
     func currentNumberChanged(currentNumber: Int, selectedIndexPath: Int) {
         self.mainPosts[selectedIndexPath].currentNumber = currentNumber
@@ -240,53 +254,53 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     // 서치바 UI만들기
-    func setUpSearchController() {
-        self.searchBarView.addSubview(searchController.searchBar)
-        searchController.searchBar.placeholder = "제목, 카테고리 등"
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
-        searchController.searchBar.sizeToFit()
-        searchController.hidesNavigationBarDuringPresentation = false
-        definesPresentationContext = true
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        var searchQuery: Query!
-        var searchPost: [RecruitingText] = []
-        print(searchController.searchBar.text!)
-        var findPostArray: [String] = []
-        findPostArray.append(searchController.searchBar.text!)
-        searchQuery = self.db.collection("recruitTables")
-            .whereField("titleComponentArray", arrayContainsAny: findPostArray)
-//            .order(by: "timestamp", descending: true)
-        searchQuery.getDocuments { (snapshot, error) in
-            if error != nil {
-                print("error")
-            } else if snapshot!.isEmpty {
-                print("Snapshot is empty")
-            } else {
-                    for document in snapshot!.documents{
-                        let title = document.data()["title"] as! String
-                        let uid = document.data()["uid"] as! String
-                        let category = document.data()["category"] as! String
-                        let categoryNumber = document.data()["categoryNumber"] as! Int
-                        let noteText = document.data()["noteText"] as! String
-                        let maximumNumber = document.data()["maximumNumber"] as! Int
-                        let currentNumber = document.data()["currentNumber"] as! Int
-                        let timestamp = document.data()["timestamp"] as! NSNumber
-                        let documentId = document.documentID
-                        let meetingTime = document.data()["meetingTime"] as! NSNumber
-                        let titleComponentArray = document.data()["titleComponentArray"] as! [String]
-                        let meetingTimeLabel = self.fetchMeetingTime(meetingTime: meetingTime)
-                        let searchingPost:RecruitingText = RecruitingText(postTitle: title, categories: category, categoryNumber: categoryNumber, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel, titleComponentArray: titleComponentArray)
-                        searchPost.append(searchingPost)
-                    }
-                print(searchPost)
-                self.mainTableView.reloadData()
-                }
-            }
-        }
+//    func setUpSearchController() {
+//        self.searchBarView.addSubview(searchController.searchBar)
+//        searchController.searchBar.placeholder = "제목, 카테고리 등"
+//        searchController.searchResultsUpdater = self
+//        searchController.obscuresBackgroundDuringPresentation = false
+//        searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
+//        searchController.searchBar.sizeToFit()
+//        searchController.hidesNavigationBarDuringPresentation = false
+//        definesPresentationContext = true
+//    }
+//
+//    func updateSearchResults(for searchController: UISearchController) {
+//        var searchQuery: Query!
+//        var searchPost: [RecruitingText] = []
+//        print(searchController.searchBar.text!)
+//        var findPostArray: [String] = []
+//        findPostArray.append(searchController.searchBar.text!)
+//        searchQuery = self.db.collection("recruitTables")
+//            .whereField("titleComponentArray", arrayContainsAny: findPostArray)
+////            .order(by: "timestamp", descending: true)
+//        searchQuery.getDocuments { (snapshot, error) in
+//            if error != nil {
+//                print("error")
+//            } else if snapshot!.isEmpty {
+//                print("Snapshot is empty")
+//            } else {
+//                    for document in snapshot!.documents{
+//                        let title = document.data()["title"] as! String
+//                        let uid = document.data()["uid"] as! String
+//                        let category = document.data()["category"] as! String
+//                        let categoryNumber = document.data()["categoryNumber"] as! Int
+//                        let noteText = document.data()["noteText"] as! String
+//                        let maximumNumber = document.data()["maximumNumber"] as! Int
+//                        let currentNumber = document.data()["currentNumber"] as! Int
+//                        let timestamp = document.data()["timestamp"] as! NSNumber
+//                        let documentId = document.documentID
+//                        let meetingTime = document.data()["meetingTime"] as! NSNumber
+//                        let titleComponentArray = document.data()["titleComponentArray"] as! [String]
+//                        let meetingTimeLabel = self.fetchMeetingTime(meetingTime: meetingTime)
+//                        let searchingPost:RecruitingText = RecruitingText(postTitle: title, categories: category, categoryNumber: categoryNumber, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel, titleComponentArray: titleComponentArray)
+//                        searchPost.append(searchingPost)
+//                    }
+//                print(searchPost)
+//                self.mainTableView.reloadData()
+//                }
+//            }
+//        }
     
 //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 //    // 화면을 누르면 키보드 내려가게 하는 것
@@ -383,6 +397,18 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             self.filterCategoryNumber = 9
         }
     }
+    
+    private func readAbusiveUserListFromServer() {
+        db.collection("users").document(Auth.auth().currentUser!.uid).getDocument { (snapShot, error) in
+            if error != nil {
+                print("error")
+            } else {
+                guard let blockList = snapShot?.data()?["blockAbusiveUserList"] as? [String] else { return }
+                self.abusiveUserList = blockList
+                self.fetchRecruitmentTableList()
+            }
+        }
+    }
 
     // MARK: - Navigation
     
@@ -407,8 +433,4 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         } 
     }
-    
-    
 }
-
-

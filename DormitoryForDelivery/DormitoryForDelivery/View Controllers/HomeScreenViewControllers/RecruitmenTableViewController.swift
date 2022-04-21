@@ -188,9 +188,9 @@ class RecruitmenTableViewController: UITableViewController, UITextViewDelegate, 
                 changeTitleToArray(sender: self.titleTextField.text!)
                 //ToDo: Type cating으로 경고 수정, 나중에 유저가 그룹참가를 하면 currentNumber를 update하는 코드구현
                 let currentNumber = 1
+                let currentUserUid = Auth.auth().currentUser!.uid
             guard let title = self.titleTextField.text, let category = self.categoriesLabel.text, let noteText = self.noteTextView.text, let categoryNumber = self.selectedCategoryNumber, let titleComponentArray = self.titleComponentArray else { return }
-                
-            let newRecruitTable:Dictionary<String, Any> = ["uid":Auth.auth().currentUser!.uid, "title": title, "category":category, "noteText":noteText, "maximumNumber":self.recruitmentCountStepper.value,"currentNumber":currentNumber,"timestamp":NSNumber(value: Date().timeIntervalSince1970),"meetingTime":NSNumber(value:self.meetingDatePicker.date.timeIntervalSince1970), "categoryNumber":categoryNumber, "titleComponentArray":titleComponentArray]
+            let newRecruitTable:Dictionary<String, Any> = ["uid" : currentUserUid, "title" : title, "category" : category, "noteText" : noteText, "maximumNumber" : self.recruitmentCountStepper.value,"currentNumber" : currentNumber,"timestamp" : NSNumber(value: Date().timeIntervalSince1970),"meetingTime" : NSNumber(value:self.meetingDatePicker.date.timeIntervalSince1970), "categoryNumber" :          categoryNumber, "titleComponentArray" : titleComponentArray, "mamberUid" : [currentUserUid]]
         
                 //fireStore - tables에 작성
                 let newRecruitTableRef = self.db.collection("recruitTables").document()
