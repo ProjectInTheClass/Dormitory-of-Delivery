@@ -21,6 +21,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var searchMainPost: [RecruitingText] = []
     
+    var abusiveUserList: [String] = []
+    
     let db: Firestore = Firestore.firestore()
     
     override func viewDidLoad() {
@@ -29,6 +31,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchTableView.delegate = self
         searchController.searchBar.delegate = self
         setUpSearchController()
+        print(abusiveUserList)
 
         // Do any additional setup after loading the view.
     }
@@ -101,6 +104,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         let searchingPost:RecruitingText = RecruitingText(postTitle: title, categories: category, categoryNumber: categoryNumber, postNoteText: noteText, maximumNumber: maximumNumber, currentNumber: currentNumber, WriteUid: uid, timestamp: timestamp, documentId: documentId, meetingTime: meetingTimeLabel, titleComponentArray: titleComponentArray)
                         self.searchMainPost.append(searchingPost)
                     }
+                for abusiveUser in self.abusiveUserList {
+                    self.searchMainPost = self.searchMainPost.filter { $0.WriteUid != abusiveUser }
+                }
                 self.searchTableView.reloadData()
                 }
             }

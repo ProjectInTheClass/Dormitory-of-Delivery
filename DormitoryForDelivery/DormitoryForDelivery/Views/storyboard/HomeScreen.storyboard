@@ -1948,7 +1948,7 @@ Firebase : 서비스 시스템 제공, 데이터 관리 및 보관, 회원 관�
                     <navigationItem key="navigationItem" title="창원대학교" id="4j5-td-hn9">
                         <barButtonItem key="rightBarButtonItem" title="searchButton" image="magnifyingglass" catalog="system" id="0ZA-Fa-bXV">
                             <connections>
-                                <segue destination="5W0-b2-kqX" kind="show" id="37J-pf-d7o"/>
+                                <segue destination="5W0-b2-kqX" kind="show" identifier="searchView" id="37J-pf-d7o"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2244,8 +2244,8 @@ Firebase : 서비스 시스템 제공, 데이터 관리 및 보관, 회원 관�
     <resources>
         <image name="2" width="858" height="432"/>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
-        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="checkmark.circle.fill" width="128" height="128"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="house" catalog="system" width="128" height="106"/>

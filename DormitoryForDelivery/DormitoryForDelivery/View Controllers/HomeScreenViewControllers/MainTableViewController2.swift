@@ -180,6 +180,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if self.mainPosts.isEmpty {
             mainPostQuery = self.db.collection("recruitTables")
+//                .whereField("uid", notIn: abusiveUserList)
                 .order(by: "timestamp", descending: true)
                 .limit(to: 10)
         } else if self.tappedFilterButtonTitle != nil {
@@ -436,6 +437,9 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             destinationViewController?.mainPostInformation = mainPosts[indexPath]
             destinationViewController?.selectedIndexPath = indexPath
             }
-        } 
+        } else if segue.identifier == "searchView" {
+            let destinationViewController = segue.destination as? SearchViewController
+            destinationViewController?.abusiveUserList = abusiveUserList
+        }
     }
 }
