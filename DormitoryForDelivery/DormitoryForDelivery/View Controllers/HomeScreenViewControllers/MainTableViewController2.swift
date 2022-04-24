@@ -17,6 +17,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var filterLabelCollection: [UILabel]!
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var showAllButton: UIButton!
+    @IBOutlet weak var showAllButtonLabel: UILabel!
     
     let db: Firestore = Firestore.firestore()
     
@@ -78,6 +80,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
             performSegue(withIdentifier: "login", sender: self)
             
         } else {
+            changeButtonColorViewDidAppear()
             self.searchMainPost = nil
             self.filteredButtonMainPost = nil
             self.mainPosts = [] // 메인 화면으로 넘어갈 때 테이블뷰에 새로운 글까지 넣기위한 코드
@@ -414,6 +417,16 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.fetchRecruitmentTableList()
             }
         }
+    }
+    
+    private func changeButtonColorViewDidAppear() {
+        for changeButton in filterButtonCollection {
+            let index = filterButtonCollection.firstIndex {$0 == changeButton}
+            changeButton.setImage(UIImage(named: "\(changeButton.currentTitle!)라인"), for: .normal)
+            filterLabelCollection[index!].textColor = UIColor.black
+        }
+        showAllButton.setImage(UIImage(named: "전체"), for: .normal)
+        showAllButtonLabel.textColor = UIColor(red: 142/255, green: 160/255, blue: 207/255, alpha: 1)
     }
 
     // MARK: - Navigation

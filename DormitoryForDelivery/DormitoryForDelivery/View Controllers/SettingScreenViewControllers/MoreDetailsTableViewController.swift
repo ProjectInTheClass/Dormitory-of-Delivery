@@ -193,6 +193,8 @@ class MoreDetailsTableViewController: UITableViewController {
         } else {
             if indexPath.row == 1 {
                 self.performSegue(withIdentifier: "Inqury", sender: nil)
+            } else {
+                self.performSegue(withIdentifier: "license", sender: nil)
             }
         }
         SettingsTableView.deselectRow(at: indexPath, animated: false)
