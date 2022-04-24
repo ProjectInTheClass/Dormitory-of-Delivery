@@ -190,7 +190,7 @@ class MoreDetailsTableViewController: UITableViewController {
                 present(alertController, animated: true, completion: nil)
                 
             }
-        } else {
+        } else if selectedSection == 3 {
             if indexPath.row == 1 {
                 self.performSegue(withIdentifier: "Inqury", sender: nil)
             } else {
